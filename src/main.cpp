@@ -49,7 +49,7 @@ int main()
 
 	//stats
 	sf::Clock clock;
-	int fps = 0;
+	float fps = 0;
 	float frames = 0;
 	clock.restart();
 
