@@ -25,45 +25,84 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#pragma comment(lib, "zlibwapi.lib")
+
+#include "tmx\MapLoader.h"
 
 
 ////////////////////////////////////////////////////////////
 ///Entrypoint of application 
 //////////////////////////////////////////////////////////// 
 
+#include "WaterShaderText.h"
+
 int main()
 {
+	bool shader = false, showDebug = false;
+
+
+	tmx::MapLoader ml("resources");
+	if (shader)	ml.Load("shader_example.tmx"); else	ml.Load("isometric_grass_and_water.tmx");
+	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
+
 	// Create the main window 
-	sf::RenderWindow window(sf::VideoMode(800, 600, 32), "3rd Year Project");
+	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
+	window.setVerticalSyncEnabled(true);
+
+	//shader testing
+	sf::Shader waterEffect;
+	waterEffect.loadFromMemory(waterShader, sf::Shader::Fragment);
+	if (shader)	ml.SetLayerShader(0u, waterEffect);
+	sf::Clock shaderClock, frameClock;
 
 	//load a font
 	sf::Font font;
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
 
-	//create a formatted text string
-	sf::Text fpsText;
-	fpsText.setFont(font);
-	fpsText.setStyle(sf::Text::Regular);
-	fpsText.setPosition(20, 10);
-	fpsText.setCharacterSize(32);
 
-	//stats
-	sf::Clock clock;
-	float fps = 0;
-	float frames = 0;
-	clock.restart();
+	sf::Text screenPosText;
+	screenPosText.setFont(font);
+	screenPosText.setStyle(sf::Text::Regular);
+	screenPosText.setPosition(600, 10);
+	screenPosText.setCharacterSize(24);
+
+	sf::Text mapPosText;
+	mapPosText.setFont(font);
+	mapPosText.setStyle(sf::Text::Regular);
+	mapPosText.setPosition(600, 40);
+	mapPosText.setCharacterSize(24);
 
 	// Start game loop 
 	while (window.isOpen())
 	{
-		//calculate frames per second
-		frames += 1;
-		if (clock.getElapsedTime().asSeconds() >= 1){
-			fps = (int)frames;
-			frames = 0;
-			clock.restart();
-			fpsText.setString("Fps: " + std::to_string(fps));
+		//----------------------------------------------------------------------------
+		//debug info
+		//move objects about
+		/*std::vector<tmx::MapLayer>& layers = ml.GetLayers();
+		for (auto& l : layers)
+		{
+			if (l.type == tmx::ObjectGroup)
+			{
+				for (auto& o : l.objects)
+				{
+					o.Move(0.f, 60.f * frameClock.getElapsedTime().asSeconds());
+					if (o.GetPosition().y > 600.f)
+					{
+						o.SetPosition(o.GetPosition().x, 0.f);
+					}
+				}
+			}
 		}
+		ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));*/
+
+		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
+		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
+			std::to_string((int)mouseScreenPos.y) + ")");
+		sf::Vector2f mouseMapPos = ml.OrthogonalToIsometric(mouseScreenPos);
+		mapPosText.setString("MapPos: (" + std::to_string((int)mouseMapPos.x) + ", " +
+			std::to_string((int)mouseMapPos.y) + ")");
+
+		//----------------------------------------------------------------------------
 
 		// Process events 
 		sf::Event Event;
@@ -76,16 +115,25 @@ int main()
 			// Escape key : exit 
 			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 				window.close();
+			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::D))
+				showDebug = !showDebug;
 		}
+		//update shader
+		if (shader) waterEffect.setParameter("time", shaderClock.getElapsedTime().asSeconds());
+
 
 		//prepare frame
 		window.clear();
 
 		//draw frame items
-		window.draw(fpsText);
-
+		window.draw(ml);
+		if (showDebug) ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
+		window.draw(screenPosText);
+		window.draw(mapPosText);
 		// Finally, display rendered frame on screen 
 		window.display();
+
+		window.setTitle("3rd Year Project " + std::to_string(1.f / frameClock.getElapsedTime().asSeconds()));
 	} //loop back for next frame
 
 	return EXIT_SUCCESS;
