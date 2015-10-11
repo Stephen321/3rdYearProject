@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////// 
 // Headers 
 //////////////////////////////////////////////////////////// 
-#include "stdafx.h" 
+//#include "stdafx.h" 
 
 #ifdef _DEBUG 
 #pragma comment(lib,"sfml-graphics-d.lib") 
@@ -61,12 +61,12 @@ void callback(AnimationState* state, int trackIndex, EventType type, Event* even
 	fflush(stdout);
 }
 
-void testPlayer() {
+void spineboy() {
 	// Load atlas, skeleton, and animations.
-	Atlas* atlas = Atlas_createFromFile("data/testPlayer.atlas", 0);
+	Atlas* atlas = Atlas_createFromFile("data/spineboy.atlas", 0);
 	SkeletonJson* json = SkeletonJson_create(atlas);
 	json->scale = 0.6f;
-	SkeletonData *skeletonData = SkeletonJson_readSkeletonDataFile(json, "data/testPlayer.json");
+	SkeletonData *skeletonData = SkeletonJson_readSkeletonDataFile(json, "data/spineboy.json");
 	if (!skeletonData) {
 		printf("%s\n", json->error);
 		exit(0);
@@ -103,7 +103,7 @@ void testPlayer() {
 		AnimationState_addAnimationByName(drawable->state, 0, "run", true, 0);
 	}
 
-	sf::RenderWindow window(sf::VideoMode(640, 480), "testPlayer");
+	sf::RenderWindow window(sf::VideoMode(640, 480), "Spine SFML - spineboy");
 	window.setFramerateLimit(60);
 	sf::Event event;
 	sf::Clock deltaClock;
@@ -139,7 +139,7 @@ void testPlayer() {
 
 int main()
 {
-	
+	spineboy();
 	
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800, 600, 32), "3rd Year Project");
