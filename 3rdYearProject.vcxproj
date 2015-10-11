@@ -20,6 +20,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -50,7 +51,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SFML_SDK)\include;$(ProjectDir)include</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,9 +76,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\spine\Animation.h" />
+    <ClInclude Include="include\spine\AnimationState.h" />
+    <ClInclude Include="include\spine\AnimationStateData.h" />
+    <ClInclude Include="include\spine\Atlas.h" />
+    <ClInclude Include="include\spine\AtlasAttachmentLoader.h" />
+    <ClInclude Include="include\spine\Attachment.h" />
+    <ClInclude Include="include\spine\AttachmentLoader.h" />
+    <ClInclude Include="include\spine\Bone.h" />
+    <ClInclude Include="include\spine\BoneData.h" />
+    <ClInclude Include="include\spine\BoundingBoxAttachment.h" />
+    <ClInclude Include="include\spine\Event.h" />
+    <ClInclude Include="include\spine\EventData.h" />
+    <ClInclude Include="include\spine\extension.h" />
+    <ClInclude Include="include\spine\IkConstraint.h" />
+    <ClInclude Include="include\spine\IkConstraintData.h" />
+    <ClInclude Include="include\spine\MeshAttachment.h" />
+    <ClInclude Include="include\spine\RegionAttachment.h" />
+    <ClInclude Include="include\spine\Skeleton.h" />
+    <ClInclude Include="include\spine\SkeletonBounds.h" />
+    <ClInclude Include="include\spine\SkeletonData.h" />
+    <ClInclude Include="include\spine\SkeletonJson.h" />
+    <ClInclude Include="include\spine\Skin.h" />
+    <ClInclude Include="include\spine\SkinnedMeshAttachment.h" />
+    <ClInclude Include="include\spine\Slot.h" />
+    <ClInclude Include="include\spine\SlotData.h" />
+    <ClInclude Include="include\spine\spine-sfml.h" />
+    <ClInclude Include="include\spine\spine.h" />
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="include\targetver.h" />
     <ClInclude Include="include\Test.h" />
+    <ClInclude Include="src\spine\Json.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Empty.cpp">
@@ -86,6 +116,40 @@
     <ClCompile Include="src\main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SFML_SDK)\include;$(ProjectDir)include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="src\spine\Animation.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Default</CompileAs>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\spine\AnimationState.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Default</CompileAs>
+    </ClCompile>
+    <ClCompile Include="src\spine\AnimationStateData.c" />
+    <ClCompile Include="src\spine\Atlas.c" />
+    <ClCompile Include="src\spine\AtlasAttachmentLoader.c" />
+    <ClCompile Include="src\spine\Attachment.c" />
+    <ClCompile Include="src\spine\AttachmentLoader.c" />
+    <ClCompile Include="src\spine\Bone.c" />
+    <ClCompile Include="src\spine\BoneData.c" />
+    <ClCompile Include="src\spine\BoundingBoxAttachment.c" />
+    <ClCompile Include="src\spine\Event.c" />
+    <ClCompile Include="src\spine\EventData.c" />
+    <ClCompile Include="src\spine\extension.c" />
+    <ClCompile Include="src\spine\IkConstraint.c" />
+    <ClCompile Include="src\spine\IkConstraintData.c" />
+    <ClCompile Include="src\spine\Json.c" />
+    <ClCompile Include="src\spine\MeshAttachment.c" />
+    <ClCompile Include="src\spine\RegionAttachment.c" />
+    <ClCompile Include="src\spine\Skeleton.c" />
+    <ClCompile Include="src\spine\SkeletonBounds.c" />
+    <ClCompile Include="src\spine\SkeletonData.c" />
+    <ClCompile Include="src\spine\SkeletonJson.c" />
+    <ClCompile Include="src\spine\Skin.c" />
+    <ClCompile Include="src\spine\SkinnedMeshAttachment.c" />
+    <ClCompile Include="src\spine\Slot.c" />
+    <ClCompile Include="src\spine\SlotData.c" />
+    <ClCompile Include="src\spine\spine-sfml.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\stdafx.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SFML_SDK)\include;S(ProjectDir)include</AdditionalIncludeDirectories>
