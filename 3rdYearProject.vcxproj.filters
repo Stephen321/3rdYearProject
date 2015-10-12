@@ -13,11 +13,25 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+<<<<<<< HEAD
     <Filter Include="Header Files\spine">
       <UniqueIdentifier>{7817ca8c-b68c-4966-bff3-3355227bf3cb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\spine">
       <UniqueIdentifier>{273b7e2f-e427-44f3-acbd-118ecb808a42}</UniqueIdentifier>
+=======
+    <Filter Include="Header Files\plugixml">
+      <UniqueIdentifier>{55c6c43d-7044-4bb3-8fbb-ec347d80bfd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plugixml">
+      <UniqueIdentifier>{69595f85-aa04-4f88-9bc5-95278225b7ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tmx">
+      <UniqueIdentifier>{5fde70bf-39f7-4ca6-ae75-84ced413794c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tmx">
+      <UniqueIdentifier>{d111f96c-628b-4313-b1c9-2ee95cb1ccdb}</UniqueIdentifier>
+>>>>>>> master
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +44,7 @@
     <ClInclude Include="include\Test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="include\spine\Animation.h">
       <Filter>Header Files\spine</Filter>
     </ClInclude>
@@ -113,6 +128,43 @@
     </ClInclude>
     <ClInclude Include="src\spine\Json.h">
       <Filter>Source Files\spine</Filter>
+=======
+    <ClInclude Include="include\pugixml\pugiconfig.hpp">
+      <Filter>Header Files\plugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pugixml\pugixml.hpp">
+      <Filter>Header Files\plugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\DebugShape.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\Helpers.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\Log.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\MapLayer.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\MapLoader.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\MapObject.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\QuadTreeNode.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WaterShaderText.h">
+      <Filter>Header Files</Filter>
+>>>>>>> master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,12 +174,13 @@
     <ClCompile Include="src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Empty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="src\spine\Animation.c">
       <Filter>Source Files\spine</Filter>
     </ClCompile>
@@ -208,6 +261,28 @@
     </ClCompile>
     <ClCompile Include="src\spine\spine-sfml.cpp">
       <Filter>Source Files\spine</Filter>
+=======
+    <ClCompile Include="src\pugixml\pugixml.cpp">
+      <Filter>Source Files\plugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\DebugShape.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\MapLayer.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\MapLoaderPrivate.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\MapLoaderPublic.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\MapObject.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\QuadTreeNode.cpp">
+      <Filter>Source Files\tmx</Filter>
+>>>>>>> master
     </ClCompile>
   </ItemGroup>
 </Project>
