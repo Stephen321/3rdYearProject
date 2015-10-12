@@ -61,7 +61,9 @@ void callback(AnimationState* state, int trackIndex, EventType type, Event* even
 	fflush(stdout);
 }
 
-void spineboy() {
+int main()
+{
+#pragma region spineSetup
 	// Load atlas, skeleton, and animations.
 	Atlas* atlas = Atlas_createFromFile("data/spineboy.atlas", 0);
 	SkeletonJson* json = SkeletonJson_create(atlas);
@@ -87,7 +89,7 @@ void spineboy() {
 	skeleton->flipY = false;
 	Skeleton_setToSetupPose(skeleton);
 
-	skeleton->x = 320;
+	skeleton->x = 700;
 	skeleton->y = 460;
 	Skeleton_updateWorldTransform(skeleton);
 
@@ -102,44 +104,7 @@ void spineboy() {
 		AnimationState_addAnimationByName(drawable->state, 0, "jump", false, 3);
 		AnimationState_addAnimationByName(drawable->state, 0, "run", true, 0);
 	}
-
-	sf::RenderWindow window(sf::VideoMode(640, 480), "Spine SFML - spineboy");
-	window.setFramerateLimit(60);
-	sf::Event event;
-	sf::Clock deltaClock;
-	while (window.isOpen()) {
-		while (window.pollEvent(event))
-			if (event.type == sf::Event::Closed) window.close();
-
-		float delta = deltaClock.getElapsedTime().asSeconds();
-		deltaClock.restart();
-
-		SkeletonBounds_update(bounds, skeleton, true);
-		sf::Vector2i position = sf::Mouse::getPosition(window);
-		if (SkeletonBounds_containsPoint(bounds, position.x, position.y)) {
-			headSlot->g = 0;
-			headSlot->b = 0;
-		}
-		else {
-			headSlot->g = 1;
-			headSlot->b = 1;
-		}
-
-		drawable->update(delta);
-
-		window.clear();
-		window.draw(*drawable);
-		window.display();
-	}
-
-	SkeletonData_dispose(skeletonData);
-	SkeletonBounds_dispose(bounds);
-	Atlas_dispose(atlas);
-}
-
-int main()
-{
-	spineboy();
+#pragma endregion spineSetup
 	
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800, 600, 32), "3rd Year Project");
@@ -157,9 +122,12 @@ int main()
 
 	//stats
 	sf::Clock clock;
+	sf::Clock deltaClock;
 	float fps = 0;
 	float frames = 0;
 	clock.restart();
+
+	
 
 	// Start game loop 
 	while (window.isOpen())
@@ -184,17 +152,43 @@ int main()
 			// Escape key : exit 
 			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 				window.close();
+
 		}
+
+#pragma region drawingSpine
+
+		float delta = deltaClock.getElapsedTime().asSeconds();
+		deltaClock.restart();
+
+		SkeletonBounds_update(bounds, skeleton, true);
+		sf::Vector2i position = sf::Mouse::getPosition(window);
+		if (SkeletonBounds_containsPoint(bounds, position.x, position.y)) {
+			headSlot->g = 0;
+			headSlot->b = 0;
+		}
+		else {
+			headSlot->g = 1;
+			headSlot->b = 1;
+		}
+
+		drawable->update(delta);		
+
+#pragma endregion drawingSpine
 
 		//prepare frame
 		window.clear();
 
 		//draw frame items
 		window.draw(fpsText);
+		window.draw(*drawable);
 
 		// Finally, display rendered frame on screen 
 		window.display();
 	} //loop back for next frame
+
+	SkeletonData_dispose(skeletonData);
+	SkeletonBounds_dispose(bounds);
+	Atlas_dispose(atlas);
 
 	return EXIT_SUCCESS;
 }
