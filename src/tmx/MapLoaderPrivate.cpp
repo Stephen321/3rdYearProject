@@ -130,25 +130,27 @@ void MapLoader::Unload()
 
 void MapLoader::SetDrawingBounds(const sf::View& view)
 {
-	if(view.getCenter() != m_lastViewPos)
-	{
-		sf::FloatRect bounds;
-		bounds.left = view.getCenter().x - (view.getSize().x / 2.f);
-		bounds.top = view.getCenter().y - (view.getSize().y / 2.f);
-		bounds.width = view.getSize().x;
-		bounds.height = view.getSize().y;
+	m_bounds = sf::FloatRect(sf::Vector2f(-500, -500), sf::Vector2f(500, 500));
+	//changed this to change bounds
+	//if(view.getCenter() != m_lastViewPos)
+	//{
+	//	sf::FloatRect bounds;
+	//	bounds.left = view.getCenter().x - (view.getSize().x / 2.f);
+	//	bounds.top = view.getCenter().y - (view.getSize().y / 2.f);
+	//	bounds.width = view.getSize().x;
+	//	bounds.height = view.getSize().y;
 
-		//add a tile border to prevent gaps appearing
-		bounds.left -= static_cast<float>(m_tileWidth);
-		bounds.top -= static_cast<float>(m_tileHeight);
-		bounds.width += static_cast<float>(m_tileWidth * 2);
-		bounds.height += static_cast<float>(m_tileHeight * 2);
-		m_bounds = bounds;
+	//	//add a tile border to prevent gaps appearing
+	//	bounds.left -= static_cast<float>(m_tileWidth);
+	//	bounds.top -= static_cast<float>(m_tileHeight);
+	//	bounds.width += static_cast<float>(m_tileWidth * 2);
+	//	bounds.height += static_cast<float>(m_tileHeight * 2);
+	//	m_bounds = bounds;
 
-		for(auto& layer : m_layers)
-			layer.Cull(m_bounds);
-	}
-	m_lastViewPos = view.getCenter();
+	//	for(auto& layer : m_layers)
+	//		layer.Cull(m_bounds);
+	//}
+	//m_lastViewPos = view.getCenter();
 }
 
 bool MapLoader::ParseMapNode(const pugi::xml_node& mapNode)
@@ -1083,18 +1085,20 @@ void MapLoader::draw(sf::RenderTarget& rt, sf::RenderStates states) const
 	sf::View view  = rt.getView();
 	if(view.getCenter() != m_lastViewPos)
 	{
-		sf::FloatRect bounds;
-		bounds.left = view.getCenter().x - (view.getSize().x / 2.f);
-		bounds.top = view.getCenter().y - (view.getSize().y / 2.f);
-		bounds.width = view.getSize().x;
-		bounds.height = view.getSize().y;
+		//put this here again 
+		m_bounds = sf::FloatRect(sf::Vector2f(-500, -500), sf::Vector2f(500, 500));
+		//sf::FloatRect bounds;
+		//bounds.left = view.getCenter().x - (view.getSize().x / 2.f);
+		//bounds.top = view.getCenter().y - (view.getSize().y / 2.f);
+		//bounds.width = view.getSize().x;
+		//bounds.height = view.getSize().y;
 
-		//add a tile border to prevent gaps appearing
-		bounds.left -= static_cast<float>(m_tileWidth);
-		bounds.top -= static_cast<float>(m_tileHeight);
-		bounds.width += static_cast<float>(m_tileWidth * 2);
-		bounds.height += static_cast<float>(m_tileHeight * 2);
-		m_bounds = bounds;
+		////add a tile border to prevent gaps appearing
+		//bounds.left -= static_cast<float>(m_tileWidth);
+		//bounds.top -= static_cast<float>(m_tileHeight);
+		//bounds.width += static_cast<float>(m_tileWidth * 2);
+		//bounds.height += static_cast<float>(m_tileHeight * 2);
+		//m_bounds = bounds;
 
 		for(auto& layer : m_layers)
 			layer.Cull(m_bounds);
