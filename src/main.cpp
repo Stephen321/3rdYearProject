@@ -48,6 +48,12 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
 	window.setVerticalSyncEnabled(true);
 
+	sf::View view;
+	view.reset(sf::FloatRect(0, 0, 666, 500));
+	view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
+	window.setView(view);
+	sf::Vector2f followPosition = view.getCenter();
+
 	//shader testing
 	sf::Shader waterEffect;
 	waterEffect.loadFromMemory(waterShader, sf::Shader::Fragment);
@@ -115,20 +121,29 @@ int main()
 			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 				window.close();
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::D))
+
 				showDebug = !showDebug;
+			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Right))
+				followPosition.x += 4;
+			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Left))
+				followPosition.x -= 4;
+			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Up))
+				followPosition.y -= 4;
+			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Down))
+				followPosition.y += 4;
 		}
 		//update shader
 		if (shader) waterEffect.setParameter("time", shaderClock.getElapsedTime().asSeconds());
 
 		//prepare frame
 		window.clear();
+		view.setCenter(followPosition);
+		window.setView(view);
 
-		//draw frame items
-		window.draw(ml);
-		if (showDebug) ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
 		window.draw(screenPosText);
 		window.draw(mapPosText);
-		// Finally, display rendered frame on screen 
+		window.draw(ml);
+		if (showDebug) ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
 		window.display();
 
 		window.setTitle("3rd Year Project " + std::to_string(1.f / frameClock.getElapsedTime().asSeconds()));
