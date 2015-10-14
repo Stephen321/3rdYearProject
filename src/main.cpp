@@ -29,7 +29,7 @@
 #pragma comment(lib, "zlibwapi.lib")
 
 #include "tmx\MapLoader.h"
-
+#include "Player.h"
 
 ////////////////////////////////////////////////////////////
 ///Entrypoint of application 
@@ -44,6 +44,7 @@ int main()
 	if (shader)	ml.Load("shader_example.tmx"); else	ml.Load("isometric_grass_and_water.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
+	Player player(sf::Vector2f(400.f, 300.f));
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
 	window.setVerticalSyncEnabled(true);

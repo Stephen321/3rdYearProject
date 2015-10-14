@@ -72,6 +72,9 @@
     <ClInclude Include="include\WaterShaderText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="src\tmx\QuadTreeNode.cpp">
       <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Player.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

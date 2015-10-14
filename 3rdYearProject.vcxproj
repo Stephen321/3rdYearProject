@@ -87,6 +87,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\pugixml\pugiconfig.hpp" />
     <ClInclude Include="include\pugixml\pugixml.hpp" />
     <ClInclude Include="include\stdafx.h" />
@@ -104,6 +105,7 @@
     <ClInclude Include="include\zlib.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\Player.cpp" />
     <ClCompile Include="src\Empty.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
