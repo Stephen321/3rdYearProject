@@ -29,7 +29,7 @@
 #pragma comment(lib, "zlibwapi.lib")
 
 #include "tmx\MapLoader.h"
-
+#include "Player.h"
 
 ////////////////////////////////////////////////////////////
 ///Entrypoint of application 
@@ -44,12 +44,16 @@ int main()
 	if (shader)	ml.Load("shader_example.tmx"); else	ml.Load("isometric_grass_and_water.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
+	sf::Texture testImage;
+	testImage.loadFromFile("resources\\images\\testplayer.png");
+	Player player(ml.IsometricToOrthogonal(sf::Vector2f(320, 400)), testImage);
+
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
 	window.setVerticalSyncEnabled(true);
 
 	sf::View view;
-	view.reset(sf::FloatRect(0, 0, 666, 500));
+	view.reset(sf::FloatRect(0, 0, 443, 333));
 	view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 	window.setView(view);
 	sf::Vector2f followPosition = view.getCenter();
@@ -68,14 +72,23 @@ int main()
 	sf::Text screenPosText;
 	screenPosText.setFont(font);
 	screenPosText.setStyle(sf::Text::Regular);
-	screenPosText.setPosition(600, 10);
-	screenPosText.setCharacterSize(24);
+	screenPosText.setCharacterSize(20);
 
 	sf::Text mapPosText;
 	mapPosText.setFont(font);
 	mapPosText.setStyle(sf::Text::Regular);
-	mapPosText.setPosition(600, 40);
-	mapPosText.setCharacterSize(24);
+	mapPosText.setCharacterSize(20);
+
+	sf::Text worldPosText;
+	worldPosText.setFont(font);
+	worldPosText.setStyle(sf::Text::Regular);
+	worldPosText.setCharacterSize(20);
+
+	sf::Text debugText1;
+	debugText1.setFont(font);
+	debugText1.setStyle(sf::Text::Regular);
+	debugText1.setCharacterSize(20);
+
 
 	// Start game loop 
 	while (window.isOpen())
@@ -100,12 +113,19 @@ int main()
 		}
 		ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));*/
 
+		window.setView(view); //need to change view back to mouse pos info is correct
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
 			std::to_string((int)mouseScreenPos.y) + ")");
-		sf::Vector2f mouseMapPos = ml.OrthogonalToIsometric(mouseScreenPos);
+		sf::Vector2f mouseMapPos = ml.OrthogonalToIsometric(window.mapPixelToCoords((sf::Vector2i)mouseScreenPos));
 		mapPosText.setString("MapPos: (" + std::to_string((int)mouseMapPos.x) + ", " +
 			std::to_string((int)mouseMapPos.y) + ")");
+		sf::Vector2f mouseWorldPos = window.mapPixelToCoords((sf::Vector2i)mouseScreenPos);
+		worldPosText.setString("WorldPos: (" + std::to_string((int)mouseWorldPos.x) + ", " +
+			std::to_string((int)mouseWorldPos.y) + ")");
+
+		debugText1.setString("PlayerPos: (" + std::to_string((int)player.getPosition().x) + ", " +
+			std::to_string((int)player.getPosition().y) + ")");
 
 		//----------------------------------------------------------------------------
 
@@ -121,29 +141,41 @@ int main()
 			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 				window.close();
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::D))
-
 				showDebug = !showDebug;
-			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Right))
-				followPosition.x += 4;
-			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Left))
-				followPosition.x -= 4;
-			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Up))
-				followPosition.y -= 4;
-			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Down))
-				followPosition.y += 4;
 		}
 		//update shader
 		if (shader) waterEffect.setParameter("time", shaderClock.getElapsedTime().asSeconds());
 
+		//update stuff
+		player.update(frameClock.getElapsedTime().asSeconds());
+		frameClock.restart();
+
 		//prepare frame
 		window.clear();
-		view.setCenter(followPosition);
+		view.setCenter(player.getPosition());
 		window.setView(view);
+
+		window.draw(ml);
+		window.draw(player);
+
+		//debug
+		window.setView(window.getDefaultView());
+		sf::Vector2f screenTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 210), (-window.getView().getSize().y / 2) + 0);
+		sf::Vector2f mapTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 175), (-window.getView().getSize().y / 2) + 40);
+		sf::Vector2f worldTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 80);
+		sf::Vector2f debugPos1 = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 120);
+		screenPosText.setPosition(screenTxtPos);
+		mapPosText.setPosition(mapTxtPos);
+		worldPosText.setPosition(worldTxtPos);
+		debugText1.setPosition(debugPos1);
 
 		window.draw(screenPosText);
 		window.draw(mapPosText);
-		window.draw(ml);
+		window.draw(worldPosText);
+		window.draw(debugText1);
+
 		if (showDebug) ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
+
 		window.display();
 
 		window.setTitle("3rd Year Project " + std::to_string(1.f / frameClock.getElapsedTime().asSeconds()));

@@ -62,7 +62,7 @@ LayerSet::LayerSet(const sf::Texture& texture, sf::Uint8 patchSize, const sf::Ve
 	m_patchCount(std::ceil(static_cast<float>(mapSize.x) / patchSize), std::ceil(static_cast<float>(mapSize.y) / patchSize)),
 	m_visible	(true)
 {
-	m_patches.resize(m_patchCount.x * m_patchCount.y);
+	m_patches.resize((unsigned)(m_patchCount.x * m_patchCount.y));
 }
 
 TileQuad* LayerSet::AddTile(sf::Vertex vt0, sf::Vertex vt1, sf::Vertex vt2, sf::Vertex vt3, sf::Uint16 x, sf::Uint16 y)
@@ -98,8 +98,8 @@ void LayerSet::Cull(const sf::FloatRect& bounds)
 
 	m_visiblePatchEnd.x = static_cast<int>(std::ceil((bounds.width / m_tileSize.x) / m_patchSize));
 	m_visiblePatchEnd.y = static_cast<int>(std::ceil((bounds.height / m_tileSize.y) / m_patchSize));
-	if(m_visiblePatchEnd.x > m_patchCount.x) m_visiblePatchEnd.x = m_patchCount.x;
-	if(m_visiblePatchEnd.y > m_patchCount.y) m_visiblePatchEnd.y = m_patchCount.y;
+	if(m_visiblePatchEnd.x > (int)m_patchCount.x) m_visiblePatchEnd.x = m_patchCount.x;
+	if(m_visiblePatchEnd.y > (int)m_patchCount.y) m_visiblePatchEnd.y = m_patchCount.y;
 
 	m_visiblePatchEnd += m_visiblePatchStart;
 }
