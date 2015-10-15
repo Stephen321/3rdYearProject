@@ -2,16 +2,18 @@
 #define PLAYER_H
 
 #include "SFML/Graphics.hpp" 
-class Player : sf::Drawable{
+class Player : public sf::Drawable {
 public:
-	Player(sf::Vector2f position);
+	Player(sf::Vector2f position, sf::Texture& texture);
+	sf::Vector2f getPosition();
+	void update(float dt);
 
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-	float m_moveSpeed;
+	void checkInput();
+	const int m_SPEED = 50; //pixels per second
 	sf::Vector2f m_position;
-	sf::Vector2f m_direction;
+	sf::Vector2f m_velocity;
 	sf::Sprite m_sprite;
 };
 #endif
