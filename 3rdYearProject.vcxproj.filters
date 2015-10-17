@@ -13,17 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\plugixml">
-      <UniqueIdentifier>{55c6c43d-7044-4bb3-8fbb-ec347d80bfd1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\plugixml">
-      <UniqueIdentifier>{69595f85-aa04-4f88-9bc5-95278225b7ef}</UniqueIdentifier>
+      <UniqueIdentifier>{cb1d6423-d8e0-4df2-a26a-e7d3c0a9e940}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\tmx">
-      <UniqueIdentifier>{5fde70bf-39f7-4ca6-ae75-84ced413794c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tmx">
-      <UniqueIdentifier>{d111f96c-628b-4313-b1c9-2ee95cb1ccdb}</UniqueIdentifier>
+      <UniqueIdentifier>{3aafe1d8-4b64-49c0-8508-d72d260a70e9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,46 +27,16 @@
     <ClInclude Include="include\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\pugixml\pugiconfig.hpp">
-      <Filter>Header Files\plugixml</Filter>
-    </ClInclude>
-    <ClInclude Include="include\pugixml\pugixml.hpp">
-      <Filter>Header Files\plugixml</Filter>
-    </ClInclude>
-    <ClInclude Include="include\zlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\zconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tmx\DebugShape.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tmx\Helpers.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tmx\Log.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tmx\MapLayer.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tmx\MapLoader.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tmx\MapObject.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tmx\QuadTreeNode.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
     <ClInclude Include="include\WaterShaderText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Animation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AnimatedSprite.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,14 +47,8 @@
     <ClCompile Include="src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Empty.cpp">
+    <ClCompile Include="include\Player.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pugixml\pugixml.cpp">
-      <Filter>Source Files\plugixml</Filter>
     </ClCompile>
     <ClCompile Include="src\tmx\DebugShape.cpp">
       <Filter>Source Files\tmx</Filter>
@@ -110,7 +68,13 @@
     <ClCompile Include="src\tmx\QuadTreeNode.cpp">
       <Filter>Source Files\tmx</Filter>
     </ClCompile>
-    <ClCompile Include="include\Player.cpp">
+    <ClCompile Include="src\pugixml\pugixml.cpp">
+      <Filter>Source Files\plugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AnimatedSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

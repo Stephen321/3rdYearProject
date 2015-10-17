@@ -25,8 +25,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-
 #pragma comment(lib, "zlibwapi.lib")
+
 
 #include "tmx\MapLoader.h"
 #include "Player.h"
@@ -44,9 +44,9 @@ int main()
 	if (shader)	ml.Load("shader_example.tmx"); else	ml.Load("isometric_grass_and_water.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
-	sf::Texture testImage;
-	testImage.loadFromFile("resources\\images\\testplayer.png");
-	Player player(ml.IsometricToOrthogonal(sf::Vector2f(320, 400)), testImage);
+	sf::Texture spriteSheet;
+	spriteSheet.loadFromFile("resources\\images\\testSpriteSheet.png");
+	Player player(ml.IsometricToOrthogonal(sf::Vector2f(320, 400)), spriteSheet);
 
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
@@ -147,8 +147,7 @@ int main()
 		if (shader) waterEffect.setParameter("time", shaderClock.getElapsedTime().asSeconds());
 
 		//update stuff
-		player.update(frameClock.getElapsedTime().asSeconds());
-		frameClock.restart();
+		player.update(frameClock.restart());
 
 		//prepare frame
 		window.clear();
@@ -177,9 +176,6 @@ int main()
 		if (showDebug) ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
 
 		window.display();
-
-		window.setTitle("3rd Year Project " + std::to_string(1.f / frameClock.getElapsedTime().asSeconds()));
 	} //loop back for next frame
-
 	return EXIT_SUCCESS;
 }
