@@ -45,7 +45,7 @@ int main()
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
 	sf::Texture spriteSheet;
-	spriteSheet.loadFromFile("resources\\images\\testSpriteSheet.png");
+	spriteSheet.loadFromFile("resources\\images\\playerTestSprite.png");
 	Player player(ml.IsometricToOrthogonal(sf::Vector2f(320, 400)), spriteSheet);
 
 	// Create the main window 
