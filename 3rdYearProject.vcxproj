@@ -95,6 +95,8 @@
   <ItemGroup>
     <ClInclude Include="include\AnimatedSprite.hpp" />
     <ClInclude Include="include\Animation.hpp" />
+    <ClInclude Include="include\GameData.h" />
+    <ClInclude Include="include\GameLoader.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="include\targetver.h" />
@@ -103,6 +105,8 @@
   <ItemGroup>
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Animation.cpp" />
+    <ClCompile Include="src\GameData.cpp" />
+    <ClCompile Include="src\GameLoader.cpp" />
     <ClCompile Include="src\main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SFML_SDK)\include;$(ProjectDir)include</AdditionalIncludeDirectories>
