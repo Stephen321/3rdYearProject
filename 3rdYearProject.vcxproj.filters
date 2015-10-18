@@ -47,9 +47,6 @@
     <ClCompile Include="src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\tmx\DebugShape.cpp">
       <Filter>Source Files\tmx</Filter>
     </ClCompile>
@@ -75,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\AnimatedSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
