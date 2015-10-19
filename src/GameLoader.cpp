@@ -27,6 +27,18 @@ void GameLoader::loadAnimations(std::string const & JSONFileName) {
 	std::cout << it->value.GetString() << std::endl;
 	std::string characterName = it->value.GetString();
 	it++;
+	std::vector<std::shared_ptr<sf::Texture>>* textures;
+	std::unordered_map<std::string, Animation>* animations;
+
+	if (characterName == "player"){
+		textures = &ptr->playerTextures;
+		animations = &ptr->playerAnims;
+	}
+	else{
+		return;
+		//textures = 0;
+		//animations = 0;
+	}
 
 	for (Value::ConstValueIterator itA = it->value.Begin(); itA < it->value.End(); itA++){//iterator for animations array loop for each animation object
 		Value::ConstMemberIterator itAO = itA->MemberBegin();//iterator for object in animations array
@@ -45,8 +57,8 @@ void GameLoader::loadAnimations(std::string const & JSONFileName) {
 			r.height = frameObject["h"].GetInt();
 			a.addFrame(r);
 		}
-		ptr->playerTextures.push_back(tex);
-		a.setSpriteSheet(*ptr->playerTextures.back());
-		ptr->playerAnims[name] = a;
+		textures->push_back(tex);
+		a.setSpriteSheet(*textures->back());
+		(*animations)[name] = a;
 	}
 }

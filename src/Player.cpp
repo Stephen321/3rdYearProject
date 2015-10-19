@@ -6,7 +6,7 @@ Player::Player(sf::Vector2f position) : m_position(position) {
 	//m_animatedSprite.setOrigin(rect.width / 2.f, rect.height / 2.f);
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	m_anims = ptr->playerAnims;
-	currentAnim = &m_anims.at("kick");
+	currentAnim = &m_anims["kick"];
 }
 
 void Player::update(sf::Time dt){
@@ -21,9 +21,11 @@ void Player::update(sf::Time dt){
 void Player::checkInput(){
 	bool test = sf::Joystick::isConnected(0);
 	if (sf::Joystick::isButtonPressed(0, 0))
-		currentAnim = &m_anims.at("derp");
+		currentAnim = &m_anims["derp"];
 	if (sf::Joystick::isButtonPressed(0, 1))
-		currentAnim = &m_anims.at("kick");
+		currentAnim = &m_anims["kick"];
+	if (sf::Joystick::isButtonPressed(0, 2))
+		currentAnim = &m_anims["win"];
 	float xPos = sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::X);
 	float yPos = sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::Y);
 	if ((xPos < 10 && xPos > -10) &&

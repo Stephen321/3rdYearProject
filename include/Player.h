@@ -7,7 +7,7 @@
 #include "Animation.hpp"
 #include "AnimatedSprite.hpp"
 #include <memory>
-#include <map>
+#include <unordered_map>
 #include "GameData.h"
 
 //using namespace rapidjson;
@@ -26,6 +26,6 @@ private:
 	sf::Vector2f m_position;
 	sf::Vector2f m_velocity;
 	Animation* currentAnim;
-	std::map<std::string, Animation> m_anims;
+	std::unordered_map<std::string, Animation> m_anims;
 };
 #endif
