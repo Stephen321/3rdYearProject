@@ -95,12 +95,14 @@
   <ItemGroup>
     <ClInclude Include="include\AnimatedSprite.hpp" />
     <ClInclude Include="include\Animation.hpp" />
+    <ClInclude Include="include\Screen.hpp" />
     <ClInclude Include="include\GameData.h" />
     <ClInclude Include="include\GameLoader.h" />
     <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\MenuScreen.h" />
+    <ClInclude Include="include\GameScreen.h" />
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="include\targetver.h" />
-    <ClInclude Include="include\WaterShaderText.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AnimatedSprite.cpp" />
@@ -114,6 +116,8 @@
     </ClCompile>
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\pugixml\pugixml.cpp" />
+    <ClCompile Include="src\MenuScreen.cpp" />
+    <ClCompile Include="src\GameScreen.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
