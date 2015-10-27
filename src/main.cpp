@@ -36,6 +36,7 @@
 //////////////////////////////////////////////////////////// 
 
 #include "WaterShaderText.h"
+#include "GameLoader.h"
 
 int main()
 {
@@ -44,9 +45,13 @@ int main()
 	if (shader)	ml.Load("shader_example.tmx"); else	ml.Load("isometric_grass_and_water.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
-	sf::Texture spriteSheet;
-	spriteSheet.loadFromFile("resources\\images\\playerTestSprite.png");
-	Player player(ml.IsometricToOrthogonal(sf::Vector2f(320, 400)), spriteSheet);
+	//loading 
+	std::shared_ptr<GameData> m_ptr = GameData::getInstance();
+	GameLoader gl("resources/animations/");
+	gl.loadAnimations("playerAnims.json");
+
+
+	Player player(ml.IsometricToOrthogonal(sf::Vector2f(320, 400)));
 
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
