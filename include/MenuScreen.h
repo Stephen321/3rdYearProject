@@ -8,12 +8,12 @@
 
 class MenuScreen : public Screen
 {
-private:
-	int alpha_max;
-	int alpha_div;
-	bool playing;
+private:	
+	float screenWidth;
+	float screenHeight;
 public:
 	MenuScreen(void);
+	void setTextOriginAndPosition(sf::Text &text, int multiplier, float screenWidth, float screenHeight);
 	virtual int Run(sf::RenderWindow &window);
 };
 

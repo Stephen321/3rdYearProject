@@ -95,6 +95,8 @@
   <ItemGroup>
     <ClInclude Include="include\AnimatedSprite.hpp" />
     <ClInclude Include="include\Animation.hpp" />
+    <ClInclude Include="include\CreditsScreen.h" />
+    <ClInclude Include="include\OptionsScreen.h" />
     <ClInclude Include="include\Screen.hpp" />
     <ClInclude Include="include\GameData.h" />
     <ClInclude Include="include\GameLoader.h" />
@@ -107,6 +109,7 @@
   <ItemGroup>
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Animation.cpp" />
+    <ClCompile Include="src\CreditsScreen.cpp" />
     <ClCompile Include="src\GameData.cpp" />
     <ClCompile Include="src\GameLoader.cpp" />
     <ClCompile Include="src\main.cpp">
@@ -114,6 +117,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SFML_SDK)\include;$(ProjectDir)include</AdditionalIncludeDirectories>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\OptionsScreen.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\pugixml\pugixml.cpp" />
     <ClCompile Include="src\MenuScreen.cpp" />

@@ -30,6 +30,8 @@
 #include "Screen.hpp"
 #include "MenuScreen.h"
 #include "GameScreen.h"
+#include "CreditsScreen.h"
+#include "OptionsScreen.h"
 
 int main()
 {
@@ -45,6 +47,10 @@ int main()
 	Screens.push_back(&menuScreen);
 	GameScreen gameScreen;
 	Screens.push_back(&gameScreen);
+	OptionsScreen optionsScreen;
+	Screens.push_back(&optionsScreen);
+	CreditsScreen creditsScreen;
+	Screens.push_back(&creditsScreen);
 
 	//Main loop
 	while (screen >= 0)
