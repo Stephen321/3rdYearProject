@@ -8,8 +8,7 @@
 
 class CreditsScreen : public Screen
 {
-private:
-	
+private:	
 public:
 	CreditsScreen(void);
 	virtual int Run(sf::RenderWindow &window);

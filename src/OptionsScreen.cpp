@@ -2,56 +2,35 @@
 
 OptionsScreen::OptionsScreen(void)
 {
-	alpha_max = 3 * 255;
-	alpha_div = 3;
-	playing = false;
+}
+
+void OptionsScreen::setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Vector2f screenDimensions){
+	//center text
+	sf::FloatRect textRect = text.getLocalBounds();
+	text.setOrigin(textRect.left + textRect.width / 2.0f, 0);
+	text.setPosition(sf::Vector2f(screenDimensions.x / 2.0f, (screenDimensions.y / 8.0f) * multiplier));
 }
 
 int OptionsScreen::Run(sf::RenderWindow &window)
 {
 	sf::Event Event;
 	bool Running = true;
-	//sf::Texture Texture;
-	//sf::Sprite Sprite;
-	int alpha = 0;
+
+	window.setView(window.getDefaultView());
+
 	sf::Font Font;
 	sf::Text Menu1;
-	sf::Text Menu2;
-	sf::Text Menu3;
 	int menu = 0;
 
-	/*if (!Texture.loadFromFile("presentation.png"))
-	{
-	std::cerr << "Error loading presentation.gif" << std::endl;
-	return (-1);
-	}
-	Sprite.setTexture(Texture);
-	Sprite.setColor(sf::Color(255, 255, 255, alpha));
-	if (!Font.loadFromFile("verdanab.ttf"))
-	{
-	std::cerr << "Error loading verdanab.ttf" << std::endl;
-	return (-1);
-	}*/
+	Font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
+
+	sf::Vector2f screenDimensions(window.getView().getSize());
 
 	Menu1.setFont(Font);
-	Menu1.setCharacterSize(20);
-	Menu1.setString("Play");
-	Menu1.setPosition({ 280.f, 160.f });
-
-	Menu2.setFont(Font);
-	Menu2.setCharacterSize(20);
-	Menu2.setString("Exit");
-	Menu2.setPosition({ 280.f, 220.f });
-
-	Menu3.setFont(Font);
-	Menu3.setCharacterSize(20);
-	Menu3.setString("Continue");
-	Menu3.setPosition({ 280.f, 160.f });
-
-	if (playing)
-	{
-		alpha = alpha_max;
-	}
+	Menu1.setCharacterSize(70);
+	Menu1.setString("Back");
+	Menu1.setColor(sf::Color(255, 255, 255, 255));
+	setTextOriginAndPosition(Menu1, 6, screenDimensions);
 
 	while (Running)
 	{
@@ -68,68 +47,41 @@ int OptionsScreen::Run(sf::RenderWindow &window)
 			{
 				switch (Event.key.code)
 				{
-				case sf::Keyboard::Escape:
-					return (-1);
-					break;
 				case sf::Keyboard::Up:
-					menu = 0;
+					if (menu > 0)
+						//if (menu == 2 && menu == 2 /* <-- condition always true for test purposes, acual condition = no file to load */)
+						//	menu -= 2;
+						//else
+						//	menu--;
 					break;
 				case sf::Keyboard::Down:
-					menu = 1;
+					if (menu < 3)
+					{
+						//if (menu == 0 && menu == 0 /* <-- condition always true for test purposes, acual condition = no file to load */)
+						//	menu += 2;
+						//else
+						//	menu++;
+					}
 					break;
 				case sf::Keyboard::Return:
 					if (menu == 0)
 					{
-						//Let's get play !
-						playing = true;
-						return (1);
-					}
-					else
-					{
-						//Let's get work...
-						return (-1);
-					}
+						return (0);
+					}					
 					break;
 				default:
 					break;
 				}
 			}
 		}
-		//When getting at alpha_max, we stop modifying the sprite
-		if (alpha<alpha_max)
-		{
-			alpha++;
-		}
-		//Sprite.setColor(sf::Color(255, 255, 255, alpha / alpha_div));
-		if (menu == 0)
-		{
-			Menu1.setColor(sf::Color(255, 0, 0, 255));
-			Menu2.setColor(sf::Color(255, 255, 255, 255));
-			Menu3.setColor(sf::Color(255, 0, 0, 255));
-		}
-		else
-		{
-			Menu1.setColor(sf::Color(255, 255, 255, 255));
-			Menu2.setColor(sf::Color(255, 0, 0, 255));
-			Menu3.setColor(sf::Color(255, 255, 255, 255));
-		}
+
 
 		//Clearing screen
 		window.clear();
 		//Drawing
-		//App.draw(Sprite);
-		if (alpha == alpha_max)
-		{
-			if (playing)
-			{
-				window.draw(Menu3);
-			}
-			else
-			{
-				window.draw(Menu1);
-			}
-			window.draw(Menu2);
-		}
+
+		window.draw(Menu1);
+
 		window.display();
 	}
 

@@ -27,10 +27,7 @@ int CreditsScreen::Run(sf::RenderWindow &window)
 				{
 				case sf::Keyboard::Escape:
 					return (0);
-					break;				
-				case sf::Keyboard::Return:
-					return (0);
-					break;
+					break;					
 				default:
 					break;
 				}

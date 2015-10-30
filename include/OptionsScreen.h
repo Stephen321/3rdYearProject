@@ -9,11 +9,9 @@
 class OptionsScreen : public Screen
 {
 private:
-	int alpha_max;
-	int alpha_div;
-	bool playing;
 public:
 	OptionsScreen(void);
+	void setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Vector2f screenDimensions);
 	virtual int Run(sf::RenderWindow &window);
 };
 

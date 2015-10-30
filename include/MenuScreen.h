@@ -8,12 +8,10 @@
 
 class MenuScreen : public Screen
 {
-private:	
-	float screenWidth;
-	float screenHeight;
+private:
 public:
 	MenuScreen(void);
-	void setTextOriginAndPosition(sf::Text &text, int multiplier, float screenWidth, float screenHeight);
+	void setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Vector2f screenDimensions);
 	virtual int Run(sf::RenderWindow &window);
 };
 

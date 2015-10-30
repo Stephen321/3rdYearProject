@@ -4,54 +4,51 @@ MenuScreen::MenuScreen(void)
 {		
 }
 
-void MenuScreen::setTextOriginAndPosition(sf::Text &text, int multiplier, float screenWidth, float screenHeight){
+void MenuScreen::setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Vector2f screenDimensions){
 	//center text
 	sf::FloatRect textRect = text.getLocalBounds();
 	text.setOrigin(textRect.left + textRect.width / 2.0f, 0);
-	text.setPosition(sf::Vector2f(screenWidth / 2.0f, (screenHeight / 8.0f) * multiplier));
+	text.setPosition(sf::Vector2f(screenDimensions.x / 2.0f, (screenDimensions.y / 8.0f) * multiplier));
 }
 
 int MenuScreen::Run(sf::RenderWindow &window)
 {
 	sf::Event Event;
-	bool Running = true;
+	bool Running = true;	
 
-	screenWidth = window.getView().getSize().x;
-	screenHeight = window.getView().getSize().y;
-
-	int alpha = 0;
+	window.setView(window.getDefaultView());
+	
 	sf::Font Font;
-	sf::Text Menu1;
-	sf::Text Menu2;
-	sf::Text Menu3;
-	sf::Text Menu4;
+	sf::Text Menu1, Menu2, Menu3, Menu4;
 	int menu = 0;
 
 	Font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
+
+	sf::Vector2f screenDimensions(window.getView().getSize());
 
 	Menu1.setFont(Font);
 	Menu1.setCharacterSize(70);
 	Menu1.setString("Play");
 	Menu1.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu1, 3, screenWidth, screenHeight);
+	setTextOriginAndPosition(Menu1, 3, screenDimensions);
 
 	Menu2.setFont(Font);
 	Menu2.setCharacterSize(70);
 	Menu2.setString("Continue");
 	Menu2.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu2, 4, screenWidth, screenHeight);
+	setTextOriginAndPosition(Menu2, 4, screenDimensions);
 
 	Menu3.setFont(Font);
 	Menu3.setCharacterSize(70);
 	Menu3.setString("Options");
 	Menu3.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu3, 5, screenWidth, screenHeight);
+	setTextOriginAndPosition(Menu3, 5, screenDimensions);
 
 	Menu4.setFont(Font);
 	Menu4.setCharacterSize(70);
 	Menu4.setString("Exit");
 	Menu4.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu4, 6, screenWidth, screenHeight);
+	setTextOriginAndPosition(Menu4, 6, screenDimensions);	
 
 	while (Running)
 	{
