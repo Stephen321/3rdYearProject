@@ -4,6 +4,7 @@
 *.exe
 *.opensdf
 *.exp
+*.suo
 *.ilk
 *.ncb
 *.sdf
