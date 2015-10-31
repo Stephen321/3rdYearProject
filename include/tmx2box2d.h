@@ -36,12 +36,18 @@ source distribution.
 
 #include <tmx/MapObject.h>
 
-#include <Box2D/Dynamics/b2World.h>
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Dynamics/b2Fixture.h>
+#include "Box2D/Dynamics/b2World.h"
+#include "Box2D/Common/b2Math.h"
+#include "Box2D/Dynamics/b2Fixture.h"
 
 #include <vector>
 #include <queue>
+
+#ifdef MAKEDLL
+#  define EXPORT __declspec(dllexport)
+#else
+#  define EXPORT __declspec(dllimport)
+#endif
 
 namespace tmx
 {

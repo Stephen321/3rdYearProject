@@ -2,6 +2,7 @@
 [Rr]elease
 [Ii]pch
 *.exe
+*.opensdf
 *.exp
 *.ilk
 *.ncb
