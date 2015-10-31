@@ -161,9 +161,6 @@
     <ClInclude Include="include\tmx\tmx2box2d.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="3rdYearProject.rc" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4014C663-4124-4668-9AAC-76F5977499B6}</ProjectGuid>
     <RootNamespace>My3rdYearProject</RootNamespace>
