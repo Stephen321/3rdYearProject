@@ -1,0 +1,12 @@
+[Dd]ebug
+[Rr]elease
+[Ii]pch
+*.exe
+*.exp
+*.ilk
+*.ncb
+*.sdf
+*.log
+*.aps
+*.pdb
+*.vcproj.*.user

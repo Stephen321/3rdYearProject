@@ -5,10 +5,8 @@
 #include "Screen.hpp"
 
 #include <SFML/Graphics.hpp>
-
 #include "tmx\MapLoader.h"
 #include "Player.h"
-#include "GameLoader.h"
 
 class GameScreen : public Screen
 {

@@ -22,12 +22,6 @@ int GameScreen::Run(sf::RenderWindow &window)
 	if (shader)	ml.Load("shader_example.tmx"); else	ml.Load("isometric_grass_and_water.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
-	//loading 
-	std::shared_ptr<GameData> m_ptr = GameData::getInstance();
-	GameLoader gl("resources/animations/");
-	gl.loadAnimations("playerAnims.json");
-
-
 	Player player(ml.IsometricToOrthogonal(sf::Vector2f(320, 400)));
 
 	sf::View view;
@@ -69,17 +63,17 @@ int GameScreen::Run(sf::RenderWindow &window)
 		std::vector<tmx::MapLayer>& layers = ml.GetLayers();
 		for (auto& l : layers)
 		{
-		if (l.type == tmx::ObjectGroup)
-		{
-		for (auto& o : l.objects)
-		{
-		o.Move(0.f, 60.f * frameClock.getElapsedTime().asSeconds());
-		if (o.GetPosition().y > 600.f)
-		{
-		o.SetPosition(o.GetPosition().x, 0.f);
-		}
-		}
-		}
+			if (l.type == tmx::ObjectGroup)
+			{
+				for (auto& o : l.objects)
+				{
+					o.Move(0.f, 60.f * frameClock.getElapsedTime().asSeconds());
+					if (o.GetPosition().y > 600.f)
+					{
+						o.SetPosition(o.GetPosition().x, 0.f);
+					}
+				}
+			}
 		}
 		ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
