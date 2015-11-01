@@ -1,4 +1,4 @@
-#include "CreditsScreen.h"
+#include "Screens\CreditsScreen.h"
 
 CreditsScreen::CreditsScreen(void)
 {
