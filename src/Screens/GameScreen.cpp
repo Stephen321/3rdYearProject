@@ -2,12 +2,6 @@
 
 GameScreen::GameScreen(void)
 {
-	movement_step = 5;
-	posx = 320;
-	posy = 240;
-	//Setting sprite
-	Rectangle.setFillColor(sf::Color(255, 255, 255, 150));
-	Rectangle.setSize({ 10.f, 10.f });
 }
 
 int GameScreen::Run(sf::RenderWindow &window)
@@ -16,26 +10,27 @@ int GameScreen::Run(sf::RenderWindow &window)
 	bool Running = true;
 
 	bool shader = false;
-	bool showDebug = false;
+	bool showDebug = true;
 
 	tmx::MapLoader ml("resources");
 	if (shader)	ml.Load("shader_example.tmx"); else	ml.Load("isometric_grass_and_water.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
-
-	Player player(ml.IsometricToOrthogonal(sf::Vector2f(320, 400)));
 
 	sf::View view;
 	view.reset(sf::FloatRect(0, 0, 443, 333));
 	view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 	window.setView(view);
 	sf::Vector2f followPosition = view.getCenter();
-	sf::Clock shaderClock, frameClock, deltaClock;
+	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
+	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
+
+	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world);
 
 	//load a font
 	sf::Font font;
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
 
-
+#pragma region Debug
 	sf::Text screenPosText;
 	screenPosText.setFont(font);
 	screenPosText.setStyle(sf::Text::Regular);
@@ -55,28 +50,41 @@ int GameScreen::Run(sf::RenderWindow &window)
 	debugText1.setFont(font);
 	debugText1.setStyle(sf::Text::Regular);
 	debugText1.setCharacterSize(20);
+	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
+	std::vector<DebugShape> debugShapes;
+#pragma endregion
 
-	while (Running)
+	const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
+	for (const auto& l : layers)
 	{
-		//debug info
-		//move objects about
-		std::vector<tmx::MapLayer>& layers = ml.GetLayers();
-		for (auto& l : layers)
+		if (l.name == "Collision")
 		{
-			if (l.type == tmx::ObjectGroup)
+			for (const auto& o : l.objects)
 			{
-				for (auto& o : l.objects)
+				b2Body* b = tmx::BodyCreator::Add(o, world);
+				debugBoxes.push_back(std::unique_ptr<sf::RectangleShape>(new sf::RectangleShape(sf::Vector2f(6.f, 6.f))));
+				sf::Vector2f pos = tmx::BoxToSfVec(b->GetPosition());
+				debugBoxes.back()->setPosition(pos);
+				debugBoxes.back()->setOrigin(3.f, 3.f);
+
+				for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 				{
-					o.Move(0.f, 60.f * frameClock.getElapsedTime().asSeconds());
-					if (o.GetPosition().y > 600.f)
-					{
-						o.SetPosition(o.GetPosition().x, 0.f);
-					}
+					DebugShape ds;
+					ds.setPosition(pos);
+					b2PolygonShape* ps = (b2PolygonShape*)f->GetShape();
+					int count = ps->GetVertexCount();
+					for (int i = 0; i < count; i++)
+						ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(i)), sf::Color::Red));
+					if (count >=0) ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(0)), sf::Color::Red));
+					debugShapes.push_back(ds);
 				}
 			}
 		}
-		ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
+	}
 
+	while (Running)
+	{
+#pragma region Debug
 		window.setView(view); //need to change view back to mouse pos info is correct
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
@@ -87,10 +95,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 		sf::Vector2f mouseWorldPos = window.mapPixelToCoords((sf::Vector2i)mouseScreenPos);
 		worldPosText.setString("WorldPos: (" + std::to_string((int)mouseWorldPos.x) + ", " +
 		std::to_string((int)mouseWorldPos.y) + ")");
-
 		debugText1.setString("PlayerPos: (" + std::to_string((int)player.getPosition().x) + ", " +
 		std::to_string((int)player.getPosition().y) + ")");
-
+#pragma endregion
 		//Verifying events
 		while (window.pollEvent(Event))
 		{
@@ -111,37 +118,15 @@ int GameScreen::Run(sf::RenderWindow &window)
 				case sf::Keyboard::Escape:
 					return (0);
 					break;
-				case sf::Keyboard::Up:
-					posy -= movement_step;
-					break;
-				case sf::Keyboard::Down:
-					posy += movement_step;
-					break;
-				case sf::Keyboard::Left:
-					posx -= movement_step;
-					break;
-				case sf::Keyboard::Right:
-					posx += movement_step;
-					break;
 				default:
 					break;
 				}
 			}
-		}
+		}		
 
-		//Updating
-		if (posx>630)
-			posx = 630;
-		if (posx<0)
-			posx = 0;
-		if (posy>470)
-			posy = 470;
-		if (posy<0)
-			posy = 0;
-		Rectangle.setPosition({ posx, posy });
-		
 		//update stuff
 		player.update(frameClock.restart());
+		world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
 		//Clearing screen
 		window.clear(sf::Color(0, 0, 0, 0));
@@ -153,8 +138,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		window.draw(ml);
 		window.draw(player);
 		
-
-		//debug
+#pragma region Debug
 		window.setView(window.getDefaultView());
 		sf::Vector2f screenTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 210), (-window.getView().getSize().y / 2) + 0);
 		sf::Vector2f mapTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 175), (-window.getView().getSize().y / 2) + 40);
@@ -170,8 +154,13 @@ int GameScreen::Run(sf::RenderWindow &window)
 		window.draw(worldPosText);
 		window.draw(debugText1);
 
+		window.setView(view);
 		if (showDebug) ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
-
+		for (const auto& s : debugBoxes)
+			window.draw(*s);
+		for (const auto& s : debugShapes)
+			window.draw(s);
+#pragma endregion
 		window.display();
 	}
 

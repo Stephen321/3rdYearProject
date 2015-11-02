@@ -6,15 +6,15 @@
 
 #include <SFML/Graphics.hpp>
 #include "tmx\MapLoader.h"
+#include "tmx2box2d.h"
+#include "tmx\DebugShape.h"
+#include "Box2D\Collision\Shapes\b2PolygonShape.h"
 #include "Player.h"
+#include <memory>
 
 class GameScreen : public Screen
 {
 private:
-	float movement_step;
-	float posx;
-	float posy;
-	sf::RectangleShape Rectangle;
 public:
 	GameScreen(void);
 	virtual int Run(sf::RenderWindow &window);

@@ -60,9 +60,6 @@
     <ClCompile Include="src\Box2D.cpp">
       <Filter>Source Files\examples</Filter>
     </ClCompile>
-    <ClCompile Include="src\AddRemoveObjects.cpp">
-      <Filter>Source Files\examples</Filter>
-    </ClCompile>
     <ClCompile Include="src\tmx2box2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

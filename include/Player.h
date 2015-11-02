@@ -9,12 +9,14 @@
 #include <memory>
 #include <unordered_map>
 #include "GameData.h"
+#include "tmx2box2d.h"
+#include "Box2D\Collision\Shapes\b2CircleShape.h"
 
 //using namespace rapidjson;
 
 class Player : public sf::Drawable {
 public:
-	Player(sf::Vector2f position);
+	Player(sf::Vector2f position, b2World& world);
 	sf::Vector2f getPosition() const;
 	void update(sf::Time dt);
 
@@ -27,5 +29,9 @@ private:
 	sf::Vector2f m_velocity;
 	Animation* currentAnim;
 	std::unordered_map<std::string, Animation> m_anims;
+	b2World& world;
+	b2Body* m_body;
+	sf::CircleShape c;
+	sf::Vector2f m_spriteOffset;
 };
 #endif

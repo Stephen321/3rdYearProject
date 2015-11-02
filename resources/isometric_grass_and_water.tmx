@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="isometric" width="25" height="25" tilewidth="64" tileheight="32">
- <tileset firstgid="1" name="isometric_grass_and_water" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="isometric" renderorder="right-down" width="25" height="25" tilewidth="64" tileheight="32" nextobjectid="33">
+ <tileset firstgid="1" name="isometric_grass_and_water" tilewidth="64" tileheight="64" tilecount="24">
   <tileoffset x="0" y="16"/>
   <image source="isometric_grass_and_water.png" width="256" height="384"/>
   <terraintypes>
@@ -37,14 +37,33 @@
    eJx1lttywjAMROVgyqVtAoFC/v9L68xoh5PFPGhIYktrrVYyS0QszZ7Nvpvd0n7y24L1Q7MhrTSreN/le821HZ7lv9qYa6sdE0cYs/kX7PXYwtfaevYp7WDrd+SnHByjYr/npP1zZ4/elcuM71rjeckdc5KNHX75fMwc9s2uzb6AsYstJzwrv5/Tz89SLIZy8v203llV8xl7yMU+462/v81OqA114/UhrzUxRqwprnh6ZGzp2PNQfPqRu/X9hnMV8F/xLg1L42erDf2oaa2RI2qPtbgbhmw2H69nMUxx/gVccXdC3AW/o/HV60vW59Lhu8arDxmfGIPFUV1qbLVQEIs4PlOeHQxqVjmzr5mLYsmf+5Qj5yM1r3Ne4p1D5VcMh3qWZibLx2fYkBhPYOv81I9wbrGd45zFU7zrndpwDjkHXXfej9zHc3EG+D3AWcCZMJif7hTnVxr6i9edtoBDz8N7kxqbY6sN9gJnsnqIOqCme7Un76579sIV8dccHvHqZefH76BP9wjzkVapM2rL+5/8cR6QS9eh8p2AT12y5oO9+7yh5hzLZypnHX29/pzB9PE7bOg8Mza5KvGu4R7mp/89zqvr7x+TnxEn
   </data>
  </layer>
- <objectgroup color="#a40002" name="Object Layer 1" width="25" height="25">
-  <object x="106" y="156" width="284" height="84"/>
-  <object x="301" y="36"/>
-  <object x="501" y="67">
-   <polygon points="0,0 8,205 216,234 203,19 91,-39"/>
+ <objectgroup color="#00ff00" name="Collision">
+  <object id="19" x="258" y="204">
+   <polyline points="0,0 -22.5,12.5 -11,33 7.5,40.5 23.5,66.5 41,73 34,118 -0.5,144.5 10.5,189.5 35.5,200.5 40.5,245.5 50.5,257.5 93.5,258.5 118,288 194,296 209.5,250.5 231,253 241.5,78.5 204.5,51.5 176,60 164.5,31.5 142.5,27.5 147,3 177,-13 164.5,-32.5 147,-35 136.5,-56.5 113.5,-73.5 71,-53 75,-35 99.5,-27.5 100.5,-0.5 62.5,-2.5 40.5,13.5 37.5,32.5 17,29 3,1"/>
   </object>
-  <object x="330" y="565" width="226" height="115">
-   <ellipse/>
+  <object id="23" x="365" y="-5">
+   <polyline points="0,0 -29.5,37.5 -32.5,78.5 -62.5,84.5 -62,144 -87.5,149.5 -99,119 -134,106 -136,66 -156.5,42.5 -163.5,23.5 -257,29 -258,74 -352.5,80.5 -346,174 -322.5,182.5 -316.5,272.5 -364,280 -356.5,10.5 0.5,11.5 0,0"/>
+  </object>
+  <object id="24" x="596" y="266">
+   <polyline points="0,0 28,-8 13,-37 -7,-5"/>
+  </object>
+  <object id="25" x="686" y="374">
+   <polyline points="0,0 0,178 -30.5,184.5 -22,244 23.5,242.5 36,278 24.5,315.5 -22,318 -41.5,283.5 -42.5,254.5 -56.5,244.5 -63,259 -62.5,268.5 -92.5,284.5 -97.5,311.5 -180.5,312.5 -198.5,286.5 -199,261 -166,236 -135,237 -129.5,213.5 -99,199 -113.5,181.5 -160.5,190.5 -160.5,206.5 -184,214 -198,194 -165,167 -135.5,139.5 -100.5,136.5 -99.5,113.5 -86,108 -72.5,102.5 -69.5,25.5 -37.5,11.5 -35.5,1.5 -6.25,-6.75"/>
+  </object>
+  <object id="27" x="150.5" y="269.5">
+   <polyline points="0,0 27.5,-7.5 18,-30 9,-37 -16.5,-21.5 -3,1"/>
+  </object>
+  <object id="28" x="90" y="324">
+   <polyline points="0,0 -24.5,30.5 -9.5,105.5 19.5,120.5 29.5,136.5 45.5,144.5 67,179 119.5,158.5 125.5,94.5 101,67 86,66 80,54 72.5,39.5 62,40 45,7 -1.5,-0.5"/>
+  </object>
+  <object id="29" x="248" y="518">
+   <polyline points="0,0 -19.5,15.5 -19.5,29.5 -76,50 -68,104 21,97 22,18 0,-2"/>
+  </object>
+  <object id="30" x="345.5" y="654.5">
+   <polyline points="0,0 28.5,-6.5 17,-35 -8.5,-39.5 -19.5,-16.5 0.5,3.5"/>
+  </object>
+  <object id="32" x="796.667" y="798">
+   <polyline points="0,0 -2.66667,-800 -790,-791.333 -800,-2.66667 -4.24242,-2.54545 48.7879,53.5152 38.1818,-802.545 -43.6364,-890.424 -858.788,-875.273 -895.152,-2.54545 -798.182,88.3636 64.1818,57.6364"/>
   </object>
  </objectgroup>
 </map>
