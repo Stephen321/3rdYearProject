@@ -8,12 +8,10 @@ int GameScreen::Run(sf::RenderWindow &window)
 {
 	sf::Event Event;
 	bool Running = true;
-
-	bool shader = false;
 	bool showDebug = true;
 
 	tmx::MapLoader ml("resources");
-	if (shader)	ml.Load("shader_example.tmx"); else	ml.Load("isometric_grass_and_water.tmx");
+	ml.Load("test.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
 	sf::View view;
