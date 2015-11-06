@@ -28,7 +28,6 @@
 #include "Screens.h"
 #include "GameLoader.h"
 
-
 int main()
 {
 
@@ -38,8 +37,7 @@ int main()
 
 	//loading 
 	std::shared_ptr<GameData> m_ptr = GameData::getInstance();
-	GameLoader gl("resources/animations/");
-	gl.loadAnimations("playerAnims.json");
+	GameLoader gl("resources/", "animations/");
 
 	std::vector<Screen*> Screens;
 	int screen = 0;

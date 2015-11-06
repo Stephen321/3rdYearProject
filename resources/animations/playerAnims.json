@@ -1,5 +1,7 @@
 {
 	"name" : "player",
+	"playspeed" : 30,
+    "scale" : 0.2,
 	"animations": [
 	{
 		"name" : "kick",
