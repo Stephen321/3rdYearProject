@@ -1,10 +1,15 @@
 #include "Player.h"
 
-Player::Player(sf::Vector2f position, b2World& world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale) :
-Character(position, world, anims, playSpeed, scale)
-{}
+Player::Player(sf::Vector2f position, b2World& world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale, float speed) :
+Character(position, world, anims, playSpeed, scale, speed){
+}
 
-void Player::behaviour(float dt){
+void Player::update(sf::Time dt, sf::FloatRect viewBounds){
+	behaviour();
+	Character::update(dt, viewBounds);
+}
+
+void Player::behaviour(){
 	int joystick = -1;
 	for (int i = 0; i < 6 && joystick == -1; i++){
 		if (sf::Joystick::isConnected(i))

@@ -15,13 +15,13 @@
 class Character : public sf::Drawable{
 
 public:
-	Character(sf::Vector2f position, b2World& world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale);
+	Character(sf::Vector2f position, b2World& world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale, float speed);
 	sf::Vector2f getPosition() const;
-	void update(sf::Time dt);
+	virtual void update(sf::Time dt, sf::FloatRect viewBounds);
+	bool getVisible() const;
 
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	virtual void behaviour(float);
 	AnimatedSprite m_animatedSprite;
 	const int m_SPEED = 50; //pixels per second
 	sf::Vector2f m_position;
@@ -32,6 +32,8 @@ protected:
 	b2Body* m_body;
 	sf::CircleShape c;
 	sf::Vector2f m_spriteOffset;
+	bool m_visible;
+	float m_scale;
 	
 };
 

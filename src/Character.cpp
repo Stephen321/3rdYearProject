@@ -1,8 +1,11 @@
 #include "Character.h"
 
-Character::Character(sf::Vector2f position, b2World& _world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale) :
+Character::Character(sf::Vector2f position, b2World& _world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale, float speed) :
 m_position(position),
 m_anims(anims),
+m_visible(false),
+m_SPEED(speed),
+m_scale(scale),
 world(_world){
 	m_animatedSprite = AnimatedSprite(sf::seconds(playSpeed), false, true);
 	m_animatedSprite.setScale(scale, scale);
@@ -39,12 +42,9 @@ world(_world){
 	c.setOutlineColor(sf::Color::Green);
 	c.setOutlineThickness(-1.f);
 	c.setFillColor(sf::Color::Transparent);
-
 }
 
-void Character::update(sf::Time dt){
-	behaviour(dt.asSeconds());
-	//m_position += m_velocity * dt.asSeconds();
+void Character::update(sf::Time dt, sf::FloatRect viewBounds){
 	m_animatedSprite.setPosition(m_position + m_spriteOffset);
 	m_animatedSprite.update(dt);
 
@@ -58,18 +58,21 @@ void Character::update(sf::Time dt){
 	b2CircleShape* cs = static_cast<b2CircleShape*>(m_body->GetFixtureList()->GetShape());
 	c.setRadius(tmx::BoxToSfFloat(cs->m_radius));
 	c.setPosition(tmx::BoxToSfVec(cs->m_p) + m_position);
-}
 
-void Character::behaviour(float dt){
-	m_velocity.x = -1;
-	m_velocity.y = -1;
+	m_visible = m_animatedSprite.getGlobalBounds().intersects(viewBounds);
 }
 
 void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const{
-	target.draw(m_animatedSprite);
-	target.draw(c);
+	if (m_visible){
+		target.draw(m_animatedSprite);
+		target.draw(c);
+	}
 }
 
 sf::Vector2f Character::getPosition() const{
 	return m_position;
+}
+
+bool Character::getVisible() const{
+	return m_visible;
 }

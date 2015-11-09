@@ -13,7 +13,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	bool zoomed = false;
 
 	tmx::MapLoader ml("resources");
-	ml.Load("test.tmx");
+	ml.Load("demo.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
 	sf::FloatRect viewRect = sf::FloatRect(0, 0, 800, 600);
@@ -25,12 +25,13 @@ int GameScreen::Run(sf::RenderWindow &window)
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
 	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
 
+	
 
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world, ptr->playerAnims, ptr->playerPlaySpeed, ptr->playerSpriteScale);
+	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world, ptr->playerAnims, ptr->playerPlaySpeed, ptr->playerSpriteScale, 70);
 
 	std::vector<std::unique_ptr<Character>> enemies;
-	const int AICOUNT = 250;
+	const int AICOUNT = 50;
 
 	sf::Vector2f AB(ml.IsometricToOrthogonal(sf::Vector2f(ml.GetMapSize().x / 2.f, 0)));
 	sf::Vector2f AD(ml.IsometricToOrthogonal(sf::Vector2f(0, ml.GetMapSize().y)));
@@ -40,7 +41,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		float u = (std::rand() % 1001) / 1000.f;
 		float b = (std::rand() % 1001) / 1000.f;
 		sf::Vector2f pos = (u * AB) + (b * AD);
-		enemies.push_back(std::make_unique<AI>(pos, world, ptr->aiAnims, ptr->aiPlaySpeed, ptr->aiSpriteScale));
+		enemies.push_back(std::make_unique<AI>(pos, world, ptr->aiAnims, ptr->aiPlaySpeed, ptr->aiSpriteScale, 40));
 	}
 
 	//load a font
@@ -157,9 +158,19 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		//update stuff
 		sf::Time dt = frameClock.restart();
-		player.update(dt);
-		for (const std::unique_ptr<Character>& c : enemies)
-			c->update(dt);
+		sf::FloatRect bounds;
+		bounds.left = view.getCenter().x - view.getSize().x / 2.f;
+		bounds.top = view.getCenter().y - view.getSize().y / 2.f;
+		bounds.width = view.getSize().x;
+		bounds.height = view.getSize().y;
+		player.update(dt, bounds);
+		for (const std::unique_ptr<Character>& c : enemies){
+			//if (typeid(*c) == typeid(AI))
+			//	 aiP = dynamic_cast<AI*>(c.get());
+			AI* aiP = dynamic_cast<AI*>(c.get());
+			if (aiP)
+				aiP->update(dt, bounds, player.getPosition());
+		}
 
 		world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
@@ -175,8 +186,20 @@ int GameScreen::Run(sf::RenderWindow &window)
 		window.setView(view);
 
 		window.draw(ml);
-		window.draw(player);
+		/*window.draw(player);
 		for (const std::unique_ptr<Character>& c : enemies)
+			window.draw(*c);*/
+		std::vector<Character*> visibleChars;
+		visibleChars.push_back(&player);
+		for (const std::unique_ptr<Character>& c : enemies){
+			if (c->getVisible())
+				visibleChars.push_back(c.get());
+		}
+		std::sort(visibleChars.begin(), visibleChars.end(), [](const Character* c1, const Character* c2)->bool
+		{
+			return (c1->getPosition().y < c2->getPosition().y);
+		});
+		for (const Character* c : visibleChars)
 			window.draw(*c);
 		
 #pragma region Debug
