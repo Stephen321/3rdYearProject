@@ -11,9 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Box2D.cpp" />
+    <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\GameData.cpp" />
     <ClCompile Include="src\GameLoader.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -26,6 +28,9 @@
     <ClCompile Include="src\tmx2box2d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\AI.h" />
+    <ClInclude Include="include\Character.h" />
+    <ClInclude Include="include\dirent.h" />
     <ClInclude Include="include\GameData.h" />
     <ClInclude Include="include\GameLoader.h" />
     <ClInclude Include="include\Player.h" />

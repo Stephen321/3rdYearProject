@@ -9,20 +9,40 @@ int GameScreen::Run(sf::RenderWindow &window)
 	sf::Event Event;
 	bool Running = true;
 	bool showDebug = true;
+	float zoom = 1.f;
+	bool zoomed = false;
 
 	tmx::MapLoader ml("resources");
-	ml.Load("test.tmx");
+	ml.Load("demo.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
+	sf::FloatRect viewRect = sf::FloatRect(0, 0, 800, 600);
 	sf::View view;
-	view.reset(sf::FloatRect(0, 0, 443, 333));
+	view.reset(viewRect);
 	view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 	window.setView(view);
 	sf::Vector2f followPosition = view.getCenter();
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
 	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
 
-	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world);
+	
+
+	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world, ptr->playerAnims, ptr->playerPlaySpeed, ptr->playerSpriteScale, 70);
+
+	std::vector<std::unique_ptr<Character>> enemies;
+	const int AICOUNT = 50;
+
+	sf::Vector2f AB(ml.IsometricToOrthogonal(sf::Vector2f(ml.GetMapSize().x / 2.f, 0)));
+	sf::Vector2f AD(ml.IsometricToOrthogonal(sf::Vector2f(0, ml.GetMapSize().y)));
+
+	for (int i = 0; i < AICOUNT; i++)
+	{
+		float u = (std::rand() % 1001) / 1000.f;
+		float b = (std::rand() % 1001) / 1000.f;
+		sf::Vector2f pos = (u * AB) + (b * AD);
+		enemies.push_back(std::make_unique<AI>(pos, world, ptr->aiAnims, ptr->aiPlaySpeed, ptr->aiSpriteScale, 40));
+	}
 
 	//load a font
 	sf::Font font;
@@ -120,10 +140,38 @@ int GameScreen::Run(sf::RenderWindow &window)
 					break;
 				}
 			}
+			if (Event.type == sf::Event::MouseWheelScrolled)
+			{
+				if (Event.mouseWheelScroll.delta < 0 && zoom > 1)
+					zoom = 1;
+				else if (Event.mouseWheelScroll.delta > 0 && zoom < 1)
+					zoom = 1;
+				zoom += Event.mouseWheelScroll.delta / 100.f;
+				zoomed = true;
+			}
+			if (Event.type == sf::Event::MouseButtonReleased)
+			{
+				if (Event.mouseButton.button == sf::Mouse::Button::Right)
+					view.reset(viewRect);
+			}
 		}		
 
 		//update stuff
-		player.update(frameClock.restart());
+		sf::Time dt = frameClock.restart();
+		sf::FloatRect bounds;
+		bounds.left = view.getCenter().x - view.getSize().x / 2.f;
+		bounds.top = view.getCenter().y - view.getSize().y / 2.f;
+		bounds.width = view.getSize().x;
+		bounds.height = view.getSize().y;
+		player.update(dt, bounds);
+		for (const std::unique_ptr<Character>& c : enemies){
+			//if (typeid(*c) == typeid(AI))
+			//	 aiP = dynamic_cast<AI*>(c.get());
+			AI* aiP = dynamic_cast<AI*>(c.get());
+			if (aiP)
+				aiP->update(dt, bounds, player.getPosition());
+		}
+
 		world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
 		//Clearing screen
@@ -131,10 +179,28 @@ int GameScreen::Run(sf::RenderWindow &window)
 		//Drawing
 	
 		view.setCenter(player.getPosition());
+		if (zoomed){
+			view.zoom(zoom);
+			zoomed = false;
+		}
 		window.setView(view);
 
 		window.draw(ml);
-		window.draw(player);
+		/*window.draw(player);
+		for (const std::unique_ptr<Character>& c : enemies)
+			window.draw(*c);*/
+		std::vector<Character*> visibleChars;
+		visibleChars.push_back(&player);
+		for (const std::unique_ptr<Character>& c : enemies){
+			if (c->getVisible())
+				visibleChars.push_back(c.get());
+		}
+		std::sort(visibleChars.begin(), visibleChars.end(), [](const Character* c1, const Character* c2)->bool
+		{
+			return (c1->getPosition().y < c2->getPosition().y);
+		});
+		for (const Character* c : visibleChars)
+			window.draw(*c);
 		
 #pragma region Debug
 		window.setView(window.getDefaultView());

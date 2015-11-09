@@ -10,6 +10,7 @@
 #include "tmx\DebugShape.h"
 #include "Box2D\Collision\Shapes\b2PolygonShape.h"
 #include "Player.h"
+#include "AI.h"
 #include <memory>
 
 class GameScreen : public Screen
