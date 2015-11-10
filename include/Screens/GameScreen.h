@@ -12,6 +12,8 @@
 #include "Player.h"
 #include "AI.h"
 #include <memory>
+#include "MyListener.h"
+#include "Debug.h"
 
 class GameScreen : public Screen
 {

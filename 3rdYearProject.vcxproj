@@ -16,9 +16,12 @@
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Box2D.cpp" />
     <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="src\GameData.cpp" />
     <ClCompile Include="src\GameLoader.cpp" />
+    <ClCompile Include="src\HealthBar.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MyListener.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Screens\CreditsScreen.cpp" />
     <ClCompile Include="src\Screens\GameScreen.cpp" />
@@ -29,10 +32,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AI.h" />
+    <ClInclude Include="include\AnimatedSprite.hpp" />
+    <ClInclude Include="include\Animation.hpp" />
     <ClInclude Include="include\Character.h" />
+    <ClInclude Include="include\Debug.h" />
     <ClInclude Include="include\dirent.h" />
     <ClInclude Include="include\GameData.h" />
     <ClInclude Include="include\GameLoader.h" />
+    <ClInclude Include="include\HealthBar.h" />
+    <ClInclude Include="include\MyListener.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\rapidjson\allocators.h" />
     <ClInclude Include="include\rapidjson\document.h" />

@@ -8,7 +8,6 @@ int GameScreen::Run(sf::RenderWindow &window)
 {
 	sf::Event Event;
 	bool Running = true;
-	bool showDebug = true;
 	float zoom = 1.f;
 	bool zoomed = false;
 
@@ -23,7 +22,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 	window.setView(view);
 	sf::Vector2f followPosition = view.getCenter();
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
+	MyListener contactListener;
 	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
+	world.SetContactListener(&contactListener);
 
 	
 
@@ -31,7 +32,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world, ptr->playerAnims, ptr->playerPlaySpeed, ptr->playerSpriteScale, 70);
 
 	std::vector<std::unique_ptr<Character>> enemies;
-	const int AICOUNT = 50;
+	const int AICOUNT = 1;
 
 	sf::Vector2f AB(ml.IsometricToOrthogonal(sf::Vector2f(ml.GetMapSize().x / 2.f, 0)));
 	sf::Vector2f AD(ml.IsometricToOrthogonal(sf::Vector2f(0, ml.GetMapSize().y)));
@@ -44,6 +45,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		enemies.push_back(std::make_unique<AI>(pos, world, ptr->aiAnims, ptr->aiPlaySpeed, ptr->aiSpriteScale, 40));
 	}
 
+	window.setKeyRepeatEnabled(false);
 	//load a font
 	sf::Font font;
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
@@ -119,6 +121,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		//Verifying events
 		while (window.pollEvent(Event))
 		{
+			player.setEvent(Event);
 			// Window closed
 			if (Event.type == sf::Event::Closed)
 			{
@@ -126,7 +129,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 			}
 
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::D))
-				showDebug = !showDebug;
+				Debug::displayInfo = !Debug::displayInfo;
 
 			//Key pressed
 			if (Event.type == sf::Event::KeyPressed)
@@ -203,27 +206,29 @@ int GameScreen::Run(sf::RenderWindow &window)
 			window.draw(*c);
 		
 #pragma region Debug
-		window.setView(window.getDefaultView());
-		sf::Vector2f screenTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 210), (-window.getView().getSize().y / 2) + 0);
-		sf::Vector2f mapTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 175), (-window.getView().getSize().y / 2) + 40);
-		sf::Vector2f worldTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 80);
-		sf::Vector2f debugPos1 = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 120);
-		screenPosText.setPosition(screenTxtPos);
-		mapPosText.setPosition(mapTxtPos);
-		worldPosText.setPosition(worldTxtPos);
-		debugText1.setPosition(debugPos1);
+		if (Debug::displayInfo){
+			window.setView(window.getDefaultView());
+			sf::Vector2f screenTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 210), (-window.getView().getSize().y / 2) + 0);
+			sf::Vector2f mapTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 175), (-window.getView().getSize().y / 2) + 40);
+			sf::Vector2f worldTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 80);
+			sf::Vector2f debugPos1 = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 120);
+			screenPosText.setPosition(screenTxtPos);
+			mapPosText.setPosition(mapTxtPos);
+			worldPosText.setPosition(worldTxtPos);
+			debugText1.setPosition(debugPos1);
 
-		window.draw(screenPosText);
-		window.draw(mapPosText);
-		window.draw(worldPosText);
-		window.draw(debugText1);
+			window.draw(screenPosText);
+			window.draw(mapPosText);
+			window.draw(worldPosText);
+			window.draw(debugText1);
 
-		window.setView(view);
-		if (showDebug) ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
-		for (const auto& s : debugBoxes)
-			window.draw(*s);
-		for (const auto& s : debugShapes)
-			window.draw(s);
+			window.setView(view);
+			ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
+			for (const auto& s : debugBoxes)
+				window.draw(*s);
+			for (const auto& s : debugShapes)
+				window.draw(s);
+		}
 #pragma endregion
 		window.display();
 	}

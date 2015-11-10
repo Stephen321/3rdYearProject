@@ -1,0 +1,172 @@
+{
+  "name": "ai",
+  "playspeed" : 15,
+  "scale" : 0.3,
+  "animations": [
+    {
+      "name": "idle",
+      "spritesheet": "aiIdleAnim.png",
+      "frames": [
+
+    	{
+    		"filename": "spinechar-walk_0.png",
+    		"frame": {"x":0,"y":0,"w":290,"h":375},
+    		"rotated": false,
+    		"trimmed": false,
+    		"spriteSourceSize": {"x":0,"y":0,"w":290,"h":375},
+    		"sourceSize": {"w":290,"h":375},
+    		"pivot": {"x":0.5,"y":0.5}
+    	}],
+    	"meta": {
+    		"app": "http://www.codeandweb.com/texturepacker",
+    		"version": "1.0",
+    		"image": "aiIdleAnim.png",
+    		"format": "RGBA8888",
+    		"size": {"w":290,"h":375},
+    		"scale": "1",
+    		"smartupdate": "$TexturePacker:SmartUpdate:ce7c04a64dd6bcd3a9ef6a875a952cb6:cc031b3edb4e4101fbf53c4a19ae9fc0:b3ca49f9b259b208d412c884f6a9c8d6$"
+    	}
+    	},
+    	{
+    	 "name": "attack",
+      "spritesheet": "aiAttackAnim.png",
+      "frames": [
+
+	{
+		"filename": "spinechar-animation_00.png",
+		"frame": {"x":0,"y":0,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_01.png",
+		"frame": {"x":349,"y":0,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_02.png",
+		"frame": {"x":698,"y":0,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_03.png",
+		"frame": {"x":1047,"y":0,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_04.png",
+		"frame": {"x":1396,"y":0,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_05.png",
+		"frame": {"x":0,"y":390,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_06.png",
+		"frame": {"x":349,"y":390,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_07.png",
+		"frame": {"x":698,"y":390,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_08.png",
+		"frame": {"x":1047,"y":390,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_09.png",
+		"frame": {"x":1396,"y":390,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_10.png",
+		"frame": {"x":0,"y":780,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_11.png",
+		"frame": {"x":349,"y":780,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_12.png",
+		"frame": {"x":698,"y":780,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	},
+	{
+		"filename": "spinechar-animation_13.png",
+		"frame": {"x":1047,"y":780,"w":349,"h":390},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":349,"h":390},
+		"sourceSize": {"w":349,"h":390},
+		"pivot": {"x":0.5,"y":0.5}
+	}],
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "aiAttackAnim.png",
+		"format": "RGBA8888",
+		"size": {"w":1745,"h":1170},
+		"scale": "1",
+		"smartupdate": "$TexturePacker:SmartUpdate:399e9622e26bde64902f15c730f9a4a9:c34619a1a526e61cb7c012344129ca82:cb81306c3b5be6b57ecbef391479aa61$"
+	}
+	}
+	]
+}
