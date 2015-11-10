@@ -32,7 +32,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world, ptr->playerAnims, ptr->playerPlaySpeed, ptr->playerSpriteScale, 70);
 
 	std::vector<std::unique_ptr<Character>> enemies;
-	const int AICOUNT = 1;
+	const int AICOUNT = 2;
 
 	sf::Vector2f AB(ml.IsometricToOrthogonal(sf::Vector2f(ml.GetMapSize().x / 2.f, 0)));
 	sf::Vector2f AD(ml.IsometricToOrthogonal(sf::Vector2f(0, ml.GetMapSize().y)));

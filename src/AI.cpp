@@ -17,10 +17,6 @@ void AI::behaviour(sf::Vector2f playerPos){
 		m_velocity = sf::Vector2f(std::cos(angle) * SPEED, std::sin(angle) * SPEED);
 	else
 		m_velocity = sf::Vector2f(0, 0);
-	if (m_velocity.x > 0)
-		m_animatedSprite.setScale(-m_scale, m_scale);
-	else
-		m_animatedSprite.setScale(m_scale, m_scale);
 	if (target != nullptr && Debug::displayInfo)
 		m_animatedSprite.setColor(sf::Color::Red);
 	else if (Debug::displayInfo)
