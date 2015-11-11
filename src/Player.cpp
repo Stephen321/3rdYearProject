@@ -1,10 +1,11 @@
 #include "Player.h"
 #include <iostream> //testing
 
-Player::Player(sf::Vector2f position, b2World& world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale, float speed) :
-Character(position, world, anims, playSpeed, scale, speed, 100, Character::collisionFilters::PLAYER),
+Player::Player(sf::Vector2f position, b2World& world) :
+Character(position, world, CharacterType::PLAYER),
 startPos(position),
-comboAnim(nullptr){}
+comboAnim(nullptr){
+}
 
 void Player::update(sf::Time dt, sf::FloatRect viewBounds){
 	behaviour();
@@ -86,8 +87,8 @@ void Player::behaviour(){
 		m_velocity.y = 0;
 		return;
 	}
-	xPos = (xPos / 100) * SPEED;
-	yPos = (yPos / 100) * SPEED;
+	xPos = (xPos / 100) * m_speed;
+	yPos = (yPos / 100) * m_speed;
 
 	m_velocity = sf::Vector2f(xPos, yPos);
 }

@@ -1,20 +1,21 @@
 #include "AI.h"
 
-AI::AI(sf::Vector2f position, b2World& world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale, float speed) :
-Character(position, world, anims, playSpeed, scale, speed, 60, Character::collisionFilters::AI){}
+AI::AI(sf::Vector2f position, b2World& world, Player* playerP) :
+Character(position, world, CharacterType::AI),
+player(playerP){}
 
-void AI::update(sf::Time dt, sf::FloatRect viewBounds, sf::Vector2f playerPos){
-	behaviour(playerPos);
+void AI::update(sf::Time dt, sf::FloatRect viewBounds){
+	behaviour();
 	attackTimer += dt.asSeconds();
 	Character::update(dt, viewBounds);
 }
 
-void AI::behaviour(sf::Vector2f playerPos){
-	sf::Vector2f vB = playerPos - m_position;
+void AI::behaviour(){
+	sf::Vector2f vB = player->getPosition() - m_position;
 	float angle = std::atan2(vB.y, vB.x);
 	float distance = std::sqrt(vB.x * vB.x + vB.y * vB.y);
 	if (distance > 25)
-		m_velocity = sf::Vector2f(std::cos(angle) * SPEED, std::sin(angle) * SPEED);
+		m_velocity = sf::Vector2f(std::cos(angle) * m_speed, std::sin(angle) * m_speed);
 	else
 		m_velocity = sf::Vector2f(0, 0);
 	if (target != nullptr && Debug::displayInfo)

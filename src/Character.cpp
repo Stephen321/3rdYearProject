@@ -1,18 +1,37 @@
 #include "Character.h"
 
 
-Character::Character(sf::Vector2f position, b2World& _world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale, float speed, float maxHealth, collisionFilters filter) :
+Character::Character(sf::Vector2f position, b2World& _world, Character::CharacterType charType) :
 m_position(position),
-m_anims(anims),
 m_visible(false),
-SPEED(speed),
-MAX_HEALTH(maxHealth),
-m_scale(scale),
 world(_world),
 m_attacking(false),
-m_filter(filter){
+m_charType(charType){
+
+	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	float playSpeed = 0;
+	float maxHealth = 200;
+	float speed = 50;
+	CollisionFilters filter;
+	if (m_charType == CharacterType::PLAYER){
+		m_anims = ptr->playerAnims;
+		playSpeed = ptr->playerPlaySpeed;
+		m_scale = ptr->playerSpriteScale;
+		filter = CollisionFilters::PLAYERFILTER;
+		maxHealth = 100;
+		m_speed = 80;
+	}
+	else if (m_charType == CharacterType::AI){
+		m_anims = ptr->aiAnims;
+		playSpeed = ptr->aiPlaySpeed;
+		m_scale = ptr->aiSpriteScale;
+		filter = CollisionFilters::AIFILTER;
+		maxHealth = 60;
+		m_speed = 45;
+	}
+
 	m_animatedSprite = AnimatedSprite(sf::seconds(playSpeed), false, true);
-	m_animatedSprite.setScale(scale, scale);
+	m_animatedSprite.setScale(m_scale, m_scale);
 	currentAnim = &m_anims.begin()->second;
 	m_animatedSprite.play(*currentAnim);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
@@ -31,7 +50,7 @@ m_filter(filter){
 	circleFictureDef.shape = &circleShape;
 	circleFictureDef.density = 1;
 	circleFictureDef.restitution = 0.99f;
-	circleFictureDef.filter.categoryBits = m_filter;
+	circleFictureDef.filter.categoryBits = filter;
 	m_body->CreateFixture(&circleFictureDef);
 	m_position = tmx::BoxToSfVec(m_body->GetPosition());
 
@@ -42,15 +61,15 @@ m_filter(filter){
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.shape = &circleShape2;
 	myFixtureDef.isSensor = true;
-	myFixtureDef.filter.categoryBits = m_filter;
-	if (m_filter == collisionFilters::AI)
-		myFixtureDef.filter.maskBits = collisionFilters::PLAYER;
+	myFixtureDef.filter.categoryBits = filter;
+	if (filter == CollisionFilters::AIFILTER)
+		myFixtureDef.filter.maskBits = CollisionFilters::PLAYERFILTER;
 	else
-		myFixtureDef.filter.maskBits = collisionFilters::AI;
+		myFixtureDef.filter.maskBits = CollisionFilters::AIFILTER;
 	m_body->CreateFixture(&myFixtureDef);
 
 	m_spriteOffset = sf::Vector2f(0, 6 - m_animatedSprite.getGlobalBounds().height / 2.f);
-	m_health = HealthBar(MAX_HEALTH, sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + m_position);
+	m_health = HealthBar(maxHealth, sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + m_position);
 
 
 	sf::Vector2f pos = tmx::BoxToSfVec(m_body->GetPosition());

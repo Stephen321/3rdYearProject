@@ -18,9 +18,14 @@
 class Character : public sf::Drawable{
 
 public:
-	enum collisionFilters {
-		AI = 0x0001,
-		PLAYER = 0x0002,
+	enum CollisionFilters {
+		AIFILTER = 0x0001,
+		PLAYERFILTER = 0x0002,
+	};
+
+	enum CharacterType {
+		AI, 
+		PLAYER
 	};
 
 	sf::Vector2f getPosition() const;
@@ -34,10 +39,9 @@ public:
 	void setVelocity(sf::Vector2f value);
 
 protected:
-	Character(sf::Vector2f position, b2World& world, std::unordered_map<std::string, Animation> anims, float playSpeed, float scale, float speed, float maxHealth, Character::collisionFilters filter);
+	Character(sf::Vector2f position, b2World& world, Character::CharacterType charType);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	AnimatedSprite m_animatedSprite;
-	const int SPEED; //pixels per second
 	sf::Vector2f m_position;
 	sf::Vector2f m_velocity;
 	Animation* currentAnim;
@@ -50,10 +54,9 @@ protected:
 	bool m_visible;
 	float m_scale;
 	HealthBar m_health;
-	const int MAX_HEALTH;
-	collisionFilters m_filter;
 	bool m_attacking;
-	
+	CharacterType m_charType;
+	float m_speed;//pixels per second	
 };
 
 #endif

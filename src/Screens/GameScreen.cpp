@@ -29,7 +29,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	
 
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world, ptr->playerAnims, ptr->playerPlaySpeed, ptr->playerSpriteScale, 70);
+	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world);
 
 	std::vector<std::unique_ptr<Character>> enemies;
 	const int AICOUNT = 2;
@@ -42,15 +42,13 @@ int GameScreen::Run(sf::RenderWindow &window)
 		float u = (std::rand() % 1001) / 1000.f;
 		float b = (std::rand() % 1001) / 1000.f;
 		sf::Vector2f pos = (u * AB) + (b * AD);
-		enemies.push_back(std::make_unique<AI>(pos, world, ptr->aiAnims, ptr->aiPlaySpeed, ptr->aiSpriteScale, 40));
+		enemies.push_back(std::make_unique<AI>(pos, world, &player));
 	}
 
 	window.setKeyRepeatEnabled(false);
 	//load a font
 	sf::Font font;
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
-
-#pragma region Debug
 	sf::Text screenPosText;
 	screenPosText.setFont(font);
 	screenPosText.setStyle(sf::Text::Regular);
@@ -72,8 +70,6 @@ int GameScreen::Run(sf::RenderWindow &window)
 	debugText1.setCharacterSize(20);
 	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
 	std::vector<DebugShape> debugShapes;
-#pragma endregion
-
 	const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
 	for (const auto& l : layers)
 	{
@@ -104,7 +100,6 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
-#pragma region Debug
 		window.setView(view); //need to change view back to mouse pos info is correct
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
@@ -117,7 +112,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		std::to_string((int)mouseWorldPos.y) + ")");
 		debugText1.setString("PlayerPos: (" + std::to_string((int)player.getPosition().x) + ", " +
 		std::to_string((int)player.getPosition().y) + ")");
-#pragma endregion
+
 		//Verifying events
 		while (window.pollEvent(Event))
 		{
@@ -167,13 +162,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 		bounds.width = view.getSize().x;
 		bounds.height = view.getSize().y;
 		player.update(dt, bounds);
-		for (const std::unique_ptr<Character>& c : enemies){
-			//if (typeid(*c) == typeid(AI))
-			//	 aiP = dynamic_cast<AI*>(c.get());
-			AI* aiP = dynamic_cast<AI*>(c.get());
-			if (aiP)
-				aiP->update(dt, bounds, player.getPosition());
-		}
+		for (const std::unique_ptr<Character>& c : enemies)
+			c->update(dt, bounds);
 
 		world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
@@ -205,7 +195,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		for (const Character* c : visibleChars)
 			window.draw(*c);
 		
-#pragma region Debug
+
 		if (Debug::displayInfo){
 			window.setView(window.getDefaultView());
 			sf::Vector2f screenTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 210), (-window.getView().getSize().y / 2) + 0);
@@ -229,7 +219,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 			for (const auto& s : debugShapes)
 				window.draw(s);
 		}
-#pragma endregion
+
 		window.display();
 	}
 
