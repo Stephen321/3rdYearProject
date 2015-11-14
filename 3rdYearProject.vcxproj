@@ -113,13 +113,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SFML_SDK)\include;$(ProjectDir)include;C:\Box2D\include;C:\tmx-loader\include;C:\zlib-1.2.8\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SFML_SDK)\include;$(ProjectDir)include;C:\Box2D\include;C:\tmx-loader\include;C:\zlib-1.2.8\include;C:\thor\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;ZLIB_WINAPI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SFML_SDK)\lib;C:\zlib-1.2.8\lib;C:\tmx-loader\lib;C:\Box2D\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);Box2D.lib;pugi-d.lib;tmx-loader-d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SFML_SDK)\lib;C:\zlib-1.2.8\lib;C:\tmx-loader\lib;C:\Box2D\lib;C:\thor\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);Box2D.lib;pugi-d.lib;tmx-loader-d.lib;thor-d.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d  "$(ProjectDir)bin\*.dll" "$(OutDir)"</Command>
