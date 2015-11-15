@@ -46,7 +46,6 @@ protected:
 	sf::Vector2f m_velocity;
 	Animation* currentAnim;
 	std::unordered_map<std::string, Animation> m_anims;
-	b2World& world;
 	b2Body* m_body;
 	sf::CircleShape c;
 	sf::CircleShape sensorCircle;

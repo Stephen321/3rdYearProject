@@ -14,6 +14,7 @@
 #include <memory>
 #include "MyListener.h"
 #include "Debug.h"
+#include "Object.h"
 
 class GameScreen : public Screen
 {

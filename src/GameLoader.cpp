@@ -2,8 +2,7 @@
 GameLoader::GameLoader(std::string const & filePath, std::string const & animationFilePath) :
 m_filePath(filePath),
 m_animationFilePath(animationFilePath){
-	loadFileNames();
-	loadAnimations();
+	loadData();
 }
 
 int GameLoader::loadFileNames(){
@@ -40,6 +39,21 @@ void GameLoader::loadJSONDATA(std::string const & filename){
 	}
 }
 
+void GameLoader::loadData(){
+	loadFileNames();
+	loadAnimations();
+
+	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	m_JSONData.clear();
+	loadJSONDATA(m_filePath + "data.json"); 
+	m_document.Parse<0>(m_JSONData.c_str());
+
+	Value::ConstMemberIterator it = m_document.MemberBegin();
+	ptr->rockTexture.loadFromFile(m_filePath + it->value.GetString());
+
+	
+}
+
 void GameLoader::loadAnimations() {
 	//if (m_document.Size() > 0)
 	//	m_document.Clear();
@@ -55,7 +69,7 @@ void GameLoader::loadAnimations() {
 	for (int i = 0; i < jsonFileCount; i++)
 	{
 		m_JSONData.clear();
-		loadJSONDATA(m_filePath + m_animationFilePath + m_jsonAnimFileNames[i]); //test
+		loadJSONDATA(m_filePath + m_animationFilePath + m_jsonAnimFileNames[i]);
 		m_document.Parse<0>(m_JSONData.c_str());
 
 		Value::ConstMemberIterator it = m_document.MemberBegin(); //iterator for entire object

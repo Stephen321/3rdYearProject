@@ -1,10 +1,9 @@
 #include "Character.h"
 
 
-Character::Character(sf::Vector2f position, b2World& _world, Character::CharacterType charType) :
+Character::Character(sf::Vector2f position, b2World& world, Character::CharacterType charType) :
 m_position(position),
 m_visible(false),
-world(_world),
 m_attacking(false),
 m_charType(charType){
 

@@ -22,6 +22,7 @@
     <ClCompile Include="src\HealthBar.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MyListener.cpp" />
+    <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Screens\CreditsScreen.cpp" />
     <ClCompile Include="src\Screens\GameScreen.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="include\GameLoader.h" />
     <ClInclude Include="include\HealthBar.h" />
     <ClInclude Include="include\MyListener.h" />
+    <ClInclude Include="include\Object.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\rapidjson\allocators.h" />
     <ClInclude Include="include\rapidjson\document.h" />
