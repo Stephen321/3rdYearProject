@@ -6,6 +6,7 @@
 #include "Box2D\Dynamics\Contacts\b2Contact.h"
 #include "Player.h"
 #include "AI.h"
+#include "Object.h"
 
 class MyListener : public b2ContactListener{
 	virtual void BeginContact(b2Contact* contact);

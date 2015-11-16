@@ -1,7 +1,6 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "SFML/Graphics.hpp" 
 #include <fstream>
 #include "rapidjson\document.h"
 #include "Animation.hpp"
@@ -13,22 +12,18 @@
 #include "HealthBar.h"
 #include "Box2D\Collision\Shapes\b2CircleShape.h"
 #include "Debug.h"
+#include "CollisionFilters.h"
+#include "VisibleObject.h"
 
 
-class Character : public sf::Drawable{
+class Character : public VisibleObject{
 
 public:
-	enum CollisionFilters {
-		AIFILTER = 0x0001,
-		PLAYERFILTER = 0x0002,
-	};
-
-	enum CharacterType {
+	enum class CharacterType {
 		AI, 
 		PLAYER
 	};
 
-	sf::Vector2f getPosition() const;
 	virtual void update(sf::Time dt, sf::FloatRect viewBounds);
 	bool getVisible() const;
 	virtual void startContact();
@@ -39,10 +34,9 @@ public:
 	void setVelocity(sf::Vector2f value);
 
 protected:
-	Character(sf::Vector2f position, b2World& world, Character::CharacterType charType);
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	Character(sf::Vector2f position, b2World& world, CharacterType charType);
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	AnimatedSprite m_animatedSprite;
-	sf::Vector2f m_position;
 	sf::Vector2f m_velocity;
 	Animation* currentAnim;
 	std::unordered_map<std::string, Animation> m_anims;

@@ -24,18 +24,21 @@
     <ClCompile Include="src\MyListener.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Rock.cpp" />
     <ClCompile Include="src\Screens\CreditsScreen.cpp" />
     <ClCompile Include="src\Screens\GameScreen.cpp" />
     <ClCompile Include="src\Screens\MenuScreen.cpp" />
     <ClCompile Include="src\Screens\OptionsScreen.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
     <ClCompile Include="src\tmx2box2d.cpp" />
+    <ClCompile Include="src\VisibleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AI.h" />
     <ClInclude Include="include\AnimatedSprite.hpp" />
     <ClInclude Include="include\Animation.hpp" />
     <ClInclude Include="include\Character.h" />
+    <ClInclude Include="include\CollisionFilters.h" />
     <ClInclude Include="include\Debug.h" />
     <ClInclude Include="include\dirent.h" />
     <ClInclude Include="include\GameData.h" />
@@ -73,6 +76,7 @@
     <ClInclude Include="include\rapidjson\reader.h" />
     <ClInclude Include="include\rapidjson\stringbuffer.h" />
     <ClInclude Include="include\rapidjson\writer.h" />
+    <ClInclude Include="include\Rock.h" />
     <ClInclude Include="include\Screens.h" />
     <ClInclude Include="include\Screens\CreditsScreen.h" />
     <ClInclude Include="include\Screens\GameScreen.h" />
@@ -80,6 +84,7 @@
     <ClInclude Include="include\Screens\OptionsScreen.h" />
     <ClInclude Include="include\Screens\Screen.hpp" />
     <ClInclude Include="include\tmx2box2d.h" />
+    <ClInclude Include="include\VisibleObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4014C663-4124-4668-9AAC-76F5977499B6}</ProjectGuid>

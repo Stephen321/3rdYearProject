@@ -46,14 +46,14 @@ int GameScreen::Run(sf::RenderWindow &window)
 	}
 
 	std::vector<std::unique_ptr<Object>> objects;
-	const int ROCKCOUNT = 2;
+	const int ROCKCOUNT = 20;
 
 	for (int i = 0; i < ROCKCOUNT; i++)
 	{
 		float u = (std::rand() % 1001) / 1000.f;
 		float b = (std::rand() % 1001) / 1000.f;
-		sf::Vector2f pos = (u * AB) + (b * AD);
-		objects.push_back(std::make_unique<Object>(world, pos));
+		sf::Vector2f pos = (u * (AB - (sf::Vector2f)ptr->rockTexture.getSize()) + (b * AD - (sf::Vector2f)ptr->rockTexture.getSize()));
+		objects.push_back(std::make_unique<Rock>(world, pos));
 	}
 
 	window.setKeyRepeatEnabled(false);
@@ -198,22 +198,23 @@ int GameScreen::Run(sf::RenderWindow &window)
 		/*window.draw(player);
 		for (const std::unique_ptr<Character>& c : enemies)
 			window.draw(*c);*/
-		std::vector<Character*> visibleChars;
+		std::vector<VisibleObject*> visibleChars;
 		visibleChars.push_back(&player);
 		for (const std::unique_ptr<Character>& c : enemies){
 			if (c->getVisible())
 				visibleChars.push_back(c.get());
 		}
-		std::sort(visibleChars.begin(), visibleChars.end(), [](const Character* c1, const Character* c2)->bool
+		for (const std::unique_ptr<Object>& o : objects){
+			if (o->getVisible())
+				visibleChars.push_back(o.get());
+		}
+		std::sort(visibleChars.begin(), visibleChars.end(), [](const VisibleObject* v1, const VisibleObject* v2)->bool
 		{
-			return (c1->getPosition().y < c2->getPosition().y);
+			return (v1->getPosition().y < v2->getPosition().y);
 		});
-		for (const Character* c : visibleChars)
-			window.draw(*c);
 
-		for (const std::unique_ptr<Object>& o : objects)
-			window.draw(*o);
-		
+		for (const VisibleObject* v : visibleChars)
+			window.draw(*v);		
 
 		if (Debug::displayInfo){
 			window.setView(window.getDefaultView());

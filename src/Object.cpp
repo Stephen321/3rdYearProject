@@ -1,37 +1,46 @@
 #include "Object.h"
 
-Object::Object(b2World& world, sf::Vector2f position, Object::ObjectType type) :
+Object::Object(b2World& world, sf::Vector2f position, CollisionFilters filter, ObjectType type) :
 m_type(type){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	m_sprite = sf::Sprite(ptr->rockTexture);
 	m_sprite.setOrigin(ptr->rockTexture.getSize().x / 2.f, ptr->rockTexture.getSize().y / 2.f);
 
 	m_position = position;
-	/*b2BodyDef bodyDef;
+	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody;
 	b2Vec2 b2Pos = tmx::SfToBoxVec(position);
 	bodyDef.position.Set(b2Pos.x, b2Pos.y);
 	m_body = world.CreateBody(&bodyDef);
 
 	b2PolygonShape polyShape;
-	polyShape.SetAsBox(m_sprite.getOrigin().x, m_sprite.getOrigin().y);
+	polyShape.SetAsBox(tmx::SfToBoxFloat(m_sprite.getOrigin().x), tmx::SfToBoxFloat(m_sprite.getOrigin().y / 4.f));
+	polyShape.m_centroid.y = -tmx::SfToBoxFloat(m_sprite.getOrigin().y - 35);
+	debugShape = sf::ConvexShape(4);
 
+	for (int i = 0; i < 4; i++){
+		polyShape.m_vertices[i].y += polyShape.m_centroid.y;
+		debugShape.setPoint(i, m_position + tmx::BoxToSfVec(polyShape.GetVertex(i)));
+	}
+	
 	b2FixtureDef polyFictureDef;
 	polyFictureDef.shape = &polyShape;
 	polyFictureDef.density = 1;
 	polyFictureDef.restitution = 0.99f;
+	polyFictureDef.filter.categoryBits = (uint16)filter;
 	m_body->CreateFixture(&polyFictureDef);
-	m_position = tmx::BoxToSfVec(m_body->GetPosition());*/
+	m_position = tmx::BoxToSfVec(m_body->GetPosition());
 
 	m_bounds.left = m_position.x - m_sprite.getOrigin().x;
 	m_bounds.top = m_position.y - m_sprite.getOrigin().y; 
 	m_bounds.width = m_sprite.getOrigin().x * 2;
 	m_bounds.height = m_sprite.getOrigin().y * 2;
 
-	debugShape = sf::ConvexShape(4);
-	for (int i = 0; i < 4; i++){
-		//debugShape.setPoint(i, tmx::BoxToSfVec(polyShape.GetVertex(i)));
-	}
+	debugShape.setFillColor(sf::Color::Transparent);
+	debugShape.setOutlineColor(sf::Color(30, 70, 10));
+	debugShape.setOutlineThickness(2.f);
+	m_sprite.setPosition(m_position);
+	m_body->SetUserData(this);
 }
 
 void Object::update(sf::FloatRect viewBounds){
@@ -45,4 +54,15 @@ void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 			target.draw(debugShape);
 		}
 	}
+}
+
+bool Object::getVisible() const{
+	return m_visible;
+}
+
+
+sf::Vector2f Object::getPosition() const{
+	b2Fixture* f = m_body->GetFixtureList();
+	b2PolygonShape* ps = (b2PolygonShape*)f->GetShape();
+	return m_position + tmx::BoxToSfVec(ps->m_centroid);
 }

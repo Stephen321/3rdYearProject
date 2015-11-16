@@ -1,8 +1,7 @@
 #include "Character.h"
 
 
-Character::Character(sf::Vector2f position, b2World& world, Character::CharacterType charType) :
-m_position(position),
+Character::Character(sf::Vector2f position, b2World& world, CharacterType charType) :
 m_visible(false),
 m_attacking(false),
 m_charType(charType){
@@ -16,7 +15,7 @@ m_charType(charType){
 		m_anims = ptr->playerAnims;
 		playSpeed = ptr->playerPlaySpeed;
 		m_scale = ptr->playerSpriteScale;
-		filter = CollisionFilters::PLAYERFILTER;
+		filter = CollisionFilters::PLAYER;
 		maxHealth = 100;
 		m_speed = 80;
 	}
@@ -24,7 +23,7 @@ m_charType(charType){
 		m_anims = ptr->aiAnims;
 		playSpeed = ptr->aiPlaySpeed;
 		m_scale = ptr->aiSpriteScale;
-		filter = CollisionFilters::AIFILTER;
+		filter = CollisionFilters::AI;
 		maxHealth = 60;
 		m_speed = 45;
 	}
@@ -49,7 +48,7 @@ m_charType(charType){
 	circleFictureDef.shape = &circleShape;
 	circleFictureDef.density = 1;
 	circleFictureDef.restitution = 0.99f;
-	circleFictureDef.filter.categoryBits = filter;
+	circleFictureDef.filter.categoryBits = (uint16)filter;
 	m_body->CreateFixture(&circleFictureDef);
 	m_position = tmx::BoxToSfVec(m_body->GetPosition());
 
@@ -60,11 +59,11 @@ m_charType(charType){
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.shape = &circleShape2;
 	myFixtureDef.isSensor = true;
-	myFixtureDef.filter.categoryBits = filter;
-	if (filter == CollisionFilters::AIFILTER)
-		myFixtureDef.filter.maskBits = CollisionFilters::PLAYERFILTER;
+	myFixtureDef.filter.categoryBits = (uint16)filter;
+	if (filter == CollisionFilters::AI)
+		myFixtureDef.filter.maskBits = (uint16)CollisionFilters::PLAYER; 
 	else
-		myFixtureDef.filter.maskBits = CollisionFilters::AIFILTER;
+		myFixtureDef.filter.maskBits = (uint16)CollisionFilters::AI;
 	m_body->CreateFixture(&myFixtureDef);
 
 	m_spriteOffset = sf::Vector2f(0, 6 - m_animatedSprite.getGlobalBounds().height / 2.f);
@@ -142,10 +141,6 @@ void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 			target.draw(sensorCircle);
 		}
 	}
-}
-
-sf::Vector2f Character::getPosition() const{
-	return m_position;
 }
 
 bool Character::getVisible() const{
