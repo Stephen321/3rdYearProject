@@ -48,11 +48,13 @@ int GameScreen::Run(sf::RenderWindow &window)
 	std::vector<std::unique_ptr<Object>> objects;
 	const int ROCKCOUNT = 20;
 
+	AB -= ml.IsometricToOrthogonal(sf::Vector2f(ptr->rockTexture.getSize().x / 2.f, 0));
+	AD -= ml.IsometricToOrthogonal(sf::Vector2f(0, ptr->rockTexture.getSize().y / 2.f));
 	for (int i = 0; i < ROCKCOUNT; i++)
 	{
 		float u = (std::rand() % 1001) / 1000.f;
 		float b = (std::rand() % 1001) / 1000.f;
-		sf::Vector2f pos = (u * (AB - (sf::Vector2f)ptr->rockTexture.getSize()) + (b * AD - (sf::Vector2f)ptr->rockTexture.getSize()));
+		sf::Vector2f pos = (u * AB) + (b * AD);
 		objects.push_back(std::make_unique<Rock>(world, pos));
 	}
 

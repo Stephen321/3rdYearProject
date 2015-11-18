@@ -1,16 +1,14 @@
 #include "MyListener.h"
 
 void MyListener::BeginContact(b2Contact* contact) {
-	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
-	Character* playerEntity; Character* aiEntity;
-	Object* objA = static_cast<Object*>(contact->GetFixtureA()->GetBody()->GetUserData());
-	if (getSensorAndOther(contact, playerEntity, aiEntity)){
-		playerEntity->sensorStart(aiEntity);
+	Character* sensor; Character* other;
+
+	if (getSensorAndOther(contact, sensor, other)){
+		sensor->sensorStart(other);
 	}
 }
 
 void MyListener::EndContact(b2Contact* contact) {
-	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
 	Character* sensor; Character* other;
 
 	if (getSensorAndOther(contact, sensor, other)){
