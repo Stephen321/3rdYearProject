@@ -12,9 +12,6 @@ int GameScreen::Run(sf::RenderWindow &window)
 	bool zoomed = false;
 
 	//sound 
-	tmx::MapLoader ml("resources");
-	ml.Load("demo.tmx");
-	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
 	sf::FloatRect viewRect = sf::FloatRect(0, 0, 800, 600);
 	sf::View view;
@@ -29,6 +26,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 	world.SetContactListener(&contactListener);	
 
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	tmx::MapLoader ml(ptr->mapLoaderPath);
+	ml.Load("demo.tmx");
+	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world);
 
 	std::vector<std::unique_ptr<Character>> enemies;

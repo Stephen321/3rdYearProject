@@ -1,8 +1,8 @@
 #include "GameLoader.h"
 #include <iostream> //testing
-GameLoader::GameLoader(std::string const & filePath, FMOD::System * soundSystem) :
+GameLoader::GameLoader(std::string const & filePath) :
 m_filePath(filePath){
-	loadData(soundSystem);
+	loadData();
 }
 
 std::vector<std::string> GameLoader::loadJSONFileNames(const std::string & animationFilePath){
@@ -40,38 +40,41 @@ void GameLoader::loadJSONDATA(std::string const & filename){
 	}
 }
 
-void GameLoader::loadData(FMOD::System * soundSystem){
+void GameLoader::loadData(){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	m_JSONData.clear();
 	loadJSONDATA(m_filePath + "data.json"); 
 	m_document.Parse<0>(m_JSONData.c_str());	
 
 	Value::ConstMemberIterator it = m_document.MemberBegin();
-	std::string animationPath = it->value.GetString();
+	std::string animationsPath = it->value.GetString();
 	++it;
-	std::string soundPath = it->value.GetString();
-	loadAnimations(animationPath, loadJSONFileNames(animationPath)); //animations
+	std::string soundsPath = it->value.GetString();
 	++it;
+	std::string imagesPath = it->value.GetString();
+	++it;
+	std::string mapsPath = it->value.GetString();
+	++it;
+
+	//maps
+	ptr->mapLoaderPath = m_filePath + mapsPath;
+
+	//animations
+	loadAnimations(animationsPath, loadJSONFileNames(animationsPath)); 
+	
 	//sounds
 	Value::ConstMemberIterator soundsIT = it->value.MemberBegin();
-	std::cout << 
-	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet1);
-	++soundsIT;
-	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet2);
-	++soundsIT;
-	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet3);
-	++soundsIT;
-	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet4);
-	++soundsIT;
-	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet5);
-	++soundsIT;
-	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->crowSound);
-	++soundsIT;
-	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->windAmbience);
+	Value::ConstMemberIterator soundsITEnd = it->value.MemberEnd();
+	int test = 1;
+	for (; soundsIT != soundsITEnd; ++soundsIT){
+		SoundManager::getInstance()->loadSound(m_filePath + soundsPath + soundsIT->value.GetString(), soundsIT->value.GetString());
+		std::cout << "sound" << test++ << "loaded" << std::endl;
+	}
 	++it;
+
 	//textures
 	Value::ConstMemberIterator texturesIT = it->value.MemberBegin();
-	ptr->rockTexture.loadFromFile(m_filePath + texturesIT->value.GetString());
+	ptr->rockTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
 }
 
 void GameLoader::loadAnimations(const std::string & animationFilePath, const std::vector<std::string> & jsonAnimFileNames) {

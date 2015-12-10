@@ -31,39 +31,18 @@
 #include "fmod.hpp"
 #include "fmod_errors.h"
 
-#include <string.h>
-#include <malloc.h>
-#include <stdio.h>
-
 int main()
 {
+
+	//loading 
+	std::shared_ptr<SoundManager> m_SMptr = SoundManager::getInstance();
+	std::shared_ptr<GameData> m_GDptr = GameData::getInstance();
+	GameLoader gl("resources/");
 
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
 	//window.setVerticalSyncEnabled(true);
 
-	//sound system
-	FMOD::System * soundSystem;
-	FMOD::System_Create(&soundSystem);
-	FMOD::Channel * channel;
-	FMOD::Sound * test;
-	FMOD_RESULT result = FMOD_OK;
-	result = soundSystem->init(100, FMOD_INIT_NORMAL, 0);
-	result = soundSystem->createSound("resources/sounds/birdTweet_1.mp3", FMOD_DEFAULT, 0, &test);
-	if (result != FMOD_OK){
-		std::cout << "FMOD ERROR?!?!: " << FMOD_ErrorString(result) << std::endl;
-		exit(-1);
-	}
-	
-	result = soundSystem->playSound(FMOD_CHANNEL_FREE, test, false, &channel);
-	if (result != FMOD_OK){
-		std::cout << "FMOD ERROR?!?!: " << FMOD_ErrorString(result) << std::endl;
-		exit(-1);
-	}
-
-	//loading 
-	std::shared_ptr<GameData> m_ptr = GameData::getInstance();
-	GameLoader gl("resources/", soundSystem);
 
 	std::vector<Screen*> Screens;
 	int screen = 0;
@@ -71,7 +50,7 @@ int main()
 	//Screens preparations
 	MenuScreen menuScreen;
 	Screens.push_back(&menuScreen);
-	GameScreen gameScreen(soundSystem);
+	GameScreen gameScreen;
 	Screens.push_back(&gameScreen);
 	OptionsScreen optionsScreen;
 	Screens.push_back(&optionsScreen);
