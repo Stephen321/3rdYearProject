@@ -1,5 +1,5 @@
 #include "Screens\MenuScreen.h"
-
+#include <iostream> //testing
 MenuScreen::MenuScreen(void)
 {		
 }
@@ -48,10 +48,18 @@ int MenuScreen::Run(sf::RenderWindow &window)
 	Menu4.setCharacterSize(70);
 	Menu4.setString("Exit");
 	Menu4.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu4, 6, screenDimensions);	
+	setTextOriginAndPosition(Menu4, 6, screenDimensions);
+	bool joyStickAlreadyMoved = false;
+	int joystick = -1;
 
 	while (Running)
 	{
+		if (sf::Joystick::isConnected(joystick) == false){
+			for (int i = 0; i < 6 && joystick == -1; i++){
+				if (sf::Joystick::isConnected(i))
+					joystick = i;
+			}
+		}
 		//Verifying events
 		while (window.pollEvent(Event))
 		{
@@ -61,47 +69,51 @@ int MenuScreen::Run(sf::RenderWindow &window)
 				return (-1);
 			}
 			//Key pressed
-			if (Event.type == sf::Event::KeyPressed)
+
+			int yPos = sf::Joystick::getAxisPosition(joystick, sf::Joystick::Axis::Y);
+			bool joystickMoved = yPos > 10 || yPos < -10;
+			if (!joystickMoved)
+				joyStickAlreadyMoved = false;
+			if (joystickMoved)
 			{
-				switch (Event.key.code)
-				{				
-				case sf::Keyboard::Up:
-					if (menu > 0)
+				if (yPos < -10 && joyStickAlreadyMoved == false){ //up
+					if (menu > 0){
 						if (menu == 2 && menu == 2 /* <-- condition always true for test purposes, acual condition = no file to load */)
 							menu -= 2;
 						else
 							menu--;
-					break;
-				case sf::Keyboard::Down:
+						joyStickAlreadyMoved = true;
+					}
+				}
+				else if (yPos > 10 && joyStickAlreadyMoved == false){ //down
 					if (menu < 3)
 					{
 						if (menu == 0 && menu == 0 /* <-- condition always true for test purposes, acual condition = no file to load */)
 							menu += 2;
 						else
 							menu++;
+						joyStickAlreadyMoved = true;
 					}
-					break;
-				case sf::Keyboard::Return:
-					if (menu == 0)
-					{
-						return (1);
-					}
-					else if (menu == 1)
-					{
-						//load from file
-						return (1);
-					}
-					else if (menu == 2)
-					{
-						return (2);
-					}
-					else
-						return (-1);
-					break;
-				default:
-					break;
 				}
 			}
+			if (sf::Joystick::isButtonPressed(joystick, 0)){
+				if (menu == 0)
+				{
+					return (1);
+				}
+				else if (menu == 1)
+				{
+					//load from file
+					return (1);
+				}
+				else if (menu == 2)
+				{
+					return (2);
+				}
+				else
+					return (-1);
+			}
+
 		}		
 		
 		if (menu == 0)

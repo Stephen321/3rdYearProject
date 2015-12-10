@@ -31,9 +31,16 @@ int OptionsScreen::Run(sf::RenderWindow &window)
 	Menu1.setString("Back");
 	Menu1.setColor(sf::Color(255, 255, 255, 255));
 	setTextOriginAndPosition(Menu1, 6, screenDimensions);
+	int joystick = -1;
 
 	while (Running)
 	{
+		if (sf::Joystick::isConnected(joystick) == false){
+			for (int i = 0; i < 6; i++){
+				if (sf::Joystick::isConnected(i))
+					joystick = i;
+			}
+		}
 		//Verifying events
 		while (window.pollEvent(Event))
 		{
@@ -41,6 +48,12 @@ int OptionsScreen::Run(sf::RenderWindow &window)
 			if (Event.type == sf::Event::Closed)
 			{
 				return (-1);
+			}
+			if (sf::Joystick::isButtonPressed(joystick, 0)){
+				if (menu == 0)
+				{
+					return (0);
+				}
 			}
 			//Key pressed
 			if (Event.type == sf::Event::KeyPressed)
@@ -62,12 +75,6 @@ int OptionsScreen::Run(sf::RenderWindow &window)
 						//else
 						//	menu++;
 					}
-					break;
-				case sf::Keyboard::Return:
-					if (menu == 0)
-					{
-						return (0);
-					}					
 					break;
 				default:
 					break;

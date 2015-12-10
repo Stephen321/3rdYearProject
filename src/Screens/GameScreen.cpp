@@ -20,6 +20,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	view.reset(viewRect);
 	view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 	window.setView(view);
+	window.setFramerateLimit(60);
 	sf::Vector2f followPosition = view.getCenter();
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
 	MyListener contactListener;
@@ -112,6 +113,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 		}
 	}
 
+
+	int joystick = -1;
 	while (Running)
 	{
 		window.setView(view); //need to change view back to mouse pos info is correct
@@ -127,6 +130,17 @@ int GameScreen::Run(sf::RenderWindow &window)
 		debugText1.setString("PlayerPos: (" + std::to_string((int)player.getPosition().x) + ", " +
 		std::to_string((int)player.getPosition().y) + ")");
 
+		if (sf::Joystick::isConnected(joystick) == false){
+			for (int i = 0; i < 6; i++){
+				if (sf::Joystick::isConnected(i)){
+					joystick = i;
+					sf::Joystick::Identification id = sf::Joystick::getIdentification(joystick);
+					std::cout << (id.name).toAnsiString() << std::endl;
+					std::cout << id.productId << std::endl;
+					std::cout << id.vendorId << std::endl;
+				}
+			}
+		}
 		//Verifying events
 		while (window.pollEvent(Event))
 		{
@@ -139,18 +153,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::D))
 				Debug::displayInfo = !Debug::displayInfo;
-
-			//Key pressed
-			if (Event.type == sf::Event::KeyPressed)
+			if (sf::Joystick::isButtonPressed(joystick, 7))
 			{
-				switch (Event.key.code)
-				{
-				case sf::Keyboard::Escape:
-					return (0);
-					break;
-				default:
-					break;
-				}
+				return 0;
 			}
 			if (Event.type == sf::Event::MouseWheelScrolled)
 			{
@@ -189,7 +194,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		window.clear(sf::Color(0, 0, 0, 0));
 		//Drawing
 	
-		view.setCenter(player.getPosition());
+		view.setCenter((int)player.getPosition().x, (int)player.getPosition().y);
 		if (zoomed){
 			view.zoom(zoom);
 			zoomed = false;

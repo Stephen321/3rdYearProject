@@ -1,3 +1,3 @@
 #include "Debug.h"
 
-bool Debug::displayInfo = true;
+bool Debug::displayInfo = false;
