@@ -1,3 +1,18 @@
 {
-  "rockTextureFile": "rockTexture.png"
+	"animation_folder_path" : "animations/",
+	"sound_folder_path" : "sounds/",
+	"sounds" :
+	{
+		"bird_tweet_1" : "birdTweet_1.mp3",
+		"bird_tweet_2" : "birdTweet_2.mp3",
+		"bird_tweet_3" : "birdTweet_3.mp3",
+		"bird_tweet_4" : "birdTweet_4.mp3",
+		"bird_tweet_5" : "birdTweet_5.mp3",
+		"crow" : "sounds/crow.mp3",
+		"wind_ambience" : "sounds/windAmbience.mp3"
+	},
+	"textures" : 
+	{
+		"rockTextureFile": "rockTexture.png"
+	}
 }

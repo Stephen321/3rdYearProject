@@ -1,6 +1,6 @@
 #include "Screens\GameScreen.h"
 
-GameScreen::GameScreen(void)
+GameScreen::GameScreen()
 {
 }
 
@@ -11,6 +11,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	float zoom = 1.f;
 	bool zoomed = false;
 
+	//sound 
 	tmx::MapLoader ml("resources");
 	ml.Load("demo.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
@@ -25,9 +26,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
 	MyListener contactListener;
 	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
-	world.SetContactListener(&contactListener);
-
-	
+	world.SetContactListener(&contactListener);	
 
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world);
@@ -115,6 +114,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 
 	int joystick = -1;
+
 	while (Running)
 	{
 		window.setView(view); //need to change view back to mouse pos info is correct

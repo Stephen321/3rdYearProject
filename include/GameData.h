@@ -4,6 +4,7 @@
 #include <memory>
 #include "Animation.hpp"
 #include <unordered_map>
+#include "fmod.hpp"
 
 class GameData {
 public:
@@ -18,7 +19,15 @@ public:
 	std::unordered_map<std::string, Animation> aiAnims; 
 	float aiPlaySpeed;
 	float aiSpriteScale;
-
+	//sounds
+	FMOD::Sound * birdTweet1;
+	FMOD::Sound * birdTweet2;
+	FMOD::Sound * birdTweet3;
+	FMOD::Sound * birdTweet4;
+	FMOD::Sound * birdTweet5;
+	FMOD::Sound * crowSound;
+	FMOD::Sound * windAmbience;
+	//textures
 	sf::Texture rockTexture;
 
 private:

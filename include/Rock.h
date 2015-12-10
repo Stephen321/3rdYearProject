@@ -7,5 +7,5 @@ class Rock : public Object{
 public:
 	Rock(b2World& world, sf::Vector2f position);
 };
-
+ 
 #endif

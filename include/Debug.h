@@ -1,6 +1,6 @@
 #ifndef DEBUG_H
 #define DEBUG_H
-static struct Debug{
+struct Debug{
 	static bool displayInfo;
 };
 #endif

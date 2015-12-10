@@ -1,14 +1,15 @@
 #include "GameLoader.h"
-GameLoader::GameLoader(std::string const & filePath, std::string const & animationFilePath) :
-m_filePath(filePath),
-m_animationFilePath(animationFilePath){
-	loadData();
+#include <iostream> //testing
+GameLoader::GameLoader(std::string const & filePath, FMOD::System * soundSystem) :
+m_filePath(filePath){
+	loadData(soundSystem);
 }
 
-int GameLoader::loadFileNames(){
+std::vector<std::string> GameLoader::loadJSONFileNames(const std::string & animationFilePath){
 	DIR *dir;
 	struct dirent *ent;
-	if ((dir = opendir((m_filePath + m_animationFilePath).c_str())) != NULL) {
+	std::vector<std::string> jsonAnimFileNames;
+	if ((dir = opendir((m_filePath + animationFilePath).c_str())) != NULL) {
 		/* load all files ending in .json into a vector */
 		while ((ent = readdir(dir)) != NULL) {
 			if (ent->d_namlen > 5 &&
@@ -17,7 +18,7 @@ int GameLoader::loadFileNames(){
 				ent->d_name[ent->d_namlen - 3] == 's' &&
 				ent->d_name[ent->d_namlen - 2] == 'o' &&
 				ent->d_name[ent->d_namlen - 1] == 'n'){
-				m_jsonAnimFileNames.push_back(ent->d_name);
+				jsonAnimFileNames.push_back(ent->d_name);
 			}
 		}
 		closedir(dir);
@@ -25,8 +26,8 @@ int GameLoader::loadFileNames(){
 	else {
 		/* could not open directory */
 		perror("");
-		return EXIT_FAILURE;
 	}
+	return jsonAnimFileNames;
 }
 
 void GameLoader::loadJSONDATA(std::string const & filename){
@@ -39,25 +40,43 @@ void GameLoader::loadJSONDATA(std::string const & filename){
 	}
 }
 
-void GameLoader::loadData(){
-	loadFileNames();
-	loadAnimations();
-
+void GameLoader::loadData(FMOD::System * soundSystem){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	m_JSONData.clear();
 	loadJSONDATA(m_filePath + "data.json"); 
-	m_document.Parse<0>(m_JSONData.c_str());
+	m_document.Parse<0>(m_JSONData.c_str());	
 
 	Value::ConstMemberIterator it = m_document.MemberBegin();
-	ptr->rockTexture.loadFromFile(m_filePath + it->value.GetString());
-
-	
+	std::string animationPath = it->value.GetString();
+	++it;
+	std::string soundPath = it->value.GetString();
+	loadAnimations(animationPath, loadJSONFileNames(animationPath)); //animations
+	++it;
+	//sounds
+	Value::ConstMemberIterator soundsIT = it->value.MemberBegin();
+	std::cout << 
+	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet1);
+	++soundsIT;
+	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet2);
+	++soundsIT;
+	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet3);
+	++soundsIT;
+	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet4);
+	++soundsIT;
+	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->birdTweet5);
+	++soundsIT;
+	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->crowSound);
+	++soundsIT;
+	soundSystem->createSound((m_filePath + soundPath + soundsIT->value.GetString()).c_str(), FMOD_3D, 0, &ptr->windAmbience);
+	++it;
+	//textures
+	Value::ConstMemberIterator texturesIT = it->value.MemberBegin();
+	ptr->rockTexture.loadFromFile(m_filePath + texturesIT->value.GetString());
 }
 
-void GameLoader::loadAnimations() {
+void GameLoader::loadAnimations(const std::string & animationFilePath, const std::vector<std::string> & jsonAnimFileNames) {
 	//if (m_document.Size() > 0)
 	//	m_document.Clear();
-
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	std::vector<std::shared_ptr<sf::Texture>>* textures;
 	std::unordered_map<std::string, Animation>* animations;
@@ -65,11 +84,11 @@ void GameLoader::loadAnimations() {
 	float* scale;
 	std::string characterName;
 
-	int jsonFileCount = m_jsonAnimFileNames.size();
+	int jsonFileCount = jsonAnimFileNames.size();
 	for (int i = 0; i < jsonFileCount; i++)
 	{
 		m_JSONData.clear();
-		loadJSONDATA(m_filePath + m_animationFilePath + m_jsonAnimFileNames[i]);
+		loadJSONDATA(m_filePath + animationFilePath + jsonAnimFileNames[i]);
 		m_document.Parse<0>(m_JSONData.c_str());
 
 		Value::ConstMemberIterator it = m_document.MemberBegin(); //iterator for entire object
@@ -101,7 +120,7 @@ void GameLoader::loadAnimations() {
 			std::string name = itAO->value.GetString();
 			itAO++;//now has name of spritesheet
 			std::shared_ptr<sf::Texture> tex = std::make_shared<sf::Texture>(sf::Texture());
-			tex->loadFromFile(m_filePath + m_animationFilePath + itAO->value.GetString());
+			tex->loadFromFile(m_filePath + animationFilePath + itAO->value.GetString());
 			itAO++;//now has frames array
 			sf::IntRect r;
 			for (Value::ConstValueIterator itFrames = itAO->value.Begin(); itFrames < itAO->value.End(); itFrames++){//iterator for frames loop for each frame object

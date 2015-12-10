@@ -18,9 +18,8 @@
 
 class GameScreen : public Screen
 {
-private:
 public:
-	GameScreen(void);
+	GameScreen();
 	virtual int Run(sf::RenderWindow &window);
 };
 
