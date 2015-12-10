@@ -45,6 +45,19 @@ int GameScreen::Run(sf::RenderWindow &window)
 		enemies.push_back(std::make_unique<AI>(pos, world, &player));
 	}
 
+	std::vector<std::unique_ptr<Object>> objects;
+	const int ROCKCOUNT = 20;
+
+	AB -= ml.IsometricToOrthogonal(sf::Vector2f(ptr->rockTexture.getSize().x / 2.f, 0));
+	AD -= ml.IsometricToOrthogonal(sf::Vector2f(0, ptr->rockTexture.getSize().y / 2.f));
+	for (int i = 0; i < ROCKCOUNT; i++)
+	{
+		float u = (std::rand() % 1001) / 1000.f;
+		float b = (std::rand() % 1001) / 1000.f;
+		sf::Vector2f pos = (u * AB) + (b * AD);
+		objects.push_back(std::make_unique<Rock>(world, pos));
+	}
+
 	window.setKeyRepeatEnabled(false);
 	//load a font
 	sf::Font font;
@@ -70,6 +83,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	debugText1.setCharacterSize(20);
 	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
 	std::vector<DebugShape> debugShapes;
+
 	const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
 	for (const auto& l : layers)
 	{
@@ -156,14 +170,18 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		//update stuff
 		sf::Time dt = frameClock.restart();
+
 		sf::FloatRect bounds;
 		bounds.left = view.getCenter().x - view.getSize().x / 2.f;
 		bounds.top = view.getCenter().y - view.getSize().y / 2.f;
 		bounds.width = view.getSize().x;
 		bounds.height = view.getSize().y;
+
 		player.update(dt, bounds);
 		for (const std::unique_ptr<Character>& c : enemies)
 			c->update(dt, bounds);
+		for (const std::unique_ptr<Object>& o : objects)
+			o->update(bounds);
 
 		world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
@@ -182,19 +200,23 @@ int GameScreen::Run(sf::RenderWindow &window)
 		/*window.draw(player);
 		for (const std::unique_ptr<Character>& c : enemies)
 			window.draw(*c);*/
-		std::vector<Character*> visibleChars;
+		std::vector<VisibleObject*> visibleChars;
 		visibleChars.push_back(&player);
 		for (const std::unique_ptr<Character>& c : enemies){
 			if (c->getVisible())
 				visibleChars.push_back(c.get());
 		}
-		std::sort(visibleChars.begin(), visibleChars.end(), [](const Character* c1, const Character* c2)->bool
+		for (const std::unique_ptr<Object>& o : objects){
+			if (o->getVisible())
+				visibleChars.push_back(o.get());
+		}
+		std::sort(visibleChars.begin(), visibleChars.end(), [](const VisibleObject* v1, const VisibleObject* v2)->bool
 		{
-			return (c1->getPosition().y < c2->getPosition().y);
+			return (v1->getPosition().y < v2->getPosition().y);
 		});
-		for (const Character* c : visibleChars)
-			window.draw(*c);
-		
+
+		for (const VisibleObject* v : visibleChars)
+			window.draw(*v);		
 
 		if (Debug::displayInfo){
 			window.setView(window.getDefaultView());

@@ -33,7 +33,7 @@ int main()
 
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
-	window.setVerticalSyncEnabled(true);
+	//window.setVerticalSyncEnabled(true);
 
 	//loading 
 	std::shared_ptr<GameData> m_ptr = GameData::getInstance();

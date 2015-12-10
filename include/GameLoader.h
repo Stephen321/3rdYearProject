@@ -20,6 +20,7 @@ private:
 	std::string wStringToString(std::wstring const & wstr);
 	int loadFileNames();
 	void loadAnimations();
+	void loadData();
 	const std::string m_filePath;
 	const std::string m_animationFilePath;
 	std::vector<std::string> m_jsonAnimFileNames;
