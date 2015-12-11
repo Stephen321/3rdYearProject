@@ -8,7 +8,7 @@
 #include "CollisionFilters.h"
 #include "VisibleObject.h"
 
-class Object : public VisibleObject {
+class GameObject : public VisibleObject {
 public:
 	enum class ObjectType {
 		ROCK,
@@ -19,7 +19,7 @@ public:
 	virtual sf::Vector2f getPosition() const;
 
 protected:
-	Object(b2World& world, sf::Vector2f position, CollisionFilters filter, ObjectType type);
+	GameObject(b2World& world, sf::Vector2f position, CollisionFilters filter, ObjectType type);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	sf::Sprite m_sprite;

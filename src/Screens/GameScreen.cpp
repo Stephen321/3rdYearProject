@@ -45,7 +45,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		enemies.push_back(std::make_unique<AI>(pos, world, &player));
 	}
 
-	std::vector<std::unique_ptr<Object>> objects;
+	std::vector<std::unique_ptr<GameObject>> gameObjects;
 	const int ROCKCOUNT = 20;
 
 	AB -= ml.IsometricToOrthogonal(sf::Vector2f(ptr->rockTexture.getSize().x / 2.f, 0));
@@ -55,7 +55,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		float u = (std::rand() % 1001) / 1000.f;
 		float b = (std::rand() % 1001) / 1000.f;
 		sf::Vector2f pos = (u * AB) + (b * AD);
-		objects.push_back(std::make_unique<Rock>(world, pos));
+		gameObjects.push_back(std::make_unique<Rock>(world, pos));
 	}
 
 	window.setKeyRepeatEnabled(false);
@@ -185,7 +185,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		player.update(dt, bounds);
 		for (const std::unique_ptr<Character>& c : enemies)
 			c->update(dt, bounds);
-		for (const std::unique_ptr<Object>& o : objects)
+		for (const std::unique_ptr<GameObject>& o : gameObjects)
 			o->update(bounds);
 
 		world.Step(box2dClock.restart().asSeconds(), 6, 3);
@@ -211,7 +211,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 			if (c->getVisible())
 				visibleChars.push_back(c.get());
 		}
-		for (const std::unique_ptr<Object>& o : objects){
+		for (const std::unique_ptr<GameObject>& o : gameObjects){
 			if (o->getVisible())
 				visibleChars.push_back(o.get());
 		}
