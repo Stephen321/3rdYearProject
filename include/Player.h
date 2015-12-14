@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "Character.h"
+#include "SoundManager.h"
 
 class Player : public Character {
 public:
@@ -12,9 +13,11 @@ public:
 	void sensorEnd(Character*) override;
 	void sensorStart(Character*) override;	
 	void setEvent(sf::Event e);
+	sf::Vector2f getVelocity();
 //protected:
 private:
 	void behaviour();
+	std::shared_ptr<SoundManager> sndMgr;
 	sf::Vector2f startPos;
 	std::vector<Character*> attackableEnemies;
 	Animation* comboAnim;

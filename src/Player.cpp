@@ -5,6 +5,7 @@ Player::Player(sf::Vector2f position, b2World& world) :
 Character(position, world, CharacterType::PLAYER),
 startPos(position),
 comboAnim(nullptr){
+	sndMgr = SoundManager::getInstance();
 }
 
 void Player::update(sf::Time dt, sf::FloatRect viewBounds){
@@ -85,8 +86,10 @@ void Player::behaviour(){
 		(yPos < 10 && yPos > -10)){
 		m_velocity.x = 0;
 		m_velocity.y = 0;
+		sndMgr->stopSound("walking_grass");
 		return;
 	}
+	sndMgr->playSound("walking_grass", true);
 	xPos = (xPos / 100) * m_speed;
 	yPos = (yPos / 100) * m_speed;
 
@@ -95,6 +98,10 @@ void Player::behaviour(){
 
 void Player::setEvent(sf::Event e){
 	m_currentEvent = e;
+}
+
+sf::Vector2f Player::getVelocity(){
+	return tmx::BoxToSfVec(m_body->GetLinearVelocity());
 }
 
 void Player::startContact(){

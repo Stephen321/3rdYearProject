@@ -11,7 +11,17 @@ int GameScreen::Run(sf::RenderWindow &window)
 	float zoom = 1.f;
 	bool zoomed = false;
 
+	std::shared_ptr<SoundManager> sndMgr = SoundManager::getInstance();
+	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	tmx::MapLoader ml(ptr->mapLoaderPath);
+
 	//sound 
+	sf::Clock soundClock;
+	const int SOUND_DELAY = 4;
+	int soundPlayDelay = 3 + (rand() % SOUND_DELAY);
+	sf::CircleShape birdCircle(15);
+	birdCircle.setPosition(ml.IsometricToOrthogonal(sf::Vector2f(240, 350)));
+	birdCircle.setFillColor(sf::Color::Cyan);
 
 	sf::FloatRect viewRect = sf::FloatRect(0, 0, 800, 600);
 	sf::View view;
@@ -25,11 +35,10 @@ int GameScreen::Run(sf::RenderWindow &window)
 	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
 	world.SetContactListener(&contactListener);	
 
-	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	tmx::MapLoader ml(ptr->mapLoaderPath);
 	ml.Load("demo.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world);
+	sndMgr->setListener(&player);
 
 	std::vector<std::unique_ptr<Character>> enemies;
 	const int AICOUNT = 2;
@@ -117,6 +126,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
+		SoundManager::getInstance()->update();
 		window.setView(view); //need to change view back to mouse pos info is correct
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
@@ -151,6 +161,12 @@ int GameScreen::Run(sf::RenderWindow &window)
 				return (-1);
 			}
 
+			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::S)){
+				SoundManager::getInstance()->playSound("wind_ambience", true);
+			}
+			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::P)){
+				SoundManager::getInstance()->stopSound("wind_ambience");
+			}
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::D))
 				Debug::displayInfo = !Debug::displayInfo;
 			if (sf::Joystick::isButtonPressed(joystick, 7))
@@ -172,6 +188,15 @@ int GameScreen::Run(sf::RenderWindow &window)
 					view.reset(viewRect);
 			}
 		}		
+
+		//update sound
+		if (soundClock.getElapsedTime().asSeconds() > soundPlayDelay){
+			soundPlayDelay = 1 + (rand() % SOUND_DELAY);
+			soundClock.restart();
+			int soundToPlay = 1 + (rand() % 5);
+			sndMgr->play3DSound("bird_tweet_" + std::to_string(soundToPlay), true, birdCircle.getPosition());
+		}
+		birdCircle.setPosition((sf::Vector2f)window.mapCoordsToPixel(ml.IsometricToOrthogonal(sf::Vector2f(160, 0))));
 
 		//update stuff
 		sf::Time dt = frameClock.restart();
@@ -238,6 +263,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 			window.draw(mapPosText);
 			window.draw(worldPosText);
 			window.draw(debugText1);
+			window.draw(birdCircle);
 
 			window.setView(view);
 			ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info

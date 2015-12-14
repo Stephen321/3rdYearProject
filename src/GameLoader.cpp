@@ -67,7 +67,7 @@ void GameLoader::loadData(){
 	Value::ConstMemberIterator soundsITEnd = it->value.MemberEnd();
 	int test = 1;
 	for (; soundsIT != soundsITEnd; ++soundsIT){
-		SoundManager::getInstance()->loadSound(m_filePath + soundsPath, soundsIT->value.GetString());
+		SoundManager::getInstance()->loadSound(m_filePath + soundsPath, soundsIT->value.GetString(), soundsIT->name.GetString());
 		std::cout << "sound" << test++ << "loaded" << std::endl;
 	}
 	++it;

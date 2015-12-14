@@ -15,7 +15,6 @@
 #include "CollisionFilters.h"
 #include "VisibleObject.h"
 
-
 class Character : public VisibleObject{
 
 public:
