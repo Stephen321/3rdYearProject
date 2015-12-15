@@ -63,12 +63,20 @@ void GameLoader::loadData(){
 	loadAnimations(animationsPath, loadJSONFileNames(animationsPath)); 
 	
 	//sounds
-	Value::ConstMemberIterator soundsIT = it->value.MemberBegin();
-	Value::ConstMemberIterator soundsITEnd = it->value.MemberEnd();
+	Value::ConstMemberIterator soundsIT = it->value.MemberBegin()->value.MemberBegin();
+	Value::ConstMemberIterator soundsITEnd = it->value.MemberBegin()->value.MemberEnd();
 	int test = 1;
 	for (; soundsIT != soundsITEnd; ++soundsIT){
 		SoundManager::getInstance()->loadSound(m_filePath + soundsPath, soundsIT->value.GetString(), soundsIT->name.GetString());
 		std::cout << "sound" << test++ << "loaded" << std::endl;
+	}
+
+	Value::ConstMemberIterator streamsIT = (it->value.MemberBegin()+1)->value.MemberBegin();
+	Value::ConstMemberIterator streamsITEnd = (it->value.MemberBegin()+1)->value.MemberEnd();
+	test = 1;
+	for (; streamsIT != streamsITEnd; ++streamsIT){
+		SoundManager::getInstance()->loadSound(m_filePath + soundsPath, streamsIT->value.GetString(), streamsIT->name.GetString(), true);
+		std::cout << "stream" << test++ << "loaded" << std::endl;
 	}
 	++it;
 

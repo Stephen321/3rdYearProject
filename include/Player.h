@@ -17,7 +17,6 @@ public:
 //protected:
 private:
 	void behaviour();
-	std::shared_ptr<SoundManager> sndMgr;
 	sf::Vector2f startPos;
 	std::vector<Character*> attackableEnemies;
 	Animation* comboAnim;
