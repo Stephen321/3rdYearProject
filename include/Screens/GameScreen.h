@@ -15,12 +15,12 @@
 #include "MyListener.h"
 #include "Debug.h"
 #include "Rock.h"
+#include "SoundManager.h"
 
 class GameScreen : public Screen
 {
-private:
 public:
-	GameScreen(void);
+	GameScreen();
 	virtual int Run(sf::RenderWindow &window);
 };
 

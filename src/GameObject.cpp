@@ -1,6 +1,6 @@
-#include "Object.h"
+#include "GameObject.h"
 
-Object::Object(b2World& world, sf::Vector2f position, CollisionFilters filter, ObjectType type) :
+GameObject::GameObject(b2World& world, sf::Vector2f position, CollisionFilters filter, ObjectType type) :
 m_type(type){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	m_sprite = sf::Sprite(ptr->rockTexture);
@@ -43,11 +43,11 @@ m_type(type){
 	m_body->SetUserData(this);
 }
 
-void Object::update(sf::FloatRect viewBounds){
+void GameObject::update(sf::FloatRect viewBounds){
 	m_visible = m_bounds.intersects(viewBounds);
 }
 
-void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const{
+void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	if (m_visible){
 		target.draw(m_sprite);
 		if (Debug::displayInfo){
@@ -56,12 +56,12 @@ void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	}
 }
 
-bool Object::getVisible() const{
+bool GameObject::getVisible() const{
 	return m_visible;
 }
 
 
-sf::Vector2f Object::getPosition() const{
+sf::Vector2f GameObject::getPosition() const{
 	b2Fixture* f = m_body->GetFixtureList();
 	b2PolygonShape* ps = (b2PolygonShape*)f->GetShape();
 	return m_position + tmx::BoxToSfVec(ps->m_centroid);

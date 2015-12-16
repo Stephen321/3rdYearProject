@@ -5,8 +5,8 @@ Character::Character(sf::Vector2f position, b2World& world, CharacterType charTy
 m_visible(false),
 m_attacking(false),
 m_charType(charType){
-
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	sndMgr = SoundManager::getInstance();
 	float playSpeed = 0;
 	float maxHealth = 200;
 	float speed = 50;

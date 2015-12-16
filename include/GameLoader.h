@@ -7,23 +7,21 @@
 #include "SFML/Graphics.hpp" 
 #include "GameData.h"
 #include <dirent.h>
+#include "SoundManager.h"
 
 using namespace rapidjson;
 
 class GameLoader {
 public:
-	GameLoader(std::string const & filePath, std::string const & animationFilePath);
+	GameLoader(std::string const & filePath);
 private:
 	rapidjson::Document m_document;
 	std::string m_JSONData;
-	void loadJSONDATA(std::string const & filename);
-	std::string wStringToString(std::wstring const & wstr);
-	int loadFileNames();
-	void loadAnimations();
-	void loadData();
 	const std::string m_filePath;
-	const std::string m_animationFilePath;
-	std::vector<std::string> m_jsonAnimFileNames;
+	void loadData();
+	void loadJSONDATA(std::string const & filename);
+	std::vector<std::string> loadJSONFileNames(const std::string & animationFilePath);
+	void loadAnimations(const std::string & animationFilePath, const std::vector<std::string> & jsonAnimFileNames);
 };
 
 #endif 

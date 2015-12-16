@@ -1,6 +1,6 @@
 #include "Screens\GameScreen.h"
 
-GameScreen::GameScreen(void)
+GameScreen::GameScreen()
 {
 }
 
@@ -11,9 +11,18 @@ int GameScreen::Run(sf::RenderWindow &window)
 	float zoom = 1.f;
 	bool zoomed = false;
 
-	tmx::MapLoader ml("resources");
-	ml.Load("demo.tmx");
-	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
+	std::shared_ptr<SoundManager> sndMgr = SoundManager::getInstance();
+	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	tmx::MapLoader ml(ptr->mapLoaderPath);
+
+	//sound 
+	sf::Clock soundClock;
+	const int SOUND_DELAY = 4;
+	int soundPlayDelay = 3 + (rand() % SOUND_DELAY);
+	sf::CircleShape birdCircle(20);
+	birdCircle.setPosition(ml.IsometricToOrthogonal(sf::Vector2f(240, 350)));
+	birdCircle.setFillColor(sf::Color::Cyan);
+	birdCircle.setOrigin(20.f, 20.f);
 
 	sf::FloatRect viewRect = sf::FloatRect(0, 0, 800, 600);
 	sf::View view;
@@ -25,12 +34,12 @@ int GameScreen::Run(sf::RenderWindow &window)
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
 	MyListener contactListener;
 	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
-	world.SetContactListener(&contactListener);
+	world.SetContactListener(&contactListener);	
 
-	
-
-	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	ml.Load("demo.tmx");
+	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world);
+	sndMgr->setListener(&player);
 
 	std::vector<std::unique_ptr<Character>> enemies;
 	const int AICOUNT = 2;
@@ -46,7 +55,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		enemies.push_back(std::make_unique<AI>(pos, world, &player));
 	}
 
-	std::vector<std::unique_ptr<Object>> objects;
+	std::vector<std::unique_ptr<GameObject>> gameObjects;
 	const int ROCKCOUNT = 20;
 
 	AB -= ml.IsometricToOrthogonal(sf::Vector2f(ptr->rockTexture.getSize().x / 2.f, 0));
@@ -56,7 +65,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		float u = (std::rand() % 1001) / 1000.f;
 		float b = (std::rand() % 1001) / 1000.f;
 		sf::Vector2f pos = (u * AB) + (b * AD);
-		objects.push_back(std::make_unique<Rock>(world, pos));
+		gameObjects.push_back(std::make_unique<Rock>(world, pos));
 	}
 
 	window.setKeyRepeatEnabled(false);
@@ -77,6 +86,24 @@ int GameScreen::Run(sf::RenderWindow &window)
 	worldPosText.setFont(font);
 	worldPosText.setStyle(sf::Text::Regular);
 	worldPosText.setCharacterSize(20);
+
+	//sound text
+	sf::Text soundEffectsText;
+	soundEffectsText.setFont(font);
+	soundEffectsText.setStyle(sf::Text::Regular);
+	soundEffectsText.setCharacterSize(20);
+	sf::Text streamSoundText;
+	streamSoundText.setFont(font);
+	streamSoundText.setStyle(sf::Text::Regular);
+	streamSoundText.setCharacterSize(20);
+	sf::Text sound3DSound;
+	sound3DSound.setFont(font);
+	sound3DSound.setStyle(sf::Text::Regular);
+	sound3DSound.setCharacterSize(20);
+	sf::Text reverbText;
+	reverbText.setFont(font);
+	reverbText.setStyle(sf::Text::Regular);
+	reverbText.setCharacterSize(20);
 
 	sf::Text debugText1;
 	debugText1.setFont(font);
@@ -115,8 +142,10 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 
 	int joystick = -1;
+
 	while (Running)
 	{
+		sndMgr->update();
 		window.setView(view); //need to change view back to mouse pos info is correct
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
@@ -150,9 +179,29 @@ int GameScreen::Run(sf::RenderWindow &window)
 			{
 				return (-1);
 			}
-
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::D))
 				Debug::displayInfo = !Debug::displayInfo;
+
+			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num1)){
+				Debug::soundEffects = !Debug::soundEffects;
+			}
+			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num2)){
+				Debug::backgroundStream = !Debug::backgroundStream;
+				if (Debug::backgroundStream)
+					sndMgr->playSound("wind_ambience", true, 0.6f);
+				else
+					sndMgr->stopSound("wind_ambience");
+			}
+			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num3)){
+				Debug::sound3D = !Debug::sound3D;
+				if (Debug::sound3D)
+					sndMgr->playSound("bird_tweet_1", true, 0.5f, birdCircle.getPosition());
+				else
+					sndMgr->stopSound("bird_tweet_1");
+			}
+			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num4)){
+				Debug::reverb = !Debug::reverb;
+			}
 			if (sf::Joystick::isButtonPressed(joystick, 7))
 			{
 				return 0;
@@ -173,6 +222,17 @@ int GameScreen::Run(sf::RenderWindow &window)
 			}
 		}		
 
+		//update sound
+		//if (soundClock.getElapsedTime().asSeconds() > soundPlayDelay){
+		//	soundPlayDelay = 1 + (rand() % SOUND_DELAY);
+		//	soundClock.restart();
+		//	int soundToPlay = 1 + (rand() % 5);
+		//	//" + std::to_string(soundToPlay)
+		//	sndMgr->play3DSound("bird_tweet_1", true, birdCircle.getPosition());
+		//}
+		//birdCircle.setPosition((int)ml.IsometricToOrthogonal(sf::Vector2f(160, 0)).x, 
+		//					   (int)ml.IsometricToOrthogonal(sf::Vector2f(160, 0)).y);
+
 		//update stuff
 		sf::Time dt = frameClock.restart();
 
@@ -185,7 +245,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		player.update(dt, bounds);
 		for (const std::unique_ptr<Character>& c : enemies)
 			c->update(dt, bounds);
-		for (const std::unique_ptr<Object>& o : objects)
+		for (const std::unique_ptr<GameObject>& o : gameObjects)
 			o->update(bounds);
 
 		world.Step(box2dClock.restart().asSeconds(), 6, 3);
@@ -201,6 +261,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		}
 		window.setView(view);
 
+		
 		window.draw(ml);
 		/*window.draw(player);
 		for (const std::unique_ptr<Character>& c : enemies)
@@ -211,7 +272,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 			if (c->getVisible())
 				visibleChars.push_back(c.get());
 		}
-		for (const std::unique_ptr<Object>& o : objects){
+		for (const std::unique_ptr<GameObject>& o : gameObjects){
 			if (o->getVisible())
 				visibleChars.push_back(o.get());
 		}
@@ -220,15 +281,44 @@ int GameScreen::Run(sf::RenderWindow &window)
 			return (v1->getPosition().y < v2->getPosition().y);
 		});
 
-		for (const VisibleObject* v : visibleChars)
-			window.draw(*v);		
+		window.draw(*sndMgr);
+		//sound debug stuff
+		if (Debug::sound3D){
+			window.draw(birdCircle);
+		}
 
+		for (const VisibleObject* v : visibleChars)
+			window.draw(*v);
+
+		//sound info
+		window.setView(window.getDefaultView());
+		//sound effects
+		sf::Vector2f soundEffectsTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 0);
+		soundEffectsText.setPosition(soundEffectsTextPos);
+		soundEffectsText.setString("Sound Effects Music: " + std::string((Debug::soundEffects ? "On" : "Off")) + "  (Press 1)");
+		window.draw(soundEffectsText);
+		//stream background
+		sf::Vector2f streamSoundTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 25);
+		streamSoundText.setPosition(streamSoundTextPos);
+		streamSoundText.setString("Stream Music: " + std::string((Debug::backgroundStream ? "On" : "Off")) + "  (Press 2)");
+		window.draw(streamSoundText);
+		//3d sound
+		sf::Vector2f sound3DTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 50);
+		sound3DSound.setPosition(sound3DTextPos);
+		sound3DSound.setString("3D sound: " + std::string((Debug::sound3D ? "On" : "Off")) + "  (Press 3)");
+		window.draw(sound3DSound);
+		//reverb
+		sf::Vector2f reverbTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 75);
+		reverbText.setPosition(reverbTextPos);
+		reverbText.setString("Reverb: " + std::string((Debug::reverb ? "On" : "Off")) + "  (Press 4)");
+		window.draw(reverbText);
+		window.setView(view);
 		if (Debug::displayInfo){
 			window.setView(window.getDefaultView());
 			sf::Vector2f screenTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 210), (-window.getView().getSize().y / 2) + 0);
-			sf::Vector2f mapTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 175), (-window.getView().getSize().y / 2) + 40);
-			sf::Vector2f worldTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 80);
-			sf::Vector2f debugPos1 = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 120);
+			sf::Vector2f mapTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 175), (-window.getView().getSize().y / 2) + 25);
+			sf::Vector2f worldTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 50);
+			sf::Vector2f debugPos1 = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 195), (-window.getView().getSize().y / 2) + 75);
 			screenPosText.setPosition(screenTxtPos);
 			mapPosText.setPosition(mapTxtPos);
 			worldPosText.setPosition(worldTxtPos);

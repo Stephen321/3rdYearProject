@@ -28,16 +28,21 @@
 #include "Screens.h"
 #include "GameLoader.h"
 
+#include "fmod.hpp"
+#include "fmod_errors.h"
+
 int main()
 {
+
+	//loading 
+	std::shared_ptr<SoundManager> m_SMptr = SoundManager::getInstance();
+	std::shared_ptr<GameData> m_GDptr = GameData::getInstance();
+	GameLoader gl("resources/");
 
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
 	//window.setVerticalSyncEnabled(true);
 
-	//loading 
-	std::shared_ptr<GameData> m_ptr = GameData::getInstance();
-	GameLoader gl("resources/", "animations/");
 
 	std::vector<Screen*> Screens;
 	int screen = 0;

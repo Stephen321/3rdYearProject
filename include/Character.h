@@ -15,6 +15,7 @@
 #include "CollisionFilters.h"
 #include "VisibleObject.h"
 
+class SoundManager;
 
 class Character : public VisibleObject{
 
@@ -49,7 +50,11 @@ protected:
 	HealthBar m_health;
 	bool m_attacking;
 	CharacterType m_charType;
+	std::shared_ptr<SoundManager> sndMgr;
 	float m_speed;//pixels per second	
 };
+
+
+#include "SoundManager.h"
 
 #endif
