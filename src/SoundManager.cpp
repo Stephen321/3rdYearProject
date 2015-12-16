@@ -13,6 +13,27 @@ SoundManager::SoundManager(){
 	listenerCircle = sf::CircleShape(10);
 	listenerCircle.setFillColor(sf::Color(101, 205, 95));
 	listenerCircle.setOrigin(10.f, 10.f);
+
+	result = m_system->createReverb(&reverb);
+	ERRCHECK(result);
+	FMOD_REVERB_PROPERTIES prop = FMOD_PRESET_BATHROOM;
+	reverb->setProperties(&prop);
+	FMOD_VECTOR pos = { 420, 540,0 };
+	float mindist = 100.0f;
+	float maxdist = 150.0f;
+	reverb->set3DAttributes(&pos, mindist, maxdist);
+	reverb->setActive(false);
+
+	reverbCircle = sf::CircleShape(100);
+	reverbCircle.setFillColor(sf::Color(0, 0, 100));
+	reverbCircle.setOrigin(100.f, 100.f);
+	reverbCircle.setPosition(420.f, 540.f);
+
+
+	reverbCircle2 = sf::CircleShape(150);
+	reverbCircle2.setFillColor(sf::Color(0, 0, 150));
+	reverbCircle2.setOrigin(150.f, 150.f);
+	reverbCircle2.setPosition(420.f, 540.f);
 }
 
 std::shared_ptr<SoundManager> SoundManager::getInstance(){
@@ -37,67 +58,55 @@ void SoundManager::loadSound(const std::string & filePath, const std::string & f
 	FMOD_RESULT result;
 	if (stream)
 		result = m_system->createStream((filePath + fileName).c_str(), FMOD_2D | FMOD_DEFAULT, 0, &sound);
-	else
+	else if (name != "punch" && name != "walking_grass")
 		result = m_system->createSound((filePath + fileName).c_str(), FMOD_3D, 0, &sound);
+	else
+		result = m_system->createSound((filePath + fileName).c_str(), FMOD_2D | FMOD_DEFAULT, 0, &sound);
 	ERRCHECK(result); 
-	m_sounds[name] = std::pair<FMOD::Sound*, std::vector<FMOD::Channel*>>(sound, std::vector<FMOD::Channel*>());
+	m_sounds[name] = std::pair<FMOD::Sound*, FMOD::Channel*>(sound, 0);
 	SOUNDS_AMOUNT++;
 }
 
-void SoundManager::play3DSound(const std::string & name, bool looped, sf::Vector2f position, float pitch){
+void SoundManager::playSound(const std::string & name, bool looped, float volume, sf::Vector2f position, float pitch){
 	FMOD::Sound * sound = m_sounds.at(name).first;
 	FMOD::Channel * channel;
-	if (true){
-		FMOD_RESULT result = m_system->playSound(FMOD_CHANNEL_FREE, sound, true, &channel);
-		ERRCHECK(result);
-		const FMOD_VECTOR pos = { position.x, position.y, 0 };
-		const FMOD_VECTOR vel = {}; 
-		result = channel->set3DAttributes(&pos, &vel);
-		ERRCHECK(result);
-		result = channel->setPaused(false);
-		ERRCHECK(result);
-		if (looped){
-			result = channel->setMode(FMOD_LOOP_NORMAL);
-			ERRCHECK(result);
-		}
-		m_sounds.at(name).second.push_back(channel);
-	}
-}
-
-void SoundManager::playSound(const std::string & name, bool looped, float volume, float pitch){
-	FMOD::Sound * sound = m_sounds.at(name).first;
-	FMOD::Channel * channel;
-	if (true){
-		FMOD_RESULT result = m_system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
+	bool is3DSound = (position == sf::Vector2f()) ? false : true;
+	if ((looped && m_sounds.at(name).second == 0) || looped == false){
+		FMOD_RESULT result = m_system->playSound(FMOD_CHANNEL_FREE, sound, is3DSound, &channel);
 		ERRCHECK(result);
 		result = channel->setVolume(volume);
 		ERRCHECK(result);
+		if (is3DSound){
+			const FMOD_VECTOR pos = { position.x, position.y, 0 };
+			result = channel->set3DAttributes(&pos, 0);
+			ERRCHECK(result);
+			result = channel->setPaused(false);
+			ERRCHECK(result);
+			result = channel->set3DMinMaxDistance(10.f, 1000.f);
+			ERRCHECK(result);
+			result = channel->set3DDopplerLevel(0.8f);
+			ERRCHECK(result);
+		}
 		if (looped){
 			result = channel->setMode(FMOD_LOOP_NORMAL);
 			ERRCHECK(result);
+			m_sounds.at(name).second = channel;
 		}
-		m_sounds.at(name).second.push_back(channel);
+	}
+	else if (looped && is3DSound){
+		const FMOD_VECTOR pos = { position.x, position.y, 0 };
+		FMOD_RESULT result = m_sounds.at(name).second->set3DAttributes(&pos, 0);
+		ERRCHECK(result);
 	}
 }
 
 void SoundManager::stopSound(const std::string & name){
-	//FMOD::Sound * sound = m_sounds.at(name).first;
-	//FMOD::Channel * channel = m_sounds.at(name).second;
-	//if (channel != 0){
-	//	FMOD_RESULT result = channel->stop();
-	//	channel = 0;
-	//	ERRCHECK(result);
-	//	m_sounds.at(name).second = channel;
-	//}
-}
-
-void SoundManager::removeEmptyChannels(){
-	for (auto itr = m_sounds.begin(); itr != m_sounds.end(); ++itr){
-		std::vector<FMOD::Channel*>& channels = (*itr).second.second;
-		for (auto cItr = channels.begin(); cItr != channels.end(); ++cItr){
-			if ((*cItr) == 0)
-				cItr = channels.erase(cItr);
-		}
+	FMOD::Channel * channel = m_sounds.at(name).second;
+	if (channel != 0){
+		FMOD_RESULT result = channel->stop();
+		ERRCHECK(result);
+		channel = 0;
+		m_sounds.at(name).second = channel;
 	}
 }
 
@@ -106,7 +115,18 @@ void SoundManager::setListener(Player * _player){
 }
 
 void SoundManager::update(){
-	removeEmptyChannels();
+	if (Debug::reverb){
+		FMOD_REVERB_PROPERTIES prop1 = FMOD_PRESET_FOREST;
+		FMOD_RESULT result = m_system->setReverbAmbientProperties(&prop1);
+		ERRCHECK(result);
+		reverb->setActive(true);
+	}
+	else{
+		FMOD_REVERB_PROPERTIES prop1 = FMOD_PRESET_OFF;
+		FMOD_RESULT result = m_system->setReverbAmbientProperties(&prop1);
+		ERRCHECK(result);
+		reverb->setActive(false);
+	}
 	const FMOD_VECTOR pos = { player->getPosition().x, player->getPosition().y, 0 };
 	const FMOD_VECTOR vel = { player->getVelocity().x, player->getVelocity().y, 0 };
 	listenerCircle.setPosition(player->getPosition());
@@ -116,5 +136,9 @@ void SoundManager::update(){
 }
 
 void SoundManager::draw(sf::RenderTarget& target, sf::RenderStates states) const{
+	if (Debug::reverb){
+		target.draw(reverbCircle2);
+		target.draw(reverbCircle);
+	}
 	target.draw(listenerCircle);
 }

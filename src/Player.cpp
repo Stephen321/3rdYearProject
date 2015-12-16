@@ -21,6 +21,8 @@ void Player::behaviour(){
 	if (m_currentEvent.type == sf::Event::JoystickButtonPressed && previousRelease && m_currentEvent.joystickButton.button == 0){
 		if (m_attacking == false){
 			currentAnim = &m_anims["punch"];
+			if (Debug::soundEffects)
+				sndMgr->playSound("punch", false);
 			m_animatedSprite.play(*currentAnim);
 			m_animatedSprite.setLooped(false);
 			m_attacking = true;
@@ -85,10 +87,11 @@ void Player::behaviour(){
 		(yPos < 10 && yPos > -10)){
 		m_velocity.x = 0;
 		m_velocity.y = 0;
-		//sndMgr->stopSound("walking_grass");
+		sndMgr->stopSound("walking_grass");
 		return;
 	}
-	//sndMgr->playSound("walking_grass", true);
+	if (Debug::soundEffects)
+		sndMgr->playSound("walking_grass", true);
 	xPos = (xPos / 100) * m_speed;
 	yPos = (yPos / 100) * m_speed;
 
