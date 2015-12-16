@@ -9,6 +9,7 @@ Place the following folders on the C: drive:
 -thor
 -Box2D
 
+
 Download FMOD Ex Programmer’s API from [here](http://www.fmod.org/download-previous-products/)
 Add FMOD_SDK to the api folder of this download.
 ![alt tag](http://puu.sh/lXwQK.png)
