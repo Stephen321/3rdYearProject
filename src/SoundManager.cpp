@@ -59,7 +59,7 @@ void SoundManager::loadSound(const std::string & filePath, const std::string & f
 	if (stream)
 		result = m_system->createStream((filePath + fileName).c_str(), FMOD_2D | FMOD_DEFAULT, 0, &sound);
 	else if (name != "punch" && name != "walking_grass")
-		result = m_system->createSound((filePath + fileName).c_str(), FMOD_3D, 0, &sound);
+		result = m_system->createSound((filePath + fileName).c_str(), FMOD_3D_LINEARROLLOFF, 0, &sound);
 	else
 		result = m_system->createSound((filePath + fileName).c_str(), FMOD_2D | FMOD_DEFAULT, 0, &sound);
 	ERRCHECK(result); 
@@ -82,7 +82,7 @@ void SoundManager::playSound(const std::string & name, bool looped, float volume
 			ERRCHECK(result);
 			result = channel->setPaused(false);
 			ERRCHECK(result);
-			result = channel->set3DMinMaxDistance(10.f, 1000.f);
+			result = channel->set3DMinMaxDistance(0.1f, 600.f);
 			ERRCHECK(result);
 			result = channel->set3DDopplerLevel(0.8f);
 			ERRCHECK(result);

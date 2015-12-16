@@ -188,14 +188,14 @@ int GameScreen::Run(sf::RenderWindow &window)
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num2)){
 				Debug::backgroundStream = !Debug::backgroundStream;
 				if (Debug::backgroundStream)
-					sndMgr->playSound("wind_ambience", true);
+					sndMgr->playSound("wind_ambience", true, 0.6f);
 				else
 					sndMgr->stopSound("wind_ambience");
 			}
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num3)){
 				Debug::sound3D = !Debug::sound3D;
 				if (Debug::sound3D)
-					sndMgr->playSound("bird_tweet_1", true, 0.8f, birdCircle.getPosition());
+					sndMgr->playSound("bird_tweet_1", true, 0.5f, birdCircle.getPosition());
 				else
 					sndMgr->stopSound("bird_tweet_1");
 			}
