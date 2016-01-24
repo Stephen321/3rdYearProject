@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="isometric" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="32" nextobjectid="3">
- <tileset firstgid="1" name="gridTest" tilewidth="64" tileheight="64" tilecount="64">
+<map version="1.0" orientation="isometric" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="32" nextobjectid="36">
+ <tileset firstgid="1" name="gridTest" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="gridTest.png" width="512" height="512"/>
   <terraintypes>
    <terrain name="Grass" tile="-1"/>
@@ -14,7 +14,7 @@
   <tile id="5" terrain="1,1,1,1"/>
   <tile id="6" terrain="1,1,1,1"/>
   <tile id="7" terrain="1,1,1,1"/>
-  <tile id="8" terrain="1,0,1,0"/>   
+  <tile id="8" terrain="1,0,1,0"/>
   <tile id="9" terrain="1,1,0,0"/>
   <tile id="10" terrain="0,1,0,1"/>
   <tile id="11" terrain="0,0,1,1"/>
@@ -31,9 +31,58 @@
   <tile id="22" terrain="1,0,1,1"/>
   <tile id="23" terrain="1,1,1,0"/>
  </tileset>
- <layer name="Tile Layer 1" width="50" height="50">
+ <layer name="Base" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
+ <objectgroup color="#00ff00" name="Entities">
+  <object id="13" name="Player" type="Player" x="640" y="704" width="32.5" height="31.5"/>
+  <object id="14" x="808.5" y="719.5"/>
+  <object id="16" x="688" y="690"/>
+ </objectgroup>
+ <objectgroup name="Collision">
+  <object id="19" x="975.333" y="879.333">
+   <polygon points="0,0 -14,-46 2.66667,-29.3333"/>
+  </object>
+  <object id="20" x="942.667" y="878.667">
+   <polygon points="0,0 -13.6667,-45 -13,-45.6667"/>
+  </object>
+  <object id="21" x="752.667" y="719.333">
+   <polygon points="0,0 18.3333,1.66667 16.6667,-11.3333"/>
+  </object>
+  <object id="22" x="750.667" y="686.667">
+   <polygon points="0,0 17.3333,-12 16.6667,-11.3333 19,-8.33333"/>
+  </object>
+  <object id="25" x="769" y="737.667">
+   <polygon points="0,0 94,0.666667 96.3333,15.6667 17.6667,15.6667"/>
+  </object>
+  <object id="27" x="864.333" y="833">
+   <polygon points="0,0 1,-81 0.666667,-2"/>
+  </object>
+  <object id="28" x="766.667" y="670.667">
+   <polygon points="0,0 1.66667,-28.3333 2.66667,-29.3333"/>
+  </object>
+  <object id="29" x="929.667" y="643.667">
+   <polygon points="0,0 -162,-3.33333 0.666667,0.666667"/>
+  </object>
+  <object id="30" x="943.667" y="656.333">
+   <polygon points="0,0 0.333333,15.6667 -13.6667,16.3333 -12,-12"/>
+  </object>
+  <object id="31" x="961" y="673.667">
+   <polygon points="0,0 1,29.6667 16.6667,31.3333 16,16"/>
+  </object>
+  <object id="32" x="992.667" y="706">
+   <polygon points="0,0 0.333333,127.667 15,141 15,14.3333"/>
+  </object>
+  <object id="33" x="976.667" y="706">
+   <polygon points="0,0 14,0.666667 4.33333,-1.66667"/>
+  </object>
+  <object id="34" x="1005.33" y="846.667">
+   <polygon points="0,0 -25,3.66667 -43.3333,-12.6667 -12.3333,-13"/>
+  </object>
+  <object id="35" x="865.667" y="833">
+   <polygon points="0,0 61.3333,0 68.3333,17 13,15"/>
+  </object>
+ </objectgroup>
 </map>

@@ -1,7 +1,7 @@
 #include "AI.h"
 
-AI::AI(sf::Vector2f position, b2World& world, Player* playerP) :
-Character(position, world, CharacterType::AI),
+AI::AI(b2World& world, Player* playerP, sf::Vector2f position) :
+Character(world, CharacterType::AI, position),
 player(playerP){}
 
 void AI::update(sf::Time dt, sf::FloatRect viewBounds){
@@ -11,7 +11,7 @@ void AI::update(sf::Time dt, sf::FloatRect viewBounds){
 }
 
 void AI::behaviour(){
-	sf::Vector2f vB = player->getPosition() - m_position;
+	sf::Vector2f vB = player->getPosition() - getPosition();
 	float angle = std::atan2(vB.y, vB.x);
 	float distance = std::sqrt(vB.x * vB.x + vB.y * vB.y);
 	if (distance > 25)

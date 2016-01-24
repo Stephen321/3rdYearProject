@@ -83,17 +83,54 @@ void GameLoader::loadData(){
 	//textures
 	Value::ConstMemberIterator texturesIT = it->value.MemberBegin();
 	ptr->rockTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++it;
+
+	//character properties
+	Value::ConstMemberIterator charPropsIT = it->value.MemberBegin();
+	Value::ConstMemberIterator charPropsITEnd = it->value.MemberEnd();
+	test = 1;
+	GameData::CharInfo* info;
+	for (; charPropsIT != charPropsITEnd; ++charPropsIT){
+		std::string charName = charPropsIT->name.GetString();
+		Value::ConstMemberIterator props = charPropsIT->value.MemberBegin();
+		info = findCurrentChar(charName);
+		assert(info);
+		info->maxHealth = props->value.GetDouble();
+		++props;
+		info->maxSpeed = props->value.GetDouble();
+		setCollisionFilter(charName, info);
+		std::cout << charName << " property" << test++ << std::endl;
+	}
+}
+
+void GameLoader::setCollisionFilter(std::string charName, GameData::CharInfo* info){
+	if (charName == "player"){
+		info->filterCategory = CollisionFilters::PLAYER;
+		info->filterMask = CollisionFilters::AI;
+	}
+	else if (charName == "ai"){
+		info->filterCategory = CollisionFilters::AI;
+		info->filterMask = CollisionFilters::PLAYER;
+	}
+}
+
+GameData::CharInfo* GameLoader::findCurrentChar(std::string name){
+	std::shared_ptr<GameData> ptr = GameData::getInstance();
+	GameData::CharInfo* info;
+	if (name == "player")
+		info = &ptr->playerInfo;
+	else if (name == "ai")
+		info = &ptr->aiInfo;
+	else
+		return nullptr;
+	return info;
 }
 
 void GameLoader::loadAnimations(const std::string & animationFilePath, const std::vector<std::string> & jsonAnimFileNames) {
 	//if (m_document.Size() > 0)
 	//	m_document.Clear();
-	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	std::vector<std::shared_ptr<sf::Texture>>* textures;
-	std::unordered_map<std::string, Animation>* animations;
-	float* playSpeed;
-	float* scale;
-	std::string characterName;
+	GameData::CharInfo* info;
+	std::string charName;
 
 	int jsonFileCount = jsonAnimFileNames.size();
 	for (int i = 0; i < jsonFileCount; i++)
@@ -103,26 +140,14 @@ void GameLoader::loadAnimations(const std::string & animationFilePath, const std
 		m_document.Parse<0>(m_JSONData.c_str());
 
 		Value::ConstMemberIterator it = m_document.MemberBegin(); //iterator for entire object
-		characterName = it->value.GetString();
-		if (characterName == "player"){
-			textures = &ptr->playerTextures;
-			animations = &ptr->playerAnims;
-			playSpeed = &ptr->playerPlaySpeed;
-			scale = &ptr->playerSpriteScale;
-		}
-		else if (characterName == "ai"){
-			textures = &ptr->aiTextures;
-			animations = &ptr->aiAnims;
-			playSpeed = &ptr->aiPlaySpeed;
-			scale = &ptr->aiSpriteScale;
-		}
-		else{
-			return;
-		}
+		charName = it->value.GetString();
+		info = findCurrentChar(charName);
+		assert(info);
+
 		it++;//now has play speed
-		*playSpeed = 1.f / it->value.GetInt();
+		info->playSpeed = 1.f / it->value.GetInt();
 		it++; //now has scale
-		*scale = it->value.GetDouble();
+		info->spriteScale = it->value.GetDouble();
 		it++;//now has the animations array
 
 		for (Value::ConstValueIterator itA = it->value.Begin(); itA < it->value.End(); itA++){//iterator for animations array loop for each animation object
@@ -142,9 +167,9 @@ void GameLoader::loadAnimations(const std::string & animationFilePath, const std
 				r.height = frameObject["h"].GetInt();
 				a.addFrame(r);
 			}
-			textures->push_back(tex);
-			a.setSpriteSheet(*textures->back());
-			(*animations)[name] = a;
+ 			info->textures.push_back(tex);
+			a.setSpriteSheet(*info->textures.back());
+			info->anims[name] = a;
 		}
 	}
 }

@@ -1,43 +1,42 @@
 #include "Character.h"
 
 
-Character::Character(sf::Vector2f position, b2World& world, CharacterType charType) :
+Character::Character(b2World& world, CharacterType charType, sf::Vector2f position) :
 m_visible(false),
-m_attacking(false),
-m_charType(charType){
+m_attacking(false){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	sndMgr = SoundManager::getInstance();
-	float playSpeed = 0;
-	float maxHealth = 200;
-	float speed = 50;
-	CollisionFilters filter;
-	if (m_charType == CharacterType::PLAYER){
-		m_anims = ptr->playerAnims;
-		playSpeed = ptr->playerPlaySpeed;
-		m_scale = ptr->playerSpriteScale;
-		filter = CollisionFilters::PLAYER;
-		maxHealth = 100;
-		m_speed = 80;
-	}
-	else if (m_charType == CharacterType::AI){
-		m_anims = ptr->aiAnims;
-		playSpeed = ptr->aiPlaySpeed;
-		m_scale = ptr->aiSpriteScale;
-		filter = CollisionFilters::AI;
-		maxHealth = 60;
-		m_speed = 45;
-	}
+
+	GameData::CharInfo* info;
+	if (charType == CharacterType::PLAYER)
+		info = &ptr->playerInfo;
+	else if (charType == CharacterType::AI)
+		info = &ptr->aiInfo;
+	else
+		return;
+
+	float playSpeed = info->playSpeed;
+	float maxHealth = info->maxHealth;
+	m_anims = info->anims;
+	m_scale = info->spriteScale; 
+	CollisionFilters filterCategory = info->filterCategory;
+	CollisionFilters filterMask = info->filterMask;
+	m_speed = info->maxSpeed;
 
 	m_animatedSprite = AnimatedSprite(sf::seconds(playSpeed), false, true);
 	m_animatedSprite.setScale(m_scale, m_scale);
 	currentAnim = &m_anims.begin()->second;
 	m_animatedSprite.play(*currentAnim);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
+	m_health = HealthBar(maxHealth, sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + position);
 
+	setUpBox2D(world, tmx::SfToBoxVec(position), filterCategory, filterMask);
+}
+
+void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters filterCategory, CollisionFilters filterMask){
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-	b2Vec2 b2Pos = tmx::SfToBoxVec(position);
-	bodyDef.position.Set(b2Pos.x, b2Pos.y);
+	bodyDef.position.Set(position.x, position.y);
 	bodyDef.angle = 0.f;
 	m_body = world.CreateBody(&bodyDef);
 
@@ -48,9 +47,8 @@ m_charType(charType){
 	circleFictureDef.shape = &circleShape;
 	circleFictureDef.density = 1;
 	circleFictureDef.restitution = 0.99f;
-	circleFictureDef.filter.categoryBits = (uint16)filter;
+	circleFictureDef.filter.categoryBits = (uint16)filterCategory;
 	m_body->CreateFixture(&circleFictureDef);
-	m_position = tmx::BoxToSfVec(m_body->GetPosition());
 
 	//add sensor
 	b2CircleShape circleShape2;
@@ -59,15 +57,11 @@ m_charType(charType){
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.shape = &circleShape2;
 	myFixtureDef.isSensor = true;
-	myFixtureDef.filter.categoryBits = (uint16)filter;
-	if (filter == CollisionFilters::AI)
-		myFixtureDef.filter.maskBits = (uint16)CollisionFilters::PLAYER; 
-	else
-		myFixtureDef.filter.maskBits = (uint16)CollisionFilters::AI;
+	myFixtureDef.filter.categoryBits = (uint16)filterCategory;
+	myFixtureDef.filter.maskBits = (uint16)filterMask;
 	m_body->CreateFixture(&myFixtureDef);
 
 	m_spriteOffset = sf::Vector2f(0, 6 - m_animatedSprite.getGlobalBounds().height / 2.f);
-	m_health = HealthBar(maxHealth, sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + m_position);
 
 
 	sf::Vector2f pos = tmx::BoxToSfVec(m_body->GetPosition());
@@ -90,7 +84,6 @@ m_charType(charType){
 	sensorCircle.setOutlineColor(sf::Color::Magenta);
 	sensorCircle.setOutlineThickness(-1.f);
 	sensorCircle.setFillColor(sf::Color::Transparent);
-
 	m_body->SetUserData(this);
 }
 
@@ -112,24 +105,23 @@ void Character::setVelocity(sf::Vector2f value){
 }
 
 void Character::update(sf::Time dt, sf::FloatRect viewBounds){
-	m_animatedSprite.setPosition(m_position + m_spriteOffset);
-	m_animatedSprite.update(dt);
-
 	//cant these 2 lines be done only when amimation changes
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
 
 	m_body->SetLinearVelocity(tmx::SfToBoxVec(sf::Vector2f(m_velocity)));
-	m_position = tmx::BoxToSfVec(m_body->GetPosition());
 
 	b2CircleShape* cs = static_cast<b2CircleShape*>(m_body->GetFixtureList()->GetShape());
-	c.setPosition(tmx::BoxToSfVec(cs->m_p) + m_position);
+	c.setPosition(tmx::BoxToSfVec(cs->m_p) + getPosition());
 
 	b2CircleShape* cs2 = static_cast<b2CircleShape*>(m_body->GetFixtureList()->GetShape());
-	sensorCircle.setPosition(tmx::BoxToSfVec(cs2->m_p) + m_position);
+	sensorCircle.setPosition(tmx::BoxToSfVec(cs2->m_p) + getPosition());
 
 	m_visible = m_animatedSprite.getGlobalBounds().intersects(viewBounds);
 
-	m_health.update(sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + m_position);
+	m_health.update(sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + getPosition());
+	m_position = getPosition();
+	m_animatedSprite.setPosition(getPosition() + m_spriteOffset);
+	m_animatedSprite.update(dt);
 }
 
 void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const{
@@ -145,4 +137,12 @@ void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 
 bool Character::getVisible() const{
 	return m_visible;
+}
+
+sf::Vector2f Character::getPosition(){
+	return tmx::BoxToSfVec(m_body->GetPosition());
+}
+
+void Character::setPosition(sf::Vector2f position){
+	m_body->SetTransform(tmx::SfToBoxVec(position), m_body->GetAngle());
 }

@@ -31,7 +31,14 @@
     <ClCompile Include="src\Screens\OptionsScreen.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
-    <ClCompile Include="src\tmx2box2d.cpp" />
+    <ClCompile Include="src\tmx\DebugShape.cpp" />
+    <ClCompile Include="src\tmx\MapLayer.cpp" />
+    <ClCompile Include="src\tmx\MapLoaderPrivate.cpp" />
+    <ClCompile Include="src\tmx\MapLoaderPublic.cpp" />
+    <ClCompile Include="src\tmx\MapObject.cpp" />
+    <ClCompile Include="src\tmx\pugixml\pugixml.cpp" />
+    <ClCompile Include="src\tmx\QuadTreeNode.cpp" />
+    <ClCompile Include="src\tmx\tmx2box2d.cpp" />
     <ClCompile Include="src\VisibleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +93,16 @@
     <ClInclude Include="include\Screens\Screen.hpp" />
     <ClInclude Include="include\SoundManager.h" />
     <ClInclude Include="include\SoundObject.h" />
-    <ClInclude Include="include\tmx2box2d.h" />
+    <ClInclude Include="include\tmx\DebugShape.h" />
+    <ClInclude Include="include\tmx\Helpers.h" />
+    <ClInclude Include="include\tmx\Log.h" />
+    <ClInclude Include="include\tmx\MapLayer.h" />
+    <ClInclude Include="include\tmx\MapLoader.h" />
+    <ClInclude Include="include\tmx\MapObject.h" />
+    <ClInclude Include="include\tmx\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="include\tmx\pugixml\pugixml.hpp" />
+    <ClInclude Include="include\tmx\QuadTreeNode.h" />
+    <ClInclude Include="include\tmx\tmx2box2d.h" />
     <ClInclude Include="include\VisibleObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -123,13 +139,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SFML_SDK)\include;$(ProjectDir)include;C:\Box2D\include;C:\tmx-loader\include;C:\zlib-1.2.8\include;C:\thor\include;$(FMOD_SDK)\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SFML_SDK)\include;$(ProjectDir)include;C:\Box2D\include;C:\zlib-1.2.8\include;C:\thor\include;$(FMOD_SDK)\inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;ZLIB_WINAPI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SFML_SDK)\lib;C:\zlib-1.2.8\lib;C:\tmx-loader\lib;C:\Box2D\lib;C:\thor\lib;$(FMOD_SDK)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Box2D.lib;pugi-d.lib;tmx-loader-d.lib;fmodex_vc.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SFML_SDK)\lib;C:\zlib-1.2.8\lib;C:\Box2D\lib;C:\thor\lib;$(FMOD_SDK)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Box2D.lib;fmodex_vc.lib;zlibwapi.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d  "$(ProjectDir)bin\*.dll" "$(OutDir)"</Command>

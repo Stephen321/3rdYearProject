@@ -24,23 +24,28 @@ int GameScreen::Run(sf::RenderWindow &window)
 	birdCircle.setFillColor(sf::Color::Cyan);
 	birdCircle.setOrigin(20.f, 20.f);
 
+	//view
 	sf::FloatRect viewRect = sf::FloatRect(0, 0, 800, 600);
 	sf::View view;
 	view.reset(viewRect);
 	view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 	window.setView(view);
 	window.setFramerateLimit(60);
-	sf::Vector2f followPosition = view.getCenter();
+
+	//clocks
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
+
+	//box2d
 	MyListener contactListener;
 	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
 	world.SetContactListener(&contactListener);	
 
+	//map loader
 	ml.Load("demo.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
-	Player player(ml.IsometricToOrthogonal(sf::Vector2f(240, 400)), world);
-	sndMgr->setListener(&player);
 
+	//characters
+	Player player(world);
 	std::vector<std::unique_ptr<Character>> enemies;
 	const int AICOUNT = 2;
 
@@ -52,11 +57,15 @@ int GameScreen::Run(sf::RenderWindow &window)
 		float u = (std::rand() % 1001) / 1000.f;
 		float b = (std::rand() % 1001) / 1000.f;
 		sf::Vector2f pos = (u * AB) + (b * AD);
-		enemies.push_back(std::make_unique<AI>(pos, world, &player));
+		enemies.push_back(std::make_unique<AI>(world, &player, pos));
 	}
 
+	//sound
+	sndMgr->setListener(&player);
+
+	//game objects
 	std::vector<std::unique_ptr<GameObject>> gameObjects;
-	const int ROCKCOUNT = 20;
+	const int ROCKCOUNT = 3;
 
 	AB -= ml.IsometricToOrthogonal(sf::Vector2f(ptr->rockTexture.getSize().x / 2.f, 0));
 	AD -= ml.IsometricToOrthogonal(sf::Vector2f(0, ptr->rockTexture.getSize().y / 2.f));
@@ -69,23 +78,26 @@ int GameScreen::Run(sf::RenderWindow &window)
 	}
 
 	window.setKeyRepeatEnabled(false);
-	//load a font
+
+	//text
 	sf::Font font;
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
 	sf::Text screenPosText;
 	screenPosText.setFont(font);
 	screenPosText.setStyle(sf::Text::Regular);
 	screenPosText.setCharacterSize(20);
-
 	sf::Text mapPosText;
 	mapPosText.setFont(font);
 	mapPosText.setStyle(sf::Text::Regular);
 	mapPosText.setCharacterSize(20);
-
 	sf::Text worldPosText;
 	worldPosText.setFont(font);
 	worldPosText.setStyle(sf::Text::Regular);
-	worldPosText.setCharacterSize(20);
+	worldPosText.setCharacterSize(20); 
+	sf::Text debugText1;
+	debugText1.setFont(font);
+	debugText1.setStyle(sf::Text::Regular);
+	debugText1.setCharacterSize(20);
 
 	//sound text
 	sf::Text soundEffectsText;
@@ -104,14 +116,13 @@ int GameScreen::Run(sf::RenderWindow &window)
 	reverbText.setFont(font);
 	reverbText.setStyle(sf::Text::Regular);
 	reverbText.setCharacterSize(20);
-
-	sf::Text debugText1;
-	debugText1.setFont(font);
-	debugText1.setStyle(sf::Text::Regular);
-	debugText1.setCharacterSize(20);
+	
+	//debug
 	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
 	std::vector<DebugShape> debugShapes;
 
+
+	//loop through layers and objects
 	const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
 	for (const auto& l : layers)
 	{
@@ -133,9 +144,16 @@ int GameScreen::Run(sf::RenderWindow &window)
 					int count = ps->GetVertexCount();
 					for (int i = 0; i < count; i++)
 						ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(i)), sf::Color::Red));
-					if (count >=0) ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(0)), sf::Color::Red));
+					if (count >= 0) ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(0)), sf::Color::Red));
 					debugShapes.push_back(ds);
 				}
+			}
+		}
+		if (l.name == "Entities")
+		{
+			for (const auto& o : l.objects)
+			{
+				player.setPosition(o.GetCentre());
 			}
 		}
 	}
@@ -254,7 +272,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		window.clear(sf::Color(0, 0, 0, 0));
 		//Drawing
 	
-		view.setCenter((int)player.getPosition().x, (int)player.getPosition().y);
+		view.setCenter(player.getPosition());
 		if (zoomed){
 			view.zoom(zoom);
 			zoomed = false;

@@ -34,6 +34,18 @@
     <Filter Include="Source Files\Screens">
       <UniqueIdentifier>{d38a46dc-a291-4944-b0f3-6bdcce2dc0f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\tmx">
+      <UniqueIdentifier>{047c41e2-5206-4f87-af3a-a5c63373b3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tmx\pugixml">
+      <UniqueIdentifier>{070499a4-e0ef-47ee-b301-003a272ff004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tmx">
+      <UniqueIdentifier>{ddd9ea7e-9b3c-4a57-b2d8-70d5b3e22987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tmx\pugixml">
+      <UniqueIdentifier>{aa1bcaa7-b0f7-4953-be25-b779f3914f13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -53,9 +65,6 @@
     </ClCompile>
     <ClCompile Include="src\Box2D.cpp">
       <Filter>Source Files\examples</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tmx2box2d.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Screens\CreditsScreen.cpp">
       <Filter>Source Files\Screens</Filter>
@@ -101,6 +110,30 @@
     </ClCompile>
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\DebugShape.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\MapLayer.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\MapLoaderPrivate.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\MapLoaderPublic.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\MapObject.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\QuadTreeNode.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\tmx2box2d.cpp">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmx\pugixml\pugixml.cpp">
+      <Filter>Source Files\tmx\pugixml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +233,6 @@
     <ClInclude Include="include\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\tmx2box2d.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Screens\CreditsScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
@@ -262,6 +292,36 @@
     </ClInclude>
     <ClInclude Include="include\SoundObject.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\DebugShape.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\Helpers.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\Log.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\MapLayer.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\MapLoader.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\MapObject.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\QuadTreeNode.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\tmx2box2d.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\pugixml\pugiconfig.hpp">
+      <Filter>Header Files\tmx\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmx\pugixml\pugixml.hpp">
+      <Filter>Header Files\tmx\pugixml</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@ class Player;
 
 class AI : public Character{
 public:
-	AI(sf::Vector2f position, b2World& world, Player* playerP);
+	AI(b2World& world, Player* playerP, sf::Vector2f position);
 	void update(sf::Time dt, sf::FloatRect viewBounds);
 	void sensorEnd(Character*) override;
 	void sensorStart(Character*) override;

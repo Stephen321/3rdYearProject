@@ -22,6 +22,8 @@ private:
 	void loadJSONDATA(std::string const & filename);
 	std::vector<std::string> loadJSONFileNames(const std::string & animationFilePath);
 	void loadAnimations(const std::string & animationFilePath, const std::vector<std::string> & jsonAnimFileNames);
+	GameData::CharInfo* findCurrentChar(std::string name);
+	void setCollisionFilter(std::string charName, GameData::CharInfo* info);
 };
 
 #endif 

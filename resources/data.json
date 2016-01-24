@@ -14,15 +14,28 @@
             "bird_tweet_5" : "birdTweet_5.mp3",
             "crow" : "crow.mp3",
             "walking_grass" : "walking_grass.mp3" ,
-			"punch" : "punch.mp3"
+            "punch" : "punch.mp3"
         },
-		"stream" : 
+        "stream" : 
         {
             "wind_ambience" : "windAmbience.mp3"
         }
-	},
-	"textures" : 
-	{
-		"rockTextureFile": "rockTexture.png"
-	}
+    },
+    "textures" : 
+    {
+        "rockTextureFile": "rockTexture.png"
+    },
+    "char_properties" :
+    {
+        "player" :
+        {
+            "max_health" : 100,
+            "max_speed" : 80
+        },
+        "ai" :
+        {
+            "max_health" : 60,
+            "max_speed" : 45
+        }
+    }
 }

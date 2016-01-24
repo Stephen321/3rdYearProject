@@ -1,9 +1,8 @@
 #include "Player.h"
 #include <iostream> //testing
 
-Player::Player(sf::Vector2f position, b2World& world) :
-Character(position, world, CharacterType::PLAYER),
-startPos(position),
+Player::Player(b2World& world, sf::Vector2f position) :
+Character(world, CharacterType::PLAYER, position),
 comboAnim(nullptr){
 }
 

@@ -4,7 +4,7 @@
 #include "Box2D\Collision\Shapes\b2PolygonShape.h"
 #include "Debug.h"
 #include "GameData.h"
-#include "tmx2box2d.h"
+#include "tmx\tmx2box2d.h"
 #include "CollisionFilters.h"
 #include "VisibleObject.h"
 

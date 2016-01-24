@@ -8,11 +8,10 @@
 #include <memory>
 #include <unordered_map>
 #include "GameData.h"
-#include "tmx2box2d.h"
+#include "tmx\tmx2box2d.h"
 #include "HealthBar.h"
 #include "Box2D\Collision\Shapes\b2CircleShape.h"
 #include "Debug.h"
-#include "CollisionFilters.h"
 #include "VisibleObject.h"
 
 class SoundManager;
@@ -33,9 +32,12 @@ public:
 	virtual void sensorEnd(Character*) = 0;
 	virtual void sensorStart(Character*) = 0;
 	void setVelocity(sf::Vector2f value);
+	virtual sf::Vector2f getPosition();
+	void setPosition(sf::Vector2f position); 
 
 protected:
-	Character(sf::Vector2f position, b2World& world, CharacterType charType);
+	Character(b2World& world, CharacterType charType, sf::Vector2f position);
+	void setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters filterCategory, CollisionFilters filterMask);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	AnimatedSprite m_animatedSprite;
 	sf::Vector2f m_velocity;

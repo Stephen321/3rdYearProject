@@ -6,7 +6,7 @@
 
 class Player : public Character {
 public:
-	Player(sf::Vector2f position, b2World& world);
+	Player(b2World& world, sf::Vector2f position = sf::Vector2f(1,1));
 	virtual void update(sf::Time dt, sf::FloatRect viewBounds) override;
 	virtual void startContact() override;
 	virtual void endContact() override;
@@ -17,7 +17,6 @@ public:
 //protected:
 private:
 	void behaviour();
-	sf::Vector2f startPos;
 	std::vector<Character*> attackableEnemies;
 	Animation* comboAnim;
 	sf::Event m_currentEvent;

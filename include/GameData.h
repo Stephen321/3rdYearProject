@@ -6,25 +6,26 @@
 #include <unordered_map>
 #include "fmod.hpp"
 #include "tmx\MapLoader.h"
-
+#include "CollisionFilters.h"
 class GameData {
-public:
+public: 
 	static std::shared_ptr<GameData> getInstance();
 
-	//maps
 	std::string mapLoaderPath;
 
-	//player textures and animations
-	std::vector<std::shared_ptr<sf::Texture>> playerTextures;//have to be kept in memory otherwise white square
-	std::unordered_map<std::string, Animation> playerAnims; //like a dictonary
-	float playerPlaySpeed;
-	float playerSpriteScale;
-
-	//ai textures and animations
-	std::vector<std::shared_ptr<sf::Texture>> aiTextures;
-	std::unordered_map<std::string, Animation> aiAnims; 
-	float aiPlaySpeed;
-	float aiSpriteScale;
+	//character info
+	typedef struct{
+		std::vector<std::shared_ptr<sf::Texture>> textures;//have to be kept in memory otherwise white square
+		std::unordered_map<std::string, Animation> anims; //like a dictonary
+		float playSpeed;
+		float spriteScale;
+		float maxHealth;
+		float maxSpeed;
+		CollisionFilters filterCategory;
+		CollisionFilters filterMask;
+	}CharInfo;
+	CharInfo playerInfo;
+	CharInfo aiInfo;
 
 	//sounds
 	FMOD::Sound * birdTweet1;
