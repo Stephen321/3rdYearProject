@@ -2,7 +2,9 @@
 
 AI::AI(b2World& world, Player* playerP, sf::Vector2f position) :
 Character(world, CharacterType::AI, position),
-player(playerP){}
+player(playerP),
+attackTimer(0),
+target(0){}
 
 void AI::update(sf::Time dt, sf::FloatRect viewBounds){
 	behaviour();
@@ -23,7 +25,7 @@ void AI::behaviour(){
 	else if (Debug::displayInfo)
 		m_animatedSprite.setColor(sf::Color::Cyan);
 
-	if (m_attacking == false && target != nullptr && attackTimer > ATTACK_TIME){
+	if (m_attacking == false && target != 0 && attackTimer > ATTACK_TIME){
 		target->takeDamage(5);
 		attackTimer = 0;
 		currentAnim = &m_anims["attack"];

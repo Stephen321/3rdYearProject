@@ -2,8 +2,7 @@
 #include <iostream> //testing
 
 Player::Player(b2World& world, sf::Vector2f position) :
-Character(world, CharacterType::PLAYER, position),
-comboAnim(nullptr){
+Character(world, CharacterType::PLAYER, position){
 }
 
 void Player::update(sf::Time dt, sf::FloatRect viewBounds){
@@ -54,15 +53,18 @@ void Player::behaviour(){
 			}
 		}
 		else{
-			if (currentAnim == &m_anims["kick"] && m_animatedSprite.getFrame() < 7){
-				comboAnim = &m_anims["flip"];
-				frameToChange = 7;
+			if (currentAnim == &m_anims["kick"] && m_animatedSprite.getFrame() < 10){
+				Combo c;
+				c.name = "flip";
+				c.frameChange = 12;
+				comboQ.push(c);
 			}
 		}
 	}
-	if (m_attacking && comboed == false && comboAnim != nullptr && m_animatedSprite.getFrame() == frameToChange){
-		m_animatedSprite.play(*comboAnim);
-		comboed = true;
+	//combos
+	if (m_attacking == true && comboQ.size() != 0 && m_animatedSprite.getFrame() == comboQ.front().frameChange){
+		Animation* anim = &m_anims[comboQ.front().name];
+		m_animatedSprite.play(*anim);
 		m_animatedSprite.setLooped(false);
 		if (attackableEnemies.size() != 0){
 			for (Character* c : attackableEnemies)
@@ -74,9 +76,6 @@ void Player::behaviour(){
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(true);
 		m_attacking = false;
-		comboAnim = nullptr;
-		frameToChange = -1;
-		comboed = false;
 	}
 	previousRelease = m_currentEvent.type == sf::Event::JoystickButtonPressed;
 	if (Debug::displayInfo) std::cout << attackableEnemies.size() << std::endl;

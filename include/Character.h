@@ -33,7 +33,9 @@ public:
 	virtual void sensorStart(Character*) = 0;
 	void setVelocity(sf::Vector2f value);
 	virtual sf::Vector2f getPosition();
-	void setPosition(sf::Vector2f position); 
+	void setPosition(sf::Vector2f position);
+	bool getAlive() const;
+	void reset(sf::Vector2f resetPos);
 
 protected:
 	Character(b2World& world, CharacterType charType, sf::Vector2f position);
@@ -54,6 +56,7 @@ protected:
 	CharacterType m_charType;
 	std::shared_ptr<SoundManager> sndMgr;
 	float m_speed;//pixels per second	
+	bool m_alive;
 };
 
 

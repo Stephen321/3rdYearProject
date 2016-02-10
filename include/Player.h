@@ -16,12 +16,14 @@ public:
 	sf::Vector2f getVelocity();
 //protected:
 private:
+	typedef struct _Combo{
+		std::string name;
+		int frameChange;
+	} Combo;
 	void behaviour();
 	std::vector<Character*> attackableEnemies;
-	Animation* comboAnim;
 	sf::Event m_currentEvent;
-	bool comboed = false;
-	int frameToChange = -1;
 	bool previousRelease = false;
+	std::queue<Combo> comboQ;
 };
 #endif

@@ -3,7 +3,8 @@
 
 Character::Character(b2World& world, CharacterType charType, sf::Vector2f position) :
 m_visible(false),
-m_attacking(false){
+m_attacking(false),
+m_alive(true){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	sndMgr = SoundManager::getInstance();
 
@@ -89,8 +90,7 @@ void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters fil
 
 
 void Character::takeDamage(float damage){
-	if (!m_health.changeHealth(-damage))
-		m_health.reset();
+	m_alive = m_health.changeHealth(-damage);
 }
 
 void Character::startContact(){
@@ -98,6 +98,17 @@ void Character::startContact(){
 
 void Character::endContact(){
 
+}
+
+void Character::reset(sf::Vector2f resetPos){
+	m_health.reset();
+	m_alive = true;
+	m_position = resetPos;
+	m_body->SetTransform(tmx::SfToBoxVec(m_position), m_body->GetAngle());
+}
+
+bool Character::getAlive() const{
+	return m_alive;
 }
 
 void Character::setVelocity(sf::Vector2f value){

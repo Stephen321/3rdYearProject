@@ -41,41 +41,18 @@ int GameScreen::Run(sf::RenderWindow &window)
 	world.SetContactListener(&contactListener);	
 
 	//map loader
-	ml.Load("demo.tmx");
+	ml.Load("FinalMap.tmx");
 	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
 	//characters
 	Player player(world);
-	std::vector<std::unique_ptr<Character>> enemies;
-	const int AICOUNT = 2;
-
-	sf::Vector2f AB(ml.IsometricToOrthogonal(sf::Vector2f(ml.GetMapSize().x / 2.f, 0)));
-	sf::Vector2f AD(ml.IsometricToOrthogonal(sf::Vector2f(0, ml.GetMapSize().y)));
-
-	for (int i = 0; i < AICOUNT; i++)
-	{
-		float u = (std::rand() % 1001) / 1000.f;
-		float b = (std::rand() % 1001) / 1000.f;
-		sf::Vector2f pos = (u * AB) + (b * AD);
-		enemies.push_back(std::make_unique<AI>(world, &player, pos));
-	}
+	std::vector<std::shared_ptr<Character>> enemies;
 
 	//sound
 	sndMgr->setListener(&player);
 
 	//game objects
-	std::vector<std::unique_ptr<GameObject>> gameObjects;
-	const int ROCKCOUNT = 3;
-
-	AB -= ml.IsometricToOrthogonal(sf::Vector2f(ptr->rockTexture.getSize().x / 2.f, 0));
-	AD -= ml.IsometricToOrthogonal(sf::Vector2f(0, ptr->rockTexture.getSize().y / 2.f));
-	for (int i = 0; i < ROCKCOUNT; i++)
-	{
-		float u = (std::rand() % 1001) / 1000.f;
-		float b = (std::rand() % 1001) / 1000.f;
-		sf::Vector2f pos = (u * AB) + (b * AD);
-		gameObjects.push_back(std::make_unique<Rock>(world, pos));
-	}
+	std::vector<std::shared_ptr<GameObject>> gameObjects;
 
 	window.setKeyRepeatEnabled(false);
 
@@ -153,7 +130,21 @@ int GameScreen::Run(sf::RenderWindow &window)
 		{
 			for (const auto& o : l.objects)
 			{
-				player.setPosition(o.GetCentre());
+				if (o.GetName() == "Player")
+					player.setPosition(o.GetCentre());
+				else if (o.GetName() == "Ai"){
+					enemies.push_back(std::make_shared<AI>(world, &player, o.GetCentre()));
+				}
+			}
+		}
+		if (l.name == "GameObjects")
+		{
+			for (const auto& o : l.objects)
+			{
+				if (o.GetName() == "Rock")
+				{
+					gameObjects.push_back(std::make_shared<Rock>(world, o.GetPosition()));
+				}
 			}
 		}
 	}
@@ -261,12 +252,32 @@ int GameScreen::Run(sf::RenderWindow &window)
 		bounds.height = view.getSize().y;
 
 		player.update(dt, bounds);
-		for (const std::unique_ptr<Character>& c : enemies)
+		for (const std::shared_ptr<Character>& c : enemies)
+			if (c->getAlive())
 			c->update(dt, bounds);
-		for (const std::unique_ptr<GameObject>& o : gameObjects)
+		for (const std::shared_ptr<GameObject>& o : gameObjects)
 			o->update(bounds);
 
 		world.Step(box2dClock.restart().asSeconds(), 6, 3);
+
+		if (player.getAlive() == false){
+			const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
+			for (const auto& l : layers)
+			{
+				if (l.name == "Entities")
+				{
+					int i = 0;
+					for (const auto& o : l.objects)
+					{
+						if (o.GetName() == "Player")
+							player.reset(o.GetCentre());
+						else
+							enemies[i++]->reset(o.GetCentre());
+					}
+					break;
+				}
+			}
+		}
 
 		//Clearing screen
 		window.clear(sf::Color(0, 0, 0, 0));
@@ -286,11 +297,11 @@ int GameScreen::Run(sf::RenderWindow &window)
 			window.draw(*c);*/
 		std::vector<VisibleObject*> visibleChars;
 		visibleChars.push_back(&player);
-		for (const std::unique_ptr<Character>& c : enemies){
-			if (c->getVisible())
+		for (const std::shared_ptr<Character>& c : enemies){
+			if (c->getAlive() && c->getVisible())
 				visibleChars.push_back(c.get());
 		}
-		for (const std::unique_ptr<GameObject>& o : gameObjects){
+		for (const std::shared_ptr<GameObject>& o : gameObjects){
 			if (o->getVisible())
 				visibleChars.push_back(o.get());
 		}
