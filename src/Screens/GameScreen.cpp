@@ -13,14 +13,14 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	std::shared_ptr<SoundManager> sndMgr = SoundManager::getInstance();
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	tmx::MapLoader ml(ptr->mapLoaderPath);
+	//tmx: tmx::MapLoader ml(ptr->mapLoaderPath); 
 
 	//sound 
 	sf::Clock soundClock;
 	const int SOUND_DELAY = 4;
 	int soundPlayDelay = 3 + (rand() % SOUND_DELAY);
 	sf::CircleShape birdCircle(20);
-	birdCircle.setPosition(ml.IsometricToOrthogonal(sf::Vector2f(240, 350)));
+	//tmx: birdCircle.setPosition(ml.IsometricToOrthogonal(sf::Vector2f(240, 350)));
 	birdCircle.setFillColor(sf::Color::Cyan);
 	birdCircle.setOrigin(20.f, 20.f);
 
@@ -37,11 +37,11 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	//box2d
 	MyListener contactListener;
-	b2World world(tmx::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
+	b2World world(HelperFunctions::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
 	world.SetContactListener(&contactListener);	
 
 	//map loader
-	ml.Load("newFinal.tmx");
+	//tmx: ml.Load("newFinal.tmx");
 	//ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
 	//characters
@@ -106,11 +106,11 @@ int GameScreen::Run(sf::RenderWindow &window)
 	
 	//debug
 	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
-	std::vector<DebugShape> debugShapes;
+	//tmx: std::vector<DebugShape> debugShapes;
 
 
 	//loop through layers and objects
-	const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
+	/*const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
 	for (const auto& l : layers)
 	{
 		if (l.name == "Collision")
@@ -157,7 +157,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 				}
 			}
 		}
-	}
+	}*/
 
 
 	int joystick = -1;
@@ -169,9 +169,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
 		std::to_string((int)mouseScreenPos.y) + ")");
-		sf::Vector2f mouseMapPos = ml.OrthogonalToIsometric(window.mapPixelToCoords((sf::Vector2i)mouseScreenPos));
-		mapPosText.setString("MapPos: (" + std::to_string((int)mouseMapPos.x) + ", " +
-		std::to_string((int)mouseMapPos.y) + ")");
+		//tmx: sf::Vector2f mouseMapPos = ml.OrthogonalToIsometric(window.mapPixelToCoords((sf::Vector2i)mouseScreenPos));
+		//tmx: mapPosText.setString("MapPos: (" + std::to_string((int)mouseMapPos.x) + ", " +
+		//tmx: std::to_string((int)mouseMapPos.y) + ")");
 		sf::Vector2f mouseWorldPos = window.mapPixelToCoords((sf::Vector2i)mouseScreenPos);
 		worldPosText.setString("WorldPos: (" + std::to_string((int)mouseWorldPos.x) + ", " +
 		std::to_string((int)mouseWorldPos.y) + ")");
@@ -291,7 +291,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		if (succesText.getString() != "" && successTimer.getElapsedTime().asSeconds() > 4.5f){
 			succesText.setString("");
-			const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
+		/*	const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
 			for (const auto& l : layers)
 			{
 				if (l.name == "Entities")
@@ -306,7 +306,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 					}
 					break;
 				}
-			}
+			}*/
 		}
 
 
@@ -323,7 +323,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		window.setView(view);
 
-		window.draw(ml);
+		//tmx: window.draw(ml);
 		/*window.draw(player);
 		for (const std::unique_ptr<Character>& c : enemies)
 			window.draw(*c);*/
@@ -394,11 +394,11 @@ int GameScreen::Run(sf::RenderWindow &window)
 			window.draw(debugText1);
 
 			window.setView(view);
-			ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
+			//tmx: ml.Draw(window, tmx::MapLayer::Debug);//draw with debug info
 			for (const auto& s : debugBoxes)
 				window.draw(*s);
-			for (const auto& s : debugShapes)
-				window.draw(s);
+			/*for (const auto& s : debugShapes)
+				window.draw(s);*/
 		}
 
 		window.display();

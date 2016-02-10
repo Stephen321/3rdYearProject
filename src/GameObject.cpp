@@ -9,18 +9,18 @@ m_type(type){
 	m_position = position;
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody;
-	b2Vec2 b2Pos = tmx::SfToBoxVec(position);
+	b2Vec2 b2Pos = HelperFunctions::SfToBoxVec(position);
 	bodyDef.position.Set(b2Pos.x, b2Pos.y);
 	m_body = world.CreateBody(&bodyDef);
 
 	b2PolygonShape polyShape;
-	polyShape.SetAsBox(tmx::SfToBoxFloat(m_sprite.getOrigin().x), tmx::SfToBoxFloat(m_sprite.getOrigin().y / 4.f));
-	polyShape.m_centroid.y = -tmx::SfToBoxFloat(m_sprite.getOrigin().y - 35);
+	polyShape.SetAsBox(HelperFunctions::SfToBoxFloat(m_sprite.getOrigin().x), HelperFunctions::SfToBoxFloat(m_sprite.getOrigin().y / 4.f));
+	polyShape.m_centroid.y = -HelperFunctions::SfToBoxFloat(m_sprite.getOrigin().y - 35);
 	debugShape = sf::ConvexShape(4);
 
 	for (int i = 0; i < 4; i++){
 		polyShape.m_vertices[i].y += polyShape.m_centroid.y;
-		debugShape.setPoint(i, m_position + tmx::BoxToSfVec(polyShape.GetVertex(i)));
+		debugShape.setPoint(i, m_position + HelperFunctions::BoxToSfVec(polyShape.GetVertex(i)));
 	}
 	
 	b2FixtureDef polyFictureDef;
@@ -29,7 +29,7 @@ m_type(type){
 	polyFictureDef.restitution = 0.99f;
 	polyFictureDef.filter.categoryBits = (uint16)filter;
 	m_body->CreateFixture(&polyFictureDef);
-	m_position = tmx::BoxToSfVec(m_body->GetPosition());
+	m_position = HelperFunctions::BoxToSfVec(m_body->GetPosition());
 
 	m_bounds.left = m_position.x - m_sprite.getOrigin().x;
 	m_bounds.top = m_position.y - m_sprite.getOrigin().y; 
@@ -64,5 +64,5 @@ bool GameObject::getVisible() const{
 sf::Vector2f GameObject::getPosition() const{
 	b2Fixture* f = m_body->GetFixtureList();
 	b2PolygonShape* ps = (b2PolygonShape*)f->GetShape();
-	return m_position + tmx::BoxToSfVec(ps->m_centroid);
+	return m_position + HelperFunctions::BoxToSfVec(ps->m_centroid);
 }

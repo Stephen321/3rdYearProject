@@ -8,11 +8,16 @@
 #include <memory>
 #include <unordered_map>
 #include "GameData.h"
-#include "tmx\tmx2box2d.h"
 #include "HealthBar.h"
 #include "Box2D\Collision\Shapes\b2CircleShape.h"
 #include "Debug.h"
 #include "VisibleObject.h"
+
+#include <Box2D/Dynamics/b2World.h>
+#include <Box2D/Common/b2Math.h>
+#include <Box2D/Dynamics/b2Fixture.h>
+
+#include <queue>
 
 class SoundManager;
 

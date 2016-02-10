@@ -20,6 +20,7 @@
     <ClCompile Include="src\GameData.cpp" />
     <ClCompile Include="src\GameLoader.cpp" />
     <ClCompile Include="src\HealthBar.cpp" />
+    <ClCompile Include="src\HelperFunctions.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MyListener.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
@@ -31,14 +32,6 @@
     <ClCompile Include="src\Screens\OptionsScreen.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
-    <ClCompile Include="src\tmx\DebugShape.cpp" />
-    <ClCompile Include="src\tmx\MapLayer.cpp" />
-    <ClCompile Include="src\tmx\MapLoaderPrivate.cpp" />
-    <ClCompile Include="src\tmx\MapLoaderPublic.cpp" />
-    <ClCompile Include="src\tmx\MapObject.cpp" />
-    <ClCompile Include="src\tmx\pugixml\pugixml.cpp" />
-    <ClCompile Include="src\tmx\QuadTreeNode.cpp" />
-    <ClCompile Include="src\tmx\tmx2box2d.cpp" />
     <ClCompile Include="src\VisibleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +45,7 @@
     <ClInclude Include="include\GameData.h" />
     <ClInclude Include="include\GameLoader.h" />
     <ClInclude Include="include\HealthBar.h" />
+    <ClInclude Include="include\HelperFunctions.h" />
     <ClInclude Include="include\MyListener.h" />
     <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\Player.h" />
@@ -93,16 +87,6 @@
     <ClInclude Include="include\Screens\Screen.hpp" />
     <ClInclude Include="include\SoundManager.h" />
     <ClInclude Include="include\SoundObject.h" />
-    <ClInclude Include="include\tmx\DebugShape.h" />
-    <ClInclude Include="include\tmx\Helpers.h" />
-    <ClInclude Include="include\tmx\Log.h" />
-    <ClInclude Include="include\tmx\MapLayer.h" />
-    <ClInclude Include="include\tmx\MapLoader.h" />
-    <ClInclude Include="include\tmx\MapObject.h" />
-    <ClInclude Include="include\tmx\pugixml\pugiconfig.hpp" />
-    <ClInclude Include="include\tmx\pugixml\pugixml.hpp" />
-    <ClInclude Include="include\tmx\QuadTreeNode.h" />
-    <ClInclude Include="include\tmx\tmx2box2d.h" />
     <ClInclude Include="include\VisibleObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

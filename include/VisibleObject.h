@@ -1,6 +1,8 @@
 #ifndef VISIBLEOBJECT_H
 #define VISIBLEOBJECT_H
 #include "SFML\Graphics.hpp"
+#include "HelperFunctions.h"
+
 
 class VisibleObject : public sf::Drawable{
 public:
