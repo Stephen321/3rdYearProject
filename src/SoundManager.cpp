@@ -139,6 +139,6 @@ void SoundManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	if (Debug::reverb){
 		target.draw(reverbCircle2);
 		target.draw(reverbCircle);
+		target.draw(listenerCircle);
 	}
-	target.draw(listenerCircle);
 }

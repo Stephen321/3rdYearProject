@@ -20,7 +20,7 @@ void AI::behaviour(){
 		m_velocity = sf::Vector2f(std::cos(angle) * m_speed, std::sin(angle) * m_speed);
 	else
 		m_velocity = sf::Vector2f(0, 0);
-	if (target != nullptr && Debug::displayInfo)
+	if (target != 0 && Debug::displayInfo)
 		m_animatedSprite.setColor(sf::Color::Red);
 	else if (Debug::displayInfo)
 		m_animatedSprite.setColor(sf::Color::Cyan);
@@ -42,7 +42,7 @@ void AI::behaviour(){
 }
 
 void AI::sensorEnd(Character*){
-	target = nullptr;
+	target = 0;
 }
 
 void AI::sensorStart(Character* c){

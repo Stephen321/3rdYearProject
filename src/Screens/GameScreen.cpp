@@ -41,8 +41,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 	world.SetContactListener(&contactListener);	
 
 	//map loader
-	ml.Load("FinalMap.tmx");
-	ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
+	ml.Load("newFinal.tmx");
+	//ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
 	//characters
 	Player player(world);
@@ -55,6 +55,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 	std::vector<std::shared_ptr<GameObject>> gameObjects;
 
 	window.setKeyRepeatEnabled(false);
+
+	sf::Clock successTimer;
 
 	//text
 	sf::Font font;
@@ -70,11 +72,19 @@ int GameScreen::Run(sf::RenderWindow &window)
 	sf::Text worldPosText;
 	worldPosText.setFont(font);
 	worldPosText.setStyle(sf::Text::Regular);
-	worldPosText.setCharacterSize(20); 
+	worldPosText.setCharacterSize(20);
 	sf::Text debugText1;
 	debugText1.setFont(font);
 	debugText1.setStyle(sf::Text::Regular);
 	debugText1.setCharacterSize(20);
+	sf::Text succesText;
+	succesText.setFont(font);
+	succesText.setStyle(sf::Text::Regular);
+	succesText.setCharacterSize(80);
+	succesText.setOrigin(succesText.getGlobalBounds().width / 2.f, succesText.getGlobalBounds().height / 2.f);
+	succesText.setPosition(view.getCenter());
+	succesText.setString("");
+	succesText.setPosition(succesText.getPosition().x - 100, succesText.getPosition().y);
 
 	//sound text
 	sf::Text soundEffectsText;
@@ -260,7 +270,27 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
-		if (player.getAlive() == false){
+		if (player.getAlive() == false && succesText.getString() == ""){
+			succesText.setString("You lost!");
+			successTimer.restart();
+		}
+
+
+		bool enemiesDead = true;
+		for (auto itr = enemies.begin(); itr != enemies.end(); ++itr){
+			if ((*itr)->getAlive()){
+				enemiesDead = false;
+				break;
+			}
+		}
+
+		if (enemiesDead && succesText.getString() == ""){//player won
+			succesText.setString("You won!");
+			successTimer.restart();
+		}
+
+		if (succesText.getString() != "" && successTimer.getElapsedTime().asSeconds() > 4.5f){
+			succesText.setString("");
 			const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
 			for (const auto& l : layers)
 			{
@@ -279,6 +309,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 			}
 		}
 
+
 		//Clearing screen
 		window.clear(sf::Color(0, 0, 0, 0));
 		//Drawing
@@ -288,9 +319,10 @@ int GameScreen::Run(sf::RenderWindow &window)
 			view.zoom(zoom);
 			zoomed = false;
 		}
+
+
 		window.setView(view);
 
-		
 		window.draw(ml);
 		/*window.draw(player);
 		for (const std::unique_ptr<Character>& c : enemies)
@@ -319,28 +351,31 @@ int GameScreen::Run(sf::RenderWindow &window)
 		for (const VisibleObject* v : visibleChars)
 			window.draw(*v);
 
+
 		//sound info
 		window.setView(window.getDefaultView());
+		//success
+		window.draw(succesText);
 		//sound effects
 		sf::Vector2f soundEffectsTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 0);
 		soundEffectsText.setPosition(soundEffectsTextPos);
 		soundEffectsText.setString("Sound Effects Music: " + std::string((Debug::soundEffects ? "On" : "Off")) + "  (Press 1)");
-		window.draw(soundEffectsText);
+		//window.draw(soundEffectsText);
 		//stream background
 		sf::Vector2f streamSoundTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 25);
 		streamSoundText.setPosition(streamSoundTextPos);
 		streamSoundText.setString("Stream Music: " + std::string((Debug::backgroundStream ? "On" : "Off")) + "  (Press 2)");
-		window.draw(streamSoundText);
+		//window.draw(streamSoundText);
 		//3d sound
 		sf::Vector2f sound3DTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 50);
 		sound3DSound.setPosition(sound3DTextPos);
 		sound3DSound.setString("3D sound: " + std::string((Debug::sound3D ? "On" : "Off")) + "  (Press 3)");
-		window.draw(sound3DSound);
+		//window.draw(sound3DSound);
 		//reverb
 		sf::Vector2f reverbTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 75);
 		reverbText.setPosition(reverbTextPos);
 		reverbText.setString("Reverb: " + std::string((Debug::reverb ? "On" : "Off")) + "  (Press 4)");
-		window.draw(reverbText);
+		//window.draw(reverbText);
 		window.setView(view);
 		if (Debug::displayInfo){
 			window.setView(window.getDefaultView());

@@ -64,6 +64,7 @@ void Player::behaviour(){
 	//combos
 	if (m_attacking == true && comboQ.size() != 0 && m_animatedSprite.getFrame() == comboQ.front().frameChange){
 		Animation* anim = &m_anims[comboQ.front().name];
+		comboQ.pop();
 		m_animatedSprite.play(*anim);
 		m_animatedSprite.setLooped(false);
 		if (attackableEnemies.size() != 0){

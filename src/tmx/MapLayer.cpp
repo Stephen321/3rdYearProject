@@ -91,7 +91,8 @@ void LayerSet::Cull(const sf::FloatRect& bounds)
 	//added these 2 lines in
 	//m_visible = true;
 	//m_visiblePatchEnd = sf::Vector2i(m_patchSize, m_patchSize);
-	m_visible = m_boundingBox.intersects(bounds);
+	//m_visible = m_boundingBox.intersects(bounds);
+	m_visible = true;
 
 	////update visible patch indices
 	m_visiblePatchStart.x = static_cast<int>(std::floor((bounds.left / m_tileSize.x) / m_patchSize));
@@ -99,10 +100,16 @@ void LayerSet::Cull(const sf::FloatRect& bounds)
 	if(m_visiblePatchStart.x < 0) m_visiblePatchStart.x = 0;
 	if(m_visiblePatchStart.y < 0) m_visiblePatchStart.y = 0;
 
+	//added this
+	m_visiblePatchStart = sf::Vector2i(0, 0);
+
 	m_visiblePatchEnd.x = static_cast<int>(std::ceil((bounds.width / m_tileSize.x) / m_patchSize));
 	m_visiblePatchEnd.y = static_cast<int>(std::ceil((bounds.height / m_tileSize.y) / m_patchSize));
-	if(m_visiblePatchEnd.x < m_patchCount.x) m_visiblePatchEnd.x = m_patchCount.x; //reversed the > on these 2 lines
-	if(m_visiblePatchEnd.y < m_patchCount.y) m_visiblePatchEnd.y = m_patchCount.y;
+	if(m_visiblePatchEnd.x > m_patchCount.x) m_visiblePatchEnd.x = m_patchCount.x; 
+	if(m_visiblePatchEnd.y > m_patchCount.y) m_visiblePatchEnd.y = m_patchCount.y;
+
+	//added this
+	m_visiblePatchEnd = (sf::Vector2i)m_patchCount;
 
 	m_visiblePatchEnd += m_visiblePatchStart;
 }

@@ -43,6 +43,8 @@ source distribution.
 #include <Box2D/Collision/Shapes/b2EdgeShape.h>
 #include <Box2D/Collision/Shapes/b2ChainShape.h>
 
+#include "CollisionFilters.h"
+
 #include <cassert>
 #include <array>
 
@@ -112,6 +114,7 @@ b2Body* BodyCreator::Add(const MapObject& object, b2World& world, b2BodyType bod
 		const Shape& shape = object.PolyPoints();
 		b2FixtureDef f;
 		f.density = 1.f;
+		f.filter.categoryBits = (uint16)CollisionFilters::COLLIDABLE;
 
 		if (pointCount < 3)
 		{

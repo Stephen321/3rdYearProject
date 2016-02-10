@@ -4,7 +4,8 @@
 enum class CollisionFilters : unsigned short {
 	AI = 0x0001,
 	PLAYER = 0x0002,
-	ROCK = 0x0004
+	ROCK = 0x0004,
+	COLLIDABLE = 0x0008
 };
 
 #endif
