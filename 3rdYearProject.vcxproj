@@ -32,6 +32,7 @@
     <ClCompile Include="src\Screens\OptionsScreen.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
+    <ClCompile Include="src\TileMap\Tile.cpp" />
     <ClCompile Include="src\VisibleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +88,7 @@
     <ClInclude Include="include\Screens\Screen.hpp" />
     <ClInclude Include="include\SoundManager.h" />
     <ClInclude Include="include\SoundObject.h" />
+    <ClInclude Include="include\TileMap\Tile.h" />
     <ClInclude Include="include\VisibleObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

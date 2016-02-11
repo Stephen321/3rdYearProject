@@ -34,6 +34,12 @@
     <Filter Include="Source Files\Screens">
       <UniqueIdentifier>{d38a46dc-a291-4944-b0f3-6bdcce2dc0f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TileMap">
+      <UniqueIdentifier>{f3225461-bcb2-422d-ae1c-481588aa000f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TileMap">
+      <UniqueIdentifier>{0e0c7cfa-66eb-4170-810c-ba475bf841d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -101,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="src\HelperFunctions.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap\Tile.cpp">
+      <Filter>Source Files\TileMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="include\HelperFunctions.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\Tile.h">
+      <Filter>Header Files\TileMap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
