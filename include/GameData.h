@@ -6,11 +6,13 @@
 #include <unordered_map>
 #include "fmod.hpp"
 #include "CollisionFilters.h"
+#include "TileMap\MapLoader.h"
+
 class GameData {
 public: 
 	static std::shared_ptr<GameData> getInstance();
 
-	std::string mapLoaderPath;
+	MapLoader mapLoader;
 
 	//character info
 	typedef struct{

@@ -108,7 +108,19 @@
     <ClCompile Include="src\HelperFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TileMap\Tile.cpp">
+    <ClCompile Include="src\TileMap\MapTile.cpp">
+      <Filter>Source Files\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap\MapLayer.cpp">
+      <Filter>Source Files\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap\MapObject.cpp">
+      <Filter>Source Files\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap\MapLoader.cpp">
+      <Filter>Source Files\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap\TileSet.cpp">
       <Filter>Source Files\TileMap</Filter>
     </ClCompile>
   </ItemGroup>
@@ -272,7 +284,19 @@
     <ClInclude Include="include\HelperFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TileMap\Tile.h">
+    <ClInclude Include="include\TileMap\MapTile.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\MapLayer.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\MapObject.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\MapLoader.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\TileSet.h">
       <Filter>Header Files\TileMap</Filter>
     </ClInclude>
   </ItemGroup>

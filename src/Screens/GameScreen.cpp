@@ -13,14 +13,14 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	std::shared_ptr<SoundManager> sndMgr = SoundManager::getInstance();
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	//tmx: tmx::MapLoader ml(ptr->mapLoaderPath); 
+	MapLoader * ml = &ptr->mapLoader;
 
 	//sound 
 	sf::Clock soundClock;
 	const int SOUND_DELAY = 4;
 	int soundPlayDelay = 3 + (rand() % SOUND_DELAY);
 	sf::CircleShape birdCircle(20);
-	//tmx: birdCircle.setPosition(ml.IsometricToOrthogonal(sf::Vector2f(240, 350)));
+	birdCircle.setPosition(ml->isometricToOrthogonal(sf::Vector2f(240, 350)));
 	birdCircle.setFillColor(sf::Color::Cyan);
 	birdCircle.setOrigin(20.f, 20.f);
 
@@ -40,8 +40,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	b2World world(HelperFunctions::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
 	world.SetContactListener(&contactListener);	
 
-	//map loader
-	//tmx: ml.Load("newFinal.tmx");
+
 	//ml.UpdateQuadTree(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
 
 	//characters
@@ -169,9 +168,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
 		std::to_string((int)mouseScreenPos.y) + ")");
-		//tmx: sf::Vector2f mouseMapPos = ml.OrthogonalToIsometric(window.mapPixelToCoords((sf::Vector2i)mouseScreenPos));
-		//tmx: mapPosText.setString("MapPos: (" + std::to_string((int)mouseMapPos.x) + ", " +
-		//tmx: std::to_string((int)mouseMapPos.y) + ")");
+		sf::Vector2f mouseMapPos = ml->orthogonalToIsometric(window.mapPixelToCoords((sf::Vector2i)mouseScreenPos));
+		mapPosText.setString("MapPos: (" + std::to_string((int)mouseMapPos.x) + ", " +
+		std::to_string((int)mouseMapPos.y) + ")");
 		sf::Vector2f mouseWorldPos = window.mapPixelToCoords((sf::Vector2i)mouseScreenPos);
 		worldPosText.setString("WorldPos: (" + std::to_string((int)mouseWorldPos.x) + ", " +
 		std::to_string((int)mouseWorldPos.y) + ")");
@@ -323,10 +322,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		window.setView(view);
 
-		//tmx: window.draw(ml);
-		/*window.draw(player);
-		for (const std::unique_ptr<Character>& c : enemies)
-			window.draw(*c);*/
+		window.draw(*ml);
+
 		std::vector<VisibleObject*> visibleChars;
 		visibleChars.push_back(&player);
 		for (const std::shared_ptr<Character>& c : enemies){

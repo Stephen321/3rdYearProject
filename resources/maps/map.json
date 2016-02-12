@@ -598,6 +598,7 @@
  "tileheight":32,
  "tilesets":[
         {
+         "columns":8,
          "firstgid":1,
          "image":"lowTiles.png",
          "imageheight":512,
@@ -636,6 +637,13 @@
                 }],
          "tilecount":128,
          "tileheight":32,
+         "tileproperties":
+            {
+             "4":
+                {
+                 "key4":"value4"
+                }
+            },
          "tiles":
             {
              "0":
@@ -882,6 +890,7 @@
          "tilewidth":64
         }, 
         {
+         "columns":8,
          "firstgid":129,
          "image":"highTiles.png",
          "imageheight":512,

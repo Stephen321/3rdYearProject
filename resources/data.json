@@ -3,6 +3,7 @@
 	"sound_folder_path" : "sounds/",
 	"image_folder_path" : "images/",
 	"map_folder_path" : "maps/",
+    "initial_map" : "map.json", 
 	"sounds" :
 	{
         "sound" : 

@@ -56,8 +56,10 @@ void GameLoader::loadData(){
 	std::string mapsPath = it->value.GetString();
 	++it;
 
-	//maps
-	ptr->mapLoaderPath = m_filePath + mapsPath;
+	//map
+	ptr->mapLoader = MapLoader(m_filePath + mapsPath);
+	ptr->mapLoader.load(it->value.GetString());
+	++it;
 
 	//animations
 	loadAnimations(animationsPath, loadJSONFileNames(animationsPath)); 

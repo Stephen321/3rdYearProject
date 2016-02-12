@@ -32,7 +32,11 @@
     <ClCompile Include="src\Screens\OptionsScreen.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
-    <ClCompile Include="src\TileMap\Tile.cpp" />
+    <ClCompile Include="src\TileMap\MapLayer.cpp" />
+    <ClCompile Include="src\TileMap\MapLoader.cpp" />
+    <ClCompile Include="src\TileMap\MapObject.cpp" />
+    <ClCompile Include="src\TileMap\MapTile.cpp" />
+    <ClCompile Include="src\TileMap\TileSet.cpp" />
     <ClCompile Include="src\VisibleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +92,11 @@
     <ClInclude Include="include\Screens\Screen.hpp" />
     <ClInclude Include="include\SoundManager.h" />
     <ClInclude Include="include\SoundObject.h" />
-    <ClInclude Include="include\TileMap\Tile.h" />
+    <ClInclude Include="include\TileMap\MapLayer.h" />
+    <ClInclude Include="include\TileMap\MapLoader.h" />
+    <ClInclude Include="include\TileMap\MapObject.h" />
+    <ClInclude Include="include\TileMap\MapTile.h" />
+    <ClInclude Include="include\TileMap\TileSet.h" />
     <ClInclude Include="include\VisibleObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
