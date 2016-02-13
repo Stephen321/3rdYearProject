@@ -20,7 +20,6 @@
     <ClCompile Include="src\GameData.cpp" />
     <ClCompile Include="src\GameLoader.cpp" />
     <ClCompile Include="src\HealthBar.cpp" />
-    <ClCompile Include="src\HelperFunctions.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MyListener.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
@@ -32,6 +31,7 @@
     <ClCompile Include="src\Screens\OptionsScreen.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
+    <ClCompile Include="src\TileMap\BodyCreator.cpp" />
     <ClCompile Include="src\TileMap\MapLayer.cpp" />
     <ClCompile Include="src\TileMap\MapLoader.cpp" />
     <ClCompile Include="src\TileMap\MapObject.cpp" />
@@ -50,7 +50,6 @@
     <ClInclude Include="include\GameData.h" />
     <ClInclude Include="include\GameLoader.h" />
     <ClInclude Include="include\HealthBar.h" />
-    <ClInclude Include="include\HelperFunctions.h" />
     <ClInclude Include="include\MyListener.h" />
     <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\Player.h" />
@@ -92,10 +91,13 @@
     <ClInclude Include="include\Screens\Screen.hpp" />
     <ClInclude Include="include\SoundManager.h" />
     <ClInclude Include="include\SoundObject.h" />
+    <ClInclude Include="include\TileMap\BodyCreator.h" />
+    <ClInclude Include="include\TileMap\Helpers.h" />
     <ClInclude Include="include\TileMap\MapLayer.h" />
     <ClInclude Include="include\TileMap\MapLoader.h" />
     <ClInclude Include="include\TileMap\MapObject.h" />
     <ClInclude Include="include\TileMap\MapTile.h" />
+    <ClInclude Include="include\TileMap\Properties.h" />
     <ClInclude Include="include\TileMap\TileSet.h" />
     <ClInclude Include="include\VisibleObject.h" />
   </ItemGroup>

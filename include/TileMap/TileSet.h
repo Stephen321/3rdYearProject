@@ -1,20 +1,19 @@
 #ifndef TILE_SET_H
 #define TILE_SET_H
 
+#include "Properties.h"
 #include "SFML\Graphics.hpp"
 
 class TileSet {
 public:
-	typedef std::map<std::string, std::string> PropertyMap;
-	typedef std::map<int, PropertyMap> TilePropertyMap;
-	TileSet(int columns, int imageWidth, int imageHeight, int firstGid, int lastGid, std::string name, int tileWidth, int tileHeight, std::string path, TilePropertyMap tileProperties);
-	sf::Texture * getTexture();
-	int getFirstGid();
-	int getLastGid();
-	int getTileWidth();
-	int getTileHeight();
-	int getColumns();
-	TilePropertyMap getTilePropertyMap();
+	TileSet(int columns, int imageWidth, int imageHeight, int firstGid, int lastGid, std::string name, int tileWidth, int tileHeight, std::string path, PropertyMapMap tileProperties);
+	const sf::Texture* getTexture() const;
+	int getFirstGid() const;
+	int getLastGid() const;
+	int getTileWidth() const;
+	int getTileHeight() const;
+	int getColumns() const;
+	const PropertyMap* getPropertyMap(int gid) const;
 
 private:
 	int m_columns;
@@ -27,7 +26,7 @@ private:
 	int m_tileHeight;
 	std::string m_imagePath;
 	sf::Texture m_texture;
-	TilePropertyMap m_tileProperties;
+	PropertyMapMap m_tileProperties;
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "TileMap\TileSet.h"
 
-TileSet::TileSet(int columns, int imageWidth, int imageHeight, int firstGid, int lastGid, std::string name, int tileWidth, int tileHeight, std::string path, TileSet::TilePropertyMap tileProperties) :
+TileSet::TileSet(int columns, int imageWidth, int imageHeight, int firstGid, int lastGid, std::string name, int tileWidth, int tileHeight, std::string path, PropertyMapMap tileProperties) :
 m_columns(columns),
 m_imageWidth(imageWidth),
 m_imageHeight(imageHeight),
@@ -14,30 +14,32 @@ m_tileProperties(tileProperties){
 	m_texture.loadFromFile(m_imagePath);
 }
 
-sf::Texture * TileSet::getTexture(){
+const sf::Texture * TileSet::getTexture() const{
 	return &m_texture;
 }
 
-int TileSet::getFirstGid(){
+int TileSet::getFirstGid() const{
 	return m_firstGid;
 }
 
-int TileSet::getLastGid(){
+int TileSet::getLastGid() const{
 	return m_lastGid;
 }
 
-int TileSet::getTileWidth(){
+int TileSet::getTileWidth() const{
 	return m_tileWidth;
 }
 
-int TileSet::getTileHeight(){
+int TileSet::getTileHeight() const{
 	return m_tileHeight;
 }
 
-int TileSet::getColumns(){
+int TileSet::getColumns() const{
 	return m_columns;
 }
 
-TileSet::TilePropertyMap TileSet::getTilePropertyMap(){
-	return m_tileProperties;
+const PropertyMap* TileSet::getPropertyMap(int gid) const{
+	if (m_tileProperties.find(gid) != m_tileProperties.end())
+		return &m_tileProperties.at(gid);
+	return 0;
 }

@@ -1,4 +1,5 @@
 #include "Screens\GameScreen.h"
+#include "TileMap\BodyCreator.h"
 
 GameScreen::GameScreen()
 {
@@ -37,7 +38,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	//box2d
 	MyListener contactListener;
-	b2World world(HelperFunctions::SfToBoxVec(sf::Vector2f(0.f, 0.f)));
+	b2World world(SfToBoxVec(sf::Vector2f(0.f, 0.f)));
 	world.SetContactListener(&contactListener);	
 
 
@@ -107,56 +108,64 @@ int GameScreen::Run(sf::RenderWindow &window)
 	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
 	//tmx: std::vector<DebugShape> debugShapes;
 
+	vector<sf::CircleShape> testCircles;
 
 	//loop through layers and objects
-	/*const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
+	const std::vector<MapLayer>& layers = ml->getLayers();
 	for (const auto& l : layers)
 	{
-		if (l.name == "Collision")
+		if (l.getName() == "Collision")
 		{
 			for (const auto& o : l.objects)
 			{
-				b2Body* b = tmx::BodyCreator::Add(o, world);
-				debugBoxes.push_back(std::unique_ptr<sf::RectangleShape>(new sf::RectangleShape(sf::Vector2f(6.f, 6.f))));
-				sf::Vector2f pos = tmx::BoxToSfVec(b->GetPosition());
-				debugBoxes.back()->setPosition(pos);
-				debugBoxes.back()->setOrigin(3.f, 3.f);
+				b2Body* b = BodyCreator::Add(o, world);
+				sf::CircleShape testCircle(100);
+				testCircle.setFillColor(sf::Color::Transparent);
+				testCircle.setOutlineColor(sf::Color::Blue);
+				testCircle.setOutlineThickness(3.f);
+				testCircle.setPosition(BoxToSfVec(b->GetPosition()));
+				testCircle.setOrigin(testCircle.getRadius(), testCircle.getRadius());
+				testCircles.push_back(testCircle);
+				//debugBoxes.push_back(std::unique_ptr<sf::RectangleShape>(new sf::RectangleShape(sf::Vector2f(6.f, 6.f))));
+				//sf::Vector2f pos = BoxToSfVec(b->GetPosition());
+				//debugBoxes.back()->setPosition(pos);
+				//debugBoxes.back()->setOrigin(3.f, 3.f);
 
-				for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
-				{
-					DebugShape ds;
-					ds.setPosition(pos);
-					b2PolygonShape* ps = (b2PolygonShape*)f->GetShape();
-					int count = ps->GetVertexCount();
-					for (int i = 0; i < count; i++)
-						ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(i)), sf::Color::Red));
-					if (count >= 0) ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(0)), sf::Color::Red));
-					debugShapes.push_back(ds);
-				}
+				//for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
+				//{
+					//DebugShape ds;
+					//ds.setPosition(pos);
+					//b2PolygonShape* ps = (b2PolygonShape*)f->GetShape();
+					//int count = ps->GetVertexCount();
+					//for (int i = 0; i < count; i++)
+					//	ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(i)), sf::Color::Red));
+					//if (count >= 0) ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(0)), sf::Color::Red));
+					//debugShapes.push_back(ds);
+				//}
 			}
 		}
-		if (l.name == "Entities")
+		if (l.getName() == "Entities")
 		{
 			for (const auto& o : l.objects)
 			{
-				if (o.GetName() == "Player")
-					player.setPosition(o.GetCentre());
-				else if (o.GetName() == "Ai"){
-					enemies.push_back(std::make_shared<AI>(world, &player, o.GetCentre()));
+				if (o.getName() == "Player")
+					player.setPosition(o.getPosition());
+				else if (o.getName() == "Ai"){
+					enemies.push_back(std::make_shared<AI>(world, &player, o.getPosition()));
 				}
 			}
 		}
-		if (l.name == "GameObjects")
+		if (l.getName() == "GameObjects")
 		{
 			for (const auto& o : l.objects)
 			{
-				if (o.GetName() == "Rock")
+				if (o.getName() == "Rock")
 				{
-					gameObjects.push_back(std::make_shared<Rock>(world, o.GetPosition()));
+					gameObjects.push_back(std::make_shared<Rock>(world, o.getPosition()));
 				}
 			}
 		}
-	}*/
+	}
 
 
 	int joystick = -1;
@@ -290,22 +299,22 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		if (succesText.getString() != "" && successTimer.getElapsedTime().asSeconds() > 4.5f){
 			succesText.setString("");
-		/*	const std::vector<tmx::MapLayer>& layers = ml.GetLayers();
+			const std::vector<MapLayer>& layers = ml->getLayers();
 			for (const auto& l : layers)
 			{
-				if (l.name == "Entities")
+				if (l.getName() == "Entities")
 				{
 					int i = 0;
 					for (const auto& o : l.objects)
 					{
-						if (o.GetName() == "Player")
-							player.reset(o.GetCentre());
+						if (o.getName() == "Player")
+							player.reset(o.getPosition());
 						else
-							enemies[i++]->reset(o.GetCentre());
+							enemies[i++]->reset(o.getPosition());
 					}
 					break;
 				}
-			}*/
+			}
 		}
 
 
@@ -347,7 +356,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		for (const VisibleObject* v : visibleChars)
 			window.draw(*v);
-
+		for (auto t : testCircles)
+			window.draw(t);
 
 		//sound info
 		window.setView(window.getDefaultView());

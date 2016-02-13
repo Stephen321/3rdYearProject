@@ -1,8 +1,8 @@
 #ifndef VISIBLEOBJECT_H
 #define VISIBLEOBJECT_H
 #include "SFML\Graphics.hpp"
-#include "HelperFunctions.h"
-
+#include "TileMap\Helpers.h"
+using namespace Helpers::Tiled;
 
 class VisibleObject : public sf::Drawable{
 public:

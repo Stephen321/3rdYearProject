@@ -31,7 +31,7 @@ m_alive(true){
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
 	m_health = HealthBar(maxHealth, sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + position);
 
-	setUpBox2D(world, HelperFunctions::SfToBoxVec(position), filterCategory, filterMask);
+	setUpBox2D(world, SfToBoxVec(position), filterCategory, filterMask);
 }
 
 void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters filterCategory, CollisionFilters filterMask){
@@ -42,7 +42,7 @@ void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters fil
 	m_body = world.CreateBody(&bodyDef);
 
 	b2CircleShape circleShape;
-	circleShape.m_radius = HelperFunctions::SfToBoxFloat(6.f);
+	circleShape.m_radius = SfToBoxFloat(6.f);
 
 	b2FixtureDef circleFictureDef;
 	circleFictureDef.shape = &circleShape;
@@ -53,7 +53,7 @@ void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters fil
 
 	//add sensor
 	b2CircleShape circleShape2;
-	circleShape2.m_radius = HelperFunctions::SfToBoxFloat(40.f);
+	circleShape2.m_radius = SfToBoxFloat(40.f);
 
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.shape = &circleShape2;
@@ -65,10 +65,10 @@ void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters fil
 	m_spriteOffset = sf::Vector2f(0, 6 - m_animatedSprite.getGlobalBounds().height / 2.f);
 
 
-	sf::Vector2f pos = HelperFunctions::BoxToSfVec(m_body->GetPosition());
+	sf::Vector2f pos = BoxToSfVec(m_body->GetPosition());
 	auto test = m_body->GetFixtureList();
 	b2CircleShape* cs = static_cast<b2CircleShape*>(m_body->GetFixtureList()->GetNext()->GetShape());
-	float radius = HelperFunctions::BoxToSfFloat(cs->m_radius);
+	float radius = BoxToSfFloat(cs->m_radius);
 	c = sf::CircleShape(radius);
 	c.setPosition(pos);
 	c.setOrigin(radius, radius);
@@ -78,7 +78,7 @@ void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters fil
 
 
 	b2CircleShape* cs2 = static_cast<b2CircleShape*>(m_body->GetFixtureList()->GetShape());
-	radius = HelperFunctions::BoxToSfFloat(cs2->m_radius);
+	radius = BoxToSfFloat(cs2->m_radius);
 	sensorCircle = sf::CircleShape(radius);
 	sensorCircle.setPosition(pos);
 	sensorCircle.setOrigin(radius, radius);
@@ -104,7 +104,7 @@ void Character::reset(sf::Vector2f resetPos){
 	m_health.reset();
 	m_alive = true;
 	m_position = resetPos;
-	m_body->SetTransform(HelperFunctions::SfToBoxVec(m_position), m_body->GetAngle());
+	m_body->SetTransform(SfToBoxVec(m_position), m_body->GetAngle());
 }
 
 bool Character::getAlive() const{
@@ -119,13 +119,13 @@ void Character::update(sf::Time dt, sf::FloatRect viewBounds){
 	//cant these 2 lines be done only when amimation changes
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
 
-	m_body->SetLinearVelocity(HelperFunctions::SfToBoxVec(sf::Vector2f(m_velocity)));
+	m_body->SetLinearVelocity(SfToBoxVec(sf::Vector2f(m_velocity)));
 
 	b2CircleShape* cs = static_cast<b2CircleShape*>(m_body->GetFixtureList()->GetShape());
-	c.setPosition(HelperFunctions::BoxToSfVec(cs->m_p) + getPosition());
+	c.setPosition(BoxToSfVec(cs->m_p) + getPosition());
 
 	b2CircleShape* cs2 = static_cast<b2CircleShape*>(m_body->GetFixtureList()->GetShape());
-	sensorCircle.setPosition(HelperFunctions::BoxToSfVec(cs2->m_p) + getPosition());
+	sensorCircle.setPosition(BoxToSfVec(cs2->m_p) + getPosition());
 
 	m_visible = m_animatedSprite.getGlobalBounds().intersects(viewBounds);
 
@@ -151,9 +151,9 @@ bool Character::getVisible() const{
 }
 
 sf::Vector2f Character::getPosition(){
-	return HelperFunctions::BoxToSfVec(m_body->GetPosition());
+	return BoxToSfVec(m_body->GetPosition());
 }
 
 void Character::setPosition(sf::Vector2f position){
-	m_body->SetTransform(HelperFunctions::SfToBoxVec(position), m_body->GetAngle());
+	m_body->SetTransform(SfToBoxVec(position), m_body->GetAngle());
 }

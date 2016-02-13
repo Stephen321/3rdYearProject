@@ -105,9 +105,6 @@
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HelperFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\TileMap\MapTile.cpp">
       <Filter>Source Files\TileMap</Filter>
     </ClCompile>
@@ -121,6 +118,9 @@
       <Filter>Source Files\TileMap</Filter>
     </ClCompile>
     <ClCompile Include="src\TileMap\TileSet.cpp">
+      <Filter>Source Files\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap\BodyCreator.cpp">
       <Filter>Source Files\TileMap</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,9 +281,6 @@
     <ClInclude Include="include\SoundObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\HelperFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\TileMap\MapTile.h">
       <Filter>Header Files\TileMap</Filter>
     </ClInclude>
@@ -297,6 +294,15 @@
       <Filter>Header Files\TileMap</Filter>
     </ClInclude>
     <ClInclude Include="include\TileMap\TileSet.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\Properties.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\BodyCreator.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\Helpers.h">
       <Filter>Header Files\TileMap</Filter>
     </ClInclude>
   </ItemGroup>

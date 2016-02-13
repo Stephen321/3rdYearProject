@@ -1,18 +1,18 @@
 #ifndef MAP_TILE_H
 #define MAP_TILE_H
 
+#include "Properties.h"
 #include "SFML\Graphics.hpp"
 
 class MapTile : public sf::Drawable {
 public:
-	typedef std::map<std::string, std::string> PropertyMap;
 
-	MapTile(sf::Sprite sprite, int gid, int width, int height, PropertyMap properties, int layer = 0);
+	MapTile(sf::Sprite sprite, int gid, int width, int height, const PropertyMap* properties = 0, int layer = 0);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 
 private:
 	sf::Sprite m_sprite;
-	PropertyMap m_properties;
+	const PropertyMap* m_properties;
 	int m_height;
 	int m_width;
 	int m_gid;

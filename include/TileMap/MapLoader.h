@@ -6,6 +6,9 @@
 #include "TileMap\TileSet.h"
 #include "TileMap\MapLayer.h"
 
+#include "Box2D\Box2D.h"
+#include "CollisionFilters.h"
+
 using namespace rapidjson;
 
 class MapLoader : public sf::Drawable {
@@ -16,10 +19,17 @@ public:
 	sf::Vector2f isometricToOrthogonal(sf::Vector2f isoPos);
 	sf::Vector2f orthogonalToIsometric(sf::Vector2f orthoPos);
 	const vector<MapLayer>& getLayers();
+	sf::Vector2f getPositionFromTileCoords(int x, int y);
 
 private:
 	std::string loadJSONDATA(std::string const & filename);
 	int getGidTileSetIndex(int gid);
+	void loadTileSets(const Document& document);
+	PropertyMapMap loadTilePropertyMap(const Value & properties);
+	void loadLayers(const Value & layers);
+	vector<MapTile> loadMapTiles(const vector<int>& tileGids);
+	MapTile createTile(int x, int y, int gid, int tileSetIndex);
+	vector<MapObject> loadMapObjects(const Value & objects);
 
 	sf::Sprite m_sprite;
 	std::string m_filePath;

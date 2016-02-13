@@ -23,7 +23,7 @@
                  "name":"Player",
                  "properties":
                     {
-
+                        "test" : "testvalue"
                     },
                  "rotation":0,
                  "type":"Player",

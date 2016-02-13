@@ -102,7 +102,7 @@ void Player::setEvent(sf::Event e){
 }
 
 sf::Vector2f Player::getVelocity(){
-	return HelperFunctions::BoxToSfVec(m_body->GetLinearVelocity());
+	return BoxToSfVec(m_body->GetLinearVelocity());
 }
 
 void Player::startContact(){

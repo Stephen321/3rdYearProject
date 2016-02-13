@@ -1,14 +1,16 @@
 #include "TileMap\MapLayer.h"
 
-MapLayer::MapLayer(){
-}
-
-void MapLayer::setTiles(const vector<MapTile>& _tiles){
-	tiles = _tiles;
+MapLayer::MapLayer(std::string name):
+m_name(name),
+m_visible(true){
 }
 
 void MapLayer::setType(MapLayerType type){
 	m_type = type;
+}
+
+std::string MapLayer::getName() const{
+	return m_name;
 }
 
 void MapLayer::draw(sf::RenderTarget& target, sf::RenderStates state) const{
