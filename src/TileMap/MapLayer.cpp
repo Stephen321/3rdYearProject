@@ -18,9 +18,8 @@ void MapLayer::draw(sf::RenderTarget& target, sf::RenderStates state) const{
 		for (const MapTile & mapTile : tiles)
 			target.draw(mapTile);
 	}
-	else if (m_type == MapLayerType::ObjectLayer){
-		for (const MapObject & mapObject : objects)
-			target.draw(mapObject);
-	}
 }
 
+MapLayer::MapLayerType MapLayer::getType() const{
+	return m_type;
+}

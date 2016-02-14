@@ -11,6 +11,14 @@ void Player::update(sf::Time dt, sf::FloatRect viewBounds){
 }
 
 void Player::behaviour(){
+
+	for (const Character* e : attackableEnemies){
+		if (e->getAlive() == false){
+			attackableEnemies.erase(std::find(attackableEnemies.begin(), attackableEnemies.end(), e));
+			break;
+		}
+	}
+
 	int joystick = -1;
 	for (int i = 0; i < 6 && joystick == -1; i++){
 		if (sf::Joystick::isConnected(i))
@@ -79,6 +87,16 @@ void Player::behaviour(){
 		m_attacking = false;
 	}
 	previousRelease = m_currentEvent.type == sf::Event::JoystickButtonPressed;
+	/*float xPos = 0;
+	float yPos = 0;
+	if (m_currentEvent.type == sf::Event::JoystickMoved)
+	{
+		if (m_currentEvent.joystickMove.axis == sf::Joystick::X)
+			xPos = m_currentEvent.joystickMove.position;
+		if (m_currentEvent.joystickMove.axis == sf::Joystick::Y)
+			yPos = m_currentEvent.joystickMove.position;
+	}
+	std::cout << xPos << ", " << yPos << std::endl;*/
 	if (Debug::displayInfo) std::cout << attackableEnemies.size() << std::endl;
 	float xPos = sf::Joystick::getAxisPosition(joystick, sf::Joystick::Axis::X);
 	float yPos = sf::Joystick::getAxisPosition(joystick, sf::Joystick::Axis::Y);
@@ -113,10 +131,10 @@ void Player::endContact(){
 }
 
 void Player::sensorEnd(Character* e){
-	attackableEnemies.erase(std::find(attackableEnemies.begin(), attackableEnemies.end(), e));
+	if (attackableEnemies.size() != 0)
+		attackableEnemies.erase(std::find(attackableEnemies.begin(), attackableEnemies.end(), e));
 }
 
 void Player::sensorStart(Character* e){
-
 	attackableEnemies.push_back(e);
 }

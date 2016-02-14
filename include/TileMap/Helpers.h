@@ -97,7 +97,7 @@ namespace Helpers
 		}
 	};
 
-	namespace Tiled
+	namespace Box2D
 	{
 		namespace
 		{

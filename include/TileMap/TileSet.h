@@ -13,7 +13,7 @@ public:
 	int getTileWidth() const;
 	int getTileHeight() const;
 	int getColumns() const;
-	const PropertyMap* getPropertyMap(int gid) const;
+	PropertyMap* getPropertyMap(int gid) const;
 
 private:
 	int m_columns;

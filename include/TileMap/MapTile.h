@@ -7,12 +7,14 @@
 class MapTile : public sf::Drawable {
 public:
 
-	MapTile(sf::Sprite sprite, int gid, int width, int height, const PropertyMap* properties = 0, int layer = 0);
+	MapTile(sf::Sprite sprite, int gid, int width, int height, PropertyMap* properties = 0, int layer = 0);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
+	void getPropertyString(const std::string& name, const std::string& value);
+	std::string getPropertyString(const std::string& name);
 
 private:
 	sf::Sprite m_sprite;
-	const PropertyMap* m_properties;
+	PropertyMap* m_properties;
 	int m_height;
 	int m_width;
 	int m_gid;

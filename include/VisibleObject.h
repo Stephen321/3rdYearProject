@@ -2,7 +2,7 @@
 #define VISIBLEOBJECT_H
 #include "SFML\Graphics.hpp"
 #include "TileMap\Helpers.h"
-using namespace Helpers::Tiled;
+using namespace Helpers::Box2D;
 
 class VisibleObject : public sf::Drawable{
 public:

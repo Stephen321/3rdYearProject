@@ -40,6 +40,12 @@
     <Filter Include="Source Files\TileMap">
       <UniqueIdentifier>{0e0c7cfa-66eb-4170-810c-ba475bf841d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TileMap\tmx">
+      <UniqueIdentifier>{95fb4f1b-bdb5-49ce-92e4-7e06415b3259}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TileMap\tmx">
+      <UniqueIdentifier>{4bb0326b-3476-4fbd-91d8-4253876618cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -121,6 +127,9 @@
       <Filter>Source Files\TileMap</Filter>
     </ClCompile>
     <ClCompile Include="src\TileMap\BodyCreator.cpp">
+      <Filter>Source Files\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap\DebugShape.cpp">
       <Filter>Source Files\TileMap</Filter>
     </ClCompile>
   </ItemGroup>
@@ -303,6 +312,12 @@
       <Filter>Header Files\TileMap</Filter>
     </ClInclude>
     <ClInclude Include="include\TileMap\Helpers.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\DebugShape.h">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TileMap\Log.h">
       <Filter>Header Files\TileMap</Filter>
     </ClInclude>
   </ItemGroup>

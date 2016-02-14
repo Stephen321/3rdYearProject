@@ -54,9 +54,9 @@ int MenuScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
-		if (sf::Joystick::isConnected(joystick) == false){
+		if (Event.type = sf::Event::EventType::JoystickConnected){
 			for (int i = 0; i < 6 && joystick == -1; i++){
-				if (sf::Joystick::isConnected(i))
+				if (Event.joystickConnect.joystickId == i)
 					joystick = i;
 			}
 		}
@@ -69,8 +69,11 @@ int MenuScreen::Run(sf::RenderWindow &window)
 				return (-1);
 			}
 			//Key pressed
-
-			int yPos = sf::Joystick::getAxisPosition(joystick, sf::Joystick::Axis::Y);
+			float yPos;
+			if (Event.type == sf::Event::JoystickMoved && Event.joystickMove.axis == sf::Joystick::Y)
+			{
+				yPos = Event.joystickMove.position;
+			}
 			bool joystickMoved = yPos > 10 || yPos < -10;
 			if (!joystickMoved)
 				joyStickAlreadyMoved = false;
@@ -96,7 +99,7 @@ int MenuScreen::Run(sf::RenderWindow &window)
 					}
 				}
 			}
-			if (sf::Joystick::isButtonPressed(joystick, 0)){
+			if ((Event.type == sf::Event::JoystickButtonPressed && Event.joystickButton.button == 0)){
 				if (menu == 0)
 				{
 					return (1);

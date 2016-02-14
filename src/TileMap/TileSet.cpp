@@ -38,8 +38,8 @@ int TileSet::getColumns() const{
 	return m_columns;
 }
 
-const PropertyMap* TileSet::getPropertyMap(int gid) const{
+PropertyMap* TileSet::getPropertyMap(int gid) const{
 	if (m_tileProperties.find(gid) != m_tileProperties.end())
-		return &m_tileProperties.at(gid);
+		return const_cast<PropertyMap*>(&m_tileProperties.at(gid));
 	return 0;
 }

@@ -6,18 +6,20 @@
 #include <vector>
 
 using std::vector;
+using namespace tmx;
 
 class MapLayer : public sf::Drawable {
 public:
 	enum class MapLayerType{
 		TileLayer,
-		ObjectLayer
+		ObjectGroup
 	};
 
 	MapLayer(std::string name);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 	void setType(MapLayerType type);
 	std::string getName() const;
+	MapLayerType getType() const;
 	vector<MapTile> tiles;
 	vector<MapObject> objects;
 

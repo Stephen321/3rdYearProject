@@ -23,7 +23,7 @@
                  "name":"Player",
                  "properties":
                     {
-                        "test" : "testvalue"
+
                     },
                  "rotation":0,
                  "type":"Player",
@@ -31,51 +31,6 @@
                  "width":32,
                  "x":4224,
                  "y":7072
-                }, 
-                {
-                 "height":0,
-                 "id":2,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":4167,
-                 "y":6857
-                }, 
-                {
-                 "height":0,
-                 "id":3,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":4231.5,
-                 "y":7066.5
-                }, 
-                {
-                 "height":0,
-                 "id":4,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":4240,
-                 "y":7082
                 }, 
                 {
                  "height":32,
@@ -583,12 +538,12 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":0,
          "x":0,
          "y":0
         }],
- "nextobjectid":39,
+ "nextobjectid":42,
  "orientation":"isometric",
  "properties":
     {
@@ -641,7 +596,7 @@
             {
              "4":
                 {
-                 "key4":"value4"
+                 "key4":"key4"
                 }
             },
          "tiles":
