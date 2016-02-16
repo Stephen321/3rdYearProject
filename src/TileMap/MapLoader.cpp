@@ -19,7 +19,31 @@ std::string MapLoader::loadJSONDATA(std::string const & filename){
 	return data;
 }
 
-void MapLoader::draw(sf::RenderTarget& target, sf::RenderStates state, bool debug) const{
+void MapLoader::Draw(sf::RenderTarget& target, bool debug, sf::RenderStates state){
+	cull(target);
+
+	target.draw(*this);
+
+	if (debug){
+		for (const MapLayer & layer : m_layers)
+		{
+			if (layer.getType() == MapLayer::MapLayerType::ObjectGroup)
+			{
+				for (const MapObject& object : layer.objects)
+				if (m_bounds.intersects(object.GetAABB()))
+					object.DrawDebugShape(target);
+			}
+		}
+		target.draw(m_gridVertices);
+	}
+}
+
+void MapLoader::draw(sf::RenderTarget& target, sf::RenderStates state) const{
+	for (const MapLayer& l : m_layers)
+		target.draw(l);
+}
+
+void MapLoader::cull(sf::RenderTarget& target){
 	sf::View view = target.getView();
 	if (view.getCenter() != m_lastViewPos)
 	{
@@ -35,26 +59,10 @@ void MapLoader::draw(sf::RenderTarget& target, sf::RenderStates state, bool debu
 		bounds.width += static_cast<float>(m_tileWidth * 2);
 		bounds.height += static_cast<float>(m_tileHeight * 2);
 		m_bounds = bounds;
-		//for (auto& layer : m_layers)
-			//layer.Cull(m_bounds);
+		for (MapLayer& layer : m_layers)
+			layer.cull(m_bounds);
 	}
 	m_lastViewPos = view.getCenter();
-
-	for (const MapLayer& l : m_layers)
-		target.draw(l);
-
-	if (debug){
-		for (auto layer : m_layers)
-		{
-			if (layer.getType() == MapLayer::MapLayerType::ObjectGroup)
-			{
-				for (const MapObject& object : layer.objects)
-				if (m_bounds.intersects(object.GetAABB()))
-					object.DrawDebugShape(target);
-			}
-		}
-		target.draw(m_gridVertices);
-	}
 }
 
 void MapLoader::load(const std::string& mapName){
@@ -76,7 +84,6 @@ void MapLoader::loadTileSets(const Document& document){
 	//load tilesets
 	const Value & tilesets = document["tilesets"];
 	for (Value::ConstValueIterator tileset = tilesets.Begin(); tileset != tilesets.End(); ++tileset){
-		int columns = (*tileset)["columns"].GetInt();
 		int imageWidth = (*tileset)["imagewidth"].GetInt();
 		int imageHeight = (*tileset)["imageheight"].GetInt();
 		int firstGid = (*tileset)["firstgid"].GetInt();
@@ -84,6 +91,7 @@ void MapLoader::loadTileSets(const Document& document){
 		std::string name = (*tileset)["name"].GetString();
 		int tileWidth = (*tileset)["tilewidth"].GetInt();
 		int tileHeight = (*tileset)["tileheight"].GetInt();
+		int columns = imageWidth / tileWidth;
 		std::string path = m_filePath + (*tileset)["image"].GetString();
 
 		PropertyMapMap map;
@@ -141,13 +149,20 @@ void MapLoader::loadMapTiles(const Value & tiles, MapLayer& layer){
 		tileGids.push_back(gid);
 	}
 
+	int xPatches = ceil((float)m_width / layer.getPatchSize());
+	int yPatches = ceil((float)m_height / layer.getPatchSize());
+	vector<MapLayer::TilePatch> patches(xPatches * yPatches);
 	for (int y = 0; y < m_height; y++){
 		for (int x = 0; x < m_width; x++){
 			int gid = tileGids[x + (y*m_width)];
 			if (gid > 0){
 				int tileSetIndex = getGidTileSetIndex(gid);
 				if (tileSetIndex != -1){
-					layer.tiles.push_back(createTile(x, y, gid, tileSetIndex));
+					int patchX = x / layer.getPatchSize();
+					int patchY = y / layer.getPatchSize();
+					MapLayer::TilePatch& patch = patches[patchX + (patchY*xPatches)];
+					patch.tiles.push_back(createTile(x, y, gid, tileSetIndex));
+					patch.size++;
 				}
 				else{
 					std::cout << "Texture not found for gid: " << gid << std::endl;
@@ -155,6 +170,7 @@ void MapLoader::loadMapTiles(const Value & tiles, MapLayer& layer){
 			}
 		}
 	}
+	layer.setTilePatches(patches);
 }
 
 MapTile MapLoader::createTile(int x, int y, int gid, int tileSetIndex){

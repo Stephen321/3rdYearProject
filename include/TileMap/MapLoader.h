@@ -15,17 +15,19 @@
 using namespace tmx;
 using namespace rapidjson;
 
-class MapLoader {
+class MapLoader : sf::Drawable{
 public:
 	MapLoader(const std::string& filePath = "");
-	void draw(sf::RenderTarget& target, sf::RenderStates state = sf::RenderStates::Default, bool debug = false) const;
 	void load(const std::string& mapName);
 	sf::Vector2f isometricToOrthogonal(sf::Vector2f isoPos);
 	sf::Vector2f orthogonalToIsometric(sf::Vector2f orthoPos);
 	const vector<MapLayer>& getLayers();
 	sf::Vector2f getPositionFromTileCoords(int x, int y);
+	void Draw(sf::RenderTarget& target, bool debug, sf::RenderStates state = sf::RenderStates::Default);
 
 private:
+	void cull(sf::RenderTarget& target);
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates state = sf::RenderStates::Default) const;
 	std::string loadJSONDATA(std::string const & filename);
 	int getGidTileSetIndex(int gid);
 	void loadTileSets(const Document& document);

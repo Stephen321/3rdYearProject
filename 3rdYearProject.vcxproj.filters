@@ -46,6 +46,9 @@
     <Filter Include="Source Files\TileMap\tmx">
       <UniqueIdentifier>{4bb0326b-3476-4fbd-91d8-4253876618cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Pathfinding">
+      <UniqueIdentifier>{4184e8bd-dcab-4989-9554-6da762f09aca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -319,6 +322,12 @@
     </ClInclude>
     <ClInclude Include="include\TileMap\Log.h">
       <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Pathfinding\Node.h">
+      <Filter>Header Files\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Pathfinding\Graph.h">
+      <Filter>Header Files\Pathfinding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -54,9 +54,9 @@ int MenuScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
-		if (Event.type = sf::Event::EventType::JoystickConnected){
+		if (sf::Joystick::isConnected(joystick) == false){
 			for (int i = 0; i < 6 && joystick == -1; i++){
-				if (Event.joystickConnect.joystickId == i)
+				if (sf::Joystick::isConnected(i))
 					joystick = i;
 			}
 		}
@@ -69,7 +69,7 @@ int MenuScreen::Run(sf::RenderWindow &window)
 				return (-1);
 			}
 			//Key pressed
-			float yPos;
+			float yPos = 0;
 			if (Event.type == sf::Event::JoystickMoved && Event.joystickMove.axis == sf::Joystick::Y)
 			{
 				yPos = Event.joystickMove.position;

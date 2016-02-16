@@ -11,15 +11,14 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 	void getPropertyString(const std::string& name, const std::string& value);
 	std::string getPropertyString(const std::string& name);
+	sf::Vector2f getPosition() const;
+	sf::Vector2i getSize() const;
 
 private:
 	sf::Sprite m_sprite;
 	PropertyMap* m_properties;
-	int m_height;
-	int m_width;
+	sf::Vector2i m_size;
 	int m_gid;
-	bool m_walkable;
-	bool m_visible;
 };
 
 #endif

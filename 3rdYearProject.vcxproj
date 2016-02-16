@@ -53,6 +53,8 @@
     <ClInclude Include="include\HealthBar.h" />
     <ClInclude Include="include\MyListener.h" />
     <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\Pathfinding\Graph.h" />
+    <ClInclude Include="include\Pathfinding\Node.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\rapidjson\allocators.h" />
     <ClInclude Include="include\rapidjson\document.h" />

@@ -31,7 +31,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	view.reset(viewRect);
 	view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 	window.setView(view);
-	window.setFramerateLimit(60);
+	//window.setFramerateLimit(60);
 
 	//clocks
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
@@ -321,8 +321,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 
 		window.setView(view);
-
-		(*ml).draw(window, sf::RenderStates::Default, Debug::displayInfo);
+		ml->Draw(window, Debug::displayInfo);
 
 		std::vector<VisibleObject*> visibleChars;
 		visibleChars.push_back(&player);
