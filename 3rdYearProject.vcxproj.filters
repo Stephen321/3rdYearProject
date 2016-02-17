@@ -49,6 +49,9 @@
     <Filter Include="Header Files\Pathfinding">
       <UniqueIdentifier>{4184e8bd-dcab-4989-9554-6da762f09aca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Pathfinding">
+      <UniqueIdentifier>{dc916a9c-afa3-45c3-a7e4-e474c44f01d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -134,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="src\TileMap\DebugShape.cpp">
       <Filter>Source Files\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pathfinding\Pathfinder.cpp">
+      <Filter>Source Files\Pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,7 +332,7 @@
     <ClInclude Include="include\Pathfinding\Node.h">
       <Filter>Header Files\Pathfinding</Filter>
     </ClInclude>
-    <ClInclude Include="include\Pathfinding\Graph.h">
+    <ClInclude Include="include\Pathfinding\Pathfinder.h">
       <Filter>Header Files\Pathfinding</Filter>
     </ClInclude>
   </ItemGroup>

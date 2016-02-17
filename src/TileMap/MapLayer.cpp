@@ -4,7 +4,7 @@
 MapLayer::MapLayer(std::string name):
 m_name(name),
 m_visible(true),
-PATCH_SIZE(30),
+PATCH_SIZE(10),
 m_tilePatches(0){
 }
 
@@ -19,10 +19,10 @@ std::string MapLayer::getName() const{
 void MapLayer::cull(sf::FloatRect bounds){
 	if (m_type == MapLayerType::TileLayer){
 		//times 3 so that doesnt cull tiles that are shown
-		bounds.left -= bounds.width;
-		bounds.top -= bounds.height;
-		bounds.width *= 3.f;
-		bounds.height *= 3.f;
+		bounds.left -= bounds.width / 2.f;
+		bounds.top -= bounds.height / 2.f;
+		bounds.width *= 2.f;
+		bounds.height *= 2.5f;
 		int tilePatchCount = m_tilePatches.size();
 		for (int i = 0; i < tilePatchCount; i++){
 			if (bounds.intersects(m_tilePatches[i].aabb))

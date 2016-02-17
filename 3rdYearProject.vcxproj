@@ -23,6 +23,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MyListener.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\Pathfinding\Pathfinder.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Rock.cpp" />
     <ClCompile Include="src\Screens\CreditsScreen.cpp" />
@@ -53,7 +54,7 @@
     <ClInclude Include="include\HealthBar.h" />
     <ClInclude Include="include\MyListener.h" />
     <ClInclude Include="include\GameObject.h" />
-    <ClInclude Include="include\Pathfinding\Graph.h" />
+    <ClInclude Include="include\Pathfinding\Pathfinder.h" />
     <ClInclude Include="include\Pathfinding\Node.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\rapidjson\allocators.h" />
