@@ -1,8 +1,8 @@
 #include "GameLoader.h"
 #include <iostream> //testing
-GameLoader::GameLoader(std::string const & filePath) :
+GameLoader::GameLoader(std::string const & filePath, MapLoader * ml, Pathfinder * pf) :
 m_filePath(filePath){
-	loadData();
+	loadData(ml, pf);
 }
 
 std::vector<std::string> GameLoader::loadJSONFileNames(const std::string & animationFilePath){
@@ -40,7 +40,7 @@ void GameLoader::loadJSONDATA(std::string const & filename){
 	}
 }
 
-void GameLoader::loadData(){
+void GameLoader::loadData(MapLoader * ml, Pathfinder * pf){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	m_JSONData.clear();
 	loadJSONDATA(m_filePath + "data.json"); 
@@ -57,8 +57,8 @@ void GameLoader::loadData(){
 	++it;
 
 	//map
-	ptr->mapLoader = MapLoader(m_filePath + mapsPath);
-	ptr->mapLoader.load(it->value.GetString());
+	ml->init(m_filePath + mapsPath, pf);
+	ml->load(it->value.GetString());
 	++it;
 
 	//animations

@@ -37,11 +37,14 @@ int main()
 	//loading 
 	std::shared_ptr<SoundManager> m_SMptr = SoundManager::getInstance();
 	std::shared_ptr<GameData> m_GDptr = GameData::getInstance();
-	GameLoader gl("resources/");
+	MapLoader ml;
+	Pathfinder pf;
+	GameLoader gl("resources/", &ml, &pf);
 
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
 	//window.setVerticalSyncEnabled(true);
+	//window.setFramerateLimit(60);
 
 
 	std::vector<Screen*> Screens;
@@ -50,7 +53,7 @@ int main()
 	//Screens preparations
 	MenuScreen menuScreen;
 	Screens.push_back(&menuScreen);
-	GameScreen gameScreen;
+	GameScreen gameScreen(&ml, &pf);
 	Screens.push_back(&gameScreen);
 	OptionsScreen optionsScreen;
 	Screens.push_back(&optionsScreen);

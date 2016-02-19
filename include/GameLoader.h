@@ -13,12 +13,12 @@ using namespace rapidjson;
 
 class GameLoader {
 public:
-	GameLoader(std::string const & filePath);
+	GameLoader(std::string const & filePath, MapLoader * ml, Pathfinder * pf);
 private:
 	rapidjson::Document m_document;
 	std::string m_JSONData;
 	const std::string m_filePath;
-	void loadData();
+	void loadData(MapLoader * ml, Pathfinder * pf);
 	void loadJSONDATA(std::string const & filename);
 	std::vector<std::string> loadJSONFileNames(const std::string & animationFilePath);
 	void loadAnimations(const std::string & animationFilePath, const std::vector<std::string> & jsonAnimFileNames);

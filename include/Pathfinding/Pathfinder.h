@@ -10,29 +10,30 @@ using namespace std;
 
 class Pathfinder {
 public:           
-	Pathfinder(int size);
+	Pathfinder();
 	~Pathfinder();
-	bool addNode(int index, sf::Vector2f position);
-	void clearPrevious();
-	void aStar(Node* pStart, Node* pDest, std::vector<Node *>& path);
-	void setHeuristics(Node* pDest);
-	void drawNodes(sf::RenderTarget& target) const;
-	Node** Pathfinder::nodeArray() const;
+	void setSize(int width, int height);
+	void addNode(int x, int y, bool walkable, const sf::Vector2f& position);
+	std::vector<sf::Vector2f> findPath(const sf::Vector2i& startPos, const sf::Vector2i& goalPos);
+	void drawNodes(sf::RenderTarget& target) const;//testing
 
 private:
-	Node** m_pNodes;
-	int m_maxNodes;
-	int m_count;
+	int getHeuristic(const Node* n1, const Node* n2);
+	int getCost(const sf::Vector2i& offset);
+	std::vector<sf::Vector2f> createPath(int startIndex, int goalIndex);
+	int getNeighbourIndex(const Node * current, int neighbourOffsetIndex);
+
+	Node** m_nodes; //1d array of nodes corresponding to 2d map
+	int m_mapWidth;
+	int m_mapHeight;
 
 	const int NEIGHBOUR_COUNT = 8;
 	sf::Vector2i m_neighbourOffsets[8];
-
+	Pathfinder* that = this;
 	class NodeSearchCostComparer {
 	public:
-		bool operator()(Node * n1, Node * n2) {
-			int f1 = n1->hCost() + n1->gCost();
-			int f2 = n2->hCost() + n2->gCost();
-			return f1 > f2;
+		bool operator()(const std::pair<int, int>& p1, const std::pair<int, int>& p2) {
+			return p1.first > p2.first;
 		}
 	};
 };

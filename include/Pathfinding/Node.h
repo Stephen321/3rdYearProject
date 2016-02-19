@@ -1,86 +1,42 @@
 #ifndef GRAPHNODE_H
 #define GRAPHNODE_H
 
+#include <limits>
 #include "SFML\Graphics.hpp"
 
-// -------------------------------------------------------
-// Name:        GraphNode
-// Description: This is the node class. The node class 
-//              contains data, and has a linked list of 
-//              arcs.
-// -------------------------------------------------------
 class Node {
 private:    
-// typedef the classes to make our lives easier.
-// -------------------------------------------------------
-// Description: data inside the node
-// -------------------------------------------------------
-	int m_hCost;
+	int m_fCost;
 	int m_gCost;
-
-// -------------------------------------------------------
-// Description: This remembers if the node is marked.
-// -------------------------------------------------------
-    bool m_marked;
-
-	Node* m_prevNode; 
-
+	bool m_open;
+	bool m_close;
+	bool m_walkable;
+	Node* m_prevNode;
 	sf::CircleShape m_shape;
-
-	const int RADIUS = 25;
+	sf::Vector2i m_mapPosition;
 
 public:
-    // Accessor functions
-    bool marked() const {
-        return m_marked;
-    }
+	Node(int x, int y, bool walkable);
+	bool open() const;
+	bool close() const;
+	int gCost() const;
+	int fCost() const;
+	sf::CircleShape const & getShape() const;
+	Node* getPrevious() const;
+	sf::Vector2f getPosition() const;
+	sf::Vector2i getMapPosition() const;
+	bool walkable() const;
+	void setOpen(bool open);
+	void setClose(bool close);
+	void setFCost(int fCost);
+	void setGCost(int gCost);
+	void setPrevious(Node* previous);
+	void setPosition(sf::Vector2f newPosition);
+	void setColour(sf::Color newColour);
+	void reset();
 
-	int hCost() const {
-		return m_hCost;
-	}
-	int gCost() const {
-		return m_gCost;
-	}
-    int fCost() const {
-		return m_hCost + m_gCost;
-    }
-	void setHCost(int hCost) {
-		m_hCost = hCost;
-	}
-	void setGCost(int gCost) {
-		m_gCost = gCost;
-	}
-
-	void setPrevious(Node* previous) {
-		m_prevNode = previous;
-	}
-
-	void setColour(sf::Color newColour) {
-		m_shape.setFillColor(newColour);
-	}
-
-	void setPosition(sf::Vector2f newPosition){
-		m_shape.setPosition(newPosition);
-	}
-
-	sf::Vector2f getPosition(){
-		return m_shape.getPosition();
-	}
-
-	sf::CircleShape const & getShape() const{
-		return m_shape;
-	}
-
-	Node* getPrevious() {
-		return m_prevNode;
-	}
-	Node();
+	//overloads
+	bool operator<(const Node&) const;
+	bool operator==(const Node&) const;
 };
-
-
-Node::Node() : m_hCost(-1), m_gCost(-1){
-	m_prevNode = 0;
-	m_shape = sf::CircleShape(RADIUS);
-	m_shape.setOrigin(RADIUS, RADIUS);
-}
 #endif

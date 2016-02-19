@@ -2,6 +2,7 @@
 #define DEBUG_H
 struct Debug{
 	static bool displayInfo;
+	static bool displayPathfinder;
 	static bool soundEffects;
 	static bool backgroundStream;
 	static bool sound3D;

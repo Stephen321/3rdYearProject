@@ -56,7 +56,8 @@ void MapLayer::draw(sf::RenderTarget& target, sf::RenderStates state) const{
 				}
 			}
 		}
-		std::cout << "Patches drawing: " << testDrawCalls << std::endl;
+		if (Debug::displayInfo)
+			std::cout << "Patches drawing: " << testDrawCalls << std::endl;
 	}
 
 	//test 

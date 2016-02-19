@@ -41,9 +41,10 @@ public:
 	void setPosition(sf::Vector2f position);
 	bool getAlive() const;
 	void reset(sf::Vector2f resetPos);
+	sf::Vector2i getTileCoord() const;
 
 protected:
-	Character(b2World& world, CharacterType charType, sf::Vector2f position);
+	Character(b2World& world, CharacterType charType, sf::Vector2f position, Pathfinder * pf = 0);
 	void setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters filterCategory, CollisionFilters filterMask);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	AnimatedSprite m_animatedSprite;
@@ -62,6 +63,7 @@ protected:
 	std::shared_ptr<SoundManager> sndMgr;
 	float m_speed;//pixels per second	
 	bool m_alive;
+	Pathfinder * m_pathFinder;
 };
 
 

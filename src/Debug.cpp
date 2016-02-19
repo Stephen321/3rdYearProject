@@ -1,6 +1,7 @@
 #include "Debug.h"
 
 bool Debug::displayInfo = false;
+bool Debug::displayPathfinder = false;
 bool Debug::soundEffects = false;
 bool Debug::backgroundStream = false;
 bool Debug::sound3D = false;

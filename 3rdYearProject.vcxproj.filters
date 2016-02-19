@@ -141,6 +141,9 @@
     <ClCompile Include="src\Pathfinding\Pathfinder.cpp">
       <Filter>Source Files\Pathfinding</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pathfinding\Node.cpp">
+      <Filter>Source Files\Pathfinding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\rapidjson\pointer.h">

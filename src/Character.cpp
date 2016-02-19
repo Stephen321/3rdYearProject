@@ -1,10 +1,11 @@
 #include "Character.h"
 
 
-Character::Character(b2World& world, CharacterType charType, sf::Vector2f position) :
+Character::Character(b2World& world, CharacterType charType, sf::Vector2f position, Pathfinder * pf) :
 m_visible(false),
 m_attacking(false),
-m_alive(true){
+m_alive(true),
+m_pathFinder(pf){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	sndMgr = SoundManager::getInstance();
 
@@ -152,6 +153,10 @@ bool Character::getVisible() const{
 
 sf::Vector2f Character::getPosition(){
 	return BoxToSfVec(m_body->GetPosition());
+}
+
+sf::Vector2i Character::getTileCoord() const{
+	return MapLoader::getTileCoordsFromPos(m_position);
 }
 
 void Character::setPosition(sf::Vector2f position){

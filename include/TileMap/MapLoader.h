@@ -8,6 +8,8 @@
 
 #include "Box2D\Box2D.h"
 #include "CollisionFilters.h"
+#include "Pathfinding\Pathfinder.h"
+#include "Debug.h"
 #include "Log.h"
 #include <string>
 #include <sstream>
@@ -17,13 +19,17 @@ using namespace rapidjson;
 
 class MapLoader : sf::Drawable{
 public:
-	MapLoader(const std::string& filePath = "");
+	MapLoader();
+	void init(const std::string& filePath = "", Pathfinder * _pathFinder = 0);
 	void load(const std::string& mapName);
-	sf::Vector2f isometricToOrthogonal(sf::Vector2f isoPos);
-	sf::Vector2f orthogonalToIsometric(sf::Vector2f orthoPos);
 	const vector<MapLayer>& getLayers();
-	sf::Vector2f getPositionFromTileCoords(int x, int y);
-	void Draw(sf::RenderTarget& target, bool debug, sf::RenderStates state = sf::RenderStates::Default);
+	void Draw(sf::RenderTarget& target, sf::RenderStates state = sf::RenderStates::Default);
+
+	//helpers
+	static sf::Vector2f getPositionFromTileCoords(int x, int y);
+	static sf::Vector2i getTileCoordsFromPos(sf::Vector2f screenPos);
+	static sf::Vector2f isometricToOrthogonal(sf::Vector2f isoPos);
+	static sf::Vector2f orthogonalToIsometric(sf::Vector2f orthoPos);
 
 private:
 	void cull(sf::RenderTarget& target);
@@ -31,12 +37,14 @@ private:
 	std::string loadJSONDATA(std::string const & filename);
 	int getGidTileSetIndex(int gid);
 	void loadTileSets(const Document& document);
-	PropertyMapMap loadTilePropertyMap(const Value & properties);
+	PropertyMapMap loadTilePropertyMap(const Value & properties, int firstGid);
 	void loadLayers(const Value & layers);
 	void loadMapTiles(const Value & tiles, MapLayer& layer);
 	MapTile createTile(int x, int y, int gid, int tileSetIndex);
+	void loadPathfindingNodes(const Value & tiles, MapLayer& layer);
 	void loadMapObjects(const Value & objects, MapLayer& layer, sf::Color colour = sf::Color(128u, 128u, 128u));
 
+	Pathfinder * pathFinder;
 	//tmx
 	void createDebugGrid();
 	sf::Color ColourFromHex(const char* hexStr) const;
@@ -47,8 +55,8 @@ private:
 	vector<TileSet> m_tileSets;
 	int m_width;
 	int m_height;
-	int m_tileWidth;
-	int m_tileHeight;
+	static int m_tileWidth;
+	static int m_tileHeight;
 	bool m_visible;
 
 	//tmx

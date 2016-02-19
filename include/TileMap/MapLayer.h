@@ -12,7 +12,8 @@ class MapLayer : public sf::Drawable {
 public:
 	enum class MapLayerType{
 		TileLayer,
-		ObjectGroup
+		ObjectGroup,
+		Pathfinding
 	};
 
 

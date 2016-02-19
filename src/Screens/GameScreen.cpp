@@ -1,7 +1,8 @@
 #include "Screens\GameScreen.h"
-#include "TileMap\BodyCreator.h"
 
-GameScreen::GameScreen()
+GameScreen::GameScreen(MapLoader * ml, Pathfinder * pf) :
+m_mapLoader(ml),
+m_pathFinder(pf)
 {
 }
 
@@ -14,14 +15,13 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	std::shared_ptr<SoundManager> sndMgr = SoundManager::getInstance();
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	MapLoader * ml = &ptr->mapLoader;
-
+	//Pathfinder * pf = ml->getPathFinder();
 	//sound 
 	sf::Clock soundClock;
 	const int SOUND_DELAY = 4;
 	int soundPlayDelay = 3 + (rand() % SOUND_DELAY);
 	sf::CircleShape birdCircle(20);
-	birdCircle.setPosition(ml->isometricToOrthogonal(sf::Vector2f(240, 350)));
+	birdCircle.setPosition(m_mapLoader->isometricToOrthogonal(sf::Vector2f(240, 350)));
 	birdCircle.setFillColor(sf::Color::Cyan);
 	birdCircle.setOrigin(20.f, 20.f);
 
@@ -31,7 +31,6 @@ int GameScreen::Run(sf::RenderWindow &window)
 	view.reset(viewRect);
 	view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 	window.setView(view);
-	//window.setFramerateLimit(60);
 
 	//clocks
 	sf::Clock shaderClock, frameClock, deltaClock, box2dClock;
@@ -109,7 +108,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 	std::vector<DebugShape> debugShapes;
 
 	//loop through layers and objects
-	const std::vector<MapLayer>& layers = ml->getLayers();
+	const std::vector<MapLayer>& layers = m_mapLoader->getLayers();
 	for (const auto& l : layers)
 	{
 		if (l.getName() == "Collision")
@@ -142,7 +141,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 				if (o.GetName() == "Player")
 					player.setPosition(o.GetCentre());
 				else if (o.GetName() == "Ai"){
-					enemies.push_back(std::make_shared<AI>(world, &player, o.GetCentre()));
+					enemies.push_back(std::make_shared<AI>(world, &player, o.GetCentre(), m_pathFinder));
 				}
 			}
 		}
@@ -168,7 +167,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		screenPosText.setString("ScreenPos: (" + std::to_string((int)mouseScreenPos.x) + ", " +
 		std::to_string((int)mouseScreenPos.y) + ")");
-		sf::Vector2f mouseMapPos = ml->orthogonalToIsometric(window.mapPixelToCoords((sf::Vector2i)mouseScreenPos));
+		sf::Vector2f mouseMapPos = m_mapLoader->orthogonalToIsometric(window.mapPixelToCoords((sf::Vector2i)mouseScreenPos));
 		mapPosText.setString("MapPos: (" + std::to_string((int)mouseMapPos.x) + ", " +
 		std::to_string((int)mouseMapPos.y) + ")");
 		sf::Vector2f mouseWorldPos = window.mapPixelToCoords((sf::Vector2i)mouseScreenPos);
@@ -199,6 +198,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 			}
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::D))
 				Debug::displayInfo = !Debug::displayInfo;
+
+			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::P))
+				Debug::displayPathfinder = !Debug::displayPathfinder;
 
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num1)){
 				Debug::soundEffects = !Debug::soundEffects;
@@ -290,7 +292,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		if (succesText.getString() != "" && successTimer.getElapsedTime().asSeconds() > 4.5f){
 			succesText.setString("");
-			const std::vector<MapLayer>& layers = ml->getLayers();
+			const std::vector<MapLayer>& layers = m_mapLoader->getLayers();
 			for (const auto& l : layers)
 			{
 				if (l.getName() == "Entities")
@@ -321,7 +323,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 
 		window.setView(view);
-		ml->Draw(window, Debug::displayInfo);
+		m_mapLoader->Draw(window);
+		if (Debug::displayPathfinder)
+			m_pathFinder->drawNodes(window);
 
 		std::vector<VisibleObject*> visibleChars;
 		visibleChars.push_back(&player);

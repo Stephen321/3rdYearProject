@@ -2,9 +2,16 @@
 
 #include <iostream> //test
 
-MapLoader::MapLoader(const std::string& filePath) :
-m_filePath(filePath){
+int MapLoader::m_tileWidth = 0;
+int MapLoader::m_tileHeight = 0;
 
+MapLoader::MapLoader(){
+
+}
+
+void MapLoader::init(const std::string& filePath, Pathfinder * _pathFinder ){
+	m_filePath = filePath;
+	pathFinder = _pathFinder;
 }
 
 std::string MapLoader::loadJSONDATA(std::string const & filename){
@@ -19,12 +26,12 @@ std::string MapLoader::loadJSONDATA(std::string const & filename){
 	return data;
 }
 
-void MapLoader::Draw(sf::RenderTarget& target, bool debug, sf::RenderStates state){
+void MapLoader::Draw(sf::RenderTarget& target, sf::RenderStates state){
 	cull(target);
 
 	target.draw(*this);
 
-	if (debug){
+	if (Debug::displayInfo){
 		for (const MapLayer & layer : m_layers)
 		{
 			if (layer.getType() == MapLayer::MapLayerType::ObjectGroup)
@@ -96,16 +103,16 @@ void MapLoader::loadTileSets(const Document& document){
 
 		PropertyMapMap map;
 		if (tileset->HasMember("tileproperties"))
-			map = loadTilePropertyMap((*tileset)["tileproperties"]);
+			map = loadTilePropertyMap((*tileset)["tileproperties"], firstGid);
 		m_tileSets.push_back(TileSet(columns, imageWidth, imageHeight, firstGid, lastGid, name, tileWidth, tileHeight, path, map));
 	}
 }
 
-PropertyMapMap MapLoader::loadTilePropertyMap(const Value & properties){
+PropertyMapMap MapLoader::loadTilePropertyMap(const Value & properties, int firstGid){
 	PropertyMapMap map;
 	//loops through tile property objects
 	for (Value::ConstMemberIterator propItr = properties.MemberBegin(); propItr != properties.MemberEnd(); ++propItr){
-		int gid = std::stoi(propItr->name.GetString());
+		int gid = firstGid + std::stoi(propItr->name.GetString());
 		//loops through individual tile properties
 		for (Value::ConstMemberIterator tilePropItr = propItr->value.MemberBegin(); tilePropItr != propItr->value.MemberEnd(); ++tilePropItr){
 			map[gid][tilePropItr->name.GetString()] = tilePropItr->value.GetString();
@@ -122,8 +129,14 @@ void MapLoader::loadLayers(const Value & layers){
 
 		const std::string & type = (*l)["type"].GetString();
 		if (type == "tilelayer"){
-			mapLayer.setType(MapLayer::MapLayerType::TileLayer);
-			loadMapTiles((*l)["data"], mapLayer);
+			if (name == "Pathfinding"){
+				mapLayer.setType(MapLayer::MapLayerType::Pathfinding);
+				loadPathfindingNodes((*l)["data"], mapLayer);
+			}
+			else{
+				mapLayer.setType(MapLayer::MapLayerType::TileLayer);
+				loadMapTiles((*l)["data"], mapLayer);
+			}
 		}
 		else if (type == "objectgroup"){
 			mapLayer.setType(MapLayer::MapLayerType::ObjectGroup);
@@ -195,10 +208,30 @@ MapTile MapLoader::createTile(int x, int y, int gid, int tileSetIndex){
 	return MapTile(sprite, gid, tileSetTileWidth, tileSetTileHeight, propertyMap);//TODO: height
 }
 
-sf::Vector2f MapLoader::getPositionFromTileCoords(int x, int y){
-	return sf::Vector2f((x - y) * m_tileWidth * 0.5f, (x + y) * m_tileHeight * 0.5f);
-}
+void MapLoader::loadPathfindingNodes(const Value & tiles, MapLayer& layer){
+	vector<int> tileGids;
+	for (Value::ConstValueIterator t = tiles.Begin(); t != tiles.End(); ++t){
+		int gid = t->GetInt();
+		tileGids.push_back(gid);
+	}
 
+	pathFinder->setSize(m_width, m_height);
+	for (int y = 0; y < m_height; y++){
+		for (int x = 0; x < m_width; x++){
+			int gid = tileGids[x + (y*m_width)];
+			if (gid > 0){
+				int tileSetIndex = getGidTileSetIndex(gid);
+				if (tileSetIndex != -1){
+					std::string walkable = m_tileSets[tileSetIndex].getPropertyMap(gid)->at("walkable");
+					pathFinder->addNode(x, y, (walkable == "true") ? true : false, getPositionFromTileCoords(x, y) + orthogonalToIsometric(sf::Vector2f(m_tileWidth * 0.5f, m_tileHeight * 0.5f)));
+				}
+				else{
+					std::cout << "Texture not found for gid: " << gid << std::endl;
+				}
+			}
+		}
+	}
+}
 
 //tmx loader xml converted to json
 void MapLoader::loadMapObjects(const Value & objects, MapLayer& layer, sf::Color colour){
@@ -348,6 +381,21 @@ sf::Color MapLoader::ColourFromHex(const char* hexStr) const
 	return sf::Color(r, g, b);
 }
 
+const vector<MapLayer>& MapLoader::getLayers(){
+	return m_layers;
+}
+
+
+//helpers
+sf::Vector2f MapLoader::getPositionFromTileCoords(int x, int y){
+	return sf::Vector2f((x - y) * m_tileWidth * 0.5f, (x + y) * m_tileHeight * 0.5f);
+}
+
+sf::Vector2i MapLoader::getTileCoordsFromPos(sf::Vector2f screenPos){
+	//sf::Vector2i isoPos = (sf::Vector2i)orthogonalToIsometric(screenPos);
+	return sf::Vector2i((screenPos.x / m_tileWidth) + (screenPos.y / m_tileHeight), -(screenPos.x / m_tileWidth) + (screenPos.y / m_tileHeight));
+}
+
 sf::Vector2f MapLoader::isometricToOrthogonal(sf::Vector2f isoPos){
 	sf::Vector2f orthoPos;
 	orthoPos.x = (isoPos.x - isoPos.y);
@@ -360,8 +408,4 @@ sf::Vector2f MapLoader::orthogonalToIsometric(sf::Vector2f orthoPos){
 	isoPos.x = (2 * orthoPos.y + orthoPos.x) * 0.5f;
 	isoPos.y = (2 * orthoPos.y - orthoPos.x) * 0.5f;
 	return isoPos;
-}
-
-const vector<MapLayer>& MapLoader::getLayers(){
-	return m_layers;
 }
