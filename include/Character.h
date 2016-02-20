@@ -44,8 +44,8 @@ public:
 	sf::Vector2i getTileCoord() const;
 
 protected:
-	Character(b2World& world, CharacterType charType, sf::Vector2f position, Pathfinder * pf = 0);
-	void setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters filterCategory, CollisionFilters filterMask);
+	Character(b2World& world, CharacterType charType, const sf::Vector2f& position, Pathfinder * pf = 0);
+	void setUpBox2D(b2World& world, const b2Vec2& position, const GameData::CharInfo* info);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	AnimatedSprite m_animatedSprite;
 	sf::Vector2f m_velocity;

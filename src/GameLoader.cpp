@@ -107,12 +107,14 @@ void GameLoader::loadData(MapLoader * ml, Pathfinder * pf){
 
 void GameLoader::setCollisionFilter(std::string charName, GameData::CharInfo* info){
 	if (charName == "player"){
-		info->filterCategory = CollisionFilters::PLAYER;
-		info->filterMask = CollisionFilters::AI;
+		info->filterCategory = (uint16)CollisionFilters::PLAYER;
+		info->filterMask = (uint16)CollisionFilters::ENEMY | (uint16)CollisionFilters::COLLIDABLE;
+		info->filterSensor = (uint16)CollisionFilters::ENEMY;
 	}
 	else if (charName == "ai"){
-		info->filterCategory = CollisionFilters::AI;
-		info->filterMask = CollisionFilters::PLAYER;
+		info->filterCategory = (uint16)CollisionFilters::ENEMY;
+		info->filterMask = (uint16)CollisionFilters::PLAYER | (uint16)CollisionFilters::COLLIDABLE;
+		info->filterSensor = (uint16)CollisionFilters::PLAYER;
 	}
 }
 

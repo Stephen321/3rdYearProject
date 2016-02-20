@@ -10,33 +10,25 @@ void Player::update(sf::Time dt, sf::FloatRect viewBounds){
 	Character::update(dt, viewBounds);
 }
 
-void Player::behaviour(){
-
-	for (const Character* e : attackableEnemies){
-		if (e->getAlive() == false){
-			attackableEnemies.erase(std::find(attackableEnemies.begin(), attackableEnemies.end(), e));
-			break;
-		}
-	}
-
-	int joystick = -1;
-	for (int i = 0; i < 6 && joystick == -1; i++){
+void Player::handleEvent(sf::Event e){
+	m_joystick = -1;
+	for (int i = 0; i < 6 && m_joystick == -1; i++){
 		if (sf::Joystick::isConnected(i))
-			joystick = i;
+			m_joystick = i;
 	}
-	if (m_currentEvent.type == sf::Event::JoystickButtonPressed && previousRelease && m_currentEvent.joystickButton.button == 0){
+	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 0){
 		if (m_attacking == false){
 			currentAnim = &m_anims["punch"];
-			if (Debug::soundEffects)
-				sndMgr->playSound("punch", false);
+			sndMgr->playSound("punch", false);
 			m_animatedSprite.play(*currentAnim);
 			m_animatedSprite.setLooped(false);
 			m_attacking = true;
 			if (attackableEnemies.size() != 0)
-				attackableEnemies[0]->takeDamage(50); 
+				attackableEnemies[0]->takeDamage(50);
 		}
 	}
-	if (m_currentEvent.type == sf::Event::JoystickButtonPressed && previousRelease && m_currentEvent.joystickButton.button == 1){
+	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 1){
+		std::cout << "pressed 1" << '\n';
 		if (m_attacking == false){
 			currentAnim = &m_anims["kick"];
 			m_animatedSprite.play(*currentAnim);
@@ -49,7 +41,7 @@ void Player::behaviour(){
 		}
 	}
 
-	if (m_currentEvent.type == sf::Event::JoystickButtonPressed && previousRelease && m_currentEvent.joystickButton.button == 2){
+	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 2){
 		if (m_attacking == false) {
 			currentAnim = &m_anims["flip"];
 			m_animatedSprite.play(*currentAnim);
@@ -69,6 +61,18 @@ void Player::behaviour(){
 			}
 		}
 	}
+}
+
+void Player::behaviour(){
+
+	for (const Character* e : attackableEnemies){
+		if (e->getAlive() == false){
+			attackableEnemies.erase(std::find(attackableEnemies.begin(), attackableEnemies.end(), e));
+			break;
+		}
+	}
+
+	
 	//combos
 	if (m_attacking == true && comboQ.size() != 0 && m_animatedSprite.getFrame() == comboQ.front().frameChange){
 		Animation* anim = &m_anims[comboQ.front().name];
@@ -86,7 +90,6 @@ void Player::behaviour(){
 		m_animatedSprite.setLooped(true);
 		m_attacking = false;
 	}
-	previousRelease = m_currentEvent.type == sf::Event::JoystickButtonPressed;
 	/*float xPos = 0;
 	float yPos = 0;
 	if (m_currentEvent.type == sf::Event::JoystickMoved)
@@ -98,8 +101,8 @@ void Player::behaviour(){
 	}
 	std::cout << xPos << ", " << yPos << std::endl;*/
 	if (Debug::displayInfo) std::cout << attackableEnemies.size() << std::endl;
-	float xPos = sf::Joystick::getAxisPosition(joystick, sf::Joystick::Axis::X);
-	float yPos = sf::Joystick::getAxisPosition(joystick, sf::Joystick::Axis::Y);
+	float xPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::X);
+	float yPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::Y);
 	if ((xPos < 10 && xPos > -10) &&
 		(yPos < 10 && yPos > -10)){
 		m_velocity.x = 0;
@@ -107,16 +110,11 @@ void Player::behaviour(){
 		sndMgr->stopSound("walking_grass");
 		return;
 	}
-	if (Debug::soundEffects)
-		sndMgr->playSound("walking_grass", true);
+	sndMgr->playSound("walking_grass", true);
 	xPos = (xPos / 100) * m_speed;
 	yPos = (yPos / 100) * m_speed;
 
 	m_velocity = sf::Vector2f(xPos, yPos);
-}
-
-void Player::setEvent(sf::Event e){
-	m_currentEvent = e;
 }
 
 sf::Vector2f Player::getVelocity(){

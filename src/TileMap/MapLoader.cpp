@@ -65,6 +65,7 @@ void MapLoader::cull(sf::RenderTarget& target){
 		bounds.top -= static_cast<float>(m_tileHeight);
 		bounds.width += static_cast<float>(m_tileWidth * 2);
 		bounds.height += static_cast<float>(m_tileHeight * 2);
+
 		m_bounds = bounds;
 		for (MapLayer& layer : m_layers)
 			layer.cull(m_bounds);

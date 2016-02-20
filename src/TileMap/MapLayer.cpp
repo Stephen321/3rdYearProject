@@ -4,7 +4,7 @@
 MapLayer::MapLayer(std::string name):
 m_name(name),
 m_visible(true),
-PATCH_SIZE(10),
+PATCH_SIZE(30),
 m_tilePatches(0){
 }
 
@@ -18,11 +18,6 @@ std::string MapLayer::getName() const{
 
 void MapLayer::cull(sf::FloatRect bounds){
 	if (m_type == MapLayerType::TileLayer){
-		//times 3 so that doesnt cull tiles that are shown
-		bounds.left -= bounds.width / 2.f;
-		bounds.top -= bounds.height / 2.f;
-		bounds.width *= 2.f;
-		bounds.height *= 2.5f;
 		int tilePatchCount = m_tilePatches.size();
 		for (int i = 0; i < tilePatchCount; i++){
 			if (bounds.intersects(m_tilePatches[i].aabb))
@@ -30,9 +25,6 @@ void MapLayer::cull(sf::FloatRect bounds){
 			else
 				m_tilePatches[i].visible = false;
 		}
-
-
-
 		sf::RectangleShape test;
 		test.setSize(sf::Vector2f(bounds.width, bounds.height));
 		test.setFillColor(sf::Color(255, 0,0, 25));
@@ -75,40 +67,49 @@ MapLayer::MapLayerType MapLayer::getType () const{
 void MapLayer::setTilePatches(const vector<TilePatch> & tilePatches){
 	m_tilePatches = tilePatches;
 	int tilePatchCount = m_tilePatches.size();
-	for (int i = 0; i < tilePatchCount; i++){
-		const vector<MapTile> & tiles = m_tilePatches[i].tiles;
-		sf::FloatRect bounds;
-		if (!tiles.empty() && bounds.width == 0.f){
-			bounds.left = tiles[0].getPosition().x;
-			bounds.top = tiles[0].getPosition().y;
-			bounds.width = tiles[0].getSize().x;
-			bounds.height = tiles[0].getSize().y;
+	for (int i = 0; i < tilePatchCount; i++){ //loop through every patch
+		const vector<MapTile> & tiles = m_tilePatches[i].tiles; //get tiles in patch
+		int tileCount = tiles.size();
+		if (tileCount != 0) { //if its not empty
+			//set up 
+			sf::Vector2f position = tiles[0].getPosition();
+			sf::Vector2i size = tiles[0].getSize();
+			float tileRatio = size.x / size.y;
+			sf::FloatRect bounds;
+			int minX = std::numeric_limits<int>::max(), maxX = std::numeric_limits<int>::min(),
+				minY = std::numeric_limits<int>::max(), maxY = std::numeric_limits<int>::min();
+
+			for (int j = 0; j < tileCount; j++){ //loop through every tile
+				position = tiles[j].getPosition();
+				size = sf::Vector2i(tiles[j].getSize().x / tileRatio, tiles[j].getSize().y / tileRatio);
+				if (position.x < minX){
+					minX = position.x;
+				}
+				if (position.y < minY){
+					minY = position.y;
+				}
+				if (position.x + size.x > maxX){
+					maxX = position.x + size.x;
+				}
+				if (position.y + size.y > maxY){
+					maxY = position.y + size.y;
+				}
+			}
+			bounds.left = minX;
+			bounds.top = minY;
+			bounds.width = maxX - minX;
+			bounds.height = maxY - minY;
+
+			m_tilePatches[i].aabb = bounds;
+			sf::RectangleShape test;
+			test.setSize(sf::Vector2f(bounds.width, bounds.height));
+			test.setFillColor(sf::Color::Transparent);
+			test.setOutlineColor(sf::Color::Blue);
+			test.setOutlineThickness(4.f);
+			test.setPosition(bounds.left, bounds.top);
+			testShapes.push_back(test);
 		}
-		for (int j = 0; j < m_tilePatches[i].size; j++){
-			if (tiles[j].getPosition().x < bounds.left){
-				bounds.left = tiles[j].getPosition().x;
-			}
-			if (tiles[j].getPosition().y < bounds.top){
-				bounds.top = tiles[j].getPosition().y;
-			} //tiles[j].getPosition().y
-			if (fabs(bounds.left -(tiles[j].getPosition().x + tiles[j].getSize().x)) > bounds.width){
-				bounds.width = fabs(bounds.left - (tiles[j].getPosition().x + tiles[j].getSize().x));
-			}
-			if (fabs(bounds.top - (tiles[j].getPosition().y + tiles[j].getSize().y)) > bounds.height){
-				bounds.height = fabs(bounds.top - (tiles[j].getPosition().y + tiles[j].getSize().y));
-			}
-		}
-		m_tilePatches[i].aabb = bounds;
-		sf::RectangleShape test;
-		test.setSize(sf::Vector2f(bounds.width, bounds.height));
-		test.setFillColor(sf::Color::Transparent);
-		test.setOutlineColor(sf::Color::Blue);
-		test.setOutlineThickness(4.f);
-		test.setPosition(bounds.left, bounds.top);
-		if (bounds.width != 0.f)
- 			testShapes.push_back(test);
 	}
-	testShapes.push_back(sf::RectangleShape());
 }
 
 int MapLayer::getPatchSize() const{

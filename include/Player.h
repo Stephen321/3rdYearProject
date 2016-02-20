@@ -11,8 +11,8 @@ public:
 	virtual void startContact() override;
 	virtual void endContact() override;
 	void sensorEnd(Character*) override;
-	void sensorStart(Character*) override;	
-	void setEvent(sf::Event e);
+	void sensorStart(Character*) override;
+	void handleEvent(sf::Event e);
 	sf::Vector2f getVelocity();
 //protected:
 private:
@@ -22,8 +22,7 @@ private:
 	} Combo;
 	void behaviour();
 	std::vector<Character*> attackableEnemies;
-	sf::Event m_currentEvent;
-	bool previousRelease = false;
+	int m_joystick;
 	std::queue<Combo> comboQ;
 };
 #endif

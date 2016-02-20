@@ -5,8 +5,11 @@
 #include "MapObject.h"
 #include <vector>
 
+
 using std::vector;
 using namespace tmx;
+
+class MapLoader;
 
 class MapLayer : public sf::Drawable {
 public:
@@ -46,5 +49,7 @@ private:
 	MapLayerType m_type;
 	std::string m_name;
 };
+
+#include "MapLoader.h"
 
 #endif

@@ -44,7 +44,7 @@ int main()
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
 	//window.setVerticalSyncEnabled(true);
-	//window.setFramerateLimit(60);
+	window.setFramerateLimit(60u);
 
 
 	std::vector<Screen*> Screens;

@@ -21,8 +21,9 @@ public:
 		float spriteScale;
 		float maxHealth;
 		float maxSpeed;
-		CollisionFilters filterCategory;
-		CollisionFilters filterMask;
+		uint16 filterCategory;
+		uint16 filterMask;
+		uint16 filterSensor;
 	}CharInfo;
 	CharInfo playerInfo;
 	CharInfo aiInfo;

@@ -13,27 +13,6 @@ SoundManager::SoundManager(){
 	listenerCircle = sf::CircleShape(10);
 	listenerCircle.setFillColor(sf::Color(101, 205, 95));
 	listenerCircle.setOrigin(10.f, 10.f);
-
-	result = m_system->createReverb(&reverb);
-	ERRCHECK(result);
-	FMOD_REVERB_PROPERTIES prop = FMOD_PRESET_BATHROOM;
-	reverb->setProperties(&prop);
-	FMOD_VECTOR pos = { 420, 540,0 };
-	float mindist = 100.0f;
-	float maxdist = 150.0f;
-	reverb->set3DAttributes(&pos, mindist, maxdist);
-	reverb->setActive(false);
-
-	reverbCircle = sf::CircleShape(100);
-	reverbCircle.setFillColor(sf::Color(0, 0, 100));
-	reverbCircle.setOrigin(100.f, 100.f);
-	reverbCircle.setPosition(420.f, 540.f);
-
-
-	reverbCircle2 = sf::CircleShape(150);
-	reverbCircle2.setFillColor(sf::Color(0, 0, 150));
-	reverbCircle2.setOrigin(150.f, 150.f);
-	reverbCircle2.setPosition(420.f, 540.f);
 }
 
 std::shared_ptr<SoundManager> SoundManager::getInstance(){
@@ -115,30 +94,10 @@ void SoundManager::setListener(Player * _player){
 }
 
 void SoundManager::update(){
-	if (Debug::reverb){
-		FMOD_REVERB_PROPERTIES prop1 = FMOD_PRESET_FOREST;
-		FMOD_RESULT result = m_system->setReverbAmbientProperties(&prop1);
-		ERRCHECK(result);
-		reverb->setActive(true);
-	}
-	else{
-		FMOD_REVERB_PROPERTIES prop1 = FMOD_PRESET_OFF;
-		FMOD_RESULT result = m_system->setReverbAmbientProperties(&prop1);
-		ERRCHECK(result);
-		reverb->setActive(false);
-	}
 	const FMOD_VECTOR pos = { player->getPosition().x, player->getPosition().y, 0 };
 	const FMOD_VECTOR vel = { player->getVelocity().x, player->getVelocity().y, 0 };
 	listenerCircle.setPosition(player->getPosition());
 	FMOD_RESULT result = m_system->set3DListenerAttributes(0, &pos, &vel, 0, 0);
 	ERRCHECK(result);
 	m_system->update();
-}
-
-void SoundManager::draw(sf::RenderTarget& target, sf::RenderStates states) const{
-	if (Debug::reverb){
-		target.draw(reverbCircle2);
-		target.draw(reverbCircle);
-		target.draw(listenerCircle);
-	}
 }

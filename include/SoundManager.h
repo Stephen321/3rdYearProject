@@ -10,7 +10,7 @@
 
 class Player;
 
-class SoundManager : public sf::Drawable {
+class SoundManager {
 public:
 	static std::shared_ptr<SoundManager> getInstance();
 	void loadSound(const std::string & filePath = "", const std::string & fileName = "", const std::string & name = "", bool stream = false);
@@ -30,11 +30,7 @@ private:
 					   m_sounds; //the map
 	int SOUNDS_AMOUNT;
 	void ERRCHECK(FMOD_RESULT result);
-	FMOD::Reverb * reverb;
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	sf::CircleShape listenerCircle;
-	sf::CircleShape reverbCircle;
-	sf::CircleShape reverbCircle2;
 };
 
 #include "Player.h"

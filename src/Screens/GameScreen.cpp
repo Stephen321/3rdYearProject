@@ -85,23 +85,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 	succesText.setString("");
 	succesText.setPosition(succesText.getPosition().x - 100, succesText.getPosition().y);
 
-	//sound text
-	sf::Text soundEffectsText;
-	soundEffectsText.setFont(font);
-	soundEffectsText.setStyle(sf::Text::Regular);
-	soundEffectsText.setCharacterSize(20);
-	sf::Text streamSoundText;
-	streamSoundText.setFont(font);
-	streamSoundText.setStyle(sf::Text::Regular);
-	streamSoundText.setCharacterSize(20);
-	sf::Text sound3DSound;
-	sound3DSound.setFont(font);
-	sound3DSound.setStyle(sf::Text::Regular);
-	sound3DSound.setCharacterSize(20);
-	sf::Text reverbText;
-	reverbText.setFont(font);
-	reverbText.setStyle(sf::Text::Regular);
-	reverbText.setCharacterSize(20);
+	//sound
+	sndMgr->playSound("wind_ambience", true, 0.6f);
 	
 	//debug
 	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
@@ -190,7 +175,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 		//Verifying events
 		while (window.pollEvent(Event))
 		{
-			player.setEvent(Event);
+			player.handleEvent(Event);
+
 			// Window closed
 			if (Event.type == sf::Event::Closed)
 			{
@@ -201,27 +187,6 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::P))
 				Debug::displayPathfinder = !Debug::displayPathfinder;
-
-			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num1)){
-				Debug::soundEffects = !Debug::soundEffects;
-			}
-			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num2)){
-				Debug::backgroundStream = !Debug::backgroundStream;
-				if (Debug::backgroundStream)
-					sndMgr->playSound("wind_ambience", true, 0.6f);
-				else
-					sndMgr->stopSound("wind_ambience");
-			}
-			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num3)){
-				Debug::sound3D = !Debug::sound3D;
-				if (Debug::sound3D)
-					sndMgr->playSound("bird_tweet_1", true, 0.5f, birdCircle.getPosition());
-				else
-					sndMgr->stopSound("bird_tweet_1");
-			}
-			if ((Event.type == sf::Event::KeyReleased) && (Event.key.code == sf::Keyboard::Num4)){
-				Debug::reverb = !Debug::reverb;
-			}
 			if (Event.type == sf::Event::EventType::JoystickButtonPressed && Event.joystickButton.button == 7)
 			{
 				return 0;
@@ -240,18 +205,22 @@ int GameScreen::Run(sf::RenderWindow &window)
 				if (Event.mouseButton.button == sf::Mouse::Button::Right)
 					view.reset(viewRect);
 			}
-		}		
+		}
+		world.Step(1.f / 60.f, 8, 3);
+		//world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
 		//update sound
-		//if (soundClock.getElapsedTime().asSeconds() > soundPlayDelay){
-		//	soundPlayDelay = 1 + (rand() % SOUND_DELAY);
-		//	soundClock.restart();
-		//	int soundToPlay = 1 + (rand() % 5);
-		//	//" + std::to_string(soundToPlay)
-		//	sndMgr->play3DSound("bird_tweet_1", true, birdCircle.getPosition());
-		//}
-		//birdCircle.setPosition((int)ml.IsometricToOrthogonal(sf::Vector2f(160, 0)).x, 
-		//					   (int)ml.IsometricToOrthogonal(sf::Vector2f(160, 0)).y);
+		if (soundClock.getElapsedTime().asSeconds() > soundPlayDelay){
+			soundPlayDelay = 1 + (rand() % SOUND_DELAY);
+			soundClock.restart();
+			int soundDistance = 50;
+			int minDistace = 35;
+			sf::Vector2f soundOffset((rand() % ((2 * soundDistance) + 1)) - soundDistance + minDistace,
+									 (rand() % ((2 * soundDistance) + 1)) - soundDistance + minDistace);
+			birdCircle.setPosition(player.getPosition() + soundOffset);
+			int soundToPlay = 1 + (rand() % 5);
+			sndMgr->playSound("bird_tweet_" + std::to_string(soundToPlay), false, 0.5f, birdCircle.getPosition());
+		}
 
 		//update stuff
 		sf::Time dt = frameClock.restart();
@@ -262,14 +231,13 @@ int GameScreen::Run(sf::RenderWindow &window)
 		bounds.width = view.getSize().x;
 		bounds.height = view.getSize().y;
 
-		player.update(dt, bounds);
+		player.update(dt, bounds);  
 		for (const std::shared_ptr<Character>& c : enemies)
 			if (c->getAlive())
 			c->update(dt, bounds);
 		for (const std::shared_ptr<GameObject>& o : gameObjects)
 			o->update(bounds);
 
-		world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
 		if (player.getAlive() == false && succesText.getString() == ""){
 			succesText.setString("You lost!");
@@ -342,40 +310,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 			return (v1->getPosition().y < v2->getPosition().y);
 		});
 
-		window.draw(*sndMgr);
-		//sound debug stuff
-		if (Debug::sound3D){
-			window.draw(birdCircle);
-		}
-
 		for (const VisibleObject* v : visibleChars)
 			window.draw(*v);
 
-		//sound info
-		window.setView(window.getDefaultView());
-		//success
-		window.draw(succesText);
-		//sound effects
-		sf::Vector2f soundEffectsTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 0);
-		soundEffectsText.setPosition(soundEffectsTextPos);
-		soundEffectsText.setString("Sound Effects Music: " + std::string((Debug::soundEffects ? "On" : "Off")) + "  (Press 1)");
-		//window.draw(soundEffectsText);
-		//stream background
-		sf::Vector2f streamSoundTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 25);
-		streamSoundText.setPosition(streamSoundTextPos);
-		streamSoundText.setString("Stream Music: " + std::string((Debug::backgroundStream ? "On" : "Off")) + "  (Press 2)");
-		//window.draw(streamSoundText);
-		//3d sound
-		sf::Vector2f sound3DTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 50);
-		sound3DSound.setPosition(sound3DTextPos);
-		sound3DSound.setString("3D sound: " + std::string((Debug::sound3D ? "On" : "Off")) + "  (Press 3)");
-		//window.draw(sound3DSound);
-		//reverb
-		sf::Vector2f reverbTextPos = window.getView().getCenter() + sf::Vector2f(((-window.getView().getSize().x / 2)), (-window.getView().getSize().y / 2) + 75);
-		reverbText.setPosition(reverbTextPos);
-		reverbText.setString("Reverb: " + std::string((Debug::reverb ? "On" : "Off")) + "  (Press 4)");
-		//window.draw(reverbText);
-		window.setView(view);
 		if (Debug::displayInfo){
 			window.setView(window.getDefaultView());
 			sf::Vector2f screenTxtPos = window.getView().getCenter() + sf::Vector2f(((window.getView().getSize().x / 2) - 210), (-window.getView().getSize().y / 2) + 0);

@@ -1,7 +1,7 @@
 #include "Character.h"
 
 
-Character::Character(b2World& world, CharacterType charType, sf::Vector2f position, Pathfinder * pf) :
+Character::Character(b2World& world, CharacterType charType, const sf::Vector2f& position, Pathfinder * pf) :
 m_visible(false),
 m_attacking(false),
 m_alive(true),
@@ -9,7 +9,7 @@ m_pathFinder(pf){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	sndMgr = SoundManager::getInstance();
 
-	GameData::CharInfo* info;
+	const GameData::CharInfo* info;
 	if (charType == CharacterType::PLAYER)
 		info = &ptr->playerInfo;
 	else if (charType == CharacterType::AI)
@@ -21,8 +21,6 @@ m_pathFinder(pf){
 	float maxHealth = info->maxHealth;
 	m_anims = info->anims;
 	m_scale = info->spriteScale; 
-	CollisionFilters filterCategory = info->filterCategory;
-	CollisionFilters filterMask = info->filterMask;
 	m_speed = info->maxSpeed;
 
 	m_animatedSprite = AnimatedSprite(sf::seconds(playSpeed), false, true);
@@ -32,24 +30,24 @@ m_pathFinder(pf){
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
 	m_health = HealthBar(maxHealth, sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + position);
 
-	setUpBox2D(world, SfToBoxVec(position), filterCategory, filterMask);
+	setUpBox2D(world, SfToBoxVec(position), info);
 }
 
-void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters filterCategory, CollisionFilters filterMask){
+void Character::setUpBox2D(b2World& world, const b2Vec2& position, const GameData::CharInfo* info){
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(position.x, position.y);
 	bodyDef.angle = 0.f;
 	m_body = world.CreateBody(&bodyDef);
+	m_body->SetFixedRotation(true);
 
 	b2CircleShape circleShape;
 	circleShape.m_radius = SfToBoxFloat(6.f);
 
 	b2FixtureDef circleFictureDef;
 	circleFictureDef.shape = &circleShape;
-	circleFictureDef.density = 1;
-	circleFictureDef.restitution = 0.99f;
-	circleFictureDef.filter.categoryBits = (uint16)filterCategory;
+	circleFictureDef.filter.categoryBits = info->filterCategory;
+	circleFictureDef.filter.maskBits = info->filterMask;
 	m_body->CreateFixture(&circleFictureDef);
 
 	//add sensor
@@ -59,8 +57,8 @@ void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters fil
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.shape = &circleShape2;
 	myFixtureDef.isSensor = true;
-	myFixtureDef.filter.categoryBits = (uint16)filterCategory;
-	myFixtureDef.filter.maskBits = (uint16)filterMask;
+	myFixtureDef.filter.categoryBits = info->filterCategory;
+	myFixtureDef.filter.maskBits = info->filterSensor;
 	m_body->CreateFixture(&myFixtureDef);
 
 	m_spriteOffset = sf::Vector2f(0, 6 - m_animatedSprite.getGlobalBounds().height / 2.f);
@@ -91,7 +89,8 @@ void Character::setUpBox2D(b2World& world, b2Vec2 position, CollisionFilters fil
 
 
 void Character::takeDamage(float damage){
-	m_alive = m_health.changeHealth(-damage);
+	if (m_alive)
+		m_alive = m_health.changeHealth(-damage);
 }
 
 void Character::startContact(){

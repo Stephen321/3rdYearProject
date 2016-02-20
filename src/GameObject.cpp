@@ -25,9 +25,8 @@ m_type(type){
 	
 	b2FixtureDef polyFictureDef;
 	polyFictureDef.shape = &polyShape;
-	polyFictureDef.density = 1;
-	polyFictureDef.restitution = 0.99f;
 	polyFictureDef.filter.categoryBits = (uint16)filter;
+	polyFictureDef.filter.maskBits = ~(uint16)filter; //everything else
 	m_body->CreateFixture(&polyFictureDef);
 	m_position = BoxToSfVec(m_body->GetPosition());
 
