@@ -14,13 +14,13 @@ public:
 	void sensorStart(Character*) override;
 	void handleEvent(sf::Event e);
 	sf::Vector2f getVelocity();
+	void behaviour() override;
 //protected:
 private:
 	typedef struct _Combo{
 		std::string name;
 		int frameChange;
 	} Combo;
-	void behaviour();
 	std::vector<Character*> attackableEnemies;
 	int m_joystick;
 	std::queue<Combo> comboQ;

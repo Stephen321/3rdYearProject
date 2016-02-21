@@ -136,11 +136,11 @@ int GameScreen::Run(sf::RenderWindow &window)
 			{
 				if (o.GetName() == "Rock")
 				{
-					gameObjects.push_back(std::make_shared<Rock>(world, o.GetPosition()));
+					gameObjects.push_back(std::make_shared<Rock>(world, o.GetCentre()));
 				}
 				else if (o.GetName() == "Bush")
 				{
-					gameObjects.push_back(std::make_shared<Bush>(world, o.GetPosition()));
+					gameObjects.push_back(std::make_shared<Bush>(world, o.GetCentre()));
 				}
 			}
 		}

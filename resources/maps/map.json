@@ -120,7 +120,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":0,
          "x":0,
          "y":0
@@ -2198,8 +2198,8 @@
                  "type":"Bush",
                  "visible":true,
                  "width":32,
-                 "x":3296,
-                 "y":3552
+                 "x":2816,
+                 "y":3904
                 }, 
                 {
                  "height":32,
@@ -7803,7 +7803,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":584,
+ "nextobjectid":588,
  "orientation":"isometric",
  "properties":
     {

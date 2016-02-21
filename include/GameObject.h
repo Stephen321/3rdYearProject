@@ -19,7 +19,8 @@ public:
 protected:
 	GameObject(b2World& world, sf::Vector2f position, ObjectType type);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
+	sf::CircleShape centreTest;
+	sf::RectangleShape boundsTest;
 	sf::Sprite m_sprite;
 	sf::FloatRect m_bounds;
 	bool m_visible;

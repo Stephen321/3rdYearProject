@@ -36,6 +36,7 @@ public:
 	void takeDamage(float damage);
 	virtual void sensorEnd(Character*) = 0;
 	virtual void sensorStart(Character*) = 0;
+	virtual void behaviour() = 0;
 	void setVelocity(sf::Vector2f value);
 	virtual sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f position);

@@ -18,6 +18,7 @@
     <ClCompile Include="src\Bush.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Debug.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\GameData.cpp" />
     <ClCompile Include="src\GameLoader.cpp" />
     <ClCompile Include="src\HealthBar.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="include\CollisionFilters.h" />
     <ClInclude Include="include\Debug.h" />
     <ClInclude Include="include\dirent.h" />
+    <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\GameData.h" />
     <ClInclude Include="include\GameLoader.h" />
     <ClInclude Include="include\HealthBar.h" />

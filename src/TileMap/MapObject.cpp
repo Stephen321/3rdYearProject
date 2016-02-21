@@ -290,7 +290,7 @@ sf::Vector2f MapObject::CalcCentre() const
 	if (m_shape == Rectangle || m_polypoints.size() < 3)
 	{
 		//we don't have a triangle so use bounding box
-		return sf::Vector2f(m_position.x + (m_size.x / 2.f), m_position.y + (m_size.y / 2.f));
+		return sf::Vector2f(m_position.x, m_position.y + (m_size.y / 2.f));
 	}
 	//calc centroid of poly shape
 	sf::Vector2f centroid;

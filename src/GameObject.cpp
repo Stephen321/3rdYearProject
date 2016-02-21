@@ -13,14 +13,30 @@ m_type(type){
 	else if (type == ObjectType::TALLGRASS)
 		m_sprite = sf::Sprite(ptr->tallGrassTexture);
 
-	m_sprite.setOrigin(m_sprite.getTexture()->getSize().x / 2.f, m_sprite.getTexture()->getSize().y / 2.f);
+	m_sprite.setOrigin(m_sprite.getTextureRect().width / 2.f, m_sprite.getTextureRect().height - 16);
 	m_position = position;
+
+	//test
+	centreTest = sf::CircleShape(5);
+	centreTest.setOrigin(5, 5);
+	centreTest.setPosition(position);
+	centreTest.setOutlineColor(sf::Color::Blue);
+	centreTest.setFillColor(sf::Color::Transparent);
+	centreTest.setOutlineThickness(2);
 
 	m_bounds.left = m_position.x - m_sprite.getOrigin().x;
 	m_bounds.top = m_position.y - m_sprite.getOrigin().y; 
-	m_bounds.width = m_sprite.getOrigin().x * 2;
-	m_bounds.height = m_sprite.getOrigin().y * 2;
+	m_bounds.width = m_sprite.getGlobalBounds().width;
+	m_bounds.height = m_sprite.getGlobalBounds().height;
 	m_sprite.setPosition(m_position);
+
+	//test
+	boundsTest = sf::RectangleShape();
+	boundsTest.setSize(sf::Vector2f(m_bounds.width, m_bounds.height));
+	boundsTest.setFillColor(sf::Color::Transparent);
+	boundsTest.setOutlineColor(sf::Color::Blue);
+	boundsTest.setOutlineThickness(2.f);
+	boundsTest.setPosition(m_bounds.left, m_bounds.top);
 }
 
 void GameObject::update(sf::FloatRect viewBounds){
@@ -30,6 +46,8 @@ void GameObject::update(sf::FloatRect viewBounds){
 void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	if (m_visible){
 		target.draw(m_sprite);
+		target.draw(centreTest);
+		target.draw(boundsTest);
 	}
 }
 

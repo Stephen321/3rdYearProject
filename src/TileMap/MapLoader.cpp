@@ -204,6 +204,7 @@ MapTile MapLoader::createTile(int x, int y, int gid, int tileSetIndex){
 	sf::Sprite sprite(*currentTileSet.getTexture());
 	sf::Vector2f position = getPositionFromTileCoords(x,y);
 	sprite.setPosition(position);
+	sprite.setOrigin(m_tileWidth / 2.f, 0);
 	sprite.setTextureRect(rect);
 
 	return MapTile(sprite, gid, tileSetTileWidth, tileSetTileHeight, propertyMap);//TODO: height
