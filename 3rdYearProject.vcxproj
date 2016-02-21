@@ -35,6 +35,7 @@
     <ClCompile Include="src\Screens\OptionsScreen.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
+    <ClCompile Include="src\TallGrass.cpp" />
     <ClCompile Include="src\TileMap\BodyCreator.cpp" />
     <ClCompile Include="src\TileMap\DebugShape.cpp" />
     <ClCompile Include="src\TileMap\MapLayer.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="src\TileMap\MapObject.cpp" />
     <ClCompile Include="src\TileMap\MapTile.cpp" />
     <ClCompile Include="src\TileMap\TileSet.cpp" />
+    <ClCompile Include="src\Tree.cpp" />
     <ClCompile Include="src\VisibleObject.cpp" />
   </ItemGroup>
   <ItemGroup>

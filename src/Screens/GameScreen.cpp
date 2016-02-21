@@ -142,6 +142,14 @@ int GameScreen::Run(sf::RenderWindow &window)
 				{
 					gameObjects.push_back(std::make_shared<Bush>(world, o.GetCentre()));
 				}
+				else if (o.GetName() == "Tree")
+				{
+					gameObjects.push_back(std::make_shared<Tree>(world, o.GetCentre()));
+				}
+				else if (o.GetName() == "TallGrass")
+				{
+					gameObjects.push_back(std::make_shared<TallGrass>(world, o.GetCentre()));
+				}
 			}
 		}
 	}

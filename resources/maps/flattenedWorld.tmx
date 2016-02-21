@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="isometric" renderorder="right-down" width="147" height="158" tilewidth="64" tileheight="32" nextobjectid="584">
- <tileset firstgid="1" name="lowTiles" tilewidth="64" tileheight="32" tilecount="128" columns="8">
+<map version="1.0" orientation="isometric" renderorder="right-down" width="147" height="158" tilewidth="64" tileheight="32" nextobjectid="667">
+ <tileset firstgid="1" name="lowTiles" tilewidth="64" tileheight="32" tilecount="128">
   <image source="lowTiles.png" width="512" height="512"/>
   <terraintypes>
    <terrain name="Grass" tile="-1"/>
@@ -71,10 +71,10 @@
   <tile id="62" terrain="5,4,5,5"/>
   <tile id="63" terrain="5,5,5,4"/>
  </tileset>
- <tileset firstgid="129" name="highTiles" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+ <tileset firstgid="129" name="highTiles" tilewidth="64" tileheight="64" tilecount="64">
   <image source="highTiles.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="193" name="underTiles" tilewidth="64" tileheight="32" tilecount="128" columns="8">
+ <tileset firstgid="193" name="underTiles" tilewidth="64" tileheight="32" tilecount="128">
   <image source="underTiles.png" width="512" height="512"/>
   <terraintypes>
    <terrain name="randomSideDirtLight" tile="-1"/>
@@ -102,11 +102,6 @@
   <tile id="33" terrain="2,2,2,2"/>
   <tile id="34" terrain="2,2,2,2"/>
   <tile id="35" terrain="2,2,2,2"/>
-  <tile id="41">
-   <properties>
-    <property name="area" value="unwalkable"/>
-   </properties>
-  </tile>
   <tile id="48" terrain="3,3,3,3"/>
   <tile id="49" terrain="3,3,3,3"/>
   <tile id="50" terrain="3,3,3,3"/>
@@ -140,11 +135,11 @@
   <tile id="94" terrain="11,11,11,11"/>
   <tile id="95" terrain="11,11,11,11"/>
  </tileset>
- <tileset firstgid="321" name="AsTARtILES" tilewidth="64" tileheight="32" tilecount="5" columns="5">
+ <tileset firstgid="321" name="AsTARtILES" tilewidth="64" tileheight="32" tilecount="5">
   <image source="AsTARtILES.png" width="320" height="32"/>
   <tile id="0">
    <properties>
-    <property name="area" value="unwalkable"/>
+    <property name="area" value="poo"/>
     <property name="walkable" value="false"/>
     <property name="weight" value="10"/>
    </properties>
@@ -41439,7 +41434,7 @@
    <tile gid="322"/>
    <tile gid="322"/>
    <tile gid="321"/>
-   <tile gid="322"/>
+   <tile gid="321"/>
    <tile gid="322"/>
    <tile gid="322"/>
    <tile gid="322"/>
@@ -41585,7 +41580,7 @@
    <tile gid="322"/>
    <tile gid="322"/>
    <tile gid="322"/>
-   <tile gid="321"/>
+   <tile gid="322"/>
    <tile gid="321"/>
    <tile gid="322"/>
    <tile gid="322"/>
@@ -42900,7 +42895,7 @@
    <tile gid="321"/>
    <tile gid="322"/>
    <tile gid="322"/>
-   <tile gid="322"/>
+   <tile gid="321"/>
    <tile gid="321"/>
    <tile gid="321"/>
    <tile gid="321"/>
@@ -46691,7 +46686,6 @@
   <object id="80" name="Bush" type="Bush" x="2944" y="3072" width="32" height="32"/>
   <object id="81" name="Bush" type="Bush" x="2976" y="3072" width="32" height="32"/>
   <object id="82" name="Bush" type="Bush" x="3008" y="3072" width="32" height="32"/>
-  <object id="83" name="Bush" type="Bush" x="3040" y="3072" width="32" height="32"/>
   <object id="85" name="Tree" type="Tree" x="2528" y="3904" width="32" height="32"/>
   <object id="86" name="Tree" type="Tree" x="2592" y="3840" width="32" height="32"/>
   <object id="87" name="Tree" type="Tree" x="2496" y="3712" width="32" height="32"/>
@@ -46737,7 +46731,6 @@
   <object id="127" name="Bush" type="Bush" x="3456" y="2784" width="32" height="32"/>
   <object id="128" name="Bush" type="Bush" x="3520" y="2816" width="32" height="32"/>
   <object id="129" name="Bush" type="Bush" x="3488" y="2784" width="32" height="32"/>
-  <object id="130" name="Bush" type="Bush" x="3520" y="2784" width="32" height="32"/>
   <object id="131" name="Bush" type="Bush" x="3552" y="2816" width="32" height="32"/>
   <object id="132" name="Bush" type="Bush" x="3584" y="2816" width="32" height="32"/>
   <object id="133" name="Bush" type="Bush" x="3616" y="2848" width="32" height="32"/>
@@ -46747,7 +46740,6 @@
   <object id="137" name="Bush" type="Bush" x="3712" y="2944" width="32" height="32"/>
   <object id="138" name="Bush" type="Bush" x="3776" y="3008" width="32" height="32"/>
   <object id="139" name="Bush" type="Bush" x="3776" y="3040" width="32" height="32"/>
-  <object id="140" name="Bush" type="Bush" x="3776" y="3072" width="32" height="32"/>
   <object id="141" name="Bush" type="Bush" x="3360" y="2784" width="32" height="32"/>
   <object id="142" name="Bush" type="Bush" x="3328" y="2784" width="32" height="32"/>
   <object id="143" name="Bush" type="Bush" x="3232" y="2816" width="32" height="32"/>
@@ -46756,9 +46748,7 @@
   <object id="146" name="Bush" type="Bush" x="3840" y="3072" width="32" height="32"/>
   <object id="147" name="Bush" type="Bush" x="3872" y="3072" width="32" height="32"/>
   <object id="148" name="Bush" type="Bush" x="3904" y="3072" width="32" height="32"/>
-  <object id="149" name="Bush" type="Bush" x="3904" y="3040" width="32" height="32"/>
   <object id="150" name="Bush" type="Bush" x="3936" y="3040" width="32" height="32"/>
-  <object id="151" name="Bush" type="Bush" x="3936" y="3008" width="32" height="32"/>
   <object id="152" name="Bush" type="Bush" x="3968" y="3008" width="32" height="32"/>
   <object id="153" name="Bush" type="Bush" x="3968" y="2976" width="32" height="32"/>
   <object id="154" name="Bush" type="Bush" x="3968" y="2944" width="32" height="32"/>
@@ -46814,7 +46804,6 @@
   <object id="211" name="Bush" type="Bush" x="3008" y="4096" width="32" height="32"/>
   <object id="212" name="Bush" type="Bush" x="3008" y="4128" width="32" height="32"/>
   <object id="213" name="Bush" type="Bush" x="2976" y="4160" width="32" height="32"/>
-  <object id="214" name="Bush" type="Bush" x="3008" y="3936" width="32" height="32"/>
   <object id="215" name="Bush" type="Bush" x="2944" y="4192" width="32" height="32"/>
   <object id="216" name="Bush" type="Bush" x="2912" y="4192" width="32" height="32"/>
   <object id="217" name="Bush" type="Bush" x="2880" y="4224" width="32" height="32"/>
@@ -46957,7 +46946,6 @@
   <object id="362" name="Bush" type="Bush" x="2656" y="1728" width="32" height="32"/>
   <object id="363" name="Bush" type="Bush" x="2688" y="1760" width="32" height="32"/>
   <object id="364" name="Bush" type="Bush" x="2720" y="1760" width="32" height="32"/>
-  <object id="365" name="Bush" type="Bush" x="2560" y="384" width="32" height="32"/>
   <object id="366" name="Bush" type="Bush" x="2528" y="384" width="32" height="32"/>
   <object id="367" name="Bush" type="Bush" x="2496" y="384" width="32" height="32"/>
   <object id="368" name="Bush" type="Bush" x="2560" y="352" width="32" height="32"/>
@@ -47040,7 +47028,6 @@
   <object id="461" name="Tree" type="Tree" x="2496" y="224" width="32" height="32"/>
   <object id="462" name="Tree" type="Tree" x="2560" y="128" width="32" height="32"/>
   <object id="463" name="Tree" type="Tree" x="2624" y="64" width="32" height="32"/>
-  <object id="464" name="Tree" type="Tree" x="2944" y="128" width="32" height="32"/>
   <object id="465" name="Tree" type="Tree" x="3072" y="160" width="32" height="32"/>
   <object id="466" name="Tree" type="Tree" x="3232" y="224" width="32" height="32"/>
   <object id="467" name="Tree" type="Tree" x="3456" y="352" width="32" height="32"/>
@@ -47071,66 +47058,13 @@
   <object id="492" name="Tree" type="Tree" x="3232" y="928" width="32" height="32"/>
   <object id="493" name="Tree" type="Tree" x="3456" y="960" width="32" height="32"/>
   <object id="494" name="Tree" type="Tree" x="2528" y="704" width="32" height="32"/>
-  <object id="495" name="Bush" type="Bush" x="3328" y="1472" width="32" height="32"/>
-  <object id="496" name="Bush" type="Bush" x="3264" y="1440" width="32" height="32"/>
-  <object id="497" name="Bush" type="Bush" x="3232" y="1408" width="32" height="32"/>
-  <object id="498" name="Bush" type="Bush" x="3200" y="1344" width="32" height="32"/>
-  <object id="499" name="Bush" type="Bush" x="3872" y="1504" width="32" height="32"/>
-  <object id="500" name="Bush" type="Bush" x="3968" y="1536" width="32" height="32"/>
-  <object id="501" name="Bush" type="Bush" x="4000" y="1568" width="32" height="32"/>
-  <object id="502" name="Bush" type="Bush" x="4032" y="1600" width="32" height="32"/>
-  <object id="503" name="Bush" type="Bush" x="4064" y="1696" width="32" height="32"/>
-  <object id="504" name="Bush" type="Bush" x="2656" y="1760" width="32" height="32"/>
-  <object id="505" name="Bush" type="Bush" x="2624" y="1728" width="32" height="32"/>
-  <object id="506" name="Bush" type="Bush" x="2592" y="1696" width="32" height="32"/>
-  <object id="507" name="Bush" type="Bush" x="2560" y="992" width="32" height="32"/>
-  <object id="508" name="Bush" type="Bush" x="2592" y="960" width="32" height="32"/>
-  <object id="509" name="Bush" type="Bush" x="2656" y="928" width="32" height="32"/>
-  <object id="510" name="Bush" type="Bush" x="2720" y="896" width="32" height="32"/>
-  <object id="511" name="Bush" type="Bush" x="2944" y="896" width="32" height="32"/>
-  <object id="512" name="Bush" type="Bush" x="3040" y="928" width="32" height="32"/>
-  <object id="513" name="Bush" type="Bush" x="3136" y="960" width="32" height="32"/>
-  <object id="514" name="Bush" type="Bush" x="3168" y="992" width="32" height="32"/>
-  <object id="515" name="Bush" type="Bush" x="3712" y="992" width="32" height="32"/>
-  <object id="516" name="Bush" type="Bush" x="3744" y="960" width="32" height="32"/>
-  <object id="517" name="Bush" type="Bush" x="3744" y="928" width="32" height="32"/>
-  <object id="518" name="Bush" type="Bush" x="3712" y="896" width="32" height="32"/>
-  <object id="519" name="Bush" type="Bush" x="3264" y="864" width="32" height="32"/>
-  <object id="520" name="Bush" type="Bush" x="3200" y="832" width="32" height="32"/>
-  <object id="521" name="Bush" type="Bush" x="2848" y="800" width="32" height="32"/>
-  <object id="522" name="Bush" type="Bush" x="2688" y="768" width="32" height="32"/>
-  <object id="523" name="Bush" type="Bush" x="2624" y="736" width="32" height="32"/>
-  <object id="524" name="Bush" type="Bush" x="2592" y="704" width="32" height="32"/>
-  <object id="525" name="Bush" type="Bush" x="2560" y="640" width="32" height="32"/>
-  <object id="526" name="Bush" type="Bush" x="2560" y="224" width="32" height="32"/>
-  <object id="527" name="Bush" type="Bush" x="2624" y="128" width="32" height="32"/>
-  <object id="528" name="Bush" type="Bush" x="2592" y="160" width="32" height="32"/>
   <object id="529" name="Tree" type="Tree" x="2464" y="1664" width="32" height="32"/>
   <object id="530" name="Tree" type="Tree" x="2944" y="96" width="32" height="32"/>
   <object id="531" name="Tree" type="Tree" x="4064" y="2048" width="32" height="32"/>
   <object id="532" name="Tree" type="Tree" x="2464" y="608" width="32" height="32"/>
   <object id="533" name="Tree" type="Tree" x="2464" y="384" width="32" height="32"/>
   <object id="534" name="Tree" type="Tree" x="3968" y="2464" width="32" height="32"/>
-  <object id="535" name="Bush" type="Bush" x="3200" y="3552" width="32" height="32"/>
-  <object id="536" name="Bush" type="Bush" x="3168" y="3520" width="32" height="32"/>
-  <object id="537" name="Bush" type="Bush" x="3136" y="3488" width="32" height="32"/>
-  <object id="538" name="Bush" type="Bush" x="3104" y="3456" width="32" height="32"/>
-  <object id="539" name="Bush" type="Bush" x="3072" y="3424" width="32" height="32"/>
-  <object id="540" name="Bush" type="Bush" x="3040" y="3392" width="32" height="32"/>
-  <object id="541" name="Bush" type="Bush" x="2976" y="3392" width="32" height="32"/>
-  <object id="542" name="Bush" type="Bush" x="2976" y="3840" width="32" height="32"/>
-  <object id="543" name="Bush" type="Bush" x="3008" y="3872" width="32" height="32"/>
   <object id="544" name="Bush" type="Bush" x="3040" y="3936" width="32" height="32"/>
-  <object id="545" name="Bush" type="Bush" x="3040" y="4096" width="32" height="32"/>
-  <object id="546" name="Bush" type="Bush" x="3008" y="4160" width="32" height="32"/>
-  <object id="547" name="Bush" type="Bush" x="2976" y="4192" width="32" height="32"/>
-  <object id="548" name="Bush" type="Bush" x="2912" y="4224" width="32" height="32"/>
-  <object id="549" name="Bush" type="Bush" x="2688" y="4192" width="32" height="32"/>
-  <object id="550" name="Bush" type="Bush" x="2656" y="4160" width="32" height="32"/>
-  <object id="552" name="Bush" type="Bush" x="2624" y="4096" width="32" height="32"/>
-  <object id="553" name="Bush" type="Bush" x="2624" y="3936" width="32" height="32"/>
-  <object id="554" name="Bush" type="Bush" x="2656" y="3872" width="32" height="32"/>
-  <object id="555" name="Bush" type="Bush" x="2688" y="3840" width="32" height="32"/>
   <object id="556" name="Bush" type="Bush" x="2720" y="3712" width="32" height="32"/>
   <object id="557" name="Bush" type="Bush" x="2720" y="3680" width="32" height="32"/>
   <object id="558" name="Bush" type="Bush" x="2720" y="3584" width="32" height="32"/>
@@ -47138,27 +47072,122 @@
   <object id="560" name="Bush" type="Bush" x="2720" y="3520" width="32" height="32"/>
   <object id="561" name="Bush" type="Bush" x="2720" y="3328" width="32" height="32"/>
   <object id="562" name="Bush" type="Bush" x="2720" y="3296" width="32" height="32"/>
-  <object id="563" name="Bush" type="Bush" x="2720" y="3200" width="32" height="32"/>
-  <object id="564" name="Bush" type="Bush" x="2752" y="3136" width="32" height="32"/>
-  <object id="565" name="Bush" type="Bush" x="2784" y="3104" width="32" height="32"/>
-  <object id="566" name="Bush" type="Bush" x="2848" y="3072" width="32" height="32"/>
-  <object id="567" name="Bush" type="Bush" x="3040" y="2976" width="32" height="32"/>
-  <object id="568" name="Bush" type="Bush" x="3072" y="2944" width="32" height="32"/>
-  <object id="569" name="Bush" type="Bush" x="3104" y="2912" width="32" height="32"/>
-  <object id="570" name="Bush" type="Bush" x="3136" y="2880" width="32" height="32"/>
-  <object id="571" name="Bush" type="Bush" x="3168" y="2848" width="32" height="32"/>
-  <object id="572" name="Bush" type="Bush" x="3200" y="2816" width="32" height="32"/>
   <object id="573" name="Bush" type="Bush" x="3296" y="2784" width="32" height="32"/>
-  <object id="574" name="Bush" type="Bush" x="3616" y="2816" width="32" height="32"/>
-  <object id="575" name="Bush" type="Bush" x="3648" y="2848" width="32" height="32"/>
-  <object id="576" name="Bush" type="Bush" x="3680" y="2880" width="32" height="32"/>
-  <object id="577" name="Bush" type="Bush" x="3712" y="2912" width="32" height="32"/>
-  <object id="578" name="Bush" type="Bush" x="3744" y="2944" width="32" height="32"/>
-  <object id="579" name="Bush" type="Bush" x="3776" y="2976" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="Collision">
-  <object id="583" x="3081.5" y="3102.5">
-   <polyline points="0,0 8.5,-78.5 176,-234 246,-242"/>
+  <object id="583" x="3328" y="3552">
+   <polyline points="0,0 -64,0 -256,-192 -352,-192 -384,-160 -384,320 -288,416 -288,512 -320,544 -320,576 -384,640 -416,640 -448,672 -512,672 -544,640 -576,640 -640,576 -640,544 -672,512 -672,448 -640,416 -640,384 -576,320 -576,-288 -544,-320 -544,-352 -480,-416 -448,-416 -416,-448 -288,-448 -256,-480 -256,-512 -64,-704 0,-704 32,-736 160,-736 192,-704 256,-704 448,-512 448,-480 480,-448 608,-448 672,-512 672,-1088 704,-1088"/>
+  </object>
+  <object id="584" x="3328" y="3552">
+   <polyline points="0,0 0,32 -96,32 -288,-160 -352,-160 -352,288 -256,384 -256,544 -288,576 -288,608 -352,672 -384,672 -416,704 -512,704 -512,736 -448,736 -448,832 -512,832 -512,864 -544,896 -544,928 -448,928 -416,896 -320,896 -288,864 -224,864 -192,832 -160,832 -128,800 -64,800 -32,768 0,768 32,736 64,736 96,704 128,704 160,672 192,640 224,640 256,608 288,576 320,576 352,544 416,480 448,480 704,224 704,192 800,96 800,64 864,0 864,-32 928,-96 928,-128 960,-160 960,-192 992,-224 992,-256 1024,-288 1024,-352 1056,-384 1056,-416 1088,-448 1088,-512 1120,-544 1120,-640 1152,-672 1152,-832 1184,-864 1184,-928 1152,-960 1152,-992 1088,-1056 1056,-1056 1024,-1088 832,-1088"/>
+  </object>
+  <object id="601" x="4032" y="2080">
+   <polyline points="0,0 32,0 32,-320 0,-352 0,-416 -96,-512 -160,-512 -192,-544 -704,-544 -736,-576 -768,-576 -832,-640 -832,-672 -864,-704 -864,-736 -832,-736 -800,-704 -800,-672 -736,-608 -704,-608 -672,-576 -160,-576 -128,-544 -64,-544 32,-448 32,-384 64,-352 64,0 320,0 352,-32 384,-32 448,-96 448,-128 480,-160 480,-224 448,-256 448,-416 416,-448 416,-544 384,-576 384,-640 352,-672 352,-704 320,-736 320,-800 288,-832 288,-864 256,-896 256,-928 224,-960 224,-992 160,-1056 160,-1088 96,-1152 96,-1184 0,-1280 0,-1312 -256,-1568 -288,-1568 -384,-1664 -416,-1664 -480,-1728 -512,-1728 -576,-1792 -608,-1792 -640,-1824 -672,-1824 -704,-1856 -736,-1856 -768,-1888 -832,-1888 -864,-1920 -896,-1920 -928,-1952 -992,-1952 -1024,-1984 -1056,-1984 -1056,-1952 -1088,-1920 -1344,-1920 -1408,-1856 -1408,-1824 -1440,-1792 -1440,-1696 -1472,-1664 -1568,-1664 -1568,-1632"/>
+  </object>
+  <object id="603" x="2464" y="576">
+   <polyline points="0,0 0,32 128,32 160,64 160,96 224,160 256,160 288,192 416,192 448,224 768,224 800,256 832,256 864,288 1280,288 1344,352 1344,416 1280,480 704,480 640,416 576,416 544,384 480,384 448,352 320,352 288,384 256,384 224,416 192,416 128,480 128,992 160,1024 160,1088 256,1184 288,1184 288,1216 224,1216 128,1120 0,1120 0,1216 32,1248 32,1344 128,1440 160,1440 192,1472 256,1472 288,1504 608,1504 640,1472 704,1472 736,1440 1088,1440 1120,1472 1216,1472 1248,1504 1440,1504"/>
+  </object>
+  <object id="622" x="4032" y="2464">
+   <polyline points="0,0 -128,-384"/>
+  </object>
+  <object id="623" x="4160" y="2464">
+   <polyline points="0,0 -128,-384"/>
+  </object>
+  <object id="624" x="2464" y="576">
+   <polyline points="0,0 -384,-128"/>
+  </object>
+  <object id="625" x="2464" y="448">
+   <polyline points="0,0 -384,-128"/>
+  </object>
+  <object id="626" x="256" y="2432">
+   <polyline points="0,0 0,-320"/>
+  </object>
+  <object id="627" x="128" y="2432">
+   <polyline points="0,0 0,-320"/>
+  </object>
+  <object id="629" x="128" y="2432">
+   <polyline points="0,0 -32,0 -96,64 -96,256 -64,288 -64,448 -32,480 -32,576 0,608 0,672 32,704 32,736 64,768 64,832 96,864 96,896 128,928 128,960 160,992 160,1024 224,1088 224,1120 288,1184 288,1216 384,1312 384,1344 640,1600 672,1600 768,1696 800,1696 864,1760 896,1760 960,1824 992,1824 1024,1856 1152,1856 1184,1888 1344,1888 1376,1920 1440,1920 1472,1952 1504,1952 1632,2080 1920,2080 1984,2016 1984,1952 1952,1920 1952,1824 1920,1792 1920,1696 1888,1664 1888,1440 1920,1408 1920,1248 1952,1216 1952,1088 2016,1088 2048,1056 2080,1024 2080,960 2048,928 1888,928 1888,800 1952,800 1952,256 1888,192 1888,160 1792,64 1696,64 1664,32 1312,32 1280,64 1280,96 1248,128 1248,160 1216,192 1216,224 1184,224 1088,320 800,320 768,288 640,288 608,256 576,256 544,224 544,192 512,160 512,96 448,32 160,32 128,0"/>
+  </object>
+  <object id="636" x="128" y="2112">
+   <polyline points="0,0 -32,-32 -64,-32 -96,-64 -96,-256 -64,-288 -64,-448 -32,-480 -32,-576 0,-608 0,-672 32,-704 32,-736 64,-768 64,-832 96,-864 96,-896 128,-928 128,-960 160,-992 160,-1024 224,-1088 224,-1120 288,-1184 288,-1216 384,-1312 384,-1344 640,-1600 672,-1600 768,-1696 800,-1696 864,-1760 896,-1760 960,-1824 992,-1824 1024,-1856 1056,-1856 1088,-1888 1120,-1888 1152,-1920 1216,-1920 1248,-1952 1280,-1952 1312,-1984 1376,-1984 1408,-2016 1504,-2016 1536,-2048 1728,-2048 1760,-2016 1792,-2016 1920,-1888 1920,-1856 1952,-1824 1952,-1792"/>
+  </object>
+  <object id="639" x="2080" y="448">
+   <polyline points="0,0 0,224 32,256 32,448 0,480 -32,480 -32,512 -64,544 -64,640 -96,672 -96,896 -64,928 -64,1088 -32,1120 -32,1312 0,1344 0,1440 -32,1472 -32,1504 -128,1600 -160,1600 -192,1632 -736,1632 -768,1600 -864,1600 -896,1568 -1024,1568 -1056,1536 -1408,1536 -1440,1568 -1568,1568 -1600,1600 -1664,1600 -1696,1632 -1792,1632 -1824,1664"/>
+  </object>
+  <object id="640" x="3072" y="3616">
+   <polyline points="0,0 96,0 96,96 0,96 0,0"/>
+  </object>
+  <object id="641" x="4192" y="1984">
+   <polyline points="0,0 0,-32 32,-32 32,-128 128,-128 128,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="642" x="4320" y="1824">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="643" x="4160" y="1760">
+   <polyline points="0,0 32,0 32,-32 0,-32 0,0"/>
+  </object>
+  <object id="644" x="4064" y="1568">
+   <polyline points="0,0 32,0 32,-32 0,-32 0,0"/>
+  </object>
+  <object id="645" x="4224" y="1568">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="646" x="3872" y="1472">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="647" x="3712" y="1408">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="648" x="3520" y="1408">
+   <polyline points="0,0 0,-96 64,-96 96,-96 96,0 0,0"/>
+  </object>
+  <object id="649" x="3328" y="1440">
+   <polyline points="0,0 32,0 32,-32 0,-32 0,0"/>
+  </object>
+  <object id="650" x="2912" y="1952">
+   <polyline points="0,0 32,0 32,32 0,32 0,0"/>
+  </object>
+  <object id="651" x="2752" y="1888">
+   <polyline points="0,0 32,0 32,32 0,32 0,0"/>
+  </object>
+  <object id="652" x="2656" y="1888">
+   <polyline points="0,0 32,0 32,32 0,32 0,0"/>
+  </object>
+  <object id="655" x="2560" y="1792">
+   <polyline points="0,0 32,0 32,-32 0,-32 0,0"/>
+  </object>
+  <object id="656" x="3840" y="704">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="657" x="3776" y="608">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="658" x="3680" y="544">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="659" x="3456" y="384">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="660" x="3232" y="256">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="661" x="3072" y="192">
+   <polyline points="0,0 0,-32 32,-32 32,0 0,0"/>
+  </object>
+  <object id="662" x="1920" y="4448">
+   <polyline points="0,0 0,-96 96,-96 96,0 0,0"/>
+  </object>
+  <object id="663" x="1152" y="4224">
+   <polyline points="0,0 0,-96 96,-96 96,0 0,0"/>
+  </object>
+  <object id="664" x="480" y="2688">
+   <polyline points="0,0 0,-96 96,-96 96,0 32,0 0,0"/>
+  </object>
+  <object id="665" x="160" y="2624">
+   <polyline points="0,0 0,-96 -96,-96 -96,0 0,0"/>
+  </object>
+  <object id="666" x="1856" y="2688">
+   <polyline points="0,0 0,-96 96,-96 96,0 0,0"/>
   </object>
  </objectgroup>
 </map>

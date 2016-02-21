@@ -12,7 +12,7 @@ public:
 		BUSH,
 		TALLGRASS
 	};
-	void update(sf::FloatRect viewBounds);
+	virtual void update(sf::FloatRect viewBounds);
 	bool getVisible() const;
 	virtual sf::Vector2f getPosition() const;
 

@@ -16,6 +16,8 @@
 #include "Debug.h"
 #include "Rock.h"
 #include "Bush.h"
+#include "Tree.h"
+#include "TallGrass.h"
 #include "SoundManager.h"
 #include "TileMap\BodyCreator.h"
 #include "Pathfinding\Pathfinder.h"
