@@ -7,6 +7,7 @@ class TallGrass : public GameObject{
 public:
 	TallGrass(b2World& world, sf::Vector2f position);
 	void update(sf::FloatRect viewBounds) override;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
  
 #endif

@@ -42,7 +42,7 @@ void Character::setUpBox2D(b2World& world, const b2Vec2& position, const GameDat
 	m_body->SetFixedRotation(true);
 
 	b2CircleShape circleShape;
-	circleShape.m_radius = SfToBoxFloat(6.f);
+	circleShape.m_radius = SfToBoxFloat(10.f);
 
 	b2FixtureDef circleFictureDef;
 	circleFictureDef.shape = &circleShape;
@@ -52,7 +52,7 @@ void Character::setUpBox2D(b2World& world, const b2Vec2& position, const GameDat
 
 	//add sensor
 	b2CircleShape circleShape2;
-	circleShape2.m_radius = SfToBoxFloat(40.f);
+	circleShape2.m_radius = SfToBoxFloat(50.f);
 
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.shape = &circleShape2;
@@ -60,9 +60,8 @@ void Character::setUpBox2D(b2World& world, const b2Vec2& position, const GameDat
 	myFixtureDef.filter.categoryBits = info->filterCategory;
 	myFixtureDef.filter.maskBits = info->filterSensor;
 	m_body->CreateFixture(&myFixtureDef);
-
+	
 	m_spriteOffset = sf::Vector2f(0, 6 - m_animatedSprite.getGlobalBounds().height / 2.f);
-
 
 	sf::Vector2f pos = BoxToSfVec(m_body->GetPosition());
 	auto test = m_body->GetFixtureList();
@@ -156,6 +155,10 @@ sf::Vector2f Character::getPosition(){
 
 sf::Vector2i Character::getTileCoord() const{
 	return MapLoader::getTileCoordsFromPos(m_position);
+}
+
+sf::Vector2i Character::getTileCoord(sf::Vector2f position) const{
+	return MapLoader::getTileCoordsFromPos(position);
 }
 
 void Character::setPosition(sf::Vector2f position){

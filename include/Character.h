@@ -36,16 +36,17 @@ public:
 	void takeDamage(float damage);
 	virtual void sensorEnd(Character*) = 0;
 	virtual void sensorStart(Character*) = 0;
-	virtual void behaviour() = 0;
 	void setVelocity(sf::Vector2f value);
 	virtual sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f position);
 	bool getAlive() const;
 	void reset(sf::Vector2f resetPos);
 	sf::Vector2i getTileCoord() const;
+	sf::Vector2i getTileCoord(sf::Vector2f position) const;
 
 protected:
 	Character(b2World& world, CharacterType charType, const sf::Vector2f& position, Pathfinder * pf = 0);
+	virtual void behaviour() = 0;
 	void setUpBox2D(b2World& world, const b2Vec2& position, const GameData::CharInfo* info);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	AnimatedSprite m_animatedSprite;

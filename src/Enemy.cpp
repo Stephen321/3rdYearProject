@@ -3,39 +3,53 @@
 Enemy::Enemy(b2World& world, Player* playerP, sf::Vector2f position, Pathfinder * pf) :
 Character(world, CharacterType::AI, position, pf),
 player(playerP),
-attackTimer(0),
-target(0),
-m_lastPlayerTileCoord(-1, -1){}
+m_attackTimer(0),
+m_target(0),
+m_lastTargetTileCoord(player->getTileCoord()),
+m_followPlayer(false),
+m_startPos(position),
+m_attackTime(1.2f),
+m_visibiltyRange(450){}
 
 void Enemy::update(sf::Time dt, sf::FloatRect viewBounds){
+	m_attackTimer += dt.asSeconds();
 	behaviour();
-	attackTimer += dt.asSeconds();
 	Character::update(dt, viewBounds);
 }
 
 void Enemy::behaviour(){
+	setTarget();
 	getWaypoints();
 	followPath();
 	handleAttack();
-
-	if (target != 0 && Debug::displayInfo)
-		m_animatedSprite.setColor(sf::Color::Red);
-	else if (Debug::displayInfo)
-		m_animatedSprite.setColor(sf::Color::Cyan);
 }
 
 
+void Enemy::setTarget(){
+	sf::Vector2f vB = player->getPosition() - getPosition();
+	float distanceSquared = vB.x * vB.x + vB.y * vB.y;
+	if (distanceSquared < (m_visibiltyRange * m_visibiltyRange)){ //player in range
+		m_targetTileCoord = player->getTileCoord();
+		m_followPlayer = true;
+	}
+	else if (m_followPlayer != false){
+		m_targetTileCoord = getTileCoord(m_startPos);
+		m_followPlayer = false;
+	}
+}
+
+//player->getTileCoord()
 void Enemy::getWaypoints(){
-	if (m_lastPlayerTileCoord != player->getTileCoord()){ //update path
+	if (m_lastTargetTileCoord != m_targetTileCoord){ //update path
 		std::string myArea = m_pathFinder->getAreaName(getTileCoord());
-		std::string playerArea = m_pathFinder->getAreaName(player->getTileCoord());
-		if (myArea == playerArea){ //same area
-			vector<sf::Vector2f> newPath = m_pathFinder->findPath(getTileCoord(), player->getTileCoord());
+		std::string targetArea = m_pathFinder->getAreaName(m_targetTileCoord);
+		if (myArea == targetArea){ //same area
+			vector<sf::Vector2f> newPath = m_pathFinder->findPath(getTileCoord(), m_targetTileCoord);
 			if (newPath.empty() == false)
 				m_waypoints = newPath;
-			std::cout << "x: " << player->getTileCoord().x << " y: " << player->getTileCoord().y << std::endl;
+			std::cout << "Target : x: " << m_targetTileCoord.x << " y: " << m_targetTileCoord.y << std::endl;
 		}
-		m_lastPlayerTileCoord = player->getTileCoord();
+		m_lastTargetTileCoord = m_targetTileCoord;
 	}
 }
 
@@ -56,9 +70,9 @@ void Enemy::followPath(){
 }
 
 void Enemy::handleAttack(){
-	if (m_attacking == false && target != 0 && attackTimer > ATTACK_TIME){
-		target->takeDamage(5);
-		attackTimer = 0;
+	if (m_attacking == false && m_target != 0 && m_attackTimer > m_attackTime){
+		m_target->takeDamage(5);
+		m_attackTimer = 0;
 		currentAnim = &m_anims["attack"];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(false);
@@ -73,9 +87,9 @@ void Enemy::handleAttack(){
 }
 
 void Enemy::sensorEnd(Character*){
-	target = 0;
+	m_target = 0;
 }
 
 void Enemy::sensorStart(Character* c){
-	target = c;
+	m_target = c;
 }

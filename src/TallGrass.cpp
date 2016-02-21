@@ -9,3 +9,10 @@ void TallGrass::update(sf::FloatRect viewBounds)
 
 
 }
+void TallGrass::draw(sf::RenderTarget& target, sf::RenderStates states) const{
+	if (m_visible){
+		target.draw(m_sprite);
+		//target.draw(centreTest);
+		//target.draw(boundsTest);
+	}
+}
