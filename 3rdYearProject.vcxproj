@@ -15,6 +15,7 @@
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Box2D.cpp" />
+    <ClCompile Include="src\Bush.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="src\GameData.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="include\AI.h" />
     <ClInclude Include="include\AnimatedSprite.hpp" />
     <ClInclude Include="include\Animation.hpp" />
+    <ClInclude Include="include\Bush.h" />
     <ClInclude Include="include\Character.h" />
     <ClInclude Include="include\CollisionFilters.h" />
     <ClInclude Include="include\Debug.h" />

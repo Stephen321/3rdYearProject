@@ -3,8 +3,20 @@
 GameObject::GameObject(b2World& world, sf::Vector2f position, CollisionFilters filter, ObjectType type) :
 m_type(type){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	m_sprite = sf::Sprite(ptr->rockTexture);
-	m_sprite.setOrigin(ptr->rockTexture.getSize().x / 2.f, ptr->rockTexture.getSize().y / 2.f);
+
+	if (type == ObjectType::ROCK)
+		m_sprite = sf::Sprite(ptr->rockTexture);
+	else if (type == ObjectType::BUSH)
+		m_sprite = sf::Sprite(ptr->bushTexture);
+	else if (type == ObjectType::TREE)
+		m_sprite = sf::Sprite(ptr->treeTexture);
+	else if (type == ObjectType::TALLGRASS)
+		m_sprite = sf::Sprite(ptr->tallGrassTexture);
+
+	
+
+
+	m_sprite.setOrigin(m_sprite.getTexture()->getSize().x / 2.f, m_sprite.getTexture()->getSize().y / 2.f);
 
 	m_position = position;
 	b2BodyDef bodyDef;

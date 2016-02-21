@@ -24,7 +24,10 @@
     },
     "textures" : 
     {
-        "rockTextureFile": "rockTexture.png"
+        "rockTextureFile": "rockTexture.png",
+        "bushTextureFile": "bushTexture.png",
+        "treeTextureFile": "bushTexture.png",
+        "tallGrassTextureFile": "bushTexture.png"
     },
     "char_properties" :
     {

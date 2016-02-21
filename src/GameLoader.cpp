@@ -85,6 +85,12 @@ void GameLoader::loadData(MapLoader * ml, Pathfinder * pf){
 	//textures
 	Value::ConstMemberIterator texturesIT = it->value.MemberBegin();
 	ptr->rockTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->bushTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->treeTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->tallGrassTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());	
 	++it;
 
 	//character properties

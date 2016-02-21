@@ -38,6 +38,9 @@ public:
 	FMOD::Sound * windAmbience;
 	//textures
 	sf::Texture rockTexture;
+	sf::Texture bushTexture;
+	sf::Texture treeTexture;
+	sf::Texture tallGrassTexture;
 
 private:
 	GameData();

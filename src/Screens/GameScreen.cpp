@@ -138,6 +138,10 @@ int GameScreen::Run(sf::RenderWindow &window)
 				{
 					gameObjects.push_back(std::make_shared<Rock>(world, o.GetPosition()));
 				}
+				else if (o.GetName() == "Bush")
+				{
+					gameObjects.push_back(std::make_shared<Bush>(world, o.GetPosition()));
+				}
 			}
 		}
 	}
@@ -206,8 +210,8 @@ int GameScreen::Run(sf::RenderWindow &window)
 					view.reset(viewRect);
 			}
 		}
-		world.Step(1.f / 60.f, 8, 3);
-		//world.Step(box2dClock.restart().asSeconds(), 6, 3);
+		//world.Step(1.f / 60.f, 8, 3);
+		world.Step(box2dClock.restart().asSeconds(), 6, 3);
 
 		//update sound
 		if (soundClock.getElapsedTime().asSeconds() > soundPlayDelay){

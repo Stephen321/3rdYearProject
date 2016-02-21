@@ -11,7 +11,9 @@ class GameObject : public VisibleObject {
 public:
 	enum class ObjectType {
 		ROCK,
-		TREE
+		TREE,
+		BUSH,
+		TALLGRASS
 	};
 	void update(sf::FloatRect viewBounds);
 	bool getVisible() const;
