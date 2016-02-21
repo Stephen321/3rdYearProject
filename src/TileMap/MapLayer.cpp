@@ -4,7 +4,7 @@
 MapLayer::MapLayer(std::string name):
 m_name(name),
 m_visible(true),
-PATCH_SIZE(30),
+PATCH_SIZE(10),
 m_tilePatches(0){
 }
 

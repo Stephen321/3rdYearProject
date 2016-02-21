@@ -13,8 +13,9 @@ public:
 	Pathfinder();
 	~Pathfinder();
 	void setSize(int width, int height);
-	void addNode(int x, int y, bool walkable, const sf::Vector2f& position);
+	void addNode(int x, int y, bool walkable, const std::string& area, const sf::Vector2f& position);
 	std::vector<sf::Vector2f> findPath(const sf::Vector2i& startPos, const sf::Vector2i& goalPos);
+	std::string getAreaName(const sf::Vector2i& coord);
 	void drawNodes(sf::RenderTarget& target) const;//testing
 
 private:

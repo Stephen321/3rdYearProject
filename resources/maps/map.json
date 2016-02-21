@@ -7759,18 +7759,51 @@
          "y":0
         }, 
         {
+         "color":"#ff0000",
          "draworder":"topdown",
          "height":0,
          "name":"Collision",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":583,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":8.5,
+                         "y":-78.5
+                        }, 
+                        {
+                         "x":176,
+                         "y":-234
+                        }, 
+                        {
+                         "x":246,
+                         "y":-242
+                        }],
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":3081.5,
+                 "y":3102.5
+                }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":0,
          "x":0,
          "y":0
         }],
- "nextobjectid":580,
+ "nextobjectid":584,
  "orientation":"isometric",
  "properties":
     {
@@ -7780,6 +7813,7 @@
  "tileheight":32,
  "tilesets":[
         {
+         "columns":8,
          "firstgid":1,
          "image":"lowTiles.png",
          "imageheight":512,
@@ -8064,6 +8098,7 @@
          "tilewidth":64
         }, 
         {
+         "columns":8,
          "firstgid":129,
          "image":"highTiles.png",
          "imageheight":512,
@@ -8080,6 +8115,7 @@
          "tilewidth":64
         }, 
         {
+         "columns":8,
          "firstgid":193,
          "image":"underTiles.png",
          "imageheight":512,
@@ -8142,6 +8178,13 @@
                 }],
          "tilecount":128,
          "tileheight":32,
+         "tileproperties":
+            {
+             "41":
+                {
+                 "area":"unwalkable"
+                }
+            },
          "tiles":
             {
              "24":
@@ -8324,6 +8367,7 @@
          "tilewidth":64
         }, 
         {
+         "columns":5,
          "firstgid":321,
          "image":"AsTARtILES.png",
          "imageheight":32,
@@ -8341,6 +8385,7 @@
             {
              "0":
                 {
+                 "area":"unwalkable",
                  "walkable":"false",
                  "weight":"10"
                 },

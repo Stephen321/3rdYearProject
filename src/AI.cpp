@@ -15,11 +15,15 @@ void AI::update(sf::Time dt, sf::FloatRect viewBounds){
 
 void AI::behaviour(){
 	if (m_lastPlayerTileCoord != player->getTileCoord()){ //update path
-		vector<sf::Vector2f> newPath = m_pathFinder->findPath(getTileCoord(), player->getTileCoord());
-		if (newPath.empty() == false)
-			m_waypoints = newPath;
+		std::string myArea = m_pathFinder->getAreaName(getTileCoord());
+		std::string playerArea = m_pathFinder->getAreaName(player->getTileCoord());
+		if (myArea == playerArea){ //same area
+			vector<sf::Vector2f> newPath = m_pathFinder->findPath(getTileCoord(), player->getTileCoord());
+			if (newPath.empty() == false)
+				m_waypoints = newPath;
+			std::cout << "x: " << player->getTileCoord().x << " y: " << player->getTileCoord().y << std::endl;
+		}
 		m_lastPlayerTileCoord = player->getTileCoord();
-		std::cout << "x: " << player->getTileCoord().x << " y: " << player->getTileCoord().y << std::endl;
 	}
 
 	if (m_waypoints.empty() == false){

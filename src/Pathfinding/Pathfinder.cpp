@@ -28,10 +28,10 @@ void Pathfinder::setSize(int width, int height){
 		m_nodes[i] = 0;
 }
 
-void Pathfinder::addNode(int x, int y, bool walkable, const sf::Vector2f& position) {
+void Pathfinder::addNode(int x, int y, bool walkable, const std::string& area, const sf::Vector2f& position) {
 	int index = x + (y * m_mapWidth);
 	if (m_nodes[index] == 0){
-		m_nodes[index] = new Node(x, y, walkable);
+		m_nodes[index] = new Node(x, y, walkable, area);
 		m_nodes[index]->setPosition(position);
 	}
 }
@@ -67,6 +67,17 @@ int Pathfinder::getNeighbourIndex(const Node * current, int neighbourOffsetIndex
 		return (neighbourPos.x) + (neighbourPos.y * m_mapWidth);
 	else
 		return -1;
+}
+
+std::string Pathfinder::getAreaName(const sf::Vector2i& coord){
+	if (coord.x >= 0 && coord.y >= 0 &&
+		coord.x < m_mapWidth && coord.y < m_mapHeight){
+		int index = coord.x + (coord.y * m_mapWidth);
+		Node * node = m_nodes[index];
+		if (node != 0)
+			return node->area();
+	}
+	return "noNode";
 }
 
 //see https://en.wikipedia.org/wiki/A*_search_algorithm

@@ -224,7 +224,10 @@ void MapLoader::loadPathfindingNodes(const Value & tiles, MapLayer& layer){
 				int tileSetIndex = getGidTileSetIndex(gid);
 				if (tileSetIndex != -1){
 					std::string walkable = m_tileSets[tileSetIndex].getPropertyMap(gid)->at("walkable");
-					pathFinder->addNode(x, y, (walkable == "true") ? true : false, getPositionFromTileCoords(x, y) + orthogonalToIsometric(sf::Vector2f(m_tileWidth * 0.5f, m_tileHeight * 0.5f)));
+					std::string area = m_tileSets[tileSetIndex].getPropertyMap(gid)->at("area");
+					sf::Vector2f pos = getPositionFromTileCoords(x, y) + 
+								orthogonalToIsometric(sf::Vector2f(m_tileWidth * 0.5f, m_tileHeight * 0.5f));
+					pathFinder->addNode(x, y, (walkable == "true") ? true : false, area, pos);
 				}
 				else{
 					std::cout << "Texture not found for gid: " << gid << std::endl;

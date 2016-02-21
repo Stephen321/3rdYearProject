@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="isometric" renderorder="right-down" width="147" height="158" tilewidth="64" tileheight="32" nextobjectid="580">
- <tileset firstgid="1" name="lowTiles" tilewidth="64" tileheight="32" tilecount="128">
+<map version="1.0" orientation="isometric" renderorder="right-down" width="147" height="158" tilewidth="64" tileheight="32" nextobjectid="584">
+ <tileset firstgid="1" name="lowTiles" tilewidth="64" tileheight="32" tilecount="128" columns="8">
   <image source="lowTiles.png" width="512" height="512"/>
   <terraintypes>
    <terrain name="Grass" tile="-1"/>
@@ -71,10 +71,10 @@
   <tile id="62" terrain="5,4,5,5"/>
   <tile id="63" terrain="5,5,5,4"/>
  </tileset>
- <tileset firstgid="129" name="highTiles" tilewidth="64" tileheight="64" tilecount="64">
+ <tileset firstgid="129" name="highTiles" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="highTiles.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="193" name="underTiles" tilewidth="64" tileheight="32" tilecount="128">
+ <tileset firstgid="193" name="underTiles" tilewidth="64" tileheight="32" tilecount="128" columns="8">
   <image source="underTiles.png" width="512" height="512"/>
   <terraintypes>
    <terrain name="randomSideDirtLight" tile="-1"/>
@@ -102,6 +102,11 @@
   <tile id="33" terrain="2,2,2,2"/>
   <tile id="34" terrain="2,2,2,2"/>
   <tile id="35" terrain="2,2,2,2"/>
+  <tile id="41">
+   <properties>
+    <property name="area" value="unwalkable"/>
+   </properties>
+  </tile>
   <tile id="48" terrain="3,3,3,3"/>
   <tile id="49" terrain="3,3,3,3"/>
   <tile id="50" terrain="3,3,3,3"/>
@@ -135,10 +140,11 @@
   <tile id="94" terrain="11,11,11,11"/>
   <tile id="95" terrain="11,11,11,11"/>
  </tileset>
- <tileset firstgid="321" name="AsTARtILES" tilewidth="64" tileheight="32" tilecount="5">
+ <tileset firstgid="321" name="AsTARtILES" tilewidth="64" tileheight="32" tilecount="5" columns="5">
   <image source="AsTARtILES.png" width="320" height="32"/>
   <tile id="0">
    <properties>
+    <property name="area" value="unwalkable"/>
     <property name="walkable" value="false"/>
     <property name="weight" value="10"/>
    </properties>
@@ -47150,5 +47156,9 @@
   <object id="578" name="Bush" type="Bush" x="3744" y="2944" width="32" height="32"/>
   <object id="579" name="Bush" type="Bush" x="3776" y="2976" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="Collision" visible="0"/>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="583" x="3081.5" y="3102.5">
+   <polyline points="0,0 8.5,-78.5 176,-234 246,-242"/>
+  </object>
+ </objectgroup>
 </map>

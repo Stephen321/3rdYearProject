@@ -1,6 +1,6 @@
 #include "Pathfinding\Node.h"
 
-Node::Node(int x, int y, bool walkable) :
+Node::Node(int x, int y, bool walkable, const std::string& area) :
 	m_mapPosition(x, y),
 	m_walkable(walkable),
 	m_open(false),
@@ -8,7 +8,8 @@ Node::Node(int x, int y, bool walkable) :
 	m_fCost(std::numeric_limits<int>::max()),
 	m_gCost(std::numeric_limits<int>::max()),
 	m_shape(5),
-	m_prevNode(0){
+	m_prevNode(0),
+	m_area(area){
 	m_shape.setOrigin(5, 5);
 	if (m_walkable)
 		m_shape.setFillColor(sf::Color::Blue);
@@ -46,6 +47,10 @@ sf::Vector2i Node::getMapPosition() const{
 
 bool Node::walkable() const{
 	return m_walkable;
+}
+
+std::string Node::area() const{
+	return m_area;
 }
 
 void Node::setOpen(bool open){

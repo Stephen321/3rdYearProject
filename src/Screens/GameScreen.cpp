@@ -47,11 +47,11 @@ int GameScreen::Run(sf::RenderWindow &window)
 	Player player(world);
 	std::vector<std::shared_ptr<Character>> enemies;
 
-	//sound
-	sndMgr->setListener(&player);
-
 	//game objects
 	std::vector<std::shared_ptr<GameObject>> gameObjects;
+
+	//sound
+	sndMgr->setListener(&player);
 
 	window.setKeyRepeatEnabled(false);
 
