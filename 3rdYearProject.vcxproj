@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Action.cpp" />
     <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Animation.cpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="src\VisibleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Action.h" />
     <ClInclude Include="include\AI.h" />
     <ClInclude Include="include\AnimatedSprite.hpp" />
     <ClInclude Include="include\Animation.hpp" />

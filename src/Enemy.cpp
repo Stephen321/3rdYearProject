@@ -3,19 +3,12 @@
 Enemy::Enemy(b2World& world, Player* playerP, sf::Vector2f position, Pathfinder * pf) :
 Character(world, CharacterType::AI, position, pf),
 player(playerP),
-m_attackTimer(0),
 m_target(0),
 m_lastTargetTileCoord(player->getTileCoord()),
 m_followPlayer(false),
 m_startPos(position),
 m_attackTime(1.2f),
 m_visibiltyRange(450){}
-
-void Enemy::update(sf::Time dt, sf::FloatRect viewBounds){
-	m_attackTimer += dt.asSeconds();
-	behaviour();
-	Character::update(dt, viewBounds);
-}
 
 void Enemy::behaviour(){
 	setTarget();
@@ -70,9 +63,9 @@ void Enemy::followPath(){
 }
 
 void Enemy::handleAttack(){
-	if (m_attacking == false && m_target != 0 && m_attackTimer > m_attackTime){
+	if (m_attacking == false && m_target != 0 && m_timer > m_attackTime){
 		m_target->takeDamage(5);
-		m_attackTimer = 0;
+		m_timer = 0;
 		currentAnim = &m_anims["attack"];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(false);

@@ -2,12 +2,12 @@
 #include <iostream> //testing
 
 Player::Player(b2World& world, sf::Vector2f position) :
-Character(world, CharacterType::PLAYER, position){
-}
-
-void Player::update(sf::Time dt, sf::FloatRect viewBounds){
-	behaviour();
-	Character::update(dt, viewBounds);
+Character(world, CharacterType::PLAYER, position),
+m_actionToPlay(false){
+	m_actions[0] = Action(0, 10, 0, 10, 2, false, "punch");
+	m_actions[1] = Action(3, 15, 1, 10, 2, false, "kick");
+	m_actions[2] = Action(3, 15, 2, 10, 2, false, "flip");
+	m_actions[3] = Action(3, 10, 3, 10, 2, false, "punch");
 }
 
 void Player::handleEvent(sf::Event e){
@@ -16,55 +16,44 @@ void Player::handleEvent(sf::Event e){
 		if (sf::Joystick::isConnected(i))
 			m_joystick = i;
 	}
-	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 0){
-		if (m_attacking == false){
-			currentAnim = &m_anims["punch"];
-			sndMgr->playSound("punch", false);
-			m_animatedSprite.play(*currentAnim);
-			m_animatedSprite.setLooped(false);
-			m_attacking = true;
-			if (attackableEnemies.size() != 0)
-				attackableEnemies[0]->takeDamage(50);
-		}
-	}
-	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 1){
-		std::cout << "pressed 1" << '\n';
-		if (m_attacking == false){
-			currentAnim = &m_anims["kick"];
-			m_animatedSprite.play(*currentAnim);
-			m_animatedSprite.setLooped(false);
-			m_attacking = true;
-			if (attackableEnemies.size() != 0){
-				for (Character* c : attackableEnemies)
-					c->takeDamage(15);
+	if (e.type == sf::Event::JoystickButtonPressed){
+		int buttonId = e.joystickButton.button;
+		if (buttonId < 4){
+			if (!m_currentActions.empty()){
+				if (m_animatedSprite.getFrame() > m_currentActions[0]->getMinFrame() &&
+					m_animatedSprite.getFrame() < m_currentActions[0]->getMaxFrame()){
+					m_currentActions.push_back(&m_actions[buttonId]);
+					m_actionToPlay = true;
+				}
 			}
-		}
-	}
-
-	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 2){
-		if (m_attacking == false) {
-			currentAnim = &m_anims["flip"];
-			m_animatedSprite.play(*currentAnim);
-			m_animatedSprite.setLooped(false);
-			m_attacking = true;
-			if (attackableEnemies.size() != 0){
-				for (Character* c : attackableEnemies)
-					c->takeDamage(5);
-			}
-		}
-		else{
-			if (currentAnim == &m_anims["kick"] && m_animatedSprite.getFrame() < 10){
-				Combo c;
-				c.name = "flip";
-				c.frameChange = 12;
-				comboQ.push(c);
+			else{
+				m_currentActions.push_back(&m_actions[buttonId]);
+				m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
+				m_animatedSprite.setLooped(false);
+				applyDamage();
 			}
 		}
 	}
 }
 
-void Player::behaviour(){
+void Player::applyDamage(){
+	float damage = m_currentActions.back()->getDamage();
+	int mod = m_currentActions.back()->getModifier();
+	damage += (rand() % ((2 * mod) + 1)) - mod;
+	float diminisher = (m_currentActions.size() < 2) ? 1.f : 1.f - (m_currentActions.size() / 10.f);
+	damage *= diminisher;
+	if (attackableEnemies.size() != 0){
+		if (m_currentActions.back()->getMultiAttack()){
+			for (Character* c : attackableEnemies)
+				c->takeDamage(damage);
+		}
+		else{
+			attackableEnemies[0]->takeDamage(damage);
+		}
+	}
+}
 
+void Player::behaviour(){
 	for (const Character* e : attackableEnemies){
 		if (e->getAlive() == false){
 			attackableEnemies.erase(std::find(attackableEnemies.begin(), attackableEnemies.end(), e));
@@ -72,35 +61,22 @@ void Player::behaviour(){
 		}
 	}
 
-	
-	//combos
-	if (m_attacking == true && comboQ.size() != 0 && m_animatedSprite.getFrame() == comboQ.front().frameChange){
-		Animation* anim = &m_anims[comboQ.front().name];
-		comboQ.pop();
-		m_animatedSprite.play(*anim);
+	if (m_actionToPlay && m_animatedSprite.getFrame() >= m_currentActions[0]->getMaxFrame()){
+		m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
 		m_animatedSprite.setLooped(false);
-		if (attackableEnemies.size() != 0){
-			for (Character* c : attackableEnemies)
-				c->takeDamage(15);
-		}
+		m_actionToPlay = false;
+		applyDamage();
 	}
+
+	//if all animations have stopped playing then reset to idle 
 	if (m_animatedSprite.isPlaying() == false){
 		currentAnim = &m_anims["idle"];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(true);
 		m_attacking = false;
+		m_currentActions.clear();
 	}
-	/*float xPos = 0;
-	float yPos = 0;
-	if (m_currentEvent.type == sf::Event::JoystickMoved)
-	{
-		if (m_currentEvent.joystickMove.axis == sf::Joystick::X)
-			xPos = m_currentEvent.joystickMove.position;
-		if (m_currentEvent.joystickMove.axis == sf::Joystick::Y)
-			yPos = m_currentEvent.joystickMove.position;
-	}
-	std::cout << xPos << ", " << yPos << std::endl;*/
-	if (Debug::displayInfo) std::cout << attackableEnemies.size() << std::endl;
+
 	float xPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::X);
 	float yPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::Y);
 	if ((xPos < 10 && xPos > -10) &&
@@ -119,13 +95,6 @@ void Player::behaviour(){
 
 sf::Vector2f Player::getVelocity(){
 	return BoxToSfVec(m_body->GetLinearVelocity());
-}
-
-void Player::startContact(){
-}
-
-void Player::endContact(){
-
 }
 
 void Player::sensorEnd(Character* e){
