@@ -49,7 +49,7 @@ void AnimatedSprite::play()
 
 void AnimatedSprite::play(const Animation& animation)
 {
-	if (getAnimation() != &animation)
+	//if (getAnimation() != &animation)
 		setAnimation(animation);
 	play();
 }

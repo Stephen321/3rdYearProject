@@ -3,11 +3,12 @@
 
 Player::Player(b2World& world, sf::Vector2f position) :
 Character(world, CharacterType::PLAYER, position),
-m_actionToPlay(false){
-	m_actions[0] = Action(0, 10, 0, 10, 2, false, "punch");
-	m_actions[1] = Action(3, 15, 1, 10, 2, false, "kick");
-	m_actions[2] = Action(3, 15, 2, 10, 2, false, "flip");
-	m_actions[3] = Action(3, 10, 3, 10, 2, false, "punch");
+m_actionToPlay(false),
+m_comboString(""){
+	m_actions[0] = Action(0, 11, 0, 10, 2, false, "punch"); //A
+	m_actions[1] = Action(0, 16, 1, 10, 2, false, "kick"); //B
+	m_actions[2] = Action(0, 10, 2, 10, 2, false, "flip"); //X
+	m_actions[3] = Action(3, 11, 3, 10, 2, false, "punch"); //Y
 }
 
 void Player::handleEvent(sf::Event e){
@@ -19,18 +20,40 @@ void Player::handleEvent(sf::Event e){
 	if (e.type == sf::Event::JoystickButtonPressed){
 		int buttonId = e.joystickButton.button;
 		if (buttonId < 4){
-			if (!m_currentActions.empty()){
-				if (m_animatedSprite.getFrame() > m_currentActions[0]->getMinFrame() &&
-					m_animatedSprite.getFrame() < m_currentActions[0]->getMaxFrame()){
-					m_currentActions.push_back(&m_actions[buttonId]);
+			bool addCombo = true;
+			if (!m_currentActions.empty() && m_actionToPlay == false){
+				if (m_animatedSprite.getFrame() > m_currentActions.front()->getMinFrame() &&
+					m_animatedSprite.getFrame() < m_currentActions.front()->getMaxFrame()){
+					m_currentActions.push(&m_actions[buttonId]);
 					m_actionToPlay = true;
 				}
 			}
-			else{
-				m_currentActions.push_back(&m_actions[buttonId]);
+			else if (m_actionToPlay == false){
+				m_currentActions.push(&m_actions[buttonId]);
 				m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
 				m_animatedSprite.setLooped(false);
 				applyDamage();
+			}
+			else{
+				addCombo = false;
+			}
+			if (addCombo){
+				switch (buttonId)
+				{
+				case 0:
+					m_comboString += 'A';
+					break;
+				case 1:
+					m_comboString += 'B';
+					break;
+				case 2:
+					m_comboString += 'X';
+					break;
+				case 3:
+					m_comboString += 'Y';
+					break;
+				}
+				std::cout << "combo string: " + m_comboString << '\n';
 			}
 		}
 	}
@@ -40,7 +63,7 @@ void Player::applyDamage(){
 	float damage = m_currentActions.back()->getDamage();
 	int mod = m_currentActions.back()->getModifier();
 	damage += (rand() % ((2 * mod) + 1)) - mod;
-	float diminisher = (m_currentActions.size() < 2) ? 1.f : 1.f - (m_currentActions.size() / 10.f);
+	float diminisher = (m_comboString.length() < 2) ? 1.f : 1.f - (m_comboString.length() / 10.f);
 	damage *= diminisher;
 	if (attackableEnemies.size() != 0){
 		if (m_currentActions.back()->getMultiAttack()){
@@ -60,9 +83,9 @@ void Player::behaviour(){
 			break;
 		}
 	}
-
-	if (m_actionToPlay && m_animatedSprite.getFrame() >= m_currentActions[0]->getMaxFrame()){
-		m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
+	if (m_actionToPlay && m_animatedSprite.getFrame() >= m_currentActions.front()->getMaxFrame()){
+		m_currentActions.pop();
+		m_animatedSprite.play(m_anims[m_currentActions.front()->getAnimName()]);
 		m_animatedSprite.setLooped(false);
 		m_actionToPlay = false;
 		applyDamage();
@@ -73,8 +96,10 @@ void Player::behaviour(){
 		currentAnim = &m_anims["idle"];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(true);
-		m_attacking = false;
-		m_currentActions.clear();
+		m_currentActions.pop(); //pop last remainingg combo
+		m_actionToPlay = false;
+		comboFinished();
+		m_comboString = "";
 	}
 
 	float xPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::X);
@@ -91,6 +116,12 @@ void Player::behaviour(){
 	yPos = (yPos / 100) * m_speed;
 
 	m_velocity = sf::Vector2f(xPos, yPos);
+}
+
+void Player::comboFinished(){
+	if (m_comboString == XXYcombo){
+		std::cout << "XXY combo triggered" << '\n';
+	}
 }
 
 sf::Vector2f Player::getVelocity(){
