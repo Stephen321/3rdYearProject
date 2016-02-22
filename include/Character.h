@@ -29,7 +29,7 @@ public:
 		PLAYER
 	};
 
-	virtual void update(sf::Time dt, sf::FloatRect viewBounds);
+	void update(sf::Time dt, sf::FloatRect viewBounds);
 	bool getVisible() const;
 	virtual void startContact();
 	virtual void endContact();
@@ -66,6 +66,7 @@ protected:
 	float m_speed;//pixels per second	
 	bool m_alive;
 	Pathfinder * m_pathFinder;
+	float m_timer;
 };
 
 

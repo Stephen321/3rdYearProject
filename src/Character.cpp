@@ -5,14 +5,16 @@ Character::Character(b2World& world, CharacterType charType, const sf::Vector2f&
 m_visible(false),
 m_attacking(false),
 m_alive(true),
-m_pathFinder(pf){
+m_pathFinder(pf),
+m_timer(0),
+m_charType(charType){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	sndMgr = SoundManager::getInstance();
 
 	const GameData::CharInfo* info;
-	if (charType == CharacterType::PLAYER)
+	if (m_charType == CharacterType::PLAYER)
 		info = &ptr->playerInfo;
-	else if (charType == CharacterType::AI)
+	else if (m_charType == CharacterType::AI)
 		info = &ptr->aiInfo;
 	else
 		return;
@@ -115,7 +117,9 @@ void Character::setVelocity(sf::Vector2f value){
 }
 
 void Character::update(sf::Time dt, sf::FloatRect viewBounds){
-	//cant these 2 lines be done only when amimation changes
+	m_timer += dt.asSeconds();
+	behaviour();
+
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
 
 	m_body->SetLinearVelocity(SfToBoxVec(sf::Vector2f(m_velocity)));

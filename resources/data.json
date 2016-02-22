@@ -45,12 +45,12 @@
         "player" :
         {
             "max_health" : 100,
-            "max_speed" : 480
+            "max_speed" : 280
         },
         "ai" :
         {
             "max_health" : 60,
-            "max_speed" : 45
+            "max_speed" : 85
         }
     }
 }

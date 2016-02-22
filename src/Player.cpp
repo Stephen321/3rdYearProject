@@ -2,12 +2,13 @@
 #include <iostream> //testing
 
 Player::Player(b2World& world, sf::Vector2f position) :
-Character(world, CharacterType::PLAYER, position){
-}
-
-void Player::update(sf::Time dt, sf::FloatRect viewBounds){
-	behaviour();
-	Character::update(dt, viewBounds);
+Character(world, CharacterType::PLAYER, position),
+m_actionToPlay(false),
+m_comboString(""){
+	m_actions[0] = Action(0, 11, 0, 10, 2, false, "punch"); //A
+	m_actions[1] = Action(0, 16, 1, 10, 2, false, "kick"); //B
+	m_actions[2] = Action(0, 10, 2, 10, 2, false, "flip"); //X
+	m_actions[3] = Action(3, 11, 3, 10, 2, false, "punch"); //Y
 }
 
 void Player::handleEvent(sf::Event e){
@@ -16,91 +17,90 @@ void Player::handleEvent(sf::Event e){
 		if (sf::Joystick::isConnected(i))
 			m_joystick = i;
 	}
-	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 0){
-		if (m_attacking == false){
-			currentAnim = &m_anims["punch"];
-			sndMgr->playSound("punch", false);
-			m_animatedSprite.play(*currentAnim);
-			m_animatedSprite.setLooped(false);
-			m_attacking = true;
-			if (attackableEnemies.size() != 0)
-				attackableEnemies[0]->takeDamage(50);
-		}
-	}
-	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 1){
-		std::cout << "pressed 1" << '\n';
-		if (m_attacking == false){
-			currentAnim = &m_anims["kick"];
-			m_animatedSprite.play(*currentAnim);
-			m_animatedSprite.setLooped(false);
-			m_attacking = true;
-			if (attackableEnemies.size() != 0){
-				for (Character* c : attackableEnemies)
-					c->takeDamage(15);
+	if (e.type == sf::Event::JoystickButtonPressed){
+		int buttonId = e.joystickButton.button;
+		if (buttonId < 4){
+			bool addCombo = false;
+			if (!m_currentActions.empty() && m_actionToPlay == false){
+				if (m_animatedSprite.getFrame() > m_currentActions.front()->getMinFrame() &&
+					m_animatedSprite.getFrame() < m_currentActions.front()->getMaxFrame()){
+					m_currentActions.push(&m_actions[buttonId]);
+					m_actionToPlay = true;
+					addCombo = true;
+				}
 			}
-		}
-	}
+			else if (m_actionToPlay == false){
+				m_currentActions.push(&m_actions[buttonId]);
+				addCombo = true;
+				m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
+				m_animatedSprite.setLooped(false);
+				applyDamage();
+			}
 
-	if (e.type == sf::Event::JoystickButtonPressed  && e.joystickButton.button == 2){
-		if (m_attacking == false) {
-			currentAnim = &m_anims["flip"];
-			m_animatedSprite.play(*currentAnim);
-			m_animatedSprite.setLooped(false);
-			m_attacking = true;
-			if (attackableEnemies.size() != 0){
-				for (Character* c : attackableEnemies)
-					c->takeDamage(5);
-			}
-		}
-		else{
-			if (currentAnim == &m_anims["kick"] && m_animatedSprite.getFrame() < 10){
-				Combo c;
-				c.name = "flip";
-				c.frameChange = 12;
-				comboQ.push(c);
+			if (addCombo){
+				switch (buttonId)
+				{
+				case 0:
+					m_comboString += 'A';
+					break;
+				case 1:
+					m_comboString += 'B';
+					break;
+				case 2:
+					m_comboString += 'X';
+					break;
+				case 3:
+					m_comboString += 'Y';
+					break;
+				}
 			}
 		}
 	}
 }
 
-void Player::behaviour(){
+void Player::applyDamage(float comboMod){
+	float damage = m_currentActions.back()->getDamage();
+	int mod = m_currentActions.back()->getModifier();
+	damage += ((rand() / (float)RAND_MAX) * (2 * mod)) - mod;
+	float diminisher = (m_comboString.length() < 2) ? 1.f : 1.f - (m_comboString.length() / 10.f);
+	damage *= diminisher * comboMod;
+	
+	std::cout << "damage by " <<  m_comboString << " is " << damage << "!!" << '\n';
+	if (attackableEnemies.size() != 0){
+		if (m_currentActions.back()->getMultiAttack()){
+			for (Character* c : attackableEnemies)
+				c->takeDamage(damage);
+		}
+		else{
+			attackableEnemies[0]->takeDamage(damage);
+		}
+	}
+}
 
+void Player::behaviour(){
 	for (const Character* e : attackableEnemies){
 		if (e->getAlive() == false){
 			attackableEnemies.erase(std::find(attackableEnemies.begin(), attackableEnemies.end(), e));
 			break;
 		}
 	}
-
-	
-	//combos
-	if (m_attacking == true && comboQ.size() != 0 && m_animatedSprite.getFrame() == comboQ.front().frameChange){
-		Animation* anim = &m_anims[comboQ.front().name];
-		comboQ.pop();
-		m_animatedSprite.play(*anim);
+	if (m_actionToPlay && m_animatedSprite.getFrame() == m_currentActions.front()->getMaxFrame()){
+		m_currentActions.pop();
+		m_animatedSprite.play(m_anims[m_currentActions.front()->getAnimName()]);
 		m_animatedSprite.setLooped(false);
-		if (attackableEnemies.size() != 0){
-			for (Character* c : attackableEnemies)
-				c->takeDamage(15);
-		}
+		m_actionToPlay = false;
+		applyDamage();
 	}
+
+	//if all animations have stopped playing then reset to idle 
 	if (m_animatedSprite.isPlaying() == false){
 		currentAnim = &m_anims["idle"];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(true);
-		m_attacking = false;
+		m_actionToPlay = false;
+		comboFinished();
 	}
-	/*float xPos = 0;
-	float yPos = 0;
-	if (m_currentEvent.type == sf::Event::JoystickMoved)
-	{
-		if (m_currentEvent.joystickMove.axis == sf::Joystick::X)
-			xPos = m_currentEvent.joystickMove.position;
-		if (m_currentEvent.joystickMove.axis == sf::Joystick::Y)
-			yPos = m_currentEvent.joystickMove.position;
-	}
-	std::cout << xPos << ", " << yPos << std::endl;*/
-	if (Debug::displayInfo) std::cout << attackableEnemies.size() << std::endl;
+
 	float xPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::X);
 	float yPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::Y);
 	if ((xPos < 10 && xPos > -10) &&
@@ -117,15 +117,20 @@ void Player::behaviour(){
 	m_velocity = sf::Vector2f(xPos, yPos);
 }
 
+void Player::comboFinished(){
+	if (m_comboString == "XXY"){
+		std::cout << "XXY combo triggered" << '\n';
+		applyDamage(2.f);
+	}
+	if (m_comboString == "XXYA"){
+		std::cout << "XXYA combo triggered" << '\n';
+	}
+	m_currentActions.swap(std::queue<Action*>()); //empty the queue
+	m_comboString = "";
+}
+
 sf::Vector2f Player::getVelocity(){
 	return BoxToSfVec(m_body->GetLinearVelocity());
-}
-
-void Player::startContact(){
-}
-
-void Player::endContact(){
-
 }
 
 void Player::sensorEnd(Character* e){
