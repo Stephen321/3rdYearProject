@@ -50,6 +50,7 @@ void Enemy::followPath(){
 	if (m_waypoints.empty() == false){
 		sf::Vector2f vB = m_waypoints.back() - getPosition();
 		float distance = std::sqrt(vB.x * vB.x + vB.y * vB.y);
+		
 		if (distance > 5)
 			m_velocity = (vB / distance) * m_speed;
 		else{
