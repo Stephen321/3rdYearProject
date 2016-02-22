@@ -18,7 +18,7 @@ private:
 	void applyDamage();
 	void comboFinished();
 	Action m_actions[4];
-	std::queue<Action*> m_currentActions;
+	std::deque<Action*> m_currentActions;
 	std::string m_comboString;
 	bool m_actionToPlay;
 

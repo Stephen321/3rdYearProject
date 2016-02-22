@@ -20,23 +20,23 @@ void Player::handleEvent(sf::Event e){
 	if (e.type == sf::Event::JoystickButtonPressed){
 		int buttonId = e.joystickButton.button;
 		if (buttonId < 4){
-			bool addCombo = true;
+			bool addCombo = false;
 			if (!m_currentActions.empty() && m_actionToPlay == false){
 				if (m_animatedSprite.getFrame() > m_currentActions.front()->getMinFrame() &&
 					m_animatedSprite.getFrame() < m_currentActions.front()->getMaxFrame()){
-					m_currentActions.push(&m_actions[buttonId]);
+					m_currentActions.push_front(&m_actions[buttonId]);
 					m_actionToPlay = true;
+					addCombo = true;
 				}
 			}
 			else if (m_actionToPlay == false){
-				m_currentActions.push(&m_actions[buttonId]);
+				m_currentActions.push_front(&m_actions[buttonId]);
+				addCombo = true;
 				m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
 				m_animatedSprite.setLooped(false);
 				applyDamage();
 			}
-			else{
-				addCombo = false;
-			}
+
 			if (addCombo){
 				switch (buttonId)
 				{
@@ -84,7 +84,7 @@ void Player::behaviour(){
 		}
 	}
 	if (m_actionToPlay && m_animatedSprite.getFrame() >= m_currentActions.front()->getMaxFrame()){
-		m_currentActions.pop();
+		m_currentActions.pop_front();
 		m_animatedSprite.play(m_anims[m_currentActions.front()->getAnimName()]);
 		m_animatedSprite.setLooped(false);
 		m_actionToPlay = false;
@@ -96,7 +96,7 @@ void Player::behaviour(){
 		currentAnim = &m_anims["idle"];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(true);
-		m_currentActions.pop(); //pop last remainingg combo
+		m_currentActions.clear(); 
 		m_actionToPlay = false;
 		comboFinished();
 		m_comboString = "";
