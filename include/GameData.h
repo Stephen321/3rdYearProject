@@ -40,7 +40,23 @@ public:
 	sf::Texture rockTexture;
 	sf::Texture bushTexture;
 	sf::Texture treeTexture;
-	sf::Texture tallGrassTexture;
+	sf::Texture grassBladeTextures[6];
+	sf::Texture menuPlay;
+	sf::Texture menuOptions;
+	sf::Texture menuQuit;
+	sf::Texture menuUnfolded;
+	sf::Texture menuLetterM;
+	sf::Texture menuLetterA;
+	sf::Texture menuLetterL1;
+	sf::Texture menuLetterE1;
+	sf::Texture menuLetterV;
+	sf::Texture menuLetterO;
+	sf::Texture menuLetterL2;
+	sf::Texture menuLetterE2;
+	sf::Texture menuLetterN;
+	sf::Texture menuLetterC;
+	sf::Texture menuLetterE3;
+	sf::Texture menuBlackGradient;
 
 private:
 	GameData();

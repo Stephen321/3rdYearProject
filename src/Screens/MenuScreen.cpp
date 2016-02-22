@@ -2,6 +2,59 @@
 #include <iostream> //testing
 MenuScreen::MenuScreen(void)
 {		
+
+	std::shared_ptr<GameData> ptr = GameData::getInstance();
+
+	playButton = sf::Sprite(ptr->menuPlay);
+	optionsButton = sf::Sprite(ptr->menuOptions);
+	quitButton = sf::Sprite(ptr->menuQuit);
+	centreSpriteOrigin(playButton);
+	centreSpriteOrigin(optionsButton);
+	centreSpriteOrigin(quitButton);
+
+	blackGradient = sf::Sprite(ptr->menuBlackGradient);
+	blackGradient.setOrigin(0, blackGradient.getTextureRect().height);
+
+	unfolded = sf::Sprite(ptr->menuUnfolded);
+	centreSpriteOrigin(unfolded);
+
+	letterM = sf::Sprite(ptr->menuLetterM);
+	letterA = sf::Sprite(ptr->menuLetterA);
+	letterL1 = sf::Sprite(ptr->menuLetterL1);
+	letterE1 = sf::Sprite(ptr->menuLetterE1);
+	letterV = sf::Sprite(ptr->menuLetterV);
+	letterO = sf::Sprite(ptr->menuLetterO);
+	letterL2 = sf::Sprite(ptr->menuLetterL2);
+	letterE2 = sf::Sprite(ptr->menuLetterE2);
+	letterN = sf::Sprite(ptr->menuLetterN);
+	letterC = sf::Sprite(ptr->menuLetterC);
+	letterE3 = sf::Sprite(ptr->menuLetterE3);
+	centreSpriteOrigin(letterM);
+	centreSpriteOrigin(letterA);
+	centreSpriteOrigin(letterL1);
+	centreSpriteOrigin(letterE1);
+	centreSpriteOrigin(letterV);
+	centreSpriteOrigin(letterO);
+	centreSpriteOrigin(letterL2);
+	centreSpriteOrigin(letterE2);
+	centreSpriteOrigin(letterN);
+	centreSpriteOrigin(letterC);
+	centreSpriteOrigin(letterE3);
+
+	m_origin = sf::Vector2f(0, 0);
+	m_natPosition = sf::Vector2f(m_origin.x + 100, m_origin.y + 100);
+
+	m_position = sf::Vector2f(m_origin.x + 100, m_origin.y + 300);
+	m_velocity = sf::Vector2f(0, 0);
+	accel = sf::Vector2f(0, 0);
+	m_dampingConst = 0.4f;
+	m_springConst = 0.05f;
+	m_mass = 100;
+}
+
+void MenuScreen::centreSpriteOrigin(sf::Sprite & sprite)
+{
+	sprite.setOrigin(sprite.getTextureRect().width / 2.f, sprite.getTextureRect().height / 2.f);
 }
 
 void MenuScreen::setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Vector2f screenDimensions){
@@ -13,6 +66,14 @@ void MenuScreen::setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Ve
 
 int MenuScreen::Run(sf::RenderWindow &window)
 {
+	blackGradient.setPosition(sf::Vector2f(0, window.getSize().y));
+	unfolded.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f - 100)); // +125));
+
+	int buttonOffsetY = 10;
+	playButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + buttonOffsetY));
+	optionsButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + 105 + buttonOffsetY));
+	quitButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + 210 + buttonOffsetY));
+
 	sf::Event Event;
 	bool Running = true;	
 
@@ -54,6 +115,17 @@ int MenuScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
+		float positionLength = sqrt(m_position.x * m_position.x + m_position.y * m_position.y);
+		float natLength = sqrt(m_natPosition.x * m_natPosition.x + m_natPosition.y * m_natPosition.y);
+
+		accel = -(m_springConst / m_mass)*(positionLength - natLength)* m_position / positionLength - (m_dampingConst / m_mass)* m_velocity;
+		m_velocity += accel;
+		m_position += m_velocity;
+		std::cout << accel.y << std::endl;
+
+		letterM.setPosition(m_position);
+
+
 		if (sf::Joystick::isConnected(joystick) == false){
 			for (int i = 0; i < 6 && joystick == -1; i++){
 				if (sf::Joystick::isConnected(i))
@@ -160,6 +232,25 @@ int MenuScreen::Run(sf::RenderWindow &window)
 		window.draw(Menu3);
 
 		window.draw(Menu4);
+
+		window.draw(letterM);
+		window.draw(letterA);
+		window.draw(letterL1);
+		window.draw(letterE1);
+		window.draw(letterV);
+		window.draw(letterO);
+		window.draw(letterL2);
+		window.draw(letterE2);
+		window.draw(letterN);
+		window.draw(letterC);
+		window.draw(letterE3);
+		window.draw(unfolded);
+
+		window.draw(blackGradient);
+
+		window.draw(playButton);
+		window.draw(optionsButton);
+		window.draw(quitButton);
 		
 		window.display();
 	}
