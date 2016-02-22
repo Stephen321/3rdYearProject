@@ -24,13 +24,13 @@ void Player::handleEvent(sf::Event e){
 			if (!m_currentActions.empty() && m_actionToPlay == false){
 				if (m_animatedSprite.getFrame() > m_currentActions.front()->getMinFrame() &&
 					m_animatedSprite.getFrame() < m_currentActions.front()->getMaxFrame()){
-					m_currentActions.push_front(&m_actions[buttonId]);
+					m_currentActions.push_back(&m_actions[buttonId]);
 					m_actionToPlay = true;
 					addCombo = true;
 				}
 			}
 			else if (m_actionToPlay == false){
-				m_currentActions.push_front(&m_actions[buttonId]);
+				m_currentActions.push_back(&m_actions[buttonId]);
 				addCombo = true;
 				m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
 				m_animatedSprite.setLooped(false);
