@@ -15,15 +15,13 @@ public:
 //protected:
 private:
 	void behaviour() override;
-	void applyDamage();
+	void applyDamage(float comboMod = 1.f);
 	void comboFinished();
 	Action m_actions[4];
-	std::deque<Action*> m_currentActions;
+	std::queue<Action*> m_currentActions;
 	std::string m_comboString;
 	bool m_actionToPlay;
 
-	//combos
-	const std::string XXYcombo = "XXY";
 
 	std::vector<Character*> attackableEnemies;
 	int m_joystick;

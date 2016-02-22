@@ -24,13 +24,13 @@ void Player::handleEvent(sf::Event e){
 			if (!m_currentActions.empty() && m_actionToPlay == false){
 				if (m_animatedSprite.getFrame() > m_currentActions.front()->getMinFrame() &&
 					m_animatedSprite.getFrame() < m_currentActions.front()->getMaxFrame()){
-					m_currentActions.push_back(&m_actions[buttonId]);
+					m_currentActions.push(&m_actions[buttonId]);
 					m_actionToPlay = true;
 					addCombo = true;
 				}
 			}
 			else if (m_actionToPlay == false){
-				m_currentActions.push_back(&m_actions[buttonId]);
+				m_currentActions.push(&m_actions[buttonId]);
 				addCombo = true;
 				m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
 				m_animatedSprite.setLooped(false);
@@ -53,18 +53,19 @@ void Player::handleEvent(sf::Event e){
 					m_comboString += 'Y';
 					break;
 				}
-				std::cout << "combo string: " + m_comboString << '\n';
 			}
 		}
 	}
 }
 
-void Player::applyDamage(){
+void Player::applyDamage(float comboMod){
 	float damage = m_currentActions.back()->getDamage();
 	int mod = m_currentActions.back()->getModifier();
-	damage += (rand() % ((2 * mod) + 1)) - mod;
+	damage += ((rand() / (float)RAND_MAX) * (2 * mod)) - mod;
 	float diminisher = (m_comboString.length() < 2) ? 1.f : 1.f - (m_comboString.length() / 10.f);
-	damage *= diminisher;
+	damage *= diminisher * comboMod;
+	
+	std::cout << "damage by " <<  m_comboString << " is " << damage << "!!" << '\n';
 	if (attackableEnemies.size() != 0){
 		if (m_currentActions.back()->getMultiAttack()){
 			for (Character* c : attackableEnemies)
@@ -83,8 +84,8 @@ void Player::behaviour(){
 			break;
 		}
 	}
-	if (m_actionToPlay && m_animatedSprite.getFrame() >= m_currentActions.front()->getMaxFrame()){
-		m_currentActions.pop_front();
+	if (m_actionToPlay && m_animatedSprite.getFrame() == m_currentActions.front()->getMaxFrame()){
+		m_currentActions.pop();
 		m_animatedSprite.play(m_anims[m_currentActions.front()->getAnimName()]);
 		m_animatedSprite.setLooped(false);
 		m_actionToPlay = false;
@@ -96,10 +97,8 @@ void Player::behaviour(){
 		currentAnim = &m_anims["idle"];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(true);
-		m_currentActions.clear(); 
 		m_actionToPlay = false;
 		comboFinished();
-		m_comboString = "";
 	}
 
 	float xPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::X);
@@ -119,9 +118,15 @@ void Player::behaviour(){
 }
 
 void Player::comboFinished(){
-	if (m_comboString == XXYcombo){
+	if (m_comboString == "XXY"){
 		std::cout << "XXY combo triggered" << '\n';
+		applyDamage(2.f);
 	}
+	if (m_comboString == "XXYA"){
+		std::cout << "XXYA combo triggered" << '\n';
+	}
+	m_currentActions.swap(std::queue<Action*>()); //empty the queue
+	m_comboString = "";
 }
 
 sf::Vector2f Player::getVelocity(){
