@@ -34,6 +34,7 @@
     <ClCompile Include="src\Screens\MenuScreen.cpp" />
     <ClCompile Include="src\Screens\OptionsScreen.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
+    <ClCompile Include="src\SpringObject.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
     <ClCompile Include="src\TallGrass.cpp" />
     <ClCompile Include="src\TileMap\BodyCreator.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="include\Screens\Screen.hpp" />
     <ClInclude Include="include\SoundManager.h" />
     <ClInclude Include="include\SoundObject.h" />
+    <ClInclude Include="include\SpringObject.h" />
     <ClInclude Include="include\TallGrass.h" />
     <ClInclude Include="include\TileMap\BodyCreator.h" />
     <ClInclude Include="include\TileMap\DebugShape.h" />

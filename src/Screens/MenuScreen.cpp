@@ -18,38 +18,18 @@ MenuScreen::MenuScreen(void)
 	unfolded = sf::Sprite(ptr->menuUnfolded);
 	centreSpriteOrigin(unfolded);
 
-	letterM = sf::Sprite(ptr->menuLetterM);
-	letterA = sf::Sprite(ptr->menuLetterA);
-	letterL1 = sf::Sprite(ptr->menuLetterL1);
-	letterE1 = sf::Sprite(ptr->menuLetterE1);
-	letterV = sf::Sprite(ptr->menuLetterV);
-	letterO = sf::Sprite(ptr->menuLetterO);
-	letterL2 = sf::Sprite(ptr->menuLetterL2);
-	letterE2 = sf::Sprite(ptr->menuLetterE2);
-	letterN = sf::Sprite(ptr->menuLetterN);
-	letterC = sf::Sprite(ptr->menuLetterC);
-	letterE3 = sf::Sprite(ptr->menuLetterE3);
-	centreSpriteOrigin(letterM);
-	centreSpriteOrigin(letterA);
-	centreSpriteOrigin(letterL1);
-	centreSpriteOrigin(letterE1);
-	centreSpriteOrigin(letterV);
-	centreSpriteOrigin(letterO);
-	centreSpriteOrigin(letterL2);
-	centreSpriteOrigin(letterE2);
-	centreSpriteOrigin(letterN);
-	centreSpriteOrigin(letterC);
-	centreSpriteOrigin(letterE3);
+	titleLetters = sf::Sprite(ptr->menuLetters);
+	std::string title = "Malevolence";
+	for (int i = 0; i < title.length(); i++)
+	{
+		sf::Sprite s;
+		s.setTexture(ptr->menuLetters);
+		s.setTextureRect(sf::IntRect(i * titleLetters.getTextureRect().width / title.length(), 0, 
+			titleLetters.getTextureRect().width / title.length(), titleLetters.getTextureRect().height));
+		s.setOrigin(sf::Vector2f(s.getTextureRect().width / 2, s.getTextureRect().height / 2));
 
-	m_origin = sf::Vector2f(0, 0);
-	m_natPosition = sf::Vector2f(m_origin.x + 100, m_origin.y + 100);
-
-	m_position = sf::Vector2f(m_origin.x + 100, m_origin.y + 300);
-	m_velocity = sf::Vector2f(0, 0);
-	accel = sf::Vector2f(0, 0);
-	m_dampingConst = 0.4f;
-	m_springConst = 0.05f;
-	m_mass = 100;
+		springs.push_back(SpringObject(s, -350, -400));
+	}	
 }
 
 void MenuScreen::centreSpriteOrigin(sf::Sprite & sprite)
@@ -76,6 +56,7 @@ int MenuScreen::Run(sf::RenderWindow &window)
 
 	sf::Event Event;
 	bool Running = true;	
+	sf::Clock frameClock;
 
 	window.setView(window.getDefaultView());
 	
@@ -115,16 +96,10 @@ int MenuScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
-		float positionLength = sqrt(m_position.x * m_position.x + m_position.y * m_position.y);
-		float natLength = sqrt(m_natPosition.x * m_natPosition.x + m_natPosition.y * m_natPosition.y);
-
-		accel = -(m_springConst / m_mass)*(positionLength - natLength)* m_position / positionLength - (m_dampingConst / m_mass)* m_velocity;
-		m_velocity += accel;
-		m_position += m_velocity;
-		std::cout << accel.y << std::endl;
-
-		letterM.setPosition(m_position);
-
+		for (int i = 0; i < springs.size(); i++)
+		{
+			springs[i].update(frameClock.restart().asSeconds());
+		}
 
 		if (sf::Joystick::isConnected(joystick) == false){
 			for (int i = 0; i < 6 && joystick == -1; i++){
@@ -233,24 +208,19 @@ int MenuScreen::Run(sf::RenderWindow &window)
 
 		window.draw(Menu4);
 
-		window.draw(letterM);
-		window.draw(letterA);
-		window.draw(letterL1);
-		window.draw(letterE1);
-		window.draw(letterV);
-		window.draw(letterO);
-		window.draw(letterL2);
-		window.draw(letterE2);
-		window.draw(letterN);
-		window.draw(letterC);
-		window.draw(letterE3);
+		
+		for (int i = 0; i < springs.size(); i++)
+		{
+			window.draw(springs[i]);
+		}
+
 		window.draw(unfolded);
 
-		window.draw(blackGradient);
+		//window.draw(blackGradient);
 
-		window.draw(playButton);
-		window.draw(optionsButton);
-		window.draw(quitButton);
+		//window.draw(playButton);
+		//window.draw(optionsButton);
+		//window.draw(quitButton);
 		
 		window.display();
 	}

@@ -45,17 +45,7 @@ public:
 	sf::Texture menuOptions;
 	sf::Texture menuQuit;
 	sf::Texture menuUnfolded;
-	sf::Texture menuLetterM;
-	sf::Texture menuLetterA;
-	sf::Texture menuLetterL1;
-	sf::Texture menuLetterE1;
-	sf::Texture menuLetterV;
-	sf::Texture menuLetterO;
-	sf::Texture menuLetterL2;
-	sf::Texture menuLetterE2;
-	sf::Texture menuLetterN;
-	sf::Texture menuLetterC;
-	sf::Texture menuLetterE3;
+	sf::Texture menuLetters;
 	sf::Texture menuBlackGradient;
 
 private:

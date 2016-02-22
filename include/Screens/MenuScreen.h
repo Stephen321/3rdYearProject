@@ -5,6 +5,7 @@
 #include <memory>
 #include "Screen.hpp"
 #include "GameData.h"
+#include "SpringObject.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -20,22 +21,11 @@ private:
 	sf::Sprite playButton;
 	sf::Sprite optionsButton;
 	sf::Sprite quitButton;
-	sf::Sprite blackGradient;
-	sf::Sprite letterM;
-	sf::Sprite letterA;
-	sf::Sprite letterL1;
-	sf::Sprite letterE1;
-	sf::Sprite letterV;
-	sf::Sprite letterO;
-	sf::Sprite letterL2;
-	sf::Sprite letterE2;
-	sf::Sprite letterN;
-	sf::Sprite letterC;
-	sf::Sprite letterE3;
+	sf::Sprite blackGradient;	
 	sf::Sprite unfolded;
+	sf::Sprite titleLetters;
 
-	sf::Vector2f m_origin, m_position, m_velocity, accel, m_natPosition;
-	float m_dampingConst, m_springConst, m_mass;
+	std::vector<SpringObject> springs;
 };
 
 #endif
