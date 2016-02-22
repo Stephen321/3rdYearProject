@@ -96,9 +96,10 @@ int MenuScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
+		float dt = frameClock.restart().asSeconds();
 		for (int i = 0; i < springs.size(); i++)
 		{
-			springs[i].update(frameClock.restart().asSeconds());
+			springs[i].update(dt);
 		}
 
 		if (sf::Joystick::isConnected(joystick) == false){
