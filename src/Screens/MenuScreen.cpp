@@ -2,6 +2,39 @@
 #include <iostream> //testing
 MenuScreen::MenuScreen(void)
 {		
+
+	std::shared_ptr<GameData> ptr = GameData::getInstance();
+
+	playButton = sf::Sprite(ptr->menuPlay);
+	optionsButton = sf::Sprite(ptr->menuOptions);
+	quitButton = sf::Sprite(ptr->menuQuit);
+	centreSpriteOrigin(playButton);
+	centreSpriteOrigin(optionsButton);
+	centreSpriteOrigin(quitButton);
+
+	blackGradient = sf::Sprite(ptr->menuBlackGradient);
+	blackGradient.setOrigin(0, blackGradient.getTextureRect().height);
+
+	unfolded = sf::Sprite(ptr->menuUnfolded);
+	centreSpriteOrigin(unfolded);
+
+	titleLetters = sf::Sprite(ptr->menuLetters);
+	std::string title = "Malevolence";
+	for (int i = 0; i < title.length(); i++)
+	{
+		sf::Sprite s;
+		s.setTexture(ptr->menuLetters);
+		s.setTextureRect(sf::IntRect(i * titleLetters.getTextureRect().width / title.length(), 0, 
+			titleLetters.getTextureRect().width / title.length(), titleLetters.getTextureRect().height));
+		s.setOrigin(sf::Vector2f(s.getTextureRect().width / 2, s.getTextureRect().height / 2));
+
+		springs.push_back(SpringObject(s, -350, -400));
+	}	
+}
+
+void MenuScreen::centreSpriteOrigin(sf::Sprite & sprite)
+{
+	sprite.setOrigin(sprite.getTextureRect().width / 2.f, sprite.getTextureRect().height / 2.f);
 }
 
 void MenuScreen::setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Vector2f screenDimensions){
@@ -13,8 +46,17 @@ void MenuScreen::setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Ve
 
 int MenuScreen::Run(sf::RenderWindow &window)
 {
+	blackGradient.setPosition(sf::Vector2f(0, window.getSize().y));
+	unfolded.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f - 100)); // +125));
+
+	int buttonOffsetY = 10;
+	playButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + buttonOffsetY));
+	optionsButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + 105 + buttonOffsetY));
+	quitButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + 210 + buttonOffsetY));
+
 	sf::Event Event;
 	bool Running = true;	
+	sf::Clock frameClock;
 
 	window.setView(window.getDefaultView());
 	
@@ -54,6 +96,12 @@ int MenuScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
+		float dt = frameClock.restart().asSeconds();
+		for (int i = 0; i < springs.size(); i++)
+		{
+			springs[i].update(dt);
+		}
+
 		if (sf::Joystick::isConnected(joystick) == false){
 			for (int i = 0; i < 6 && joystick == -1; i++){
 				if (sf::Joystick::isConnected(i))
@@ -160,6 +208,20 @@ int MenuScreen::Run(sf::RenderWindow &window)
 		window.draw(Menu3);
 
 		window.draw(Menu4);
+
+		
+		for (int i = 0; i < springs.size(); i++)
+		{
+			window.draw(springs[i]);
+		}
+
+		window.draw(unfolded);
+
+		//window.draw(blackGradient);
+
+		//window.draw(playButton);
+		//window.draw(optionsButton);
+		//window.draw(quitButton);
 		
 		window.display();
 	}

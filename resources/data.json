@@ -27,7 +27,18 @@
         "rockTextureFile": "rockTexture.png",
         "bushTextureFile": "bushTexture.png",
         "treeTextureFile": "treeTexture.png",
-        "tallGrassTextureFile": "tallGrassTexture.png"
+        "grassBlade1TextureFile": "grassBlade1Texture.png",
+        "grassBlade2TextureFile": "grassBlade2Texture.png",
+        "grassBlade3TextureFile": "grassBlade3Texture.png",
+        "grassBlade4TextureFile": "grassBlade4Texture.png",
+        "grassBlade5TextureFile": "grassBlade5Texture.png",
+        "grassBlade6TextureFile": "grassBlade6Texture.png",
+        "menuPlayTextureFile": "menuPlayTexture.png",
+        "menuOptionsTextureFile": "menuOptionsTexture.png",
+        "menuQuitTextureFile": "menuQuitTexture.png",
+        "menuUnfoldedTextureFile": "menuUnfolded.png",
+        "menuLettersTextureFile": "menuLettersTexture.png",        
+        "menuBlackGradientTextureFile": "menuDarknessTexture.png"
     },
     "char_properties" :
     {

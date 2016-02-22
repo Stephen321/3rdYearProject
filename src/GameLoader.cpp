@@ -90,7 +90,29 @@ void GameLoader::loadData(MapLoader * ml, Pathfinder * pf){
 	++texturesIT;
 	ptr->treeTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
 	++texturesIT;
-	ptr->tallGrassTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());	
+	ptr->grassBladeTextures[0].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->grassBladeTextures[1].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->grassBladeTextures[2].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->grassBladeTextures[3].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->grassBladeTextures[4].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->grassBladeTextures[5].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->menuPlay.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->menuOptions.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->menuQuit.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->menuUnfolded.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->menuLetters.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->menuBlackGradient.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
 	++it;
 
 	//character properties
