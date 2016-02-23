@@ -2,27 +2,32 @@
 #include <iostream> //testing
 MenuScreen::MenuScreen(void)
 {
+	std::shared_ptr<GameData> ptr = GameData::getInstance(); //pointer to gameData so we can initialse the sprites
 
-	std::shared_ptr<GameData> ptr = GameData::getInstance();
-
+	//initialise sprites with textures from gameData
 	playButton = sf::Sprite(ptr->menuPlay);
 	optionsButton = sf::Sprite(ptr->menuOptions);
 	quitButton = sf::Sprite(ptr->menuQuit);
 	playSelected = sf::Sprite(ptr->playSelected);
 	optionsSelected = sf::Sprite(ptr->optionsSelected);
 	quitSelected = sf::Sprite(ptr->quitSelected);
+
+	//make the origin of these sprites centred
 	centreSpriteOrigin(playButton);
 	centreSpriteOrigin(optionsButton);
 	centreSpriteOrigin(quitButton);
 	centreSpriteOrigin(playSelected);
 	centreSpriteOrigin(optionsSelected);
 	centreSpriteOrigin(quitSelected);
+
+	//initialse menu options to be scaled to 0 for their transition in
 	playButton.setScale(0, 0);
 	optionsButton.setScale(0, 0);
 	quitButton.setScale(0, 0);
+
+	//make the glow effect for menu options selection invisible to begin with
 	playSelected.setColor(sf::Color(255, 255, 255, 0));
 	optionsSelected.setColor(sf::Color(255, 255, 255, 0));
-	playSelected.setColor(sf::Color(255, 255, 255, 0));
 	quitSelected.setColor(sf::Color(255, 255, 255, 0));
 
 	blackGradient = sf::Sprite(ptr->menuBlackGradient);
@@ -31,10 +36,12 @@ MenuScreen::MenuScreen(void)
 	unfolded = sf::Sprite(ptr->menuUnfolded);
 	centreSpriteOrigin(unfolded);
 
+	//create a collection of springs by inserting an entry for each letter in "Malevolence" into springs
 	titleLetters = sf::Sprite(ptr->menuLetters);
 	std::string title = "Malevolence";
 	for (int i = 0; i < title.length(); i++)
 	{
+		//create and pass in a sprite to each spring
 		sf::Sprite s;
 		s.setTexture(ptr->menuLetters);
 		s.setTextureRect(sf::IntRect(i * titleLetters.getTextureRect().width / title.length(), 0,
@@ -44,8 +51,9 @@ MenuScreen::MenuScreen(void)
 		springs.push_back(SpringObject(s));
 	}
 
-	springs.push_back(SpringObject(unfolded));
+	springs.push_back(SpringObject(unfolded)); //add one more spring for the "Unfolded" sprite
 
+	//manually set the resting position for each spring so they rest at different positions
 	springs[0].setRestingPos(-300, -330);
 	springs[1].setRestingPos(-220, -355);
 	springs[2].setRestingPos(-165, -360);
@@ -60,22 +68,16 @@ MenuScreen::MenuScreen(void)
 	springs[11].setRestingPos(-10, -240);
 }
 
+//positions a sprites origin in the centre of the texture
 void MenuScreen::centreSpriteOrigin(sf::Sprite & sprite)
 {
 	sprite.setOrigin(sprite.getTextureRect().width / 2.f, sprite.getTextureRect().height / 2.f);
 }
 
-void MenuScreen::setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Vector2f screenDimensions){
-	//center text
-	sf::FloatRect textRect = text.getLocalBounds();
-	text.setOrigin(textRect.left + textRect.width / 2.0f, 0);
-	text.setPosition(sf::Vector2f(screenDimensions.x / 2.0f, (screenDimensions.y / 8.0f) * multiplier));
-}
-
 int MenuScreen::Run(sf::RenderWindow &window)
 {
 	blackGradient.setPosition(sf::Vector2f(0, window.getSize().y));
-	unfolded.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f - 100)); // +125));
+	unfolded.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f - 100));
 
 	int buttonOffsetY = 10;
 	playButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + buttonOffsetY));
@@ -92,40 +94,13 @@ int MenuScreen::Run(sf::RenderWindow &window)
 	float timer = 0;
 	float menuItemsTimer = 0;
 	int counter = 0;
+	
 
 	window.setView(window.getDefaultView());
-
-	sf::Font Font;
-	sf::Text Menu1, Menu2, Menu3, Menu4;
+	
 	int menu = 0;
 
-	Font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
 
-	sf::Vector2f screenDimensions(window.getView().getSize());
-
-	Menu1.setFont(Font);
-	Menu1.setCharacterSize(70);
-	Menu1.setString("Play");
-	Menu1.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu1, 3, screenDimensions);
-
-	Menu2.setFont(Font);
-	Menu2.setCharacterSize(70);
-	Menu2.setString("Continue");
-	Menu2.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu2, 4, screenDimensions);
-
-	Menu3.setFont(Font);
-	Menu3.setCharacterSize(70);
-	Menu3.setString("Options");
-	Menu3.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu3, 5, screenDimensions);
-
-	Menu4.setFont(Font);
-	Menu4.setCharacterSize(70);
-	Menu4.setString("Exit");
-	Menu4.setColor(sf::Color(255, 255, 255, 255));
-	setTextOriginAndPosition(Menu4, 6, screenDimensions);
 	bool joyStickAlreadyMoved = false;
 	int joystick = -1;
 
@@ -137,43 +112,50 @@ int MenuScreen::Run(sf::RenderWindow &window)
 			springs[i].update(dt);
 		}
 
-		if (timer != -1)
-			timer += dt;
-		else
-			menuItemsTimer += dt;
 
-		if (counter < springs.size() - 1)
+		if (menuLoaded == false) //we only want to do this once
 		{
+			//using 2 timers as there's 2 distinct phases of this sequence we need them for
+			if (timer != -1)
+				timer += dt;
+			else
+				menuItemsTimer += dt;
 
-			if (timer > 0.5f)
+			if (counter < springs.size() - 1) //sequentially release each letter in "Malevolence" so their springs come to rest one by one
 			{
-				springs[counter].setReleased();
-				counter++;
-				timer = 0;
+				if (timer > 0.5f) //half a second delay between 
+				{
+					springs[counter].setReleased();
+					counter++;
+					timer = 0;
+				}
 			}
+
+			if (timer > 3.0f) //transition in the text "Unfolded" after a short period
+			{
+				springs[springs.size() - 1].setReleased();
+				timer = -1; //no need to increment this timer any more
+			}
+
+			//use a timer so the menu options scale up in a sequence
+			if (menuItemsTimer > 2.0f && setPlayScale == false)
+				setPlayScale = true;
+			else if (menuItemsTimer > 2.75f && setOptionsScale == false)
+				setOptionsScale = true;
+			else if (menuItemsTimer > 3.5f && setQuitScale == false)
+				setQuitScale = true;
+			else if (menuItemsTimer > 4.0f && menuLoaded == false)
+				menuLoaded = true; //we don't want the menu code reactivating when we're this far in
+
+			//transition the menu options onto the screen by increasing their scale from 0 to 1
+			if (setPlayScale && playButton.getScale().x < 1)
+				playButton.setScale(playButton.getScale().x + 0.05f, playButton.getScale().y + 0.05f);
+			if (setOptionsScale && optionsButton.getScale().x < 1)
+				optionsButton.setScale(optionsButton.getScale().x + 0.05f, optionsButton.getScale().y + 0.05f);
+			if (setQuitScale && quitButton.getScale().x < 1)
+				quitButton.setScale(quitButton.getScale().x + 0.05f, quitButton.getScale().y + 0.05f);
+
 		}
-
-		if (timer > 3.0f)
-		{
-			springs[springs.size() - 1].setReleased();
-			timer = -1;
-		}
-
-		if (menuItemsTimer > 2.0f && setPlayScale == false)
-			setPlayScale = true;
-		else if (menuItemsTimer > 2.75f && setOptionsScale == false)
-			setOptionsScale = true;
-		else if (menuItemsTimer > 3.5f && setQuitScale == false)
-			setQuitScale = true;
-		else if (menuItemsTimer > 4.0f && menuLoaded == false)
-			menuLoaded = true;
-
-		if (setPlayScale && playButton.getScale().x < 1)
-			playButton.setScale(playButton.getScale().x + 0.05f, playButton.getScale().y + 0.05f);
-		if (setOptionsScale && optionsButton.getScale().x < 1)
-			optionsButton.setScale(optionsButton.getScale().x + 0.05f, optionsButton.getScale().y + 0.05f);
-		if (setQuitScale && quitButton.getScale().x < 1)
-			quitButton.setScale(quitButton.getScale().x + 0.05f, quitButton.getScale().y + 0.05f);
 
 		if (sf::Joystick::isConnected(joystick) == false){
 			for (int i = 0; i < 6 && joystick == -1; i++){
@@ -222,7 +204,7 @@ int MenuScreen::Run(sf::RenderWindow &window)
 				}
 				else if (menu == 1)
 				{
-					//load from file
+					
 					return (2);
 				}
 				else
@@ -247,14 +229,15 @@ int MenuScreen::Run(sf::RenderWindow &window)
 		window.draw(optionsButton);
 		window.draw(quitButton);
 
-		if (menuLoaded)
+		if (menuLoaded) 
 		{
+			//Depending which option is selcted, fade in or out the glowing selected effects on each menu item
 			if (menu == 0)
 			{
 				if (playSelected.getColor().a < 255)
-					playSelected.setColor(sf::Color(255, 255, 255, playSelected.getColor().a + 5));
+					playSelected.setColor(sf::Color(255, 255, 255, playSelected.getColor().a + 5)); //fade in
 				if (optionsSelected.getColor().a > 0)
-					optionsSelected.setColor(sf::Color(255, 255, 255, optionsSelected.getColor().a - 5));
+					optionsSelected.setColor(sf::Color(255, 255, 255, optionsSelected.getColor().a - 5)); //fade out
 				if (quitSelected.getColor().a > 0)
 					quitSelected.setColor(sf::Color(255, 255, 255, quitSelected.getColor().a - 5));
 			}
@@ -277,6 +260,7 @@ int MenuScreen::Run(sf::RenderWindow &window)
 					quitSelected.setColor(sf::Color(255, 255, 255, quitSelected.getColor().a + 5));
 			}
 
+			//draw the glowing effects
 			window.draw(playSelected);
 			window.draw(optionsSelected);
 			window.draw(quitSelected);

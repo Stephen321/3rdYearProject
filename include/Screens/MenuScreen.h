@@ -14,7 +14,6 @@ class MenuScreen : public Screen
 private:
 public:
 	MenuScreen(void);
-	void setTextOriginAndPosition(sf::Text &text, int multiplier, sf::Vector2f screenDimensions);
 	void centreSpriteOrigin(sf::Sprite & sprite);
 	virtual int Run(sf::RenderWindow &window);
 private:
@@ -25,7 +24,10 @@ private:
 	sf::Sprite playSelected, optionsSelected, quitSelected;
 
 	std::vector<SpringObject> springs;
-	bool setPlayScale, setOptionsScale, setQuitScale, menuLoaded = false;
+	bool setPlayScale = false;
+	bool setOptionsScale = false;
+	bool setQuitScale = false;
+	bool menuLoaded = false;
 };
 
 #endif
