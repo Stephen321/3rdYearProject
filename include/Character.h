@@ -69,6 +69,10 @@ protected:
 	Pathfinder * m_pathFinder;
 	float m_timer;
 	float dt;
+
+	float m_damagedTimer;
+	bool damaged;
+	const float DAMAGED_TIME = 0.1f;
 };
 
 

@@ -6,7 +6,8 @@ m_visible(false),
 m_alive(true),
 m_pathFinder(pf),
 m_timer(0),
-m_charType(charType){
+m_charType(charType),
+damaged(false), m_damagedTimer(0){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 	sndMgr = SoundManager::getInstance();
 
@@ -92,8 +93,10 @@ void Character::setUpBox2D(b2World& world, const b2Vec2& position, const GameDat
 
 
 void Character::takeDamage(float damage){
-	if (m_alive)
+	if (m_alive){
 		m_alive = m_health.changeHealth(-damage);
+		damaged = true;
+	}
 }
 
 void Character::startContact(){
@@ -140,6 +143,16 @@ void Character::update(sf::Time _dt, sf::FloatRect viewBounds){
 	m_position = getPosition();
 	m_animatedSprite.setPosition(getPosition() + m_spriteOffset);
 	m_animatedSprite.update(_dt);
+
+	if (damaged){
+		m_animatedSprite.setColor(sf::Color::Red);
+		m_damagedTimer += dt;
+		if (m_damagedTimer > DAMAGED_TIME){
+			damaged = false;
+			m_damagedTimer = 0;
+			m_animatedSprite.setColor(sf::Color::White);
+		}
+	}
 }
 
 void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const{
