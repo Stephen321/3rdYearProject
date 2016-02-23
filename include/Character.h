@@ -63,6 +63,7 @@ protected:
 	HealthBar m_health;
 	CharacterType m_charType;
 	std::shared_ptr<SoundManager> sndMgr;
+	float max_speed;
 	float m_speed;//pixels per second	
 	bool m_alive;
 	Pathfinder * m_pathFinder;

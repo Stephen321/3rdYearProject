@@ -17,7 +17,7 @@ private:
 	void behaviour() override;
 	void applyDamage(float comboMod = 1.f);
 	void comboFinished();
-	Action m_actions[4];
+	Action m_actions[5];
 	std::queue<Action*> m_currentActions;
 	std::string m_comboString;
 	bool m_actionToPlay;

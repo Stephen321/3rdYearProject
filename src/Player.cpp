@@ -5,10 +5,11 @@ Player::Player(b2World& world, sf::Vector2f position) :
 Character(world, CharacterType::PLAYER, position),
 m_actionToPlay(false),
 m_comboString(""){
-	m_actions[0] = Action(0, 11, 0, 10, 2, false, "punch"); //A
-	m_actions[1] = Action(0, 16, 1, 10, 2, false, "kick"); //B
-	m_actions[2] = Action(0, 10, 2, 10, 2, false, "flip"); //X
-	m_actions[3] = Action(3, 11, 3, 10, 2, false, "punch"); //Y
+	m_actions[0] = Action(0, 11, 0, 8, 2, false, "swipe"); //A
+	m_actions[1] = Action(0, 12, 1, 10, 3, false, "kick"); //B
+	m_actions[2] = Action(0, 10, 2, 5, 2, false, "jumpSplits"); //X
+	m_actions[3] = Action(3, 11, 3, 8, 4, false, "headbutt"); //Y
+	m_actions[4] = Action(3, 11, 4, 12, 4, false, "kickFlip"); //kickFlip
 }
 
 void Player::handleEvent(sf::Event e){
@@ -32,7 +33,8 @@ void Player::handleEvent(sf::Event e){
 			else if (m_actionToPlay == false){
 				m_currentActions.push(&m_actions[buttonId]);
 				addCombo = true;
-				m_animatedSprite.play(m_anims[m_currentActions.back()->getAnimName()]);
+				currentAnim = &m_anims[m_currentActions.back()->getAnimName()];
+				m_animatedSprite.play(*currentAnim);
 				m_animatedSprite.setLooped(false);
 				applyDamage();
 			}
@@ -93,12 +95,16 @@ void Player::behaviour(){
 	}
 
 	//if all animations have stopped playing then reset to idle 
-	if (m_animatedSprite.isPlaying() == false){
+	if (m_animatedSprite.isPlaying() == false || (currentAnim == &m_anims["run"]  && m_velocity == sf::Vector2f())){
+		m_speed = max_speed;
 		currentAnim = &m_anims["idle"];
 		m_animatedSprite.play(*currentAnim);
-		m_animatedSprite.setLooped(true);
+		m_animatedSprite.setLooped(false);
 		m_actionToPlay = false;
 		comboFinished();
+	}
+	else if (currentAnim != &m_anims["run"]){
+		m_speed = 0;
 	}
 
 	float xPos = sf::Joystick::getAxisPosition(m_joystick, sf::Joystick::Axis::X);
@@ -113,17 +119,23 @@ void Player::behaviour(){
 	sndMgr->playSound("walking_grass", true);
 	xPos = (xPos / 100) * m_speed;
 	yPos = (yPos / 100) * m_speed;
+	if (m_speed > 0 && currentAnim != &m_anims["run"]){
+		currentAnim = &m_anims["run"];
+		m_animatedSprite.play(*currentAnim);
+		m_animatedSprite.setLooped(false);
+	}
 
 	m_velocity = sf::Vector2f(xPos, yPos);
 }
 
 void Player::comboFinished(){
-	if (m_comboString == "XXY"){
-		std::cout << "XXY combo triggered" << '\n';
+	if (m_comboString == "BX"){
+		std::cout << "BX combo triggered" << '\n';
+		m_currentActions.push(&m_actions[4]);
+		currentAnim = &m_anims[m_currentActions.back()->getAnimName()];
+		m_animatedSprite.play(*currentAnim);
+		m_animatedSprite.setLooped(false);
 		applyDamage(2.f);
-	}
-	if (m_comboString == "XXYA"){
-		std::cout << "XXYA combo triggered" << '\n';
 	}
 	m_currentActions.swap(std::queue<Action*>()); //empty the queue
 	m_comboString = "";

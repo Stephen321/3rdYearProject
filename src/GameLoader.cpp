@@ -149,7 +149,7 @@ void GameLoader::setCollisionFilter(std::string charName, GameData::CharInfo* in
 	}
 	else if (charName == "ai" || charName == "popout"){
 		info->filterCategory = (uint16)CollisionFilters::ENEMY;
-		info->filterMask = (uint16)CollisionFilters::NONE; // (uint16)CollisionFilters::PLAYER;// | (uint16)CollisionFilters::COLLIDABLE;
+		info->filterMask = (uint16)CollisionFilters::PLAYER;// | (uint16)CollisionFilters::COLLIDABLE;
 		info->filterSensor = (uint16)CollisionFilters::PLAYER;
 	}
 }

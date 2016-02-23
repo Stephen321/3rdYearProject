@@ -24,12 +24,13 @@ m_charType(charType){
 	float maxHealth = info->maxHealth;
 	m_anims = info->anims;
 	m_scale = info->spriteScale; 
-	m_speed = info->maxSpeed;
+	m_speed = max_speed = info->maxSpeed;
 
 	m_animatedSprite = AnimatedSprite(sf::seconds(playSpeed), false, true);
 	m_animatedSprite.setScale(m_scale, m_scale);
 	currentAnim = &m_anims.begin()->second;
 	m_animatedSprite.play(*currentAnim);
+	m_animatedSprite.setLooped(false);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
 	m_health = HealthBar(maxHealth, sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + position);
 
