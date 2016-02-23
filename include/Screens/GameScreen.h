@@ -19,6 +19,7 @@
 #include "Bush.h"
 #include "Tree.h"
 #include "TallGrass.h"
+#include "Cloud.h"
 #include "SoundManager.h"
 #include "TileMap\BodyCreator.h"
 #include "Pathfinding\Pathfinder.h"
@@ -31,6 +32,7 @@ public:
 private:
 	Pathfinder * m_pathFinder;
 	MapLoader * m_mapLoader;
+	std::vector<Cloud> clouds;
 };
 
 #endif

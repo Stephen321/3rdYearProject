@@ -50,6 +50,11 @@ int GameScreen::Run(sf::RenderWindow &window)
 	//game objects
 	std::vector<std::shared_ptr<GameObject>> gameObjects;
 
+	for (int i = 0; i < 20; i++)
+	{
+		clouds.push_back(Cloud(sf::Sprite(ptr->cloudTextures[rand() % 3])));
+	}
+
 	//projectiles
 	std::vector<Projectile> projectiles;
 
@@ -165,6 +170,20 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	while (Running)
 	{
+		//update stuff
+		sf::Time dt = frameClock.restart();
+
+		for (int i = 0; i < clouds.size(); i++)
+		{
+			clouds[i].update(dt.asSeconds());
+
+			if (clouds[i].getAlive() == false)
+			{
+				clouds.erase(clouds.begin() + i);
+				clouds.push_back(Cloud(sf::Sprite(ptr->cloudTextures[rand() % 3])));
+			}
+		}
+
 		sndMgr->update();
 		window.setView(view); //need to change view back to mouse pos info is correct
 		sf::Vector2f mouseScreenPos = (sf::Vector2f)sf::Mouse::getPosition(window);
@@ -240,8 +259,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 			sndMgr->playSound("bird_tweet_" + std::to_string(soundToPlay), false, 0.5f, birdCircle.getPosition());
 		}
 
-		//update stuff
-		sf::Time dt = frameClock.restart();
+		
 
 		sf::FloatRect bounds;
 		bounds.left = view.getCenter().x - view.getSize().x / 2.f;
@@ -358,6 +376,11 @@ int GameScreen::Run(sf::RenderWindow &window)
 				window.draw(*s);
 			for (const auto& s : debugShapes)
 				window.draw(s);
+		}
+
+		for (int i = 0; i < clouds.size(); i++)
+		{
+			window.draw(clouds[i]);
 		}
 
 		window.display();

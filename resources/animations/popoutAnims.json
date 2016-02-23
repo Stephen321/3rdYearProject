@@ -1,7 +1,7 @@
 {
     "name": "popout",
     "playspeed" : 15,
-    "scale" : 0.3,
+    "scale" : 0.5,
     "animations": [
     {
         "name": "idle",

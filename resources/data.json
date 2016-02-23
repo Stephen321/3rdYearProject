@@ -42,7 +42,10 @@
         "menuBlackGradientTextureFile": "menuDarknessTexture.png",
         "playSelectedTextureFile": "playSelected.png",
         "optionsSelectedTextureFile": "optionsSelected.png",
-        "quitSelectedTextureFile": "quitSelected.png"
+        "quitSelectedTextureFile": "quitSelected.png",
+        "cloud1TextureFile": "cloudShadow1.png",
+        "cloud2TextureFile": "cloudShadow2.png",
+        "cloud3TextureFile": "cloudShadow3.png"
     },
     "char_properties" :
     {

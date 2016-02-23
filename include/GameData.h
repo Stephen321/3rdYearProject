@@ -50,6 +50,7 @@ public:
 	sf::Texture menuLetters;
 	sf::Texture menuBlackGradient;
 	sf::Texture playSelected, optionsSelected, quitSelected;
+	sf::Texture cloudTextures[3];
 
 private:
 	GameData();

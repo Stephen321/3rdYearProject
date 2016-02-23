@@ -121,6 +121,12 @@ void GameLoader::loadData(MapLoader * ml, Pathfinder * pf){
 	ptr->optionsSelected.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
 	++texturesIT;
 	ptr->quitSelected.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->cloudTextures[0].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->cloudTextures[1].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->cloudTextures[2].loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
 	++it;
 
 	//character properties
