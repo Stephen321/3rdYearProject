@@ -11,7 +11,7 @@ Place the following folders on the C: drive:
 -zlib
 -Box2D
 
-Download FMOD Ex Programmer’s API from [here](http://www.fmod.org/download-previous-products/) (you will have to register) or get the " " folder from the libraries folder on Google Drive mentioned about.
+Download FMOD Ex Programmer’s API from [here](http://www.fmod.org/download-previous-products/) (you will have to register) or get the "FMOD" folder from the libraries folder on Google Drive mentioned about.
 Open up enviroment variables and add a new variable with a name of "FMOD_SDK".
 The value of these should be set to the api folder that is in the downloaded fmod folder directory.
 If you downloaded from fmod.org then it will default to "C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows". And we set it to the "api" folder:
