@@ -38,55 +38,10 @@
                     },
                  "rotation":0,
                  "type":"Player",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":2816,
                  "y":4000
-                }, 
-                {
-                 "height":0,
-                 "id":2,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2560,
-                 "y":4041
-                }, 
-                {
-                 "height":0,
-                 "id":3,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2624.5,
-                 "y":4250.5
-                }, 
-                {
-                 "height":0,
-                 "id":4,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2633,
-                 "y":4266
                 }, 
                 {
                  "height":32,
@@ -98,7 +53,7 @@
                     },
                  "rotation":0,
                  "type":"Ai",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":2752,
                  "y":416
@@ -113,7 +68,7 @@
                     },
                  "rotation":0,
                  "type":"Ai",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":3552,
                  "y":3136
@@ -128,7 +83,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":1376,
                  "y":1344
@@ -143,7 +98,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":1504,
                  "y":1024
@@ -158,7 +113,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":1152,
                  "y":928
@@ -173,7 +128,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":960,
                  "y":1344
@@ -188,7 +143,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":1408,
                  "y":1728
@@ -203,7 +158,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":1792,
                  "y":1664
@@ -218,7 +173,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":1696,
                  "y":736
@@ -233,7 +188,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":1280,
                  "y":512
@@ -248,7 +203,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":736,
                  "y":1024
@@ -263,7 +218,7 @@
                     },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":736,
                  "y":1472
@@ -418,21 +373,6 @@
                 }, 
                 {
                  "height":32,
-                 "id":47,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2656,
-                 "y":3936
-                }, 
-                {
-                 "height":32,
                  "id":49,
                  "name":"Bush",
                  "properties":
@@ -504,21 +444,6 @@
                  "visible":true,
                  "width":32,
                  "x":2656,
-                 "y":3936
-                }, 
-                {
-                 "height":0,
-                 "id":54,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2624,
                  "y":3936
                 }, 
                 {
