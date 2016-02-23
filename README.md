@@ -17,4 +17,4 @@ The value of these should be set to the api folder that is in the downloaded fmo
 If you downloaded from fmod.org then it will default to "C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows". And we set it to the "api" folder:
 ![alt tag](http://puu.sh/lXwQK.png)
 If you download instead from Google Drive then place it anywhere you want and put the directory to the api folder into the variable.
-![]({{site.baseurl}}/http://puu.sh/nj2vo.png)
+![alt tag](http://puu.sh/nj2vo.png)
