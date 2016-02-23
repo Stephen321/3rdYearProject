@@ -11,7 +11,7 @@ m_type(type){
 	else if (type == ObjectType::TREE)
 		m_sprite = sf::Sprite(ptr->treeTexture);
 	else if (type == ObjectType::TALLGRASS)
-		m_sprite = sf::Sprite(ptr->grassBladeTextures[0]);
+		m_sprite = sf::Sprite(ptr->grassBladeTextures[rand() % 6]);
 
 	m_sprite.setOrigin(m_sprite.getTextureRect().width / 2.f, m_sprite.getTextureRect().height - 16);
 	m_position = position;

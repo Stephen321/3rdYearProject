@@ -5978,8 +5978,8 @@
                  "type":"Tree",
                  "visible":true,
                  "width":32,
-                 "x":2560,
-                 "y":128
+                 "x":2528,
+                 "y":96
                 }, 
                 {
                  "height":32,
@@ -6673,7 +6673,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":0,
          "x":0,
          "y":0
