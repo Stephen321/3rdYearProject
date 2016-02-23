@@ -26,6 +26,7 @@ class Character : public VisibleObject{
 public:
 	enum class CharacterType {
 		AI, 
+		POPOUT,
 		PLAYER
 	};
 
@@ -37,7 +38,7 @@ public:
 	virtual void sensorEnd(Character*) = 0;
 	virtual void sensorStart(Character*) = 0;
 	void setVelocity(sf::Vector2f value);
-	virtual sf::Vector2f getPosition();
+	virtual sf::Vector2f getPosition() const;
 	void setPosition(sf::Vector2f position);
 	bool getAlive() const;
 	void reset(sf::Vector2f resetPos);
@@ -48,7 +49,7 @@ protected:
 	Character(b2World& world, CharacterType charType, const sf::Vector2f& position, Pathfinder * pf = 0);
 	virtual void behaviour() = 0;
 	void setUpBox2D(b2World& world, const b2Vec2& position, const GameData::CharInfo* info);
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	AnimatedSprite m_animatedSprite;
 	sf::Vector2f m_velocity;
 	Animation* currentAnim;
@@ -60,13 +61,13 @@ protected:
 	bool m_visible;
 	float m_scale;
 	HealthBar m_health;
-	bool m_attacking;
 	CharacterType m_charType;
 	std::shared_ptr<SoundManager> sndMgr;
 	float m_speed;//pixels per second	
 	bool m_alive;
 	Pathfinder * m_pathFinder;
 	float m_timer;
+	float dt;
 };
 
 

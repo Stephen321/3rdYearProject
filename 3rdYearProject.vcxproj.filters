@@ -1,57 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\rapidjson">
-      <UniqueIdentifier>{d74f6ebe-c403-45cb-ad06-3db9a4671788}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\rapidjson\internal">
-      <UniqueIdentifier>{88c631df-b353-48c9-87b2-36e194aeafea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\rapidjson\error">
-      <UniqueIdentifier>{e73715c1-af74-4805-88a2-edb3902c4c75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\rapidjson\msinttypes">
-      <UniqueIdentifier>{0de2b612-8e57-4265-bdae-53c1a762a058}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\examples">
-      <UniqueIdentifier>{e6ce4f64-e5c8-416f-ae7c-1e4cccdef68e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Screens">
-      <UniqueIdentifier>{dd0aea4a-2128-45fe-92e4-1a8d83df9590}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Screens">
-      <UniqueIdentifier>{d38a46dc-a291-4944-b0f3-6bdcce2dc0f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\TileMap">
-      <UniqueIdentifier>{f3225461-bcb2-422d-ae1c-481588aa000f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\TileMap">
-      <UniqueIdentifier>{0e0c7cfa-66eb-4170-810c-ba475bf841d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\TileMap\tmx">
-      <UniqueIdentifier>{95fb4f1b-bdb5-49ce-92e4-7e06415b3259}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\TileMap\tmx">
-      <UniqueIdentifier>{4bb0326b-3476-4fbd-91d8-4253876618cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Pathfinding">
-      <UniqueIdentifier>{4184e8bd-dcab-4989-9554-6da762f09aca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Pathfinding">
-      <UniqueIdentifier>{dc916a9c-afa3-45c3-a7e4-e474c44f01d9}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="src\Action.cpp" />
+    <ClCompile Include="src\AI.cpp" />
+    <ClCompile Include="src\AnimatedSprite.cpp" />
+    <ClCompile Include="src\Animation.cpp" />
+    <ClCompile Include="src\Box2D.cpp" />
+    <ClCompile Include="src\Bush.cpp" />
+    <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\Debug.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
+    <ClCompile Include="src\GameData.cpp" />
+    <ClCompile Include="src\GameLoader.cpp" />
+    <ClCompile Include="src\HealthBar.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MyListener.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\Pathfinding\Node.cpp" />
+    <ClCompile Include="src\Pathfinding\Pathfinder.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Rock.cpp" />
+    <ClCompile Include="src\Screens\CreditsScreen.cpp" />
+    <ClCompile Include="src\Screens\GameScreen.cpp" />
+    <ClCompile Include="src\Screens\MenuScreen.cpp" />
+    <ClCompile Include="src\Screens\OptionsScreen.cpp" />
+    <ClCompile Include="src\SoundManager.cpp" />
+    <ClCompile Include="src\SpringObject.cpp" />
+    <ClCompile Include="src\stdafx.cpp" />
+    <ClCompile Include="src\TallGrass.cpp" />
+    <ClCompile Include="src\TileMap\BodyCreator.cpp" />
+    <ClCompile Include="src\TileMap\DebugShape.cpp" />
+    <ClCompile Include="src\TileMap\MapLayer.cpp" />
+    <ClCompile Include="src\TileMap\MapLoader.cpp" />
+    <ClCompile Include="src\TileMap\MapObject.cpp" />
+    <ClCompile Include="src\TileMap\MapTile.cpp" />
+    <ClCompile Include="src\TileMap\TileSet.cpp" />
+    <ClCompile Include="src\Tree.cpp" />
+    <ClCompile Include="src\VisibleObject.cpp" />
+    <ClCompile Include="src\Popout.cpp" />
+    <ClCompile Include="src\Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -371,6 +358,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\SpringObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Popout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

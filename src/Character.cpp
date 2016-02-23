@@ -3,7 +3,6 @@
 
 Character::Character(b2World& world, CharacterType charType, const sf::Vector2f& position, Pathfinder * pf) :
 m_visible(false),
-m_attacking(false),
 m_alive(true),
 m_pathFinder(pf),
 m_timer(0),
@@ -16,6 +15,8 @@ m_charType(charType){
 		info = &ptr->playerInfo;
 	else if (m_charType == CharacterType::AI)
 		info = &ptr->aiInfo;
+	else if (m_charType == CharacterType::POPOUT)
+		info = &ptr->popoutInfo;
 	else
 		return;
 
@@ -116,8 +117,10 @@ void Character::setVelocity(sf::Vector2f value){
 	m_velocity = value;
 }
 
-void Character::update(sf::Time dt, sf::FloatRect viewBounds){
-	m_timer += dt.asSeconds();
+void Character::update(sf::Time _dt, sf::FloatRect viewBounds){
+	dt = _dt.asSeconds();
+	m_timer += dt;
+
 	behaviour();
 
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width / 2.f, m_animatedSprite.getLocalBounds().height / 2.f);//update origin
@@ -135,7 +138,7 @@ void Character::update(sf::Time dt, sf::FloatRect viewBounds){
 	m_health.update(sf::Vector2f(0, -m_animatedSprite.getGlobalBounds().height) + getPosition());
 	m_position = getPosition();
 	m_animatedSprite.setPosition(getPosition() + m_spriteOffset);
-	m_animatedSprite.update(dt);
+	m_animatedSprite.update(_dt);
 }
 
 void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const{
@@ -153,12 +156,12 @@ bool Character::getVisible() const{
 	return m_visible;
 }
 
-sf::Vector2f Character::getPosition(){
+sf::Vector2f Character::getPosition() const{
 	return BoxToSfVec(m_body->GetPosition());
 }
 
 sf::Vector2i Character::getTileCoord() const{
-	return MapLoader::getTileCoordsFromPos(m_position);
+	return MapLoader::getTileCoordsFromPos(getPosition());
 }
 
 sf::Vector2i Character::getTileCoord(sf::Vector2f position) const{

@@ -84,6 +84,8 @@ void GameLoader::loadData(MapLoader * ml, Pathfinder * pf){
 
 	//textures
 	Value::ConstMemberIterator texturesIT = it->value.MemberBegin();
+	ptr->projectileTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
 	ptr->rockTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
 	++texturesIT;
 	ptr->bushTexture.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
@@ -145,20 +147,22 @@ void GameLoader::setCollisionFilter(std::string charName, GameData::CharInfo* in
 		info->filterMask = (uint16)CollisionFilters::ENEMY | (uint16)CollisionFilters::COLLIDABLE;
 		info->filterSensor = (uint16)CollisionFilters::ENEMY;
 	}
-	else if (charName == "ai"){
+	else if (charName == "ai" || charName == "popout"){
 		info->filterCategory = (uint16)CollisionFilters::ENEMY;
-		info->filterMask = (uint16)CollisionFilters::PLAYER | (uint16)CollisionFilters::COLLIDABLE;
+		info->filterMask = (uint16)CollisionFilters::NONE; // (uint16)CollisionFilters::PLAYER;// | (uint16)CollisionFilters::COLLIDABLE;
 		info->filterSensor = (uint16)CollisionFilters::PLAYER;
 	}
 }
 
 GameData::CharInfo* GameLoader::findCurrentChar(std::string name){
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
-	GameData::CharInfo* info;
+	GameData::CharInfo* info; 
 	if (name == "player")
 		info = &ptr->playerInfo;
 	else if (name == "ai")
 		info = &ptr->aiInfo;
+	else if (name == "popout")
+		info = &ptr->popoutInfo;
 	else
 		return nullptr;
 	return info;
@@ -180,6 +184,7 @@ void GameLoader::loadAnimations(const std::string & animationFilePath, const std
 		Value::ConstMemberIterator it = m_document.MemberBegin(); //iterator for entire object
 		charName = it->value.GetString();
 		info = findCurrentChar(charName);
+		std::cout << charName << std::endl;
 		assert(info);
 
 		it++;//now has play speed

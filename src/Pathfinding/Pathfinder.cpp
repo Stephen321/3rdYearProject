@@ -70,14 +70,28 @@ int Pathfinder::getNeighbourIndex(const Node * current, int neighbourOffsetIndex
 }
 
 std::string Pathfinder::getAreaName(const sf::Vector2i& coord){
+	if (isValidCoord(coord)){
+		return m_nodes[coord.x + (coord.y * m_mapWidth)]->area();
+	}
+	return "noNode";
+}
+
+bool Pathfinder::getWalkable(const sf::Vector2i& coord){
+	if (isValidCoord(coord)){
+		return m_nodes[coord.x + (coord.y * m_mapWidth)]->walkable();
+	}
+	return false;
+}
+
+bool Pathfinder::isValidCoord(const sf::Vector2i& coord){
 	if (coord.x >= 0 && coord.y >= 0 &&
 		coord.x < m_mapWidth && coord.y < m_mapHeight){
 		int index = coord.x + (coord.y * m_mapWidth);
 		Node * node = m_nodes[index];
 		if (node != 0)
-			return node->area();
+			return true;
 	}
-	return "noNode";
+	return false;
 }
 
 //see https://en.wikipedia.org/wiki/A*_search_algorithm

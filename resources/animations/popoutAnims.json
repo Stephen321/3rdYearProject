@@ -1,0 +1,53 @@
+{
+    "name": "popout",
+    "playspeed" : 15,
+    "scale" : 0.3,
+    "animations": [
+    {
+        "name": "idle",
+        "spritesheet": "popoutIdle.png",
+        "frames": [
+        {
+            "filename": "popoutIdle.png",
+            "frame": {"x":0,"y":0,"w":72,"h":136},
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {"x":0,"y":0,"w":72,"h":136},
+            "sourceSize": {"w":72,"h":136},
+            "pivot": {"x":0.5,"y":0.5}
+        }],
+        "meta": {
+            "app": "http://www.codeandweb.com/texturepacker",
+            "version": "1.0",
+            "image": "popoutIdle.png",
+            "format": "RGBA8888",
+            "size": {"w":72,"h":136},
+            "scale": "1",
+            "smartupdate": "$TexturePacker:SmartUpdate:3bf3c51e9eb97c4785f057cecf8f2da8:820dfcf4b22020c09b5603ac70fa4f88:842799757703ad864c1bf31eedd95b5f$"
+        }
+    },
+    {   
+        "name": "burrow",
+        "spritesheet": "popoutBurrow.png",
+        "frames": [
+        {
+            "filename": "popoutBurrow.png",
+            "frame": {"x":0,"y":0,"w":66,"h":130},
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {"x":0,"y":0,"w":66,"h":130},
+            "sourceSize": {"w":66,"h":130},
+            "pivot": {"x":0.5,"y":0.5}
+        }],
+        "meta": {
+            "app": "http://www.codeandweb.com/texturepacker",
+            "version": "1.0",
+            "image": "popoutBurrow.png",
+            "format": "RGBA8888",
+            "size": {"w":66,"h":130},
+            "scale": "1",
+            "smartupdate": "$TexturePacker:SmartUpdate:6c7945f210a0febec898590910b3de4a:48eb9639742e903561135f431459a27f:2ad54e9aa8c851a85c444a6f6601a37c$"
+        }
+    }
+    ]
+}

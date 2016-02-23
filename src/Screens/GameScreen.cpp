@@ -50,6 +50,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 	//game objects
 	std::vector<std::shared_ptr<GameObject>> gameObjects;
 
+	//projectiles
+	std::vector<Projectile> projectiles;
+
 	//sound
 	sndMgr->setListener(&player);
 
@@ -127,6 +130,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 					player.setPosition(o.GetCentre());
 				else if (o.GetName() == "Ai"){
 					enemies.push_back(std::make_shared<AI>(world, &player, o.GetCentre(), m_pathFinder));
+				}
+				else if (o.GetName() == "Popout"){
+					enemies.push_back(std::make_shared<Popout>(world, &player, o.GetCentre(), m_pathFinder, projectiles));
 				}
 			}
 		}
@@ -251,11 +257,13 @@ int GameScreen::Run(sf::RenderWindow &window)
 			o->update(bounds);
 
 
+		for (Projectile& p : projectiles)
+			p.update(dt.asSeconds());
+
 		if (player.getAlive() == false && succesText.getString() == ""){
 			succesText.setString("You lost!");
 			successTimer.restart();
 		}
-
 
 		bool enemiesDead = true;
 		for (auto itr = enemies.begin(); itr != enemies.end(); ++itr){
@@ -272,6 +280,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		if (succesText.getString() != "" && successTimer.getElapsedTime().asSeconds() > 4.5f){
 			succesText.setString("");
+			projectiles.clear();
 			const std::vector<MapLayer>& layers = m_mapLoader->getLayers();
 			for (const auto& l : layers)
 			{
@@ -324,6 +333,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 		for (const VisibleObject* v : visibleChars)
 			window.draw(*v);
+
+		for (const Projectile& p : projectiles)
+			window.draw(p);
 
 		if (Debug::displayInfo){
 			window.setView(window.getDefaultView());
