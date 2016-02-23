@@ -1,22 +1,31 @@
 #include "Enemy.h"
 
-Enemy::Enemy(b2World& world, Player* playerP, sf::Vector2f position, Pathfinder * pf) :
-Character(world, CharacterType::AI, position, pf),
+Enemy::Enemy(b2World& world, CharacterType type, Player* playerP, sf::Vector2f position, Pathfinder * pf) :
+Character(world, type, position, pf),
 player(playerP),
 m_target(0),
 m_lastTargetTileCoord(player->getTileCoord()),
 m_followPlayer(false),
 m_startPos(position),
 m_attackTime(1.2f),
-m_visibiltyRange(450){}
+m_visibiltyRange(450),
+m_damage(10){}
 
 void Enemy::behaviour(){
 	setTarget();
 	getWaypoints();
 	followPath();
 	handleAttack();
+	checkIfIdle();
 }
 
+void Enemy::checkIfIdle(){
+	if (m_animatedSprite.isPlaying() == false){
+		currentAnim = &m_anims["idle"];
+		m_animatedSprite.play(*currentAnim);
+		m_animatedSprite.setLooped(true);
+	}
+}
 
 void Enemy::setTarget(){
 	sf::Vector2f vB = player->getPosition() - getPosition();
@@ -64,19 +73,12 @@ void Enemy::followPath(){
 }
 
 void Enemy::handleAttack(){
-	if (m_attacking == false && m_target != 0 && m_timer > m_attackTime){
+	if (m_target != 0 && m_timer > m_attackTime){
 		m_target->takeDamage(5);
 		m_timer = 0;
 		currentAnim = &m_anims["attack"];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(false);
-		m_attacking = true;
-	}
-	if (m_animatedSprite.isPlaying() == false){
-		currentAnim = &m_anims["idle"];
-		m_animatedSprite.play(*currentAnim);
-		m_animatedSprite.setLooped(true);
-		m_attacking = false;
 	}
 }
 

@@ -24,6 +24,7 @@
     },
     "textures" : 
     {
+        "projectileTextureFile" : "projectile.png",
         "rockTextureFile": "rockTexture.png",
         "bushTextureFile": "bushTexture.png",
         "treeTextureFile": "treeTexture.png",
@@ -49,8 +50,13 @@
         },
         "ai" :
         {
-            "max_health" : 60,
+            "max_health" : 80,
             "max_speed" : 85
+        },
+        "popout" :
+        {
+            "max_health" : 60,
+            "max_speed" : 120
         }
     }
 }

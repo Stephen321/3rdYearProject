@@ -70,18 +70,32 @@ int Pathfinder::getNeighbourIndex(const Node * current, int neighbourOffsetIndex
 }
 
 std::string Pathfinder::getAreaName(const sf::Vector2i& coord){
+	if (isValidCoord(coord)){
+		return m_nodes[coord.x + (coord.y * m_mapWidth)]->area();
+	}
+	return "noNode";
+}
+
+bool Pathfinder::getWalkable(const sf::Vector2i& coord){
+	if (isValidCoord(coord)){
+		return m_nodes[coord.x + (coord.y * m_mapWidth)]->walkable();
+	}
+	return false;
+}
+
+bool Pathfinder::isValidCoord(const sf::Vector2i& coord){
 	if (coord.x >= 0 && coord.y >= 0 &&
 		coord.x < m_mapWidth && coord.y < m_mapHeight){
 		int index = coord.x + (coord.y * m_mapWidth);
 		Node * node = m_nodes[index];
 		if (node != 0)
-			return node->area();
+			return true;
 	}
-	return "noNode";
+	return false;
 }
 
 //see https://en.wikipedia.org/wiki/A*_search_algorithm
-std::vector<sf::Vector2f> Pathfinder::findPath(const sf::Vector2i& startPos, const sf::Vector2i& goalPos){
+std::vector<sf::Vector2f> Pathfinder::findPath(const sf::Vector2i& startPos, const sf::Vector2i& goalPos, bool ignoreWalkable){
 	if (startPos.x >= 0 && startPos.y >= 0 && goalPos.x >= 0 && goalPos.y >= 0 &&
 		startPos.x < m_mapWidth && startPos.y < m_mapHeight && goalPos.x < m_mapWidth && goalPos.y < m_mapHeight) {
 		int size = m_mapWidth * m_mapHeight;
@@ -117,7 +131,7 @@ std::vector<sf::Vector2f> Pathfinder::findPath(const sf::Vector2i& startPos, con
 					Node* neighbour = (neighbourIndex == -1) ? 0 : m_nodes[neighbourIndex];
 					if (neighbour == 0 || neighbour->close() ||
 						neighbour == current->getPrevious() ||
-						neighbour->walkable() == false)
+						(ignoreWalkable == false && neighbour->walkable() == false))
 						continue;
 					int tenativeGCost = current->gCost() + getCost(m_neighbourOffsets[i]);
 					if (tenativeGCost <= neighbour->gCost()){

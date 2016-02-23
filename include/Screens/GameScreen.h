@@ -12,6 +12,7 @@
 #include "Screen.hpp"
 #include "Player.h"
 #include "AI.h"
+#include "Popout.h"
 #include "MyListener.h"
 #include "Debug.h"
 #include "Rock.h"

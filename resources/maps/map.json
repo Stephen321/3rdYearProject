@@ -44,51 +44,6 @@
                  "y":4000
                 }, 
                 {
-                 "height":0,
-                 "id":2,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2560,
-                 "y":4041
-                }, 
-                {
-                 "height":0,
-                 "id":3,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2624.5,
-                 "y":4250.5
-                }, 
-                {
-                 "height":0,
-                 "id":4,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2633,
-                 "y":4266
-                }, 
-                {
                  "height":32,
                  "id":7,
                  "name":"Ai",
@@ -117,6 +72,21 @@
                  "width":32,
                  "x":3552,
                  "y":3136
+                }, 
+                {
+                 "height":32,
+                 "id":667,
+                 "name":"Popout",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"Popout",
+                 "visible":true,
+                 "width":32,
+                 "x":2816,
+                 "y":3808
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -9576,7 +9546,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":667,
+ "nextobjectid":668,
  "orientation":"isometric",
  "properties":
     {
@@ -9586,6 +9556,7 @@
  "tileheight":32,
  "tilesets":[
         {
+         "columns":8,
          "firstgid":1,
          "image":"lowTiles.png",
          "imageheight":512,
@@ -9870,6 +9841,7 @@
          "tilewidth":64
         }, 
         {
+         "columns":8,
          "firstgid":129,
          "image":"highTiles.png",
          "imageheight":512,
@@ -9886,6 +9858,7 @@
          "tilewidth":64
         }, 
         {
+         "columns":8,
          "firstgid":193,
          "image":"underTiles.png",
          "imageheight":512,
@@ -10130,6 +10103,7 @@
          "tilewidth":64
         }, 
         {
+         "columns":5,
          "firstgid":321,
          "image":"AsTARtILES.png",
          "imageheight":32,

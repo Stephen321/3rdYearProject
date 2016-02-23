@@ -128,6 +128,9 @@ int GameScreen::Run(sf::RenderWindow &window)
 				else if (o.GetName() == "Ai"){
 					enemies.push_back(std::make_shared<AI>(world, &player, o.GetCentre(), m_pathFinder));
 				}
+				else if (o.GetName() == "Popout"){
+					enemies.push_back(std::make_shared<Popout>(world, &player, o.GetCentre(), m_pathFinder));
+				}
 			}
 		}
 		if (l.getName() == "GameObjects")

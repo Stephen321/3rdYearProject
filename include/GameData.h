@@ -27,6 +27,7 @@ public:
 	}CharInfo;
 	CharInfo playerInfo;
 	CharInfo aiInfo;
+	CharInfo popoutInfo;
 
 	//sounds
 	FMOD::Sound * birdTweet1;
@@ -37,6 +38,7 @@ public:
 	FMOD::Sound * crowSound;
 	FMOD::Sound * windAmbience;
 	//textures
+	sf::Texture projectileTexture;
 	sf::Texture rockTexture;
 	sf::Texture bushTexture;
 	sf::Texture treeTexture;

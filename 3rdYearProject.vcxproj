@@ -29,6 +29,8 @@
     <ClCompile Include="src\Pathfinding\Node.cpp" />
     <ClCompile Include="src\Pathfinding\Pathfinder.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Popout.cpp" />
+    <ClCompile Include="src\Projectile.cpp" />
     <ClCompile Include="src\Rock.cpp" />
     <ClCompile Include="src\Screens\CreditsScreen.cpp" />
     <ClCompile Include="src\Screens\GameScreen.cpp" />
@@ -67,6 +69,8 @@
     <ClInclude Include="include\Pathfinding\Pathfinder.h" />
     <ClInclude Include="include\Pathfinding\Node.h" />
     <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\Popout.h" />
+    <ClInclude Include="include\Projectile.h" />
     <ClInclude Include="include\rapidjson\allocators.h" />
     <ClInclude Include="include\rapidjson\document.h" />
     <ClInclude Include="include\rapidjson\encodedstream.h" />

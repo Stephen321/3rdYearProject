@@ -1,378 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\rapidjson">
-      <UniqueIdentifier>{d74f6ebe-c403-45cb-ad06-3db9a4671788}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\rapidjson\internal">
-      <UniqueIdentifier>{88c631df-b353-48c9-87b2-36e194aeafea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\rapidjson\error">
-      <UniqueIdentifier>{e73715c1-af74-4805-88a2-edb3902c4c75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\rapidjson\msinttypes">
-      <UniqueIdentifier>{0de2b612-8e57-4265-bdae-53c1a762a058}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\examples">
-      <UniqueIdentifier>{e6ce4f64-e5c8-416f-ae7c-1e4cccdef68e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Screens">
-      <UniqueIdentifier>{dd0aea4a-2128-45fe-92e4-1a8d83df9590}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Screens">
-      <UniqueIdentifier>{d38a46dc-a291-4944-b0f3-6bdcce2dc0f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\TileMap">
-      <UniqueIdentifier>{f3225461-bcb2-422d-ae1c-481588aa000f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\TileMap">
-      <UniqueIdentifier>{0e0c7cfa-66eb-4170-810c-ba475bf841d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\TileMap\tmx">
-      <UniqueIdentifier>{95fb4f1b-bdb5-49ce-92e4-7e06415b3259}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\TileMap\tmx">
-      <UniqueIdentifier>{4bb0326b-3476-4fbd-91d8-4253876618cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Pathfinding">
-      <UniqueIdentifier>{4184e8bd-dcab-4989-9554-6da762f09aca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Pathfinding">
-      <UniqueIdentifier>{dc916a9c-afa3-45c3-a7e4-e474c44f01d9}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="src\Action.cpp" />
+    <ClCompile Include="src\AI.cpp" />
+    <ClCompile Include="src\AnimatedSprite.cpp" />
+    <ClCompile Include="src\Animation.cpp" />
+    <ClCompile Include="src\Box2D.cpp" />
+    <ClCompile Include="src\Bush.cpp" />
+    <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\Debug.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
+    <ClCompile Include="src\GameData.cpp" />
+    <ClCompile Include="src\GameLoader.cpp" />
+    <ClCompile Include="src\HealthBar.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MyListener.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\Pathfinding\Node.cpp" />
+    <ClCompile Include="src\Pathfinding\Pathfinder.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Rock.cpp" />
+    <ClCompile Include="src\Screens\CreditsScreen.cpp" />
+    <ClCompile Include="src\Screens\GameScreen.cpp" />
+    <ClCompile Include="src\Screens\MenuScreen.cpp" />
+    <ClCompile Include="src\Screens\OptionsScreen.cpp" />
+    <ClCompile Include="src\SoundManager.cpp" />
+    <ClCompile Include="src\SpringObject.cpp" />
+    <ClCompile Include="src\stdafx.cpp" />
+    <ClCompile Include="src\TallGrass.cpp" />
+    <ClCompile Include="src\TileMap\BodyCreator.cpp" />
+    <ClCompile Include="src\TileMap\DebugShape.cpp" />
+    <ClCompile Include="src\TileMap\MapLayer.cpp" />
+    <ClCompile Include="src\TileMap\MapLoader.cpp" />
+    <ClCompile Include="src\TileMap\MapObject.cpp" />
+    <ClCompile Include="src\TileMap\MapTile.cpp" />
+    <ClCompile Include="src\TileMap\TileSet.cpp" />
+    <ClCompile Include="src\Tree.cpp" />
+    <ClCompile Include="src\VisibleObject.cpp" />
+    <ClCompile Include="src\Popout.cpp" />
+    <ClCompile Include="src\Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Box2D.cpp">
-      <Filter>Source Files\examples</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Screens\CreditsScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Screens\GameScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Screens\MenuScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Screens\OptionsScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\AI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\HealthBar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MyListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Debug.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\AnimatedSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\VisibleObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SoundManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TileMap\MapTile.cpp">
-      <Filter>Source Files\TileMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TileMap\MapLayer.cpp">
-      <Filter>Source Files\TileMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TileMap\MapObject.cpp">
-      <Filter>Source Files\TileMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TileMap\MapLoader.cpp">
-      <Filter>Source Files\TileMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TileMap\TileSet.cpp">
-      <Filter>Source Files\TileMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TileMap\BodyCreator.cpp">
-      <Filter>Source Files\TileMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TileMap\DebugShape.cpp">
-      <Filter>Source Files\TileMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pathfinding\Pathfinder.cpp">
-      <Filter>Source Files\Pathfinding</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pathfinding\Node.cpp">
-      <Filter>Source Files\Pathfinding</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Bush.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TallGrass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Tree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Action.cpp">
-      <Filter>Source Files</Filter>
-    <ClCompile Include="src\SpringObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\rapidjson\pointer.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\prettywriter.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\rapidjson.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\reader.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\stringbuffer.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\writer.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\allocators.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\document.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\encodedstream.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\encodings.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\filereadstream.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\filewritestream.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\memorybuffer.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\memorystream.h">
-      <Filter>Header Files\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\biginteger.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\diyfp.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\dtoa.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\ieee754.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\itoa.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\meta.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\pow10.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\stack.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\strfunc.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\strtod.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\internal\swap.h">
-      <Filter>Header Files\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\error\en.h">
-      <Filter>Header Files\rapidjson\error</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\error\error.h">
-      <Filter>Header Files\rapidjson\error</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\msinttypes\inttypes.h">
-      <Filter>Header Files\rapidjson\msinttypes</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rapidjson\msinttypes\stdint.h">
-      <Filter>Header Files\rapidjson\msinttypes</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GameData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GameLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Screens\CreditsScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Screens\GameScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Screens\MenuScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Screens\OptionsScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Screens\Screen.hpp">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Screens.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\AI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\dirent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HealthBar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MyListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\AnimatedSprite.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Animation.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CollisionFilters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\VisibleObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SoundManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SoundObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\MapTile.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\MapLayer.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\MapObject.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\MapLoader.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\TileSet.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\Properties.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\BodyCreator.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\Helpers.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\DebugShape.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TileMap\Log.h">
-      <Filter>Header Files\TileMap</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Pathfinding\Node.h">
-      <Filter>Header Files\Pathfinding</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Pathfinding\Pathfinder.h">
-      <Filter>Header Files\Pathfinding</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Bush.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TallGrass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Tree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="include\Action.h">
-=======
-    <ClInclude Include="include\SpringObject.h">
->>>>>>> master
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="include\Action.h" />
+    <ClInclude Include="include\AI.h" />
+    <ClInclude Include="include\AnimatedSprite.hpp" />
+    <ClInclude Include="include\Animation.hpp" />
+    <ClInclude Include="include\Bush.h" />
+    <ClInclude Include="include\Character.h" />
+    <ClInclude Include="include\CollisionFilters.h" />
+    <ClInclude Include="include\Debug.h" />
+    <ClInclude Include="include\dirent.h" />
+    <ClInclude Include="include\Enemy.h" />
+    <ClInclude Include="include\GameData.h" />
+    <ClInclude Include="include\GameLoader.h" />
+    <ClInclude Include="include\HealthBar.h" />
+    <ClInclude Include="include\MyListener.h" />
+    <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\Pathfinding\Pathfinder.h" />
+    <ClInclude Include="include\Pathfinding\Node.h" />
+    <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\rapidjson\allocators.h" />
+    <ClInclude Include="include\rapidjson\document.h" />
+    <ClInclude Include="include\rapidjson\encodedstream.h" />
+    <ClInclude Include="include\rapidjson\encodings.h" />
+    <ClInclude Include="include\rapidjson\error\en.h" />
+    <ClInclude Include="include\rapidjson\error\error.h" />
+    <ClInclude Include="include\rapidjson\filereadstream.h" />
+    <ClInclude Include="include\rapidjson\filewritestream.h" />
+    <ClInclude Include="include\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="include\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="include\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="include\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="include\rapidjson\internal\itoa.h" />
+    <ClInclude Include="include\rapidjson\internal\meta.h" />
+    <ClInclude Include="include\rapidjson\internal\pow10.h" />
+    <ClInclude Include="include\rapidjson\internal\stack.h" />
+    <ClInclude Include="include\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="include\rapidjson\internal\strtod.h" />
+    <ClInclude Include="include\rapidjson\internal\swap.h" />
+    <ClInclude Include="include\rapidjson\memorybuffer.h" />
+    <ClInclude Include="include\rapidjson\memorystream.h" />
+    <ClInclude Include="include\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="include\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="include\rapidjson\pointer.h" />
+    <ClInclude Include="include\rapidjson\prettywriter.h" />
+    <ClInclude Include="include\rapidjson\rapidjson.h" />
+    <ClInclude Include="include\rapidjson\reader.h" />
+    <ClInclude Include="include\rapidjson\stringbuffer.h" />
+    <ClInclude Include="include\rapidjson\writer.h" />
+    <ClInclude Include="include\Rock.h" />
+    <ClInclude Include="include\Screens.h" />
+    <ClInclude Include="include\Screens\CreditsScreen.h" />
+    <ClInclude Include="include\Screens\GameScreen.h" />
+    <ClInclude Include="include\Screens\MenuScreen.h" />
+    <ClInclude Include="include\Screens\OptionsScreen.h" />
+    <ClInclude Include="include\Screens\Screen.hpp" />
+    <ClInclude Include="include\SoundManager.h" />
+    <ClInclude Include="include\SoundObject.h" />
+    <ClInclude Include="include\SpringObject.h" />
+    <ClInclude Include="include\TallGrass.h" />
+    <ClInclude Include="include\TileMap\BodyCreator.h" />
+    <ClInclude Include="include\TileMap\DebugShape.h" />
+    <ClInclude Include="include\TileMap\Helpers.h" />
+    <ClInclude Include="include\TileMap\Log.h" />
+    <ClInclude Include="include\TileMap\MapLayer.h" />
+    <ClInclude Include="include\TileMap\MapLoader.h" />
+    <ClInclude Include="include\TileMap\MapObject.h" />
+    <ClInclude Include="include\TileMap\MapTile.h" />
+    <ClInclude Include="include\TileMap\Properties.h" />
+    <ClInclude Include="include\TileMap\TileSet.h" />
+    <ClInclude Include="include\Tree.h" />
+    <ClInclude Include="include\VisibleObject.h" />
+    <ClInclude Include="include\Popout.h" />
+    <ClInclude Include="include\Projectile.h" />
   </ItemGroup>
 </Project>
