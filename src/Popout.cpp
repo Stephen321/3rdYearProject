@@ -1,16 +1,17 @@
 #include "Popout.h"
 
-Popout::Popout(b2World& world, Player* playerP, sf::Vector2f position, Pathfinder * pf) :
+Popout::Popout(b2World& world, Player* playerP, sf::Vector2f position, Pathfinder * pf, std::vector<Projectile>& projectiles) :
 Enemy(world, CharacterType::POPOUT, playerP, position, pf),
 m_popOutTimer(0),
-m_inRange(false){
-	m_attackTime = 0.5f;
+m_inRange(false),
+m_projectiles(projectiles){
+	m_attackTime = 0.8f;
 	m_damage = 5;
 	m_visibiltyRange = 300;
 	m_followPlayer = true;
 	currentAnim = &m_anims["burrow"];
 	m_animatedSprite.play(*currentAnim);
-	m_animatedSprite.setLooped(false);
+	m_animatedSprite.setLooped(true);
 
 	m_projectileTex = &GameData::getInstance()->projectileTexture;
 } 
@@ -19,7 +20,7 @@ void Popout::burrow(){
 	m_followPlayer = true;
 	currentAnim = &m_anims["burrow"];
 	m_animatedSprite.play(*currentAnim);
-	m_animatedSprite.setLooped(false);
+	m_animatedSprite.setLooped(true);
 	m_popOutTimer = -MAX_TIME;
 	m_lastTargetTileCoord = sf::Vector2i();
 }
@@ -28,19 +29,11 @@ void Popout::behaviour(){
 	m_popOutTimer -= dt;
 	if (m_followPlayer == false && m_popOutTimer <  0 && m_popOutTimer > -1.f){
 		burrow();
-		m_projectiles.erase(std::remove_if(m_projectiles.begin(), m_projectiles.end(),
-			[](Projectile const& p) {
-			return p.getAlive();
-		}),
-			m_projectiles.end());
 	}
 	setTarget();
 	getWaypoints();
 	followPath();
 	handleAttack();
-
-	for (int i = 0; i < m_projectiles.size(); i++)
-		m_projectiles[i].update(dt);
 }
 
 void Popout::setTarget(){
@@ -60,7 +53,7 @@ void Popout::setTarget(){
 	}
 }
 
-sf::Vector2i Popout::getTileAround(const sf::Vector2i& playerCoord){
+sf::Vector2i Popout::getTileAround(const sf::Vector2i& coord){
 	sf::Vector2i destCoord = getTileCoord();
 	while (m_pathFinder->getWalkable(destCoord) == false ||
 		   m_pathFinder->getAreaName(getTileCoord()) != m_pathFinder->getAreaName(destCoord) ||
@@ -75,13 +68,9 @@ sf::Vector2i Popout::getTileAround(const sf::Vector2i& playerCoord){
 
 void Popout::getWaypoints(){
 	if (m_followPlayer && m_targetTileCoord != m_lastTargetTileCoord){ //update path
-		std::string myArea = m_pathFinder->getAreaName(getTileCoord());
-		std::string targetArea = m_pathFinder->getAreaName(m_targetTileCoord);
-		if (myArea == "noNode"||myArea == targetArea){ //same area
-			vector<sf::Vector2f> newPath = m_pathFinder->findPath(getTileCoord(), m_targetTileCoord, true);
-			if (newPath.empty() == false)
-				m_waypoints = newPath;
-		}
+		m_waypoints.clear();
+		m_waypoints.push_back(MapLoader::getPositionFromTileCoords(m_targetTileCoord.x, m_targetTileCoord.y));
+		m_waypoints.push_back(getPosition());
 		m_lastTargetTileCoord = m_targetTileCoord;
 	}
 }
@@ -99,7 +88,7 @@ void Popout::followPath(){
 					m_followPlayer = false;
 					currentAnim = &m_anims["idle"];
 					m_animatedSprite.play(*currentAnim);
-					m_animatedSprite.setLooped(false);
+					m_animatedSprite.setLooped(true);
 					m_popOutTimer = MAX_TIME;
 				}
 			}
@@ -116,13 +105,8 @@ void Popout::handleAttack(){
 	if (m_inRange && m_followPlayer == false && player != 0 && m_timer > m_attackTime){
 		m_timer = 0;
 		std::cout << "pop up attack" << '\n';
+		m_attackTime = ((rand() / (float)RAND_MAX) / 3.f) + 0.6f;
+		MAX_TIME = (rand() % 3) + 0.5f;
 		m_projectiles.push_back(Projectile(sf::Sprite(*m_projectileTex), m_damage, getPosition(), player));
-	}
-}
-
-void Popout::draw(sf::RenderTarget &target, sf::RenderStates states) const{
-	Enemy::draw(target, states);
-	for (int i = 0; i < m_projectiles.size(); i++){
-		target.draw(m_projectiles[i]);
 	}
 }

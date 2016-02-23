@@ -22,7 +22,7 @@ private:
 	sf::Vector2f m_offset;
 	sf::Vector2f m_velocity;
 	float m_timer;
-	const float MAX_TRAVEL_TIME = 4.f;
+	const float MAX_TRAVEL_TIME = 10.f;
 	const float SPEED = 100.f;
 	const float COLLISION_RANGE = 25.f;
 

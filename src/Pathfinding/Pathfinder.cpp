@@ -95,7 +95,7 @@ bool Pathfinder::isValidCoord(const sf::Vector2i& coord){
 }
 
 //see https://en.wikipedia.org/wiki/A*_search_algorithm
-std::vector<sf::Vector2f> Pathfinder::findPath(const sf::Vector2i& startPos, const sf::Vector2i& goalPos, bool ignoreWalkable){
+std::vector<sf::Vector2f> Pathfinder::findPath(const sf::Vector2i& startPos, const sf::Vector2i& goalPos){
 	if (startPos.x >= 0 && startPos.y >= 0 && goalPos.x >= 0 && goalPos.y >= 0 &&
 		startPos.x < m_mapWidth && startPos.y < m_mapHeight && goalPos.x < m_mapWidth && goalPos.y < m_mapHeight) {
 		int size = m_mapWidth * m_mapHeight;
@@ -131,7 +131,7 @@ std::vector<sf::Vector2f> Pathfinder::findPath(const sf::Vector2i& startPos, con
 					Node* neighbour = (neighbourIndex == -1) ? 0 : m_nodes[neighbourIndex];
 					if (neighbour == 0 || neighbour->close() ||
 						neighbour == current->getPrevious() ||
-						(ignoreWalkable == false && neighbour->walkable() == false))
+						neighbour->walkable() == false)
 						continue;
 					int tenativeGCost = current->gCost() + getCost(m_neighbourOffsets[i]);
 					if (tenativeGCost <= neighbour->gCost()){

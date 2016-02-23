@@ -55,8 +55,8 @@
         },
         "popout" :
         {
-            "max_health" : 60,
-            "max_speed" : 120
+            "max_health" : 40,
+            "max_speed" : 180
         }
     }
 }
