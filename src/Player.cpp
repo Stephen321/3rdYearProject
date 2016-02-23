@@ -5,11 +5,11 @@ Player::Player(b2World& world, sf::Vector2f position) :
 Character(world, CharacterType::PLAYER, position),
 m_actionToPlay(false),
 m_comboString(""){
-	m_actions[0] = Action(0, 11, 0, 8, 2, false, "swipe"); //A
-	m_actions[1] = Action(0, 12, 1, 10, 3, false, "kick"); //B
-	m_actions[2] = Action(0, 10, 2, 5, 2, false, "jumpSplits"); //X
-	m_actions[3] = Action(3, 11, 3, 8, 4, false, "headbutt"); //Y
-	m_actions[4] = Action(3, 11, 4, 12, 4, false, "kickFlip"); //kickFlip
+	m_actions[0] = Action(0, 13, 0, 8, 2, false, "swipe"); //A
+	m_actions[1] = Action(0, 8, 1, 10, 3, false, "kick"); //B
+	m_actions[2] = Action(0, 8, 2, 5, 2, false, "jumpSplits"); //X
+	m_actions[3] = Action(3, 13, 3, 8, 4, false, "headbutt"); //Y
+	m_actions[4] = Action(12, 12, 4, 12, 4, false, "kickFlip"); //kickFlip
 }
 
 void Player::handleEvent(sf::Event e){
@@ -94,13 +94,9 @@ void Player::behaviour(){
 		applyDamage();
 	}
 
-	//if all animations have stopped playing then reset to idle 
-	if (m_animatedSprite.isPlaying() == false || (currentAnim == &m_anims["run"]  && m_velocity == sf::Vector2f())){
-		m_speed = max_speed;
-		currentAnim = &m_anims["idle"];
-		m_animatedSprite.play(*currentAnim);
-		m_animatedSprite.setLooped(false);
-		m_actionToPlay = false;
+	//if all animations have stopped playing then reset 
+	if (m_animatedSprite.isPlaying() == false || (currentAnim == &m_anims["run"]  && m_velocity == sf::Vector2f())
+		|| (m_comboTriggered && m_currentActions.size() > 0 && m_animatedSprite.getFrame() == m_currentActions.front()->getMaxFrame())){
 		comboFinished();
 	}
 	else if (currentAnim != &m_anims["run"]){
@@ -129,15 +125,26 @@ void Player::behaviour(){
 }
 
 void Player::comboFinished(){
+	m_comboTriggered = true;
 	if (m_comboString == "BX"){
 		std::cout << "BX combo triggered" << '\n';
+		m_currentActions.pop();
 		m_currentActions.push(&m_actions[4]);
 		currentAnim = &m_anims[m_currentActions.back()->getAnimName()];
 		m_animatedSprite.play(*currentAnim);
 		m_animatedSprite.setLooped(false);
+		m_actionToPlay = false;
 		applyDamage(2.f);
 	}
-	m_currentActions.swap(std::queue<Action*>()); //empty the queue
+	else{
+		m_comboTriggered = false;
+		m_speed = max_speed;
+		currentAnim = &m_anims["idle"];
+		m_animatedSprite.play(*currentAnim);
+		m_animatedSprite.setLooped(false);
+		m_actionToPlay = false;
+		m_currentActions.swap(std::queue<Action*>()); //empty the queue
+	}
 	m_comboString = "";
 }
 

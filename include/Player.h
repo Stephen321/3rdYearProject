@@ -21,6 +21,7 @@ private:
 	std::queue<Action*> m_currentActions;
 	std::string m_comboString;
 	bool m_actionToPlay;
+	bool m_comboTriggered;
 
 
 	std::vector<Character*> attackableEnemies;
