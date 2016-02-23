@@ -38,7 +38,10 @@
         "menuQuitTextureFile": "menuQuitTexture.png",
         "menuUnfoldedTextureFile": "menuUnfolded.png",
         "menuLettersTextureFile": "menuLettersTexture.png",        
-        "menuBlackGradientTextureFile": "menuDarknessTexture.png"
+        "menuBlackGradientTextureFile": "menuDarknessTexture.png",
+        "playSelectedTextureFile": "playSelected.png",
+        "optionsSelectedTextureFile": "optionsSelected.png",
+        "quitSelectedTextureFile": "quitSelected.png"
     },
     "char_properties" :
     {

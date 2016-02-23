@@ -1,16 +1,29 @@
 #include "Screens\MenuScreen.h"
 #include <iostream> //testing
 MenuScreen::MenuScreen(void)
-{		
+{
 
 	std::shared_ptr<GameData> ptr = GameData::getInstance();
 
 	playButton = sf::Sprite(ptr->menuPlay);
 	optionsButton = sf::Sprite(ptr->menuOptions);
 	quitButton = sf::Sprite(ptr->menuQuit);
+	playSelected = sf::Sprite(ptr->playSelected);
+	optionsSelected = sf::Sprite(ptr->optionsSelected);
+	quitSelected = sf::Sprite(ptr->quitSelected);
 	centreSpriteOrigin(playButton);
 	centreSpriteOrigin(optionsButton);
 	centreSpriteOrigin(quitButton);
+	centreSpriteOrigin(playSelected);
+	centreSpriteOrigin(optionsSelected);
+	centreSpriteOrigin(quitSelected);
+	playButton.setScale(0, 0);
+	optionsButton.setScale(0, 0);
+	quitButton.setScale(0, 0);
+	playSelected.setColor(sf::Color(255, 255, 255, 0));
+	optionsSelected.setColor(sf::Color(255, 255, 255, 0));
+	playSelected.setColor(sf::Color(255, 255, 255, 0));
+	quitSelected.setColor(sf::Color(255, 255, 255, 0));
 
 	blackGradient = sf::Sprite(ptr->menuBlackGradient);
 	blackGradient.setOrigin(0, blackGradient.getTextureRect().height);
@@ -24,12 +37,27 @@ MenuScreen::MenuScreen(void)
 	{
 		sf::Sprite s;
 		s.setTexture(ptr->menuLetters);
-		s.setTextureRect(sf::IntRect(i * titleLetters.getTextureRect().width / title.length(), 0, 
+		s.setTextureRect(sf::IntRect(i * titleLetters.getTextureRect().width / title.length(), 0,
 			titleLetters.getTextureRect().width / title.length(), titleLetters.getTextureRect().height));
 		s.setOrigin(sf::Vector2f(s.getTextureRect().width / 2, s.getTextureRect().height / 2));
 
-		springs.push_back(SpringObject(s, -350, -400));
-	}	
+		springs.push_back(SpringObject(s));
+	}
+
+	springs.push_back(SpringObject(unfolded));
+
+	springs[0].setRestingPos(-300, -330);
+	springs[1].setRestingPos(-220, -355);
+	springs[2].setRestingPos(-165, -360);
+	springs[3].setRestingPos(-110, -365);
+	springs[4].setRestingPos(-55, -370);
+	springs[5].setRestingPos(+20, -370);
+	springs[6].setRestingPos(+80, -370);
+	springs[7].setRestingPos(+130, -365);
+	springs[8].setRestingPos(+195, -360);
+	springs[9].setRestingPos(+265, -355);
+	springs[10].setRestingPos(+325, -340);
+	springs[11].setRestingPos(-10, -240);
 }
 
 void MenuScreen::centreSpriteOrigin(sf::Sprite & sprite)
@@ -54,12 +82,19 @@ int MenuScreen::Run(sf::RenderWindow &window)
 	optionsButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + 105 + buttonOffsetY));
 	quitButton.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f + 210 + buttonOffsetY));
 
+	playSelected.setPosition(playButton.getPosition());
+	optionsSelected.setPosition(optionsButton.getPosition());
+	quitSelected.setPosition(quitButton.getPosition());
+
 	sf::Event Event;
-	bool Running = true;	
+	bool Running = true;
 	sf::Clock frameClock;
+	float timer = 0;
+	float menuItemsTimer = 0;
+	int counter = 0;
 
 	window.setView(window.getDefaultView());
-	
+
 	sf::Font Font;
 	sf::Text Menu1, Menu2, Menu3, Menu4;
 	int menu = 0;
@@ -102,6 +137,44 @@ int MenuScreen::Run(sf::RenderWindow &window)
 			springs[i].update(dt);
 		}
 
+		if (timer != -1)
+			timer += dt;
+		else
+			menuItemsTimer += dt;
+
+		if (counter < springs.size() - 1)
+		{
+
+			if (timer > 0.5f)
+			{
+				springs[counter].setReleased();
+				counter++;
+				timer = 0;
+			}
+		}
+
+		if (timer > 3.0f)
+		{
+			springs[springs.size() - 1].setReleased();
+			timer = -1;
+		}
+
+		if (menuItemsTimer > 2.0f && setPlayScale == false)
+			setPlayScale = true;
+		else if (menuItemsTimer > 2.75f && setOptionsScale == false)
+			setOptionsScale = true;
+		else if (menuItemsTimer > 3.5f && setQuitScale == false)
+			setQuitScale = true;
+		else if (menuItemsTimer > 4.0f && menuLoaded == false)
+			menuLoaded = true;
+
+		if (setPlayScale && playButton.getScale().x < 1)
+			playButton.setScale(playButton.getScale().x + 0.05f, playButton.getScale().y + 0.05f);
+		if (setOptionsScale && optionsButton.getScale().x < 1)
+			optionsButton.setScale(optionsButton.getScale().x + 0.05f, optionsButton.getScale().y + 0.05f);
+		if (setQuitScale && quitButton.getScale().x < 1)
+			quitButton.setScale(quitButton.getScale().x + 0.05f, quitButton.getScale().y + 0.05f);
+
 		if (sf::Joystick::isConnected(joystick) == false){
 			for (int i = 0; i < 6 && joystick == -1; i++){
 				if (sf::Joystick::isConnected(i))
@@ -125,29 +198,24 @@ int MenuScreen::Run(sf::RenderWindow &window)
 			bool joystickMoved = yPos > 10 || yPos < -10;
 			if (!joystickMoved)
 				joyStickAlreadyMoved = false;
+
 			if (joystickMoved)
 			{
 				if (yPos < -10 && joyStickAlreadyMoved == false){ //up
 					if (menu > 0){
-						if (menu == 2 && menu == 2 /* <-- condition always true for test purposes, acual condition = no file to load */)
-							menu -= 2;
-						else
-							menu--;
+						menu--;
 						joyStickAlreadyMoved = true;
 					}
 				}
 				else if (yPos > 10 && joyStickAlreadyMoved == false){ //down
-					if (menu < 3)
+					if (menu < 2)
 					{
-						if (menu == 0 && menu == 0 /* <-- condition always true for test purposes, acual condition = no file to load */)
-							menu += 2;
-						else
-							menu++;
+						menu++;
 						joyStickAlreadyMoved = true;
 					}
 				}
 			}
-			if ((Event.type == sf::Event::JoystickButtonPressed && Event.joystickButton.button == 0)){
+			if ((Event.type == sf::Event::JoystickButtonPressed && Event.joystickButton.button == 0 && menuLoaded)){
 				if (menu == 0)
 				{
 					return (1);
@@ -155,74 +223,65 @@ int MenuScreen::Run(sf::RenderWindow &window)
 				else if (menu == 1)
 				{
 					//load from file
-					return (1);
-				}
-				else if (menu == 2)
-				{
 					return (2);
 				}
 				else
+				{
 					return (-1);
+				}
 			}
-
-		}		
-		
-		if (menu == 0)
-		{
-			Menu1.setColor(sf::Color(255, 255, 255, 255));
-			Menu2.setColor(sf::Color(100, 100, 100, 255));
-			Menu3.setColor(sf::Color(100, 100, 100, 255));
-			Menu4.setColor(sf::Color(100, 100, 100, 255));
 		}
-		else if (menu == 1)
-		{
-			Menu1.setColor(sf::Color(100, 100, 100, 255));
-			Menu2.setColor(sf::Color(255, 255, 255, 255));
-			Menu3.setColor(sf::Color(100, 100, 100, 255));
-			Menu4.setColor(sf::Color(100, 100, 100, 255));
-		}
-		else if (menu == 2)
-		{
-			Menu1.setColor(sf::Color(100, 100, 100, 255));
-			Menu2.setColor(sf::Color(100, 100, 100, 255));
-			Menu3.setColor(sf::Color(255, 255, 255, 255));
-			Menu4.setColor(sf::Color(100, 100, 100, 255));
-		}
-		else
-		{
-			Menu1.setColor(sf::Color(100, 100, 100, 255));
-			Menu2.setColor(sf::Color(100, 100, 100, 255));
-			Menu3.setColor(sf::Color(100, 100, 100, 255));
-			Menu4.setColor(sf::Color(255, 255, 255, 255));
-		}
-		
 
 		//Clearing screen
 		window.clear();
 		//Drawing
-			
-		window.draw(Menu1);			
-			
-		window.draw(Menu2);
-			
-		window.draw(Menu3);
 
-		window.draw(Menu4);
-
-		
 		for (int i = 0; i < springs.size(); i++)
 		{
 			window.draw(springs[i]);
 		}
 
-		window.draw(unfolded);
+		window.draw(blackGradient);
 
-		//window.draw(blackGradient);
+		window.draw(playButton);
+		window.draw(optionsButton);
+		window.draw(quitButton);
 
-		//window.draw(playButton);
-		//window.draw(optionsButton);
-		//window.draw(quitButton);
-		
+		if (menuLoaded)
+		{
+			if (menu == 0)
+			{
+				if (playSelected.getColor().a < 255)
+					playSelected.setColor(sf::Color(255, 255, 255, playSelected.getColor().a + 5));
+				if (optionsSelected.getColor().a > 0)
+					optionsSelected.setColor(sf::Color(255, 255, 255, optionsSelected.getColor().a - 5));
+				if (quitSelected.getColor().a > 0)
+					quitSelected.setColor(sf::Color(255, 255, 255, quitSelected.getColor().a - 5));
+			}
+			else if (menu == 1)
+			{
+				if (playSelected.getColor().a > 0)
+					playSelected.setColor(sf::Color(255, 255, 255, playSelected.getColor().a - 5));
+				if (optionsSelected.getColor().a < 255)
+					optionsSelected.setColor(sf::Color(255, 255, 255, optionsSelected.getColor().a + 5));
+				if (quitSelected.getColor().a > 0)
+					quitSelected.setColor(sf::Color(255, 255, 255, quitSelected.getColor().a - 5));
+			}
+			else if (menu == 2)
+			{
+				if (playSelected.getColor().a > 0)
+					playSelected.setColor(sf::Color(255, 255, 255, playSelected.getColor().a - 5));
+				if (optionsSelected.getColor().a > 0)
+					optionsSelected.setColor(sf::Color(255, 255, 255, optionsSelected.getColor().a - 5));
+				if (quitSelected.getColor().a < 255)
+					quitSelected.setColor(sf::Color(255, 255, 255, quitSelected.getColor().a + 5));
+			}
+
+			window.draw(playSelected);
+			window.draw(optionsSelected);
+			window.draw(quitSelected);
+		}
+
 		window.display();
 	}
 

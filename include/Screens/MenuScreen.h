@@ -18,14 +18,14 @@ public:
 	void centreSpriteOrigin(sf::Sprite & sprite);
 	virtual int Run(sf::RenderWindow &window);
 private:
-	sf::Sprite playButton;
-	sf::Sprite optionsButton;
-	sf::Sprite quitButton;
-	sf::Sprite blackGradient;	
+	sf::Sprite playButton, optionsButton, quitButton;
+	sf::Sprite blackGradient;
 	sf::Sprite unfolded;
 	sf::Sprite titleLetters;
+	sf::Sprite playSelected, optionsSelected, quitSelected;
 
 	std::vector<SpringObject> springs;
+	bool setPlayScale, setOptionsScale, setQuitScale, menuLoaded = false;
 };
 
 #endif

@@ -47,6 +47,7 @@ public:
 	sf::Texture menuUnfolded;
 	sf::Texture menuLetters;
 	sf::Texture menuBlackGradient;
+	sf::Texture playSelected, optionsSelected, quitSelected;
 
 private:
 	GameData();

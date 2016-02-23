@@ -113,6 +113,12 @@ void GameLoader::loadData(MapLoader * ml, Pathfinder * pf){
 	ptr->menuLetters.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
 	++texturesIT;
 	ptr->menuBlackGradient.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->playSelected.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->optionsSelected.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
+	++texturesIT;
+	ptr->quitSelected.loadFromFile(m_filePath + imagesPath + texturesIT->value.GetString());
 	++it;
 
 	//character properties

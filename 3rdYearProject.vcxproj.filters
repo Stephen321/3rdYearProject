@@ -367,11 +367,10 @@
     <ClInclude Include="include\Tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="include\Action.h">
-=======
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\SpringObject.h">
->>>>>>> master
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
