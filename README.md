@@ -7,11 +7,17 @@ Created by:
 
 [Craig Johnston (OneEyedBanshee)](https://github.com/OneEyedBanshee). 
 
+**Controller is required!**
+
+*Game Name:* Malevolence Unfolded.
+
+*Description:* A/B/X/Y or X/circle/square/triangle are different attacks. Combo B into X activates a 3rd powerful attack in that chain. One enemy pathfinds to you and hits you in melee range. The other pops up and fires a projectile. 2D but with an isometric view. Left analog stick to move around in-game and the menu. Tiles outside of the view are culled. 
+
+Press **P** to enable the pathfinding overlay. Press **D** to enable the debug overlay. 
+
+**Technologies**
+
 Visual Studio 2015
-
-Game Name: Malevolence Unfolded.
-
-**Libraries**
 
 [Box2D (collisions)](https://github.com/erincatto/Box2D)
 
