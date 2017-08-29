@@ -1,5 +1,5 @@
-# 3rdYearProject
-This is our 3rd Year Project for our Computer Games Development course. 
+# Malevolence Unfolded
+This is a paired project created in the 3rd year of our Computer Games Development course. 
 
 Created by: 
 
