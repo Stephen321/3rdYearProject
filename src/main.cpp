@@ -42,7 +42,7 @@ int main()
 	GameLoader gl("resources/", &ml, &pf);
 
 	// Create the main window 
-	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "3rd Year Project");
+	sf::RenderWindow window(sf::VideoMode(800u, 600u, 32), "Malevolence Unfolded");
 	//window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60u);
 
