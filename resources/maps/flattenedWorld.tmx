@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="isometric" renderorder="right-down" width="147" height="158" tilewidth="64" tileheight="32" nextobjectid="687">
- <tileset firstgid="1" name="lowTiles" tilewidth="64" tileheight="32" tilecount="128">
+ <tileset firstgid="1" name="lowTiles" tilewidth="64" tileheight="32" tilecount="128" columns="8">
   <image source="lowTiles.png" width="512" height="512"/>
   <terraintypes>
    <terrain name="Grass" tile="-1"/>
@@ -71,10 +71,10 @@
   <tile id="62" terrain="5,4,5,5"/>
   <tile id="63" terrain="5,5,5,4"/>
  </tileset>
- <tileset firstgid="129" name="highTiles" tilewidth="64" tileheight="64" tilecount="64">
+ <tileset firstgid="129" name="highTiles" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="highTiles.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="193" name="underTiles" tilewidth="64" tileheight="32" tilecount="128">
+ <tileset firstgid="193" name="underTiles" tilewidth="64" tileheight="32" tilecount="128" columns="8">
   <image source="underTiles.png" width="512" height="512"/>
   <terraintypes>
    <terrain name="randomSideDirtLight" tile="-1"/>
@@ -135,7 +135,7 @@
   <tile id="94" terrain="11,11,11,11"/>
   <tile id="95" terrain="11,11,11,11"/>
  </tileset>
- <tileset firstgid="321" name="AsTARtILES" tilewidth="64" tileheight="32" tilecount="5">
+ <tileset firstgid="321" name="AsTARtILES" tilewidth="64" tileheight="32" tilecount="5" columns="5">
   <image source="AsTARtILES.png" width="320" height="32"/>
   <tile id="0">
    <properties>
@@ -46634,19 +46634,19 @@
   </data>
  </layer>
  <objectgroup color="#00ff00" name="Entities">
-  <object id="1" name="Player" type="Player" x="2816" y="4000" width="32" height="32" visible="0"/>
-  <object id="7" name="Ai" type="Ai" x="2752" y="416" width="32" height="32" visible="0"/>
-  <object id="8" name="Ai" type="Ai" x="3552" y="3136" width="32" height="32" visible="0"/>
-  <object id="677" name="Popout" type="Popout" x="1376" y="1344" width="32" height="32" visible="0"/>
-  <object id="678" name="Popout" type="Popout" x="1504" y="1024" width="32" height="32" visible="0"/>
-  <object id="679" name="Popout" type="Popout" x="1152" y="928" width="32" height="32" visible="0"/>
-  <object id="680" name="Popout" type="Popout" x="960" y="1344" width="32" height="32" visible="0"/>
-  <object id="681" name="Popout" type="Popout" x="1408" y="1728" width="32" height="32" visible="0"/>
-  <object id="682" name="Popout" type="Popout" x="1792" y="1664" width="32" height="32" visible="0"/>
-  <object id="683" name="Popout" type="Popout" x="1696" y="736" width="32" height="32" visible="0"/>
-  <object id="684" name="Popout" type="Popout" x="1280" y="512" width="32" height="32" visible="0"/>
-  <object id="685" name="Popout" type="Popout" x="736" y="1024" width="32" height="32" visible="0"/>
-  <object id="686" name="Popout" type="Popout" x="736" y="1472" width="32" height="32" visible="0"/>
+  <object id="1" name="Player" type="Player" x="2816" y="4000" width="32" height="32"/>
+  <object id="7" name="Ai" type="Ai" x="2752" y="416" width="32" height="32"/>
+  <object id="8" name="Ai" type="Ai" x="3552" y="3136" width="32" height="32"/>
+  <object id="677" name="Popout" type="Popout" x="1376" y="1344" width="32" height="32"/>
+  <object id="678" name="Popout" type="Popout" x="1504" y="1024" width="32" height="32"/>
+  <object id="679" name="Popout" type="Popout" x="1152" y="928" width="32" height="32"/>
+  <object id="680" name="Popout" type="Popout" x="960" y="1344" width="32" height="32"/>
+  <object id="681" name="Popout" type="Popout" x="1408" y="1728" width="32" height="32"/>
+  <object id="682" name="Popout" type="Popout" x="1792" y="1664" width="32" height="32"/>
+  <object id="683" name="Popout" type="Popout" x="1696" y="736" width="32" height="32"/>
+  <object id="684" name="Popout" type="Popout" x="1280" y="512" width="32" height="32"/>
+  <object id="685" name="Popout" type="Popout" x="736" y="1024" width="32" height="32"/>
+  <object id="686" name="Popout" type="Popout" x="736" y="1472" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#5500ff" name="GameObjects">
   <object id="9" name="Rock" type="Rock" x="2560" y="2784" width="96" height="96"/>

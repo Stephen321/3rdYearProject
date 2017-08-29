@@ -9,26 +9,34 @@ m_projectiles(projectiles){
 	m_damage = 5;
 	m_visibiltyRange = 300;
 	m_followPlayer = true;
-	currentAnim = &m_anims["burrow"];
+	currentAnim = &m_anims["idle"];
 	m_animatedSprite.play(*currentAnim);
-	m_animatedSprite.setLooped(true);
+	m_animatedSprite.setLooped(false);
 
 	m_projectileTex = &GameData::getInstance()->projectileTexture;
 } 
 
 void Popout::burrow(){
+	std::cout << "burrowing" << std::endl;
 	m_followPlayer = true;
 	currentAnim = &m_anims["burrow"];
 	m_animatedSprite.play(*currentAnim);
-	m_animatedSprite.setLooped(true);
+	m_animatedSprite.setLooped(false);
 	m_popOutTimer = -MAX_TIME;
 	m_lastTargetTileCoord = sf::Vector2i();
 }
 
 void Popout::behaviour(){
 	m_popOutTimer -= dt;
-	if (m_followPlayer == false && m_popOutTimer <  0 && m_popOutTimer > -1.f){
-		burrow();
+	if (m_followPlayer == false){
+		if (m_popOutTimer <  0 && m_popOutTimer > -1.f) {
+			burrow();
+		}
+		else if (m_inRange) {
+			currentAnim = &m_anims["idle"];
+			m_animatedSprite.play(*currentAnim);
+			m_animatedSprite.setLooped(false);
+		}
 	}
 	setTarget();
 	getWaypoints();
@@ -47,7 +55,7 @@ void Popout::setTarget(){
 	}
 	else{
 		if (m_followPlayer == false){
-			burrow();
+			//burrow();
 		}
 		m_targetTileCoord = getTileCoord(m_startPos);
 	}
@@ -86,7 +94,6 @@ void Popout::followPath(){
 			if (m_waypoints.size() == 1){
 				if (m_followPlayer){
 					m_followPlayer = false;
-					currentAnim = &m_anims["idle"];
 					m_animatedSprite.play(*currentAnim);
 					m_animatedSprite.setLooped(true);
 					m_popOutTimer = MAX_TIME;
@@ -103,6 +110,7 @@ void Popout::followPath(){
 
 void Popout::handleAttack(){
 	if (m_inRange && m_followPlayer == false && player != 0 && m_timer > m_attackTime){
+		currentAnim = &m_anims["idle"];
 		m_timer = 0;
 		std::cout << "pop up attack" << '\n';
 		m_attackTime = ((rand() / (float)RAND_MAX) / 3.f) + 0.6f;

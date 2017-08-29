@@ -32,13 +32,9 @@
                  "height":32,
                  "id":1,
                  "name":"Player",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Player",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":2816,
                  "y":4000
@@ -47,13 +43,9 @@
                  "height":32,
                  "id":7,
                  "name":"Ai",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Ai",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":2752,
                  "y":416
@@ -62,13 +54,9 @@
                  "height":32,
                  "id":8,
                  "name":"Ai",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Ai",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":3552,
                  "y":3136
@@ -77,13 +65,9 @@
                  "height":32,
                  "id":677,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":1376,
                  "y":1344
@@ -92,13 +76,9 @@
                  "height":32,
                  "id":678,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":1504,
                  "y":1024
@@ -107,13 +87,9 @@
                  "height":32,
                  "id":679,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":1152,
                  "y":928
@@ -122,13 +98,9 @@
                  "height":32,
                  "id":680,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":960,
                  "y":1344
@@ -137,13 +109,9 @@
                  "height":32,
                  "id":681,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":1408,
                  "y":1728
@@ -152,13 +120,9 @@
                  "height":32,
                  "id":682,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":1792,
                  "y":1664
@@ -167,13 +131,9 @@
                  "height":32,
                  "id":683,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":1696,
                  "y":736
@@ -182,13 +142,9 @@
                  "height":32,
                  "id":684,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":1280,
                  "y":512
@@ -197,13 +153,9 @@
                  "height":32,
                  "id":685,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":736,
                  "y":1024
@@ -212,13 +164,9 @@
                  "height":32,
                  "id":686,
                  "name":"Popout",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Popout",
-                 "visible":false,
+                 "visible":true,
                  "width":32,
                  "x":736,
                  "y":1472
@@ -240,10 +188,6 @@
                  "height":96,
                  "id":9,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -255,10 +199,6 @@
                  "height":96,
                  "id":11,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -270,10 +210,6 @@
                  "height":96,
                  "id":12,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -285,10 +221,6 @@
                  "height":96,
                  "id":17,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -300,10 +232,6 @@
                  "height":96,
                  "id":18,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -315,10 +243,6 @@
                  "height":96,
                  "id":19,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -330,10 +254,6 @@
                  "height":96,
                  "id":20,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -345,10 +265,6 @@
                  "height":32,
                  "id":44,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -360,10 +276,6 @@
                  "height":32,
                  "id":45,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -375,10 +287,6 @@
                  "height":32,
                  "id":49,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -390,10 +298,6 @@
                  "height":32,
                  "id":50,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -405,10 +309,6 @@
                  "height":32,
                  "id":51,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -420,10 +320,6 @@
                  "height":32,
                  "id":52,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -435,10 +331,6 @@
                  "height":32,
                  "id":53,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -450,10 +342,6 @@
                  "height":32,
                  "id":55,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -465,10 +353,6 @@
                  "height":32,
                  "id":56,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -480,10 +364,6 @@
                  "height":32,
                  "id":57,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -495,10 +375,6 @@
                  "height":32,
                  "id":58,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -510,10 +386,6 @@
                  "height":32,
                  "id":59,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -525,10 +397,6 @@
                  "height":32,
                  "id":60,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -540,10 +408,6 @@
                  "height":32,
                  "id":61,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -555,10 +419,6 @@
                  "height":32,
                  "id":62,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -570,10 +430,6 @@
                  "height":32,
                  "id":63,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -585,10 +441,6 @@
                  "height":32,
                  "id":64,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -600,10 +452,6 @@
                  "height":32,
                  "id":65,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -615,10 +463,6 @@
                  "height":32,
                  "id":66,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -630,10 +474,6 @@
                  "height":32,
                  "id":67,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -645,10 +485,6 @@
                  "height":32,
                  "id":68,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -660,10 +496,6 @@
                  "height":32,
                  "id":69,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -675,10 +507,6 @@
                  "height":32,
                  "id":70,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -690,10 +518,6 @@
                  "height":32,
                  "id":71,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -705,10 +529,6 @@
                  "height":32,
                  "id":72,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -720,10 +540,6 @@
                  "height":32,
                  "id":73,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -735,10 +551,6 @@
                  "height":32,
                  "id":74,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -750,10 +562,6 @@
                  "height":32,
                  "id":75,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -765,10 +573,6 @@
                  "height":32,
                  "id":76,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -780,10 +584,6 @@
                  "height":32,
                  "id":77,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -795,10 +595,6 @@
                  "height":32,
                  "id":78,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -810,10 +606,6 @@
                  "height":32,
                  "id":79,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -825,10 +617,6 @@
                  "height":32,
                  "id":80,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -840,10 +628,6 @@
                  "height":32,
                  "id":81,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -855,10 +639,6 @@
                  "height":32,
                  "id":82,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -870,10 +650,6 @@
                  "height":32,
                  "id":85,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -885,10 +661,6 @@
                  "height":32,
                  "id":86,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -900,10 +672,6 @@
                  "height":32,
                  "id":87,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -915,10 +683,6 @@
                  "height":32,
                  "id":88,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -930,10 +694,6 @@
                  "height":32,
                  "id":89,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -945,10 +705,6 @@
                  "height":32,
                  "id":90,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -960,10 +716,6 @@
                  "height":32,
                  "id":91,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -975,10 +727,6 @@
                  "height":32,
                  "id":92,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -990,10 +738,6 @@
                  "height":32,
                  "id":93,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1005,10 +749,6 @@
                  "height":32,
                  "id":94,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1020,10 +760,6 @@
                  "height":32,
                  "id":95,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1035,10 +771,6 @@
                  "height":32,
                  "id":96,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1050,10 +782,6 @@
                  "height":32,
                  "id":97,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1065,10 +793,6 @@
                  "height":32,
                  "id":98,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1080,10 +804,6 @@
                  "height":32,
                  "id":99,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1095,10 +815,6 @@
                  "height":32,
                  "id":100,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1110,10 +826,6 @@
                  "height":32,
                  "id":101,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -1125,10 +837,6 @@
                  "height":32,
                  "id":102,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1140,10 +848,6 @@
                  "height":32,
                  "id":103,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1155,10 +859,6 @@
                  "height":32,
                  "id":104,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1170,10 +870,6 @@
                  "height":32,
                  "id":105,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1185,10 +881,6 @@
                  "height":32,
                  "id":106,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1200,10 +892,6 @@
                  "height":32,
                  "id":107,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1215,10 +903,6 @@
                  "height":32,
                  "id":108,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1230,10 +914,6 @@
                  "height":32,
                  "id":109,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1245,10 +925,6 @@
                  "height":32,
                  "id":110,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1260,10 +936,6 @@
                  "height":32,
                  "id":111,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1275,10 +947,6 @@
                  "height":32,
                  "id":112,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1290,10 +958,6 @@
                  "height":32,
                  "id":113,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1305,10 +969,6 @@
                  "height":32,
                  "id":114,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1320,10 +980,6 @@
                  "height":32,
                  "id":115,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1335,10 +991,6 @@
                  "height":32,
                  "id":116,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1350,10 +1002,6 @@
                  "height":32,
                  "id":117,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1365,10 +1013,6 @@
                  "height":32,
                  "id":118,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1380,10 +1024,6 @@
                  "height":32,
                  "id":119,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1395,10 +1035,6 @@
                  "height":32,
                  "id":120,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1410,10 +1046,6 @@
                  "height":32,
                  "id":121,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1425,10 +1057,6 @@
                  "height":32,
                  "id":122,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1440,10 +1068,6 @@
                  "height":32,
                  "id":123,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1455,10 +1079,6 @@
                  "height":32,
                  "id":124,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1470,10 +1090,6 @@
                  "height":32,
                  "id":125,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1485,10 +1101,6 @@
                  "height":32,
                  "id":126,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1500,10 +1112,6 @@
                  "height":32,
                  "id":127,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1515,10 +1123,6 @@
                  "height":32,
                  "id":128,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1530,10 +1134,6 @@
                  "height":32,
                  "id":129,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1545,10 +1145,6 @@
                  "height":32,
                  "id":131,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1560,10 +1156,6 @@
                  "height":32,
                  "id":132,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1575,10 +1167,6 @@
                  "height":32,
                  "id":133,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1590,10 +1178,6 @@
                  "height":32,
                  "id":134,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1605,10 +1189,6 @@
                  "height":32,
                  "id":135,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1620,10 +1200,6 @@
                  "height":32,
                  "id":136,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1635,10 +1211,6 @@
                  "height":32,
                  "id":137,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1650,10 +1222,6 @@
                  "height":32,
                  "id":138,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1665,10 +1233,6 @@
                  "height":32,
                  "id":139,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1680,10 +1244,6 @@
                  "height":32,
                  "id":141,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1695,10 +1255,6 @@
                  "height":32,
                  "id":142,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1710,10 +1266,6 @@
                  "height":32,
                  "id":143,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1725,10 +1277,6 @@
                  "height":32,
                  "id":144,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1740,10 +1288,6 @@
                  "height":32,
                  "id":145,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1755,10 +1299,6 @@
                  "height":32,
                  "id":146,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1770,10 +1310,6 @@
                  "height":32,
                  "id":147,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1785,10 +1321,6 @@
                  "height":32,
                  "id":148,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1800,10 +1332,6 @@
                  "height":32,
                  "id":150,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1815,10 +1343,6 @@
                  "height":32,
                  "id":152,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1830,10 +1354,6 @@
                  "height":32,
                  "id":153,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1845,10 +1365,6 @@
                  "height":32,
                  "id":154,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1860,10 +1376,6 @@
                  "height":32,
                  "id":155,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1875,10 +1387,6 @@
                  "height":32,
                  "id":156,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1890,10 +1398,6 @@
                  "height":32,
                  "id":157,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1905,10 +1409,6 @@
                  "height":32,
                  "id":158,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1920,10 +1420,6 @@
                  "height":32,
                  "id":159,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1935,10 +1431,6 @@
                  "height":32,
                  "id":160,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1950,10 +1442,6 @@
                  "height":32,
                  "id":161,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1965,10 +1453,6 @@
                  "height":32,
                  "id":162,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1980,10 +1464,6 @@
                  "height":32,
                  "id":163,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -1995,10 +1475,6 @@
                  "height":32,
                  "id":164,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2010,10 +1486,6 @@
                  "height":32,
                  "id":166,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2025,10 +1497,6 @@
                  "height":32,
                  "id":167,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2040,10 +1508,6 @@
                  "height":32,
                  "id":168,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2055,10 +1519,6 @@
                  "height":32,
                  "id":169,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2070,10 +1530,6 @@
                  "height":32,
                  "id":170,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2085,10 +1541,6 @@
                  "height":32,
                  "id":173,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2100,10 +1552,6 @@
                  "height":32,
                  "id":175,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2115,10 +1563,6 @@
                  "height":32,
                  "id":176,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2130,10 +1574,6 @@
                  "height":32,
                  "id":177,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2145,10 +1585,6 @@
                  "height":32,
                  "id":178,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2160,10 +1596,6 @@
                  "height":32,
                  "id":179,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2175,10 +1607,6 @@
                  "height":32,
                  "id":180,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2190,10 +1618,6 @@
                  "height":32,
                  "id":181,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2205,10 +1629,6 @@
                  "height":32,
                  "id":182,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2220,10 +1640,6 @@
                  "height":32,
                  "id":183,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2235,10 +1651,6 @@
                  "height":32,
                  "id":184,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2250,10 +1662,6 @@
                  "height":32,
                  "id":185,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2265,10 +1673,6 @@
                  "height":32,
                  "id":186,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2280,10 +1684,6 @@
                  "height":32,
                  "id":187,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2295,10 +1695,6 @@
                  "height":32,
                  "id":188,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2310,10 +1706,6 @@
                  "height":32,
                  "id":189,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2325,10 +1717,6 @@
                  "height":32,
                  "id":190,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2340,10 +1728,6 @@
                  "height":32,
                  "id":191,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2355,10 +1739,6 @@
                  "height":32,
                  "id":192,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2370,10 +1750,6 @@
                  "height":32,
                  "id":194,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2385,10 +1761,6 @@
                  "height":32,
                  "id":195,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2400,10 +1772,6 @@
                  "height":32,
                  "id":196,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -2415,10 +1783,6 @@
                  "height":96,
                  "id":197,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -2430,10 +1794,6 @@
                  "height":96,
                  "id":198,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -2445,10 +1805,6 @@
                  "height":96,
                  "id":199,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -2460,10 +1816,6 @@
                  "height":32,
                  "id":200,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2475,10 +1827,6 @@
                  "height":32,
                  "id":202,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2490,10 +1838,6 @@
                  "height":32,
                  "id":203,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2505,10 +1849,6 @@
                  "height":32,
                  "id":204,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2520,10 +1860,6 @@
                  "height":32,
                  "id":205,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2535,10 +1871,6 @@
                  "height":32,
                  "id":207,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2550,10 +1882,6 @@
                  "height":32,
                  "id":208,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2565,10 +1893,6 @@
                  "height":32,
                  "id":209,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2580,10 +1904,6 @@
                  "height":32,
                  "id":210,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2595,10 +1915,6 @@
                  "height":32,
                  "id":211,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2610,10 +1926,6 @@
                  "height":32,
                  "id":212,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2625,10 +1937,6 @@
                  "height":32,
                  "id":213,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2640,10 +1948,6 @@
                  "height":32,
                  "id":215,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2655,10 +1959,6 @@
                  "height":32,
                  "id":216,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2670,10 +1970,6 @@
                  "height":32,
                  "id":217,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2685,10 +1981,6 @@
                  "height":32,
                  "id":218,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2700,10 +1992,6 @@
                  "height":32,
                  "id":219,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -2715,10 +2003,6 @@
                  "height":32,
                  "id":220,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2730,10 +2014,6 @@
                  "height":32,
                  "id":225,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2745,10 +2025,6 @@
                  "height":32,
                  "id":226,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2760,10 +2036,6 @@
                  "height":32,
                  "id":227,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2775,10 +2047,6 @@
                  "height":32,
                  "id":228,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2790,10 +2058,6 @@
                  "height":32,
                  "id":229,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2805,10 +2069,6 @@
                  "height":32,
                  "id":230,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2820,10 +2080,6 @@
                  "height":32,
                  "id":231,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2835,10 +2091,6 @@
                  "height":32,
                  "id":232,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2850,10 +2102,6 @@
                  "height":32,
                  "id":233,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2865,10 +2113,6 @@
                  "height":32,
                  "id":234,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2880,10 +2124,6 @@
                  "height":32,
                  "id":235,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2895,10 +2135,6 @@
                  "height":32,
                  "id":236,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2910,10 +2146,6 @@
                  "height":32,
                  "id":237,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2925,10 +2157,6 @@
                  "height":32,
                  "id":238,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2940,10 +2168,6 @@
                  "height":32,
                  "id":239,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2955,10 +2179,6 @@
                  "height":32,
                  "id":240,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2970,10 +2190,6 @@
                  "height":32,
                  "id":241,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -2985,10 +2201,6 @@
                  "height":32,
                  "id":242,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3000,10 +2212,6 @@
                  "height":32,
                  "id":243,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3015,10 +2223,6 @@
                  "height":32,
                  "id":244,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3030,10 +2234,6 @@
                  "height":32,
                  "id":245,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3045,10 +2245,6 @@
                  "height":32,
                  "id":246,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3060,10 +2256,6 @@
                  "height":32,
                  "id":247,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3075,10 +2267,6 @@
                  "height":32,
                  "id":248,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3090,10 +2278,6 @@
                  "height":32,
                  "id":249,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3105,10 +2289,6 @@
                  "height":32,
                  "id":250,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3120,10 +2300,6 @@
                  "height":32,
                  "id":251,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3135,10 +2311,6 @@
                  "height":32,
                  "id":252,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3150,10 +2322,6 @@
                  "height":32,
                  "id":253,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3165,10 +2333,6 @@
                  "height":32,
                  "id":254,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3180,10 +2344,6 @@
                  "height":32,
                  "id":255,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -3195,10 +2355,6 @@
                  "height":32,
                  "id":256,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3210,10 +2366,6 @@
                  "height":32,
                  "id":257,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3225,10 +2377,6 @@
                  "height":32,
                  "id":258,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3240,10 +2388,6 @@
                  "height":32,
                  "id":259,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3255,10 +2399,6 @@
                  "height":32,
                  "id":260,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3270,10 +2410,6 @@
                  "height":32,
                  "id":261,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3285,10 +2421,6 @@
                  "height":32,
                  "id":262,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3300,10 +2432,6 @@
                  "height":32,
                  "id":263,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3315,10 +2443,6 @@
                  "height":32,
                  "id":264,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3330,10 +2454,6 @@
                  "height":32,
                  "id":265,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3345,10 +2465,6 @@
                  "height":32,
                  "id":266,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3360,10 +2476,6 @@
                  "height":32,
                  "id":267,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3375,10 +2487,6 @@
                  "height":32,
                  "id":268,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3390,10 +2498,6 @@
                  "height":32,
                  "id":269,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3405,10 +2509,6 @@
                  "height":32,
                  "id":270,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3420,10 +2520,6 @@
                  "height":32,
                  "id":271,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3435,10 +2531,6 @@
                  "height":32,
                  "id":272,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3450,10 +2542,6 @@
                  "height":32,
                  "id":273,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3465,10 +2553,6 @@
                  "height":32,
                  "id":274,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3480,10 +2564,6 @@
                  "height":32,
                  "id":275,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3495,10 +2575,6 @@
                  "height":32,
                  "id":276,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3510,10 +2586,6 @@
                  "height":32,
                  "id":277,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3525,10 +2597,6 @@
                  "height":32,
                  "id":279,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3540,10 +2608,6 @@
                  "height":32,
                  "id":280,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3555,10 +2619,6 @@
                  "height":32,
                  "id":281,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3570,10 +2630,6 @@
                  "height":32,
                  "id":282,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3585,10 +2641,6 @@
                  "height":32,
                  "id":283,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3600,10 +2652,6 @@
                  "height":32,
                  "id":284,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3615,10 +2663,6 @@
                  "height":32,
                  "id":285,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3630,10 +2674,6 @@
                  "height":32,
                  "id":286,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3645,10 +2685,6 @@
                  "height":32,
                  "id":287,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3660,10 +2696,6 @@
                  "height":32,
                  "id":288,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3675,10 +2707,6 @@
                  "height":32,
                  "id":289,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3690,10 +2718,6 @@
                  "height":32,
                  "id":290,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3705,10 +2729,6 @@
                  "height":32,
                  "id":291,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3720,10 +2740,6 @@
                  "height":32,
                  "id":292,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3735,10 +2751,6 @@
                  "height":32,
                  "id":293,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3750,10 +2762,6 @@
                  "height":32,
                  "id":294,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3765,10 +2773,6 @@
                  "height":32,
                  "id":295,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3780,10 +2784,6 @@
                  "height":32,
                  "id":296,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3795,10 +2795,6 @@
                  "height":32,
                  "id":297,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3810,10 +2806,6 @@
                  "height":32,
                  "id":298,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3825,10 +2817,6 @@
                  "height":32,
                  "id":299,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3840,10 +2828,6 @@
                  "height":32,
                  "id":300,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3855,10 +2839,6 @@
                  "height":32,
                  "id":301,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3870,10 +2850,6 @@
                  "height":32,
                  "id":302,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3885,10 +2861,6 @@
                  "height":32,
                  "id":303,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3900,10 +2872,6 @@
                  "height":32,
                  "id":304,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3915,10 +2883,6 @@
                  "height":32,
                  "id":305,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3930,10 +2894,6 @@
                  "height":32,
                  "id":307,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3945,10 +2905,6 @@
                  "height":32,
                  "id":308,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3960,10 +2916,6 @@
                  "height":32,
                  "id":309,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3975,10 +2927,6 @@
                  "height":32,
                  "id":310,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -3990,10 +2938,6 @@
                  "height":32,
                  "id":311,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4005,10 +2949,6 @@
                  "height":32,
                  "id":312,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4020,10 +2960,6 @@
                  "height":32,
                  "id":313,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4035,10 +2971,6 @@
                  "height":32,
                  "id":314,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4050,10 +2982,6 @@
                  "height":32,
                  "id":315,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4065,10 +2993,6 @@
                  "height":32,
                  "id":316,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4080,10 +3004,6 @@
                  "height":32,
                  "id":317,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4095,10 +3015,6 @@
                  "height":32,
                  "id":318,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4110,10 +3026,6 @@
                  "height":32,
                  "id":319,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4125,10 +3037,6 @@
                  "height":32,
                  "id":320,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4140,10 +3048,6 @@
                  "height":32,
                  "id":321,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4155,10 +3059,6 @@
                  "height":32,
                  "id":322,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4170,10 +3070,6 @@
                  "height":32,
                  "id":323,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4185,10 +3081,6 @@
                  "height":32,
                  "id":324,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4200,10 +3092,6 @@
                  "height":32,
                  "id":325,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4215,10 +3103,6 @@
                  "height":32,
                  "id":326,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4230,10 +3114,6 @@
                  "height":32,
                  "id":327,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4245,10 +3125,6 @@
                  "height":32,
                  "id":328,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4260,10 +3136,6 @@
                  "height":32,
                  "id":329,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4275,10 +3147,6 @@
                  "height":32,
                  "id":330,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4290,10 +3158,6 @@
                  "height":32,
                  "id":331,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4305,10 +3169,6 @@
                  "height":32,
                  "id":332,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4320,10 +3180,6 @@
                  "height":32,
                  "id":333,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4335,10 +3191,6 @@
                  "height":32,
                  "id":335,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4350,10 +3202,6 @@
                  "height":32,
                  "id":336,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4365,10 +3213,6 @@
                  "height":32,
                  "id":337,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4380,10 +3224,6 @@
                  "height":32,
                  "id":338,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4395,10 +3235,6 @@
                  "height":32,
                  "id":339,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4410,10 +3246,6 @@
                  "height":32,
                  "id":340,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4425,10 +3257,6 @@
                  "height":32,
                  "id":341,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4440,10 +3268,6 @@
                  "height":32,
                  "id":342,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4455,10 +3279,6 @@
                  "height":32,
                  "id":343,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4470,10 +3290,6 @@
                  "height":32,
                  "id":344,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4485,10 +3301,6 @@
                  "height":32,
                  "id":345,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4500,10 +3312,6 @@
                  "height":32,
                  "id":346,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4515,10 +3323,6 @@
                  "height":32,
                  "id":347,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4530,10 +3334,6 @@
                  "height":32,
                  "id":348,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4545,10 +3345,6 @@
                  "height":32,
                  "id":349,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4560,10 +3356,6 @@
                  "height":32,
                  "id":350,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4575,10 +3367,6 @@
                  "height":32,
                  "id":351,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4590,10 +3378,6 @@
                  "height":32,
                  "id":352,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4605,10 +3389,6 @@
                  "height":32,
                  "id":353,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4620,10 +3400,6 @@
                  "height":32,
                  "id":354,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4635,10 +3411,6 @@
                  "height":32,
                  "id":355,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4650,10 +3422,6 @@
                  "height":32,
                  "id":357,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4665,10 +3433,6 @@
                  "height":32,
                  "id":358,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4680,10 +3444,6 @@
                  "height":32,
                  "id":359,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4695,10 +3455,6 @@
                  "height":32,
                  "id":360,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4710,10 +3466,6 @@
                  "height":32,
                  "id":361,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4725,10 +3477,6 @@
                  "height":32,
                  "id":362,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4740,10 +3488,6 @@
                  "height":32,
                  "id":363,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4755,10 +3499,6 @@
                  "height":32,
                  "id":364,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4770,10 +3510,6 @@
                  "height":32,
                  "id":366,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4785,10 +3521,6 @@
                  "height":32,
                  "id":367,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4800,10 +3532,6 @@
                  "height":32,
                  "id":368,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4815,10 +3543,6 @@
                  "height":32,
                  "id":369,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4830,10 +3554,6 @@
                  "height":32,
                  "id":370,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4845,10 +3565,6 @@
                  "height":32,
                  "id":371,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4860,10 +3576,6 @@
                  "height":32,
                  "id":372,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4875,10 +3587,6 @@
                  "height":32,
                  "id":373,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4890,10 +3598,6 @@
                  "height":32,
                  "id":374,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4905,10 +3609,6 @@
                  "height":32,
                  "id":375,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4920,10 +3620,6 @@
                  "height":32,
                  "id":376,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4935,10 +3631,6 @@
                  "height":32,
                  "id":377,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4950,10 +3642,6 @@
                  "height":32,
                  "id":378,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4965,10 +3653,6 @@
                  "height":32,
                  "id":379,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4980,10 +3664,6 @@
                  "height":32,
                  "id":380,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -4995,10 +3675,6 @@
                  "height":32,
                  "id":382,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5010,10 +3686,6 @@
                  "height":32,
                  "id":383,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5025,10 +3697,6 @@
                  "height":32,
                  "id":394,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5040,10 +3708,6 @@
                  "height":32,
                  "id":395,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5055,10 +3719,6 @@
                  "height":32,
                  "id":396,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5070,10 +3730,6 @@
                  "height":32,
                  "id":397,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5085,10 +3741,6 @@
                  "height":32,
                  "id":398,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5100,10 +3752,6 @@
                  "height":32,
                  "id":400,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5115,10 +3763,6 @@
                  "height":32,
                  "id":401,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5130,10 +3774,6 @@
                  "height":32,
                  "id":402,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5145,10 +3785,6 @@
                  "height":32,
                  "id":403,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5160,10 +3796,6 @@
                  "height":32,
                  "id":404,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5175,10 +3807,6 @@
                  "height":32,
                  "id":405,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5190,10 +3818,6 @@
                  "height":32,
                  "id":406,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5205,10 +3829,6 @@
                  "height":32,
                  "id":407,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5220,10 +3840,6 @@
                  "height":32,
                  "id":408,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5235,10 +3851,6 @@
                  "height":32,
                  "id":409,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5250,10 +3862,6 @@
                  "height":32,
                  "id":410,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5265,10 +3873,6 @@
                  "height":32,
                  "id":411,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5280,10 +3884,6 @@
                  "height":32,
                  "id":412,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5295,10 +3895,6 @@
                  "height":32,
                  "id":413,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5310,10 +3906,6 @@
                  "height":32,
                  "id":414,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5325,10 +3917,6 @@
                  "height":32,
                  "id":415,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5340,10 +3928,6 @@
                  "height":32,
                  "id":416,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5355,10 +3939,6 @@
                  "height":32,
                  "id":418,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5370,10 +3950,6 @@
                  "height":32,
                  "id":419,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5385,10 +3961,6 @@
                  "height":32,
                  "id":420,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5400,10 +3972,6 @@
                  "height":32,
                  "id":422,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5415,10 +3983,6 @@
                  "height":32,
                  "id":424,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5430,10 +3994,6 @@
                  "height":32,
                  "id":425,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5445,10 +4005,6 @@
                  "height":32,
                  "id":426,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5460,10 +4016,6 @@
                  "height":32,
                  "id":427,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5475,10 +4027,6 @@
                  "height":32,
                  "id":428,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5490,10 +4038,6 @@
                  "height":32,
                  "id":429,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5505,10 +4049,6 @@
                  "height":32,
                  "id":430,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5520,10 +4060,6 @@
                  "height":32,
                  "id":431,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5535,10 +4071,6 @@
                  "height":32,
                  "id":432,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5550,10 +4082,6 @@
                  "height":32,
                  "id":433,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5565,10 +4093,6 @@
                  "height":32,
                  "id":434,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5580,10 +4104,6 @@
                  "height":32,
                  "id":435,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5595,10 +4115,6 @@
                  "height":32,
                  "id":436,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5610,10 +4126,6 @@
                  "height":32,
                  "id":437,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5625,10 +4137,6 @@
                  "height":32,
                  "id":438,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5640,10 +4148,6 @@
                  "height":32,
                  "id":439,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -5655,10 +4159,6 @@
                  "height":96,
                  "id":440,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -5670,10 +4170,6 @@
                  "height":96,
                  "id":441,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -5685,10 +4181,6 @@
                  "height":96,
                  "id":442,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -5700,10 +4192,6 @@
                  "height":96,
                  "id":444,
                  "name":"Rock",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Rock",
                  "visible":true,
@@ -5715,10 +4203,6 @@
                  "height":32,
                  "id":445,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5730,10 +4214,6 @@
                  "height":32,
                  "id":446,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5745,10 +4225,6 @@
                  "height":32,
                  "id":447,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5760,10 +4236,6 @@
                  "height":32,
                  "id":448,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5775,10 +4247,6 @@
                  "height":32,
                  "id":449,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5790,10 +4258,6 @@
                  "height":32,
                  "id":450,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5805,10 +4269,6 @@
                  "height":32,
                  "id":451,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5820,10 +4280,6 @@
                  "height":32,
                  "id":452,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5835,10 +4291,6 @@
                  "height":32,
                  "id":453,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5850,10 +4302,6 @@
                  "height":32,
                  "id":454,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5865,10 +4313,6 @@
                  "height":32,
                  "id":455,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5880,10 +4324,6 @@
                  "height":32,
                  "id":456,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5895,10 +4335,6 @@
                  "height":32,
                  "id":457,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5910,10 +4346,6 @@
                  "height":32,
                  "id":458,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5925,10 +4357,6 @@
                  "height":32,
                  "id":459,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5940,10 +4368,6 @@
                  "height":32,
                  "id":460,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5955,10 +4379,6 @@
                  "height":32,
                  "id":461,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5970,10 +4390,6 @@
                  "height":32,
                  "id":462,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -5985,10 +4401,6 @@
                  "height":32,
                  "id":463,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6000,10 +4412,6 @@
                  "height":32,
                  "id":465,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6015,10 +4423,6 @@
                  "height":32,
                  "id":466,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6030,10 +4434,6 @@
                  "height":32,
                  "id":467,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6045,10 +4445,6 @@
                  "height":32,
                  "id":468,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6060,10 +4456,6 @@
                  "height":32,
                  "id":469,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6075,10 +4467,6 @@
                  "height":32,
                  "id":470,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6090,10 +4478,6 @@
                  "height":32,
                  "id":471,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6105,10 +4489,6 @@
                  "height":32,
                  "id":472,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6120,10 +4500,6 @@
                  "height":32,
                  "id":473,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6135,10 +4511,6 @@
                  "height":32,
                  "id":474,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6150,10 +4522,6 @@
                  "height":32,
                  "id":475,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6165,10 +4533,6 @@
                  "height":32,
                  "id":476,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6180,10 +4544,6 @@
                  "height":32,
                  "id":477,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6195,10 +4555,6 @@
                  "height":32,
                  "id":478,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6210,10 +4566,6 @@
                  "height":32,
                  "id":479,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6225,10 +4577,6 @@
                  "height":32,
                  "id":480,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6240,10 +4588,6 @@
                  "height":32,
                  "id":481,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6255,10 +4599,6 @@
                  "height":32,
                  "id":482,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6270,10 +4610,6 @@
                  "height":32,
                  "id":483,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6285,10 +4621,6 @@
                  "height":32,
                  "id":484,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6300,10 +4632,6 @@
                  "height":32,
                  "id":485,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6315,10 +4643,6 @@
                  "height":32,
                  "id":486,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6330,10 +4654,6 @@
                  "height":32,
                  "id":487,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6345,10 +4665,6 @@
                  "height":32,
                  "id":488,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6360,10 +4676,6 @@
                  "height":32,
                  "id":489,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6375,10 +4687,6 @@
                  "height":32,
                  "id":490,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6390,10 +4698,6 @@
                  "height":32,
                  "id":491,
                  "name":"TallGrass",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"TallGrass",
                  "visible":true,
@@ -6405,10 +4709,6 @@
                  "height":32,
                  "id":492,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6420,10 +4720,6 @@
                  "height":32,
                  "id":493,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6435,10 +4731,6 @@
                  "height":32,
                  "id":494,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6450,10 +4742,6 @@
                  "height":32,
                  "id":529,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6465,10 +4753,6 @@
                  "height":32,
                  "id":530,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6480,10 +4764,6 @@
                  "height":32,
                  "id":531,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6495,10 +4775,6 @@
                  "height":32,
                  "id":532,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6510,10 +4786,6 @@
                  "height":32,
                  "id":533,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6525,10 +4797,6 @@
                  "height":32,
                  "id":534,
                  "name":"Tree",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Tree",
                  "visible":true,
@@ -6540,10 +4808,6 @@
                  "height":32,
                  "id":544,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6555,10 +4819,6 @@
                  "height":32,
                  "id":556,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6570,10 +4830,6 @@
                  "height":32,
                  "id":557,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6585,10 +4841,6 @@
                  "height":32,
                  "id":558,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6600,10 +4852,6 @@
                  "height":32,
                  "id":559,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6615,10 +4863,6 @@
                  "height":32,
                  "id":560,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6630,10 +4874,6 @@
                  "height":32,
                  "id":561,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6645,10 +4885,6 @@
                  "height":32,
                  "id":562,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6660,10 +4896,6 @@
                  "height":32,
                  "id":573,
                  "name":"Bush",
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"Bush",
                  "visible":true,
@@ -6869,10 +5101,6 @@
                          "x":704,
                          "y":-1088
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7233,10 +5461,6 @@
                          "x":-1568,
                          "y":-1632
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7257,10 +5481,6 @@
                          "x":-128,
                          "y":-384
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7281,10 +5501,6 @@
                          "x":-128,
                          "y":-384
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7305,10 +5521,6 @@
                          "x":-384,
                          "y":-128
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7329,10 +5541,6 @@
                          "x":-384,
                          "y":-128
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7353,10 +5561,6 @@
                          "x":0,
                          "y":-320
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7377,10 +5581,6 @@
                          "x":0,
                          "y":-320
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7757,10 +5957,6 @@
                          "x":128,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -7993,10 +6189,6 @@
                          "x":1952,
                          "y":-1792
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8153,10 +6345,6 @@
                          "x":-1824,
                          "y":1664
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8189,10 +6377,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8225,10 +6409,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8261,10 +6441,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8297,10 +6473,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8333,10 +6505,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8369,10 +6537,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8405,10 +6569,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8441,10 +6601,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8477,10 +6633,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8513,10 +6665,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8549,10 +6697,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8585,10 +6729,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8621,10 +6761,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8657,10 +6793,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8693,10 +6825,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8729,10 +6857,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8765,10 +6889,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8801,10 +6921,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8837,10 +6953,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8877,10 +6989,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8913,10 +7021,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8949,10 +7053,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -8985,10 +7085,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -9025,10 +7121,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -9065,10 +7157,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -9321,10 +7409,6 @@
                          "x":1440,
                          "y":1504
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -9361,10 +7445,6 @@
                          "x":0,
                          "y":0
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -9669,10 +7749,6 @@
                          "x":832,
                          "y":-1088
                         }],
-                 "properties":
-                    {
-
-                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -9689,24 +7765,17 @@
         }],
  "nextobjectid":687,
  "orientation":"isometric",
- "properties":
-    {
-
-    },
  "renderorder":"right-down",
  "tileheight":32,
  "tilesets":[
         {
+         "columns":8,
          "firstgid":1,
          "image":"lowTiles.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
          "name":"lowTiles",
-         "properties":
-            {
-
-            },
          "spacing":0,
          "terrains":[
                 {
@@ -9981,32 +8050,26 @@
          "tilewidth":64
         }, 
         {
+         "columns":8,
          "firstgid":129,
          "image":"highTiles.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
          "name":"highTiles",
-         "properties":
-            {
-
-            },
          "spacing":0,
          "tilecount":64,
          "tileheight":64,
          "tilewidth":64
         }, 
         {
+         "columns":8,
          "firstgid":193,
          "image":"underTiles.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
          "name":"underTiles",
-         "properties":
-            {
-
-            },
          "spacing":0,
          "terrains":[
                 {
@@ -10241,16 +8304,13 @@
          "tilewidth":64
         }, 
         {
+         "columns":5,
          "firstgid":321,
          "image":"AsTARtILES.png",
          "imageheight":32,
          "imagewidth":320,
          "margin":0,
          "name":"AsTARtILES",
-         "properties":
-            {
-
-            },
          "spacing":0,
          "tilecount":5,
          "tileheight":32,
@@ -10285,6 +8345,39 @@
                  "area":"winter",
                  "walkable":"true",
                  "weight":"10"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "0":
+                {
+                 "area":"string",
+                 "walkable":"string",
+                 "weight":"string"
+                },
+             "1":
+                {
+                 "area":"string",
+                 "walkable":"string",
+                 "weight":"string"
+                },
+             "2":
+                {
+                 "area":"string",
+                 "walkable":"string",
+                 "weight":"string"
+                },
+             "3":
+                {
+                 "area":"string",
+                 "walkable":"string",
+                 "weight":"string"
+                },
+             "4":
+                {
+                 "area":"string",
+                 "walkable":"string",
+                 "weight":"string"
                 }
             },
          "tilewidth":64

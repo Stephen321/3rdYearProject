@@ -59,6 +59,7 @@ int main()
 	Screens.push_back(&optionsScreen);
 	CreditsScreen creditsScreen;
 	Screens.push_back(&creditsScreen);
+	
 
 	//Main loop
 	while (screen >= 0)

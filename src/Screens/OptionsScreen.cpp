@@ -22,14 +22,14 @@ int OptionsScreen::Run(sf::RenderWindow &window)
 	sf::Text Menu1;
 	int menu = 0;
 
-	Font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
+	Font.loadFromFile("resources/GARA.TTF");
 
 	sf::Vector2f screenDimensions(window.getView().getSize());
 
 	Menu1.setFont(Font);
 	Menu1.setCharacterSize(70);
 	Menu1.setString("Back");
-	Menu1.setColor(sf::Color(255, 255, 255, 255));
+	Menu1.setFillColor(sf::Color(255, 255, 255, 255));
 	setTextOriginAndPosition(Menu1, 6, screenDimensions);
 	int joystick = -1;
 

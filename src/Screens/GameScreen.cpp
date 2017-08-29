@@ -67,7 +67,7 @@ int GameScreen::Run(sf::RenderWindow &window)
 
 	//text
 	sf::Font font;
-	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
+	font.loadFromFile("resources/GARA.TTF");
 	sf::Text screenPosText;
 	screenPosText.setFont(font);
 	screenPosText.setStyle(sf::Text::Regular);
@@ -119,10 +119,10 @@ int GameScreen::Run(sf::RenderWindow &window)
 					DebugShape ds;
 					ds.setPosition(pos);
 					b2PolygonShape* ps = (b2PolygonShape*)f->GetShape();
-					int count = ps->GetVertexCount();
+					int count = ps->GetChildCount();
 					for (int i = 0; i < count; i++)
-						ds.AddVertex(sf::Vertex(BoxToSfVec(ps->GetVertex(i)), sf::Color::Red));
-					if (count >= 0) ds.AddVertex(sf::Vertex(BoxToSfVec(ps->GetVertex(0)), sf::Color::Red));
+						ds.AddVertex(sf::Vertex(BoxToSfVec(ps->m_vertices[i]), sf::Color::Red));
+					if (count >= 0) ds.AddVertex(sf::Vertex(BoxToSfVec(ps->m_vertices[0]), sf::Color::Red));
 					debugShapes.push_back(ds);
 				}
 			}
