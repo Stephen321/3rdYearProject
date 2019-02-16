@@ -1,5 +1,5 @@
 # Malevolence Unfolded
-This is a paired project created in the 3rd year of our Computer Games Development course. 
+This is a paired project created in the 3rd year (2015/2016) of our Computer Games Development course. 
 
 *Video:* https://youtu.be/Oi1nhzTOlzo
 
